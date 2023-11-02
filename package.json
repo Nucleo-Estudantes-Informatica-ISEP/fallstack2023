@@ -11,6 +11,7 @@
     "generate": "prisma generate"
   },
   "dependencies": {
+    "@prisma/client": "5.5.2",
     "next": "14.0.1",
     "react": "^18",
     "react-bootstrap-icons": "^1.10.3",
