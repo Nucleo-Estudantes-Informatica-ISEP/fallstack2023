@@ -2,16 +2,37 @@
 
 import { Pencil } from "@/styles/Icons";
 import InputLabel from "../InputLabel";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { BASE_URL } from "@/services/api";
 
-const BioSection = () => {
+interface BioSectionProps {
+  code: string;
+  bio?: string | null;
+}
+
+const BioSection: React.FC<BioSectionProps> = ({ code, bio }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [hidden, setHidden] = useState(true);
   const [isEditable, setIsEditable] = useState(false);
 
-  function handleSubmit() {
+  async function handleSubmit() {
     setHidden(true);
     setIsEditable(false);
+
+    const res = await fetch(`${BASE_URL}/students/${code}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        // TODO: get session from user
+      },
+      body: JSON.stringify({
+        bio: inputRef.current?.value,
+      }),
+    });
+    console.log(res.status);
+    if (res.status === 200) {
+      alert("Bio atualizada com sucesso!");
+    } else alert("Erro ao atualizar a bio.");
   }
 
   const handleWrite = () => {
@@ -59,13 +80,14 @@ const BioSection = () => {
           removeEventListener();
         }}
         onBlur={addListener}
-        className={`block w-full mx-auto mt-1 rounded-md resize-none md:mx-0 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600 ${
+        className={`block w-full h-32 mx-auto mt-1 rounded-md resize-none md:mx-0 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600 ${
           isEditable
             ? "border-4 border-primary-500 text-black"
             : "bg-fallstack-color-blue text-white"
         }`}
         disabled={!isEditable}
-      ></textarea>
+        defaultValue={bio?.toString()}
+      />
       {!hidden && (
         <div className="flex items-center w-5/6 mx-auto md:mx-0 gap-x-6">
           <button
