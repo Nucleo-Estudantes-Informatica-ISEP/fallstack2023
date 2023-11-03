@@ -14,7 +14,8 @@ const config: Config = {
         'modal-hover-accent': '#f3f4f6', // gray-100
         'social-media-link': '#3b82f6', // blue-500
         'social-media-hover': '#2563eb', // blue-600
-        'fallstack-color': '#f97316' // orange-50
+        'fallstack-color': '#f97316', // orange-50
+        'fallstack-color-blue': '#025464'
       },
       backgroundImage: {
         'page-background': "url('/assets/images/background.webp')"
