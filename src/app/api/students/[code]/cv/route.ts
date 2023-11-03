@@ -14,7 +14,10 @@ interface StudentParams {
   };
 }
 
-export async function GET({ params: { code } }: StudentParams) {
+export async function GET(
+  req: NextRequest,
+  { params: { code } }: StudentParams
+) {
   // TODO: check auth
 
   const student = await prisma.student.findUnique({ where: { code } });
@@ -33,8 +36,8 @@ export async function GET({ params: { code } }: StudentParams) {
     .getSignedUrl({
       action: "read",
       version: "v4",
-      expires: Date.now() + 20 * 60 * 1000, // 20 minutes
-      contentType: "application/pdf",
+      expires: Date.now() + 5 * 60 * 1000, // 5 minutes
+      // responseDisposition: "attachment", // download the file
     });
 
   return NextResponse.json({ url });
@@ -55,7 +58,7 @@ export async function POST(
 
   const [exists] = await storage.bucket().file(filename).exists();
   if (!exists)
-    return NextResponse.json({ error: "Invalid id" }, { status: 404 });
+    return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
 
   // TODO: remove old cv if existent
   // ...file(filename).delete()
@@ -64,6 +67,10 @@ export async function POST(
 
   // TODO: update authenticated user's cv
   // the cv id will be saved, id is used to generate the url
+  await prisma.student.update({
+    where: { code },
+    data: { cv: uploadId },
+  });
 
   return NextResponse.json({ userCode: code, uploadId });
 }

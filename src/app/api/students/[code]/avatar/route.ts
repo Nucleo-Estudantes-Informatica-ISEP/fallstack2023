@@ -28,7 +28,7 @@ export async function POST(
   // check if file exists
   const [exists] = await storage.bucket().file(filename).exists();
   if (!exists)
-    return NextResponse.json({ error: "Invalid id" }, { status: 404 });
+    return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
 
   const [meta] = await storage.bucket().file(filename).makePublic();
 
@@ -40,10 +40,10 @@ export async function POST(
   // ...file(filename).delete()
 
   // TODO: update authenticated user's avatar
-  // await prisma.student.update({
-  //   where: { code },
-  //   data: { image: url },
-  // });
+  await prisma.student.update({
+    where: { code },
+    data: { image: url },
+  });
 
   return NextResponse.json({ userCode: code, url });
 }
