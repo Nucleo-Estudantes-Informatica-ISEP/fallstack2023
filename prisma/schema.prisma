@@ -29,6 +29,7 @@ model Student {
   interests StudentInterest[]
   savedBy   SavedStudent[]
   cv        String?
+  image     String?
 
   userId Int
 }
@@ -40,6 +41,7 @@ model Company {
   name          String
   tier          Tier
   savedStudents SavedStudent[]
+  image         String?
 
   userId Int
 }
