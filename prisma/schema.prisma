@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role     @default(STUDENT)
+
+  student Student[]
+  company Company[]
+}
+
+model Student {
+  id        Int               @id @default(autoincrement())
+  user      User              @relation(fields: [userId], references: [id])
+  code      String            @unique
+  name      String
+  bio       String?
+  year      Int
+  interests StudentInterest[]
+  savedBy   SavedStudent[]
+  cv        String?
+  image     String?
+
+  userId Int
+}
+
+model Company {
+  id            Int            @id @default(autoincrement())
+  user          User           @relation(fields: [userId], references: [id])
+  slug          String         @unique
+  name          String
+  tier          Tier
+  savedStudents SavedStudent[]
+  image         String?
+
+  userId Int
+}
+
+model Interest {
+  id         Int               @id @default(autoincrement())
+  name       String            @unique
+  interestOf StudentInterest[]
+}
+
+model StudentInterest {
+  id       Int      @id @default(autoincrement())
+  student  Student  @relation(fields: [studentId], references: [id])
+  interest Interest @relation(fields: [interestId], references: [id])
+
+  studentId  Int
+  interestId Int
+}
+
+model SavedStudent {
+  id        Int      @id @default(autoincrement())
+  student   Student  @relation(fields: [studentId], references: [id])
+  company   Company  @relation(fields: [companyId], references: [id])
+  createdAt DateTime @default(now())
+
+  studentId Int
+  companyId Int
+}
+
+enum Role {
+  STUDENT
+  COMPANY
+}
+
+enum Tier {
+  DIAMOND
+  GOLD
+  SILVER
+  BRONZE
+}
