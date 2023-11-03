@@ -18,6 +18,13 @@ export async function PUT(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
+  // TODO: check auth
+
+  const student = await prisma.student.findUnique({ where: { code } });
+
+  if (!student)
+    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+
   const body = await req.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
@@ -41,14 +48,16 @@ export async function PUT(
   const { bucket, object } = meta;
   const url = `https://storage.googleapis.com/${bucket}/${object}`;
 
-  // TODO: remove old avatar if existent
-  // ...file(filename).delete()
+  // remove old avatar if existent
+  if (student.image) {
+    const old = `distribution/profile/${student.image}`;
+    await storage.bucket().file(old).delete();
+  }
 
-  // TODO: update authenticated user's avatar
   await prisma.student.update({
     where: { code },
     data: { image: url },
   });
 
-  return NextResponse.json({ userCode: code, url });
+  return NextResponse.json({ url });
 }

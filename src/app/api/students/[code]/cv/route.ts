@@ -19,6 +19,7 @@ export async function GET(
   { params: { code } }: StudentParams
 ) {
   // TODO: check auth
+  // own student and companies that saved him can access its cv
 
   const student = await prisma.student.findUnique({ where: { code } });
 
@@ -46,7 +47,12 @@ export async function PUT(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  // TODO auth
+  // TODO: check auth
+
+  const student = await prisma.student.findUnique({ where: { code } });
+
+  if (!student)
+    return NextResponse.json({ error: "Student not found" }, { status: 404 });
 
   const body = await req.json();
   const parsed = schema.safeParse(body);
@@ -63,10 +69,12 @@ export async function PUT(
   const distribution = `distribution/cv/${uploadId}`;
   await storage.bucket().file(uploaded).move(distribution);
 
-  // TODO: remove old cv if existent
-  // ...file(filename).delete()
+  // remove old cv if existent
+  if (student.cv) {
+    const old = `distribution/cv/${student.cv}`;
+    await storage.bucket().file(old).delete();
+  }
 
-  // TODO: update authenticated user's cv
   // the cv id will be saved, id is used to generate the url
   await prisma.student.update({
     where: { code },
