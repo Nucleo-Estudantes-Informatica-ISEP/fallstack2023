@@ -72,7 +72,7 @@ export async function PUT(
   // remove old cv if existent
   if (student.cv) {
     const old = `distribution/cv/${student.cv}`;
-    await storage.bucket().file(old).delete();
+    await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 
   // the cv id will be saved, id is used to generate the url
@@ -81,5 +81,5 @@ export async function PUT(
     data: { cv: uploadId },
   });
 
-  return NextResponse.json({ userCode: code, uploadId });
+  return NextResponse.json({ uploadId });
 }

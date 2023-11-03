@@ -51,7 +51,7 @@ export async function PUT(
   // remove old avatar if existent
   if (student.image) {
     const old = `distribution/profile/${student.image}`;
-    await storage.bucket().file(old).delete();
+    await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 
   await prisma.student.update({
