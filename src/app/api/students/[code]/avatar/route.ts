@@ -50,7 +50,8 @@ export async function PUT(
 
   // remove old avatar if existent
   if (student.image) {
-    const old = `distribution/profile/${student.image}`;
+    const imageId = student.image.split("/").reverse()[0];
+    const old = `distribution/profile/${imageId}`;
     await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 
