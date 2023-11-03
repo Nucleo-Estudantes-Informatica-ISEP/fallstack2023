@@ -1,4 +1,11 @@
-import { AppOptions, ServiceAccount, cert, initializeApp, getApp, getApps } from "firebase-admin/app";
+import {
+  AppOptions,
+  ServiceAccount,
+  cert,
+  initializeApp,
+  getApp,
+  getApps,
+} from "firebase-admin/app";
 import { getStorage } from "firebase-admin/storage";
 
 const config: ServiceAccount = {

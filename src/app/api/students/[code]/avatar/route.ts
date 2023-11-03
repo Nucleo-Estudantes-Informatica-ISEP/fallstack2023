@@ -14,7 +14,7 @@ interface StudentParams {
   };
 }
 
-export async function POST(
+export async function PUT(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
@@ -23,14 +23,19 @@ export async function POST(
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
 
   const { uploadId } = parsed.data;
-  const filename = `profile/${uploadId}`;
+  const uploaded = `uploaded/profile/${uploadId}`;
 
   // check if file exists
-  const [exists] = await storage.bucket().file(filename).exists();
+  const [exists] = await storage.bucket().file(uploaded).exists();
   if (!exists)
-    return NextResponse.json({ error: "Invalid id" }, { status: 404 });
+    return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
 
-  const [meta] = await storage.bucket().file(filename).makePublic();
+  // move to distribution
+  const distribution = `distribution/profile/${uploadId}`;
+  await storage.bucket().file(uploaded).move(distribution);
+
+  // create a public accessible url
+  const [meta] = await storage.bucket().file(distribution).makePublic();
 
   // https://storage.googleapis.com/<bucket>/<object>
   const { bucket, object } = meta;
@@ -40,10 +45,10 @@ export async function POST(
   // ...file(filename).delete()
 
   // TODO: update authenticated user's avatar
-  // await prisma.student.update({
-  //   where: { code },
-  //   data: { image: url },
-  // });
+  await prisma.student.update({
+    where: { code },
+    data: { image: url },
+  });
 
   return NextResponse.json({ userCode: code, url });
 }

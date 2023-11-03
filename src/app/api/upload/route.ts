@@ -6,7 +6,7 @@ import { storage } from "@/lib/firebaseAdmin";
 import config from "@/config";
 
 const schema = z.object({
-  type: z.enum(["image/png", "image/jpeg", "application/pdf"]),
+  contentType: z.enum(["image/png", "image/jpeg", "application/pdf"]),
   target: z.enum(["profile", "cv"]),
 });
 
@@ -15,37 +15,47 @@ export async function POST(req: NextRequest) {
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
 
-  const { type, target } = parsed.data;
+  const { contentType, target } = parsed.data;
   const targetCfg = config.uploads[target];
 
   // check if the file type is allowed for the target
-  if (!targetCfg.types.includes(type))
+  if (!targetCfg.types.includes(contentType))
     return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
 
   // generate a unique filename
   const id = uuidv4();
-  const filename = `${target}/${id}`;
+  const filename = `uploaded/${target}/${id}`;
+
+  // uploaded files go to the uploaded folder
+  // this folder should have a lifecycle rule to delete files older than 1 day
 
   const maxSize = targetCfg.maxSize;
 
   // https://cloud.google.com/storage/docs/json_api/v1/parameters#xgoogcontentlengthrange
   // the client will need to send this headers
-  const extensionHeaders = {
+  const headers = {
     "X-Goog-Content-Length-Range": `1,${maxSize}`, // sign url with file size limit
   };
 
+  const expires = Date.now() + 5 * 60 * 1000; // 5 minutes
+
   // generate a signed url so that the client can upload the file directly to the bucket
   // https://cloud.google.com/storage/docs/samples/storage-generate-upload-signed-url-v4
-  const [url] = await storage
-    .bucket()
-    .file(filename)
-    .getSignedUrl({
-      action: "write",
-      version: "v4",
-      expires: Date.now() + 10 * 60 * 1000, // 10 minutes
-      contentType: type, // restrict file types
-      extensionHeaders,
-    });
+  const [url] = await storage.bucket().file(filename).getSignedUrl({
+    action: "write",
+    version: "v4",
+    expires,
+    contentType, // restrict file type
+    extensionHeaders: headers,
+  });
 
-  return NextResponse.json({ id, url, extensionHeaders });
+  return NextResponse.json({
+    id,
+    contentType,
+    target,
+    maxSize,
+    expires: new Date(expires),
+    url,
+    headers,
+  });
 }
