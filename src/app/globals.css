@@ -2,20 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --text: #000000;
+    --background: #e5fcff;
+    --primary: #d96f12;
+    --secondary: #d2eaef;
+    --accent: #00c3ff;
+    --accent-alternative: #068198;
+    background-image: url(/assets/images/bg_light_desktop.jpg);
+    background-size: contain;
   }
-}
+  .dark {
+    --text: #ffffff;
+    --background: #00171a;
+    --primary: #ed8326;
+    --secondary: #10282d;
+    --accent: #00c3ff;
+    --accent-alternative: #00C2FF;
+    background-image: url(/assets/images/bg_dark_desktop.jpg);
+    background-size: contain;
+  }
 
-body {
-  margin: 0;
+  @media (max-width: 768px) {
+    :root {
+      background-image: url(/assets/images/bg_light_mobile.jpg);
+    }
+    .dark {
+      background-image: url(/assets/images/bg_dark_mobile.jpg);
+    }    
+  }
 }
