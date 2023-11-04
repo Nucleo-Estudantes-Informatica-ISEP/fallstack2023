@@ -12,6 +12,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.1",
     "@prisma/client": "5.5.2",
     "axios": "^1.6.0",
     "framer-motion": "^10.16.4",

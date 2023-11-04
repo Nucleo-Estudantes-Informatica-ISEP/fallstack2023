@@ -1,5 +1,7 @@
 import BioSection from "@/components/BioSection";
+import InterestsSection from "@/components/InterestsSection";
 import UserImage from "@/components/UserImage";
+import YearSection from "@/components/YearSection";
 import prisma from "@/lib/prisma";
 import { formatDateDDStrMonthYYYY } from "@/utils/date";
 
@@ -28,6 +30,19 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
     );
   }
 
+  const interests = await prisma.studentInterest.findMany({
+    where: {
+      studentId: student.id,
+    },
+    select: {
+      interest: true,
+    },
+  });
+
+  const sanitizedInterests = interests.map(
+    (interest) => interest.interest.name
+  );
+
   return (
     <section className="w-full flex flex-col items-center">
       <p className="md:text-2xl text-xl font-bold uppercase text-center py-4">
@@ -36,13 +51,11 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
       <UserImage />
 
       <p className="text-xl font-semibold text-center px-4">
-        Boas vindas,{" "}
-        <span className="font-bold text-primary">{student.name}</span>!
+        <span className="font-bold text-primary">{student.name}</span>
       </p>
-      <p className="pt-2 pb-5 text-center">
-        Hoje é dia {formatDateDDStrMonthYYYY(new Date().getTime())}.
-      </p>
+      <YearSection />
       <BioSection code={params.code} bio={student?.bio} />
+      <InterestsSection code={params.code} interests={sanitizedInterests} />
     </section>
   );
 };

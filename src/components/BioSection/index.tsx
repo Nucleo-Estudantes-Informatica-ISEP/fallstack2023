@@ -61,7 +61,7 @@ const BioSection: React.FC<BioSectionProps> = ({ code, bio }) => {
   return (
     <div className="flex flex-col mb-5 space-y-5 w-11/12 md:w-2/3 mx-auto md:mx-0">
       <div className="flex">
-        <InputLabel value="Sobre" className="font-bold text-left text-xl" />
+        <h3 className="font-bold text-left text-xl">Sobre</h3>
         <button className="text-black" onClick={handleWrite}>
           <Pencil className="relative right-0 bottom-0 w-6 h-6 text-black ml-2" />
         </button>
@@ -80,7 +80,7 @@ const BioSection: React.FC<BioSectionProps> = ({ code, bio }) => {
           removeEventListener();
         }}
         onBlur={addListener}
-        className={`block w-full h-32 mx-auto mt-1 rounded-md resize-none md:mx-0 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600 ${
+        className={`block w-full h-32 text-base mx-auto mt-1 rounded-md resize-none md:mx-0 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600 ${
           isEditable
             ? "border-4 border-primary-500 text-black"
             : "bg-fallstack-color-blue text-white"
