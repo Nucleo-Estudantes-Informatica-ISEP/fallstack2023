@@ -7,17 +7,15 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    themeVariants: ['dark', 'light'],
     extend: {
       colors: {
-        'modal-accent': '#fb923c', // orange-400
-        'modal-active': '#f97316', // orange-50
-        'modal-hover-accent': '#f3f4f6', // gray-100
-        'social-media-link': '#3b82f6', // blue-500
-        'social-media-hover': '#2563eb', // blue-600
-        'fallstack-color': '#f97316' // orange-50
-      },
-      backgroundImage: {
-        'page-background': "url('/assets/images/background.webp')"
+        'text': 'var(--text)',
+        'background': 'var(--background)',
+        'primary': 'var(--primary)',
+        'secondary': 'var(--secondary)',
+        'accent': 'var(--accent)',
+        'accent-alternative': 'var(--accent-alternative)',
       },
       animation: {
         fade: 'fade ease-out 1s 1.5s forwards',
