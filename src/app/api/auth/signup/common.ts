@@ -31,31 +31,20 @@ export async function createUser(
   }
 }
 
-export async function createCode(
-  entity: "STUDENT" | "COMPANY"
-): Promise<string> {
+export async function createCode(): Promise<string> {
   let code: string = "";
   let codeExists = true;
-  let ent = null;
 
   while (codeExists) {
     code = generateRandomCode();
 
-    if (entity === "STUDENT") {
-      ent = await prisma.student.findUnique({
-        where: {
-          code: code,
-        },
-      });
-    }else{
-      ent = await prisma.company.findUnique({
-        where: {
-          slug: code,
-        },
-      });
-    }
+    const student = await prisma.student.findUnique({
+      where: {
+        code: code,
+      },
+    });
 
-    codeExists = ent !== null;
+    codeExists = student !== null;
   }
 
   return code;

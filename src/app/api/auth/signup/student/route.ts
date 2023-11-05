@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     }
 
     // create code for student
-    const code = await createCode("STUDENT");
+    const code = await createCode();
     if (!code) {
       return NextResponse.json(
         { message: "Something went wrong" },
