@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { message: "Successfully logged in" },
+      { message: "Sign in successfully" },
       { status: 200 }
     );
   } catch (e) {
