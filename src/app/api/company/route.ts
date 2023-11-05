@@ -19,10 +19,10 @@ export async function POST(req: Request) {
     // valid body
     const { userId, name, tier } = body;
 
-    // check if user exists
-    if (await userExists(userId)) {
+    // checks if user exists
+    if (!(await userExists(userId))) {
       return NextResponse.json(
-        { message: "That email is already being used" },
+        { message: "User does not exist" },
         { status: 401 }
       );
     }
