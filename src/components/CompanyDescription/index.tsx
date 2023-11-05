@@ -2,14 +2,15 @@ import React from "react";
 import HeadingText from "@/components/HeadingText";
 
 interface CompanyDescriptionProps {
-    description: React.ReactNode
+    children: React.ReactNode
 }
 
-const CompanyDescription: React.FC<CompanyDescriptionProps> = ({ description }) => {
+const CompanyDescription: React.FC<CompanyDescriptionProps> = ({ children }) => {
     return (
         <>
-            <HeadingText text='Detalhes'/>
-            <div className="text-justify">{description}</div>
+            <section className="flex flex-col space-y-2  leading-8 lg:px-10 lg:text-lg">
+                {children}
+            </section>
         </>
     );
 };

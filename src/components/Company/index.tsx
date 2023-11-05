@@ -32,10 +32,11 @@ const Company: React.FC<CompanyProps> = ({
                 >
                     <a>
                         <Image
-                            className="h-full max-h-36 w-full max-w-[12rem] object-cover lg:max-h-28  lg:max-w-[18rem] xl:max-h-32 xl:max-w-[16rem]"
+                            className="h-full w-full max-h-36 max-w-[12rem] object-contain lg:max-h-28 lg:max-w-[18rem] xl:max-h-32 xl:max-w-[16rem]"
                             src={logoHref}
                             alt={name}
                         />
+
                     </a>
                 </Link>
             </div>
