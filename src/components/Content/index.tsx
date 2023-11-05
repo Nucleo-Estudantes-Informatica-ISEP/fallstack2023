@@ -51,6 +51,12 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
           </Activity>
         </div>
       </section>
+
+      <hr />
+
+      <CompaniesSection />
+
+      <hr />
     </section>
   );
 };
