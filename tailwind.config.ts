@@ -17,16 +17,6 @@ const config: Config = {
         'accent': 'var(--accent)',
         'accent-alternative': 'var(--accent-alternative)',
       },
-      backgroundImage: {
-        'dark-desktop': "url('/assets/images/bg_dark_desktop.jpg')",
-        'dark-mobile': "url('/assets/images/bg_dark_mobile.jpg')",
-        'light-desktop': "url('/assets/images/bg_light_desktop.jpg')",
-        'light-mobile': "url('/assets/images/bg_light_mobile.jpg')",
-        'dark-company-mobile': "url('/assets/images/bg_dark_company_mobile.jpg')",
-        'dark-company-desktop': "url('/assets/images/bg_dark_company_desktop.jpg')",
-        'light-company-mobile': "url('/assets/images/bg_light_company_mobile.jpg')",
-        'light-company-desktop': "url('/assets/images/bg_light_company_desktop.jpg')",
-      },
       animation: {
         fade: 'fade ease-out 1s 1.5s forwards',
         'fade-imm': 'fade ease-out 200ms',
