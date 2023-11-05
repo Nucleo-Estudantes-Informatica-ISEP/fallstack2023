@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(
-      { message: "Signup successfully" },
+      { student: student },
       { status: 201 }
     );
   } catch (e) {
