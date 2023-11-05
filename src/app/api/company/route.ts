@@ -6,7 +6,6 @@ import { postCompanySchema } from "@/schemas/postCompanySchema";
 
 export async function POST(req: Request) {
   try {
-
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = postCompanySchema.parse(requestBody);
@@ -17,6 +16,20 @@ export async function POST(req: Request) {
     if (!(await userExists(userId))) {
       return NextResponse.json(
         { message: "User does not exist" },
+        { status: 401 }
+      );
+    }
+
+    // checks if company already exists
+    const existingCompany = await prisma.company.findFirst({
+      where: {
+        userId: userId,
+      },
+    });
+
+    if (existingCompany) {
+      return NextResponse.json(
+        { message: "Company already exists" },
         { status: 401 }
       );
     }
