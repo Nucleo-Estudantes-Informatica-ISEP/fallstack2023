@@ -2,12 +2,12 @@
 
 import { AnimationProps, motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import axios from "axios";
 import { ChangeEvent, EventHandler } from "react";
 
 interface UserImageProps {
   image?: string;
+  hidden?: boolean;
 }
 
 const content = {
@@ -15,7 +15,7 @@ const content = {
   key2: "value2",
 };
 
-const UserImage: React.FC<UserImageProps> = ({ image }) => {
+const UserImage: React.FC<UserImageProps> = ({ image, hidden }) => {
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -39,7 +39,7 @@ const UserImage: React.FC<UserImageProps> = ({ image }) => {
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="flex flex-col items-center relative hover:cursor-pointer md:w-40 md:h-40 w-24 h-24 my-6 rounded-full"
+      className="flex flex-col items-center relative hover:cursor-pointer md:w-52 md:h-52 w-24 h-24 my-2 rounded-full"
     >
       <Image
         width={328}
@@ -61,13 +61,15 @@ const UserImage: React.FC<UserImageProps> = ({ image }) => {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         ></motion.input>
-        <motion.div
-          {...animation}
-          className="w-full h-full rounded-full absolute top-0 left-0 flex flex-col items-center justify-center"
-        >
-          <p className="text-white text-2xl">+</p>
-          <p className="text-white text-sm">Adicionar</p>
-        </motion.div>
+        {!hidden && (
+          <motion.div
+            {...animation}
+            className="w-full h-full rounded-full absolute top-0 left-0 flex flex-col items-center justify-center"
+          >
+            <p className="text-white text-2xl">+</p>
+            <p className="text-white text-sm">Adicionar</p>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );

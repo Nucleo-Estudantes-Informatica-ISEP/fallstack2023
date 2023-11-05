@@ -1,10 +1,10 @@
-export default function RootLayout({
+export default function StudentLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen w-3/4 justify-center mx-auto bg-fallstack-color-blue">
+    <div className="w-screen mx-auto">
       <main>{children}</main>
     </div>
   );

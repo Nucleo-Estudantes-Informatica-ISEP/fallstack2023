@@ -1,9 +1,6 @@
-import BioSection from "@/components/BioSection";
-import InterestsSection from "@/components/InterestsSection";
+import ProfileSectionContainer from "@/components/ProfileSectionContainer";
 import UserImage from "@/components/UserImage";
-import YearSection from "@/components/YearSection";
 import prisma from "@/lib/prisma";
-import { formatDateDDStrMonthYYYY } from "@/utils/date";
 
 interface ProfileProps {
   params: {
@@ -43,19 +40,23 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
     (interest) => interest.interest.name
   );
 
+  console.log("sanitizedInterests", sanitizedInterests);
+
   return (
     <section className="w-full flex flex-col items-center">
-      <p className="md:text-2xl text-xl font-bold uppercase text-center py-4">
-        O teu <span className="text-primary">perfil</span>
-      </p>
       <UserImage />
 
       <p className="text-xl font-semibold text-center px-4">
-        <span className="font-bold text-primary">{student.name}</span>
+        <span className="font-bold">{student.name}</span>
       </p>
-      <YearSection />
-      <BioSection code={params.code} bio={student?.bio} />
-      <InterestsSection code={params.code} interests={sanitizedInterests} />
+      <p className="text-center px-4">
+        O teu perfil já foi gravado{" "}
+        <span className="text-primary font-bold">{0} vezes</span> hoje.
+      </p>
+      <ProfileSectionContainer
+        interests={sanitizedInterests}
+        student={student}
+      />
     </section>
   );
 };
