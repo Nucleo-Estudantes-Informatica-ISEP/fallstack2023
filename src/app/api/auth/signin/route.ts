@@ -60,7 +60,7 @@ export async function POST(req: Request) {
 
     // set cookie with token
     cookies().set({
-      name: "authToken",
+      name: "authCookie",
       maxAge: AUTH_COOKIE_MAX_AGE,
       value: token,
       path: "/",
