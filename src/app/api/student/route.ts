@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { ZodError} from "zod";
+import { ZodError } from "zod";
 import { userExists } from "../common";
 import generateRandomCode from "@/utils/GenerateCode";
 import { postStudentSchema } from "@/schemas/postStudentSchema";
 
 export async function POST(req: Request) {
   try {
-
-
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = postStudentSchema.parse(requestBody);
@@ -19,6 +17,20 @@ export async function POST(req: Request) {
     if (!(await userExists(userId))) {
       return NextResponse.json(
         { message: "User does not exist" },
+        { status: 401 }
+      );
+    }
+
+    // checks if student already exists
+    const existingStudent = await prisma.student.findFirst({
+      where: {
+        userId: userId,
+      },
+    });
+
+    if (existingStudent) {
+      return NextResponse.json(
+        { message: "Student already exists" },
         { status: 401 }
       );
     }
@@ -61,10 +73,7 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json(
-      { student: student },
-      { status: 201 }
-    );
+    return NextResponse.json({ student: student }, { status: 201 });
   } catch (e) {
     if (e instanceof ZodError)
       return NextResponse.json({ error: e.errors }, { status: 400 });
