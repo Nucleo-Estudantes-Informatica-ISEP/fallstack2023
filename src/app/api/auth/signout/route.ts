@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
 
-    // set cookie with token
+    // deletes the auth cookie
     cookies().delete({
       name: "authCookie"
     });
