@@ -39,7 +39,7 @@ const CompanySocials: React.FC<CompanySocialsProps> = ({
                 {instagramLink && (
                     <SocialMediaCard href={instagramLink} icon={<Instagram />} title="Instagram" />
                 )}
-                {website && <SocialMediaCard href={website} icon={<Globe />} title="Webiste" />}
+                {website && <SocialMediaCard href={website} icon={<Globe />} title="Website" />}
             </ul>
         </>
     );

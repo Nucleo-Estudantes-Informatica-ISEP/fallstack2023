@@ -1,5 +1,5 @@
 import React from "react";
-import {ModalInformation} from "../../types/ModalProps";
+import {ModalInformation} from "@/types/ModalProps";
 import Image, {StaticImageData} from "next/image";
 import Link from "next/link";
 import {CompaniesTier} from "@/utils/GetColorTier";

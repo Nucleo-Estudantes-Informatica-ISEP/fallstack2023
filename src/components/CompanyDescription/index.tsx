@@ -1,5 +1,4 @@
 import React from "react";
-import HeadingText from "@/components/HeadingText";
 
 interface CompanyDescriptionProps {
     children: React.ReactNode
