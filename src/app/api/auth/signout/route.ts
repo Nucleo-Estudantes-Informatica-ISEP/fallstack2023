@@ -1,3 +1,4 @@
+import { COOKIE_NAME } from "@/services/cookies";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -6,7 +7,7 @@ export async function POST(req: Request) {
 
     // deletes the auth cookie
     cookies().delete({
-      name: "authCookie"
+      name: COOKIE_NAME
     });
 
     return NextResponse.json(

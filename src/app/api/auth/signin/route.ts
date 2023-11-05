@@ -5,7 +5,7 @@ import { User } from "@prisma/client";
 import { ZodError, object, string } from "zod";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { AUTH_COOKIE_MAX_AGE } from "@/services/cookies";
+import { AUTH_COOKIE_MAX_AGE, COOKIE_NAME } from "@/services/cookies";
 
 export async function POST(req: Request) {
   try {
@@ -14,19 +14,19 @@ export async function POST(req: Request) {
       throw new Error("JWT_SECRET environment variable is not defined");
     }
 
-    const authSchema = object({
+    const signInSchema = object({
       email: string(),
       password: string(),
     });
 
     // validate the request body against the schema
     const requestBody = await req.json();
-    const body = authSchema.parse(requestBody);
+    const body = signInSchema.parse(requestBody);
     // valid body
     const { email, password } = body;
 
     // fetch user from database
-    const user: User | null = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email: email,
       },
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
 
     // set cookie with token
     cookies().set({
-      name: "authCookie",
+      name: COOKIE_NAME,
       maxAge: AUTH_COOKIE_MAX_AGE,
       value: token,
       path: "/",
