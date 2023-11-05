@@ -5,7 +5,7 @@ import { ZodError} from "zod";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { AUTH_COOKIE_MAX_AGE, COOKIE_NAME } from "@/services/cookies";
-import { signInSchema } from "@/schemas/signinSchema";
+import { signInSchema } from "@/schemas/signInSchema";
 
 export async function POST(req: Request) {
   try {
