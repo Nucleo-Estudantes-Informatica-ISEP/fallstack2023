@@ -19,7 +19,7 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
   return (
     <section
       ref={contentRef}
-      className="center container mx-auto w-11/12 rounded-lg bg-slate-100 p-10 sm:w-3/4 lg:p-14"
+      className="center container mx-auto w-11/12 rounded-lg p-10 sm:w-3/4 lg:p-14"
     >
       <InfoText
         days={[19, 20]}
@@ -51,34 +51,6 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
           </Activity>
         </div>
       </section>
-
-      <section className="d-flex flex-column align-items-center justify-content-center mt-12 mb-6 text-center">
-        <a rel="noreferrer" target="_blank" href={REGISTRATION_LINK}>
-          <h6 className="mb-6 inline-block text-center font-good__times text-lg text-fallstack-color transition-all duration-300 hover:scale-105 hover:drop-shadow-fallstack-text-shadow lg:text-2xl">
-            Inscrição no google forms
-          </h6>
-        </a>
-      </section>
-
-      <hr />
-
-      <CompaniesSection />
-
-      <hr />
-
-      <SponsorsSection />
-
-      <hr />
-
-      <Schedule
-        firstDayTitle="Segunda-Feira - Auditório Magno"
-        secondDayTitle="Terça-Feira - Sala de Eventos"
-        scheduleEvents={ScheduleDays}
-      />
-
-      <hr />
-
-      <Map />
     </section>
   );
 };
