@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     const studentSchema = object({
       userId: number(),
-      year: number(),
+      year: number().min(1).max(5),
       name: string(),
     });
 
