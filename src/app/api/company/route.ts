@@ -1,21 +1,15 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { User } from "@prisma/client";
-import { ZodError, object, string, number, z } from "zod";
-import bcrypt from "bcrypt";
+import { ZodError } from "zod";
 import { userExists } from "../common";
+import { postCompanySchema } from "@/schemas/postCompanySchema";
 
 export async function POST(req: Request) {
   try {
-    const companySchema = object({
-      userId: number(),
-      name: string(),
-      tier: z.enum(["DIAMOND", "GOLD", "SILVER", "BRONZE"]),
-    });
 
     // validate the request body against the schema
     const requestBody = await req.json();
-    const body = companySchema.parse(requestBody);
+    const body = postCompanySchema.parse(requestBody);
     // valid body
     const { userId, name, tier } = body;
 

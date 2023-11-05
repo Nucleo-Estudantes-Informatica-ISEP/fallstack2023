@@ -1,19 +1,15 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { ZodError, object, string, z } from "zod";
+import { ZodError} from "zod";
 import bcrypt from "bcrypt";
+import { signUpSchema } from "@/schemas/signUpSchema";
 
 export async function POST(req: Request) {
   try {
-    const userSchema = object({
-      email: string().email(),
-      password: string(),
-      role: z.enum(["COMPANY"]).optional(),
-    });
 
     // validate the request body against the schema
     const requestBody = await req.json();
-    const body = userSchema.parse(requestBody);
+    const body = signUpSchema.parse(requestBody);
     // valid body
     const { email, password, role } = body;
 

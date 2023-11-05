@@ -1,20 +1,17 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { ZodError, object, string, number } from "zod";
+import { ZodError} from "zod";
 import { userExists } from "../common";
 import generateRandomCode from "@/utils/GenerateCode";
+import { postStudentSchema } from "@/schemas/postStudentSchema";
 
 export async function POST(req: Request) {
   try {
-    const studentSchema = object({
-      userId: number(),
-      year: number().min(1).max(5),
-      name: string(),
-    });
+
 
     // validate the request body against the schema
     const requestBody = await req.json();
-    const body = studentSchema.parse(requestBody);
+    const body = postStudentSchema.parse(requestBody);
     // valid body
     const { userId, name, year } = body;
 

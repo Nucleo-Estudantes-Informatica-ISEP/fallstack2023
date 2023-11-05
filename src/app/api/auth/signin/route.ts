@@ -1,11 +1,11 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { User } from "@prisma/client";
-import { ZodError, object, string } from "zod";
+import { ZodError} from "zod";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { AUTH_COOKIE_MAX_AGE, COOKIE_NAME } from "@/services/cookies";
+import { signInSchema } from "@/schemas/signinSchema";
 
 export async function POST(req: Request) {
   try {
@@ -13,11 +13,6 @@ export async function POST(req: Request) {
     if (!process.env.JWT_SECRET) {
       throw new Error("JWT_SECRET environment variable is not defined");
     }
-
-    const signInSchema = object({
-      email: string(),
-      password: string(),
-    });
 
     // validate the request body against the schema
     const requestBody = await req.json();
