@@ -14,7 +14,7 @@ interface CompanyInfoProps {
     youtubeLink: string | undefined;
     linkedinLink: string | undefined;
     website: string | undefined;
-    tag: string;
+    tier: string;
 }
 
 const CompanyInfo : React.FC<CompanyInfoProps> = (
@@ -29,7 +29,7 @@ const CompanyInfo : React.FC<CompanyInfoProps> = (
         youtubeLink,
         linkedinLink,
         website,
-        tag
+        tier
     }) => {
 
     const hasSocials : boolean = !!(twitterLink || linkedinLink || facebookLink || youtubeLink || instagramLink || website);
@@ -54,7 +54,7 @@ const CompanyInfo : React.FC<CompanyInfoProps> = (
                         website={website}
                     />
                 )}
-                {tag === 'Diamond' &&
+                {tier === 'Diamond' &&
                     <>
                         <HeadingText text={videoTitle || 'Vídeo promocional'}/>
                         <div className="flex items-center justify-center" key={useId()}>

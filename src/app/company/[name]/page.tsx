@@ -9,6 +9,7 @@ import HeroContainer from "@/components/HeroContainer";
 import {notFound} from "next/navigation";
 import CompanyInfo from "@/components/CompanyInfo";
 import {CompaniesTier} from "@/utils/GetColorTier";
+import findCompanyByName from "@/utils/CompanyByName";
 
 interface CompanySearchProps {
     params: {
@@ -17,16 +18,11 @@ interface CompanySearchProps {
     tier: CompaniesTier;
 }
 
-interface CompanyDetails {
-    props: CompanyProps;
-    tag: string;
-}
-
 
 const company: React.FC<CompanySearchProps> = ({params}) => {
     const company = findCompanyByName(params.name);
 
-    if (company === null || company.tag === 'Silver') {
+    if (company === null || company.tier === 'Silver') {
         return notFound();
     }
 
@@ -63,7 +59,7 @@ const company: React.FC<CompanySearchProps> = ({params}) => {
                     youtubeLink={youtubeLink}
                     linkedinLink={linkedinLink}
                     website={website}
-                    tag={company.tag}
+                    tier={company.tier}
                 ></CompanyInfo>
 
                 <Footer lastEditionUrl="https://fallstack-22-23.nei-isep.org/"/>
@@ -72,7 +68,6 @@ const company: React.FC<CompanySearchProps> = ({params}) => {
     );
 }
 
-
 /*
 <section
                         //ref={contentRef}
@@ -80,30 +75,5 @@ const company: React.FC<CompanySearchProps> = ({params}) => {
                     >
                     </section>
  */
-function findCompanyByName(name: string): CompanyDetails | null {
-
-    name = name.replaceAll('%20', ' ');
-
-    for (const company of DiamondCompanies) {
-        if (company.name === name) {
-            return {props: company, tag: 'Diamond'};
-        }
-    }
-
-    for (const company of GoldCompanies) {
-        if (company.name === name) {
-            return {props: company, tag: 'Gold'};
-        }
-    }
-
-    for (const company of SilverCompanies) {
-        if (company.name === name) {
-            return {props: company, tag: 'Silver'};
-        }
-    }
-
-    return null;
-}
-
 
 export default company;

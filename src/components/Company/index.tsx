@@ -3,6 +3,7 @@ import {ModalInformation} from "@/types/ModalProps";
 import Image, {StaticImageData} from "next/image";
 import Link from "next/link";
 import {CompaniesTier} from "@/utils/GetColorTier";
+import hrefByCompanyTier from "@/utils/HrefByTier";
 
 export interface CompanyProps {
     logoHref: StaticImageData;
@@ -54,18 +55,5 @@ const Company: React.FC<CompanyProps> = ({
                 />
             )}
  */
-
-function hrefByCompanyTier(tier: CompaniesTier, name: string, websiteUrl: string | undefined): string {
-    switch (tier) {
-        case 'Diamond':
-            return `/company/${name}`;
-        case 'Gold':
-            return `/company/${name}`;
-        case 'Silver':
-            return websiteUrl || '/';
-        default:
-            throw new Error('Tier not found');
-    }
-}
 
 export default Company;
