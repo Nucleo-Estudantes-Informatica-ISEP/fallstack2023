@@ -1,0 +1,55 @@
+"use client";
+
+interface InputProps {
+  type: "text" | "textarea";
+  name: string;
+  placeholder?: string;
+  className?: string;
+  disabled?: boolean;
+  value?: string | null;
+  rows?: number;
+}
+
+const Input: React.FC<InputProps> = ({
+  type,
+  name,
+  placeholder,
+  className,
+  disabled,
+  rows,
+  value,
+}) => {
+  return (
+    <div className="w-full flex flex-col">
+      <label className="text-lg text-slate-700" htmlFor={name}>
+        {name}
+      </label>
+      {type === "text" && (
+        <input
+          type={type}
+          name={name}
+          disabled={disabled}
+          id={name}
+          placeholder={placeholder}
+          value={value ?? undefined}
+          className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
+         rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
+        />
+      )}
+      {type === "textarea" && (
+        <textarea
+          name={name}
+          disabled={disabled}
+          id={name}
+          rows={rows}
+          placeholder={placeholder}
+          value={value ?? undefined}
+          className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
+         rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Input;

@@ -1,13 +1,14 @@
 "use client";
 
+import axios from "axios";
 import { AnimationProps, motion } from "framer-motion";
 import Image from "next/image";
-import axios from "axios";
-import { ChangeEvent, EventHandler } from "react";
+import { ChangeEvent } from "react";
 
 interface UserImageProps {
   image?: string;
   hidden?: boolean;
+  editable?: boolean;
 }
 
 const content = {
@@ -15,7 +16,11 @@ const content = {
   key2: "value2",
 };
 
-const UserImage: React.FC<UserImageProps> = ({ image, hidden }) => {
+const UserImage: React.FC<UserImageProps> = ({
+  image,
+  hidden,
+  editable,
+}) => {
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -32,8 +37,24 @@ const UserImage: React.FC<UserImageProps> = ({ image, hidden }) => {
     let formData = new FormData();
     formData.append("data", JSON.stringify(content));
     formData.append("profile_picture", e.target.files[0]);
-    axios.put("/api/update", formData).then(console.log).catch(console.log);
+    axios
+      .put("/api/update", formData)
+      .then(console.log)
+      .catch(console.log);
   };
+
+  if (!editable)
+    return (
+      <div className="flex flex-col items-center relative md:w-52 md:h-52 w-24 h-24 my-2 rounded-full">
+        <Image
+          width={328}
+          height={328}
+          src={`/assets/images/${image || "default_user"}.png`}
+          alt="profile image"
+          className="w-full h-full rounded-full"
+        />
+      </div>
+    );
 
   return (
     <motion.div

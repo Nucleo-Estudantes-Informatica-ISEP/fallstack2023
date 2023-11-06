@@ -1,7 +1,6 @@
-import prisma from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { getInterests } from "@/lib/interests";
 
-export async function GET(req: NextRequest) {
-  const interests = await prisma.interest.findMany();
-  return NextResponse.json(interests);
+export async function GET() {
+  const interests = await getInterests();
+  return Response.json(interests);
 }

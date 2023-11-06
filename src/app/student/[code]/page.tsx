@@ -1,5 +1,4 @@
-import ProfileSectionContainer from "@/components/ProfileSectionContainer";
-import UserImage from "@/components/UserImage";
+import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import prisma from "@/lib/prisma";
 
 interface ProfileProps {
@@ -14,6 +13,9 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   const student = await prisma.student.findUnique({
     where: {
       code: params.code,
+    },
+    include: {
+      user: true,
     },
   });
 
@@ -40,19 +42,8 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
     (interest) => interest.interest.name
   );
 
-  console.log("sanitizedInterests", sanitizedInterests);
-
   return (
     <section className="w-full flex flex-col items-center">
-      <UserImage />
-
-      <p className="text-xl font-semibold text-center px-4">
-        <span className="font-bold">{student.name}</span>
-      </p>
-      <p className="text-center px-4">
-        O teu perfil já foi gravado{" "}
-        <span className="text-primary font-bold">{0} vezes</span> hoje.
-      </p>
       <ProfileSectionContainer
         interests={sanitizedInterests}
         student={student}
