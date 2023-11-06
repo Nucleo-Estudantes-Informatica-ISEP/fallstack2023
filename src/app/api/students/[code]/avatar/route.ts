@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { storage } from "@/lib/firebaseAdmin";
 import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
   uploadId: z.string().uuid(),
@@ -14,16 +15,16 @@ interface StudentParams {
   };
 }
 
-export async function PUT(
+export async function POST(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  // TODO: check auth
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const student = await prisma.student.findUnique({ where: { code } });
-
-  if (!student)
-    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+  if (session.role !== "STUDENT" || session.student?.code !== code)
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const body = await req.json();
   const parsed = schema.safeParse(body);
@@ -32,7 +33,6 @@ export async function PUT(
   const { uploadId } = parsed.data;
   const uploaded = `uploaded/profile/${uploadId}`;
 
-  // check if file exists
   const [exists] = await storage.bucket().file(uploaded).exists();
   if (!exists)
     return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
@@ -44,13 +44,12 @@ export async function PUT(
   // create a public accessible url
   const [meta] = await storage.bucket().file(distribution).makePublic();
 
-  // https://storage.googleapis.com/<bucket>/<object>
   const { bucket, object } = meta;
   const url = `https://storage.googleapis.com/${bucket}/${object}`;
 
   // remove old avatar if existent
-  if (student.image) {
-    const imageId = student.image.split("/").reverse()[0];
+  if (session.student.image) {
+    const imageId = session.student.image.split("/").reverse()[0];
     const old = `distribution/profile/${imageId}`;
     await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }

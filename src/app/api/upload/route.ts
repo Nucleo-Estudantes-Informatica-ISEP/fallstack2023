@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { storage } from "@/lib/firebaseAdmin";
 import config from "@/config";
+import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
   contentType: z.enum(["image/png", "image/jpeg", "application/pdf"]),
@@ -11,6 +12,10 @@ const schema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const body = await req.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });

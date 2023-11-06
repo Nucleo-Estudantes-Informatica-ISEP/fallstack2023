@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { storage } from "@/lib/firebaseAdmin";
 import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
   uploadId: z.string().uuid(),
@@ -18,9 +19,15 @@ export async function GET(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  // TODO: check auth
-  // own student and companies that saved him can access its cv
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  // companies & own student can access the cv
+  if (session.role !== "COMPANY" && session.student?.code !== code)
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  // fetch student as the logged user may be a company
   const student = await prisma.student.findUnique({ where: { code } });
 
   if (!student)
@@ -43,16 +50,16 @@ export async function GET(
   return NextResponse.json({ url });
 }
 
-export async function PUT(
+export async function POST(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  // TODO: check auth
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const student = await prisma.student.findUnique({ where: { code } });
-
-  if (!student)
-    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+  if (session.role !== "STUDENT" || session.student?.code !== code)
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const body = await req.json();
   const parsed = schema.safeParse(body);
@@ -70,8 +77,8 @@ export async function PUT(
   await storage.bucket().file(uploaded).move(distribution);
 
   // remove old cv if existent
-  if (student.cv) {
-    const old = `distribution/cv/${student.cv}`;
+  if (session.student.cv) {
+    const old = `distribution/cv/${session.student.cv}`;
     await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 

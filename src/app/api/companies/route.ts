@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import { ZodError } from "zod";
+
+import prisma from "@/lib/prisma";
 import { userExists } from "../common";
 import { postCompanySchema } from "@/schemas/postCompanySchema";
+import getServerSession from "@/services/getServerSession";
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession();
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = postCompanySchema.parse(requestBody);
