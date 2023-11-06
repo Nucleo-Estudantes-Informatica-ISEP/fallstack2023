@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 import prisma from "@/lib/prisma";
-import { signUpSchema } from "@/schemas/signUpSchema";
 import { hashPassword, setCookie, signJwt } from "@/services/authService";
+import { signUpSchema } from "@/schemas/signUpSchema";
 
 export async function POST(req: Request) {
   try {
@@ -65,4 +65,3 @@ export async function POST(req: Request) {
     );
   }
 }
-import bcrypt from "bcrypt";

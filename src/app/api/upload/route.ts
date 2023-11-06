@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
-import { storage } from "@/lib/firebaseAdmin";
 import config from "@/config";
+import { storage } from "@/lib/firebaseAdmin";
 import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({

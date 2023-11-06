@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import { ZodError } from "zod";
-import { userExists } from "../common";
-import generateRandomCode from "@/utils/GenerateCode";
+
+import prisma from "@/lib/prisma";
 import { postStudentSchema } from "@/schemas/postStudentSchema";
+import generateRandomCode from "@/utils/GenerateCode";
+
+import { userExists } from "../common";
 
 export async function POST(req: Request) {
   try {

@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 import prisma from "@/lib/prisma";
-import { userExists } from "../common";
-import { postCompanySchema } from "@/schemas/postCompanySchema";
 import getServerSession from "@/services/getServerSession";
+import { postCompanySchema } from "@/schemas/postCompanySchema";
+
+import { userExists } from "../common";
 
 export async function POST(req: Request) {
   try {

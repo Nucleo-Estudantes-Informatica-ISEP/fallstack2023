@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import config from "@/config";
 
-export async function POST(req: Request) {
+export async function POST() {
   try {
     // deletes the auth cookie
     cookies().delete({ name: config.cookieName });

@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-import prisma from "@/lib/prisma";
 import { Session } from "@/types/Session";
 import config from "@/config";
+import prisma from "@/lib/prisma";
 
 const getServerSession = async () => {
   const cookie = cookies().get(config.cookieName);

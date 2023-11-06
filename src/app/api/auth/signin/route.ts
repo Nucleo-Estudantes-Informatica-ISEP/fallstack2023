@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { ZodError } from "zod";
 import bcrypt from "bcrypt";
+import { ZodError } from "zod";
 
 import prisma from "@/lib/prisma";
 import { setCookie, signJwt } from "@/services/authService";
