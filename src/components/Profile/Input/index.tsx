@@ -1,5 +1,7 @@
 "use client";
 
+import { Dispatch, Ref, SetStateAction } from "react";
+
 interface InputProps {
   type: "text" | "textarea";
   name: string;
@@ -8,6 +10,7 @@ interface InputProps {
   disabled?: boolean;
   value?: string | null;
   rows?: number;
+  ref?: Ref<HTMLTextAreaElement>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -17,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   className,
   disabled,
   rows,
+  ref,
   value,
 }) => {
   return (
@@ -31,7 +35,7 @@ const Input: React.FC<InputProps> = ({
           disabled={disabled}
           id={name}
           placeholder={placeholder}
-          value={value ?? undefined}
+          defaultValue={value ?? undefined}
           className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
          rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
         />
@@ -41,9 +45,10 @@ const Input: React.FC<InputProps> = ({
           name={name}
           disabled={disabled}
           id={name}
+          ref={ref}
           rows={rows}
           placeholder={placeholder}
-          value={value ?? undefined}
+          defaultValue={value ?? undefined}
           className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
          rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
         />

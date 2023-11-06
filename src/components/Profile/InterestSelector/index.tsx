@@ -2,13 +2,15 @@
 
 import { BASE_URL } from "@/services/api";
 import { Interest } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface InterestSelectorProps {
   userInterests: string[];
+  setUserInterests: Dispatch<SetStateAction<string[]>>;
 }
 
 const InterestSelector: React.FC<InterestSelectorProps> = ({
+  setUserInterests,
   userInterests,
 }) => {
   const [interests, setInterests] = useState<Interest[]>([]);
@@ -32,19 +34,32 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
   return (
     <div className="w-full flex flex-wrap gap-x-6 gap-y-4">
       {orderedInterests.map((interest) => (
-        <span
+        <button
+          onClick={() =>
+            !userInterests.includes(interest.name) &&
+            setUserInterests([...userInterests, interest.name])
+          }
           key={interest.id}
           className={`relative py-1 px-3 rounded-xl text-black ${
             userInterests.includes(interest.name)
-              ? "bg-primary/40"
+              ? "bg-orange-300/80"
               : "bg-slate-200"
           }`}
         >
           {interest.name}
-          <button className="absolute -right-1 -top-1 w-4 h-4 flex items-center justify-center text-xs rounded-full text-red text-white bg-red-400/80">
-            X
-          </button>
-        </span>
+          {userInterests.includes(interest.name) && (
+            <button
+              onClick={() =>
+                setUserInterests((cur) =>
+                  cur.filter((i) => i !== interest.name)
+                )
+              }
+              className="absolute -right-1 -top-1 w-4 h-4 flex items-center justify-center text-xs rounded-full text-red text-white bg-red-400/80 z-20"
+            >
+              X
+            </button>
+          )}
+        </button>
       ))}
     </div>
   );

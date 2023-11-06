@@ -13,9 +13,10 @@ interface ProfileSectionContainerProps {
   interests: string[];
 }
 
-const ProfileSectionContainer: React.FC<
-  ProfileSectionContainerProps
-> = ({ student, interests }) => {
+const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
+  student,
+  interests,
+}) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
   >("Sumário");
@@ -30,8 +31,7 @@ const ProfileSectionContainer: React.FC<
         <motion.div
           animate={{
             height: activeTab !== "Definições" ? "auto" : 0,
-            visibility:
-              activeTab !== "Definições" ? "visible" : "hidden",
+            visibility: activeTab !== "Definições" ? "visible" : "hidden",
             marginTop: activeTab !== "Definições" ? "3rem" : 0,
             opacity: activeTab !== "Definições" ? 1 : 0,
           }}
@@ -44,39 +44,37 @@ const ProfileSectionContainer: React.FC<
           </p>
           <p className="text-center px-4">
             O teu perfil já foi gravado{" "}
-            <span className="text-primary font-bold">{0} vezes</span>{" "}
-            hoje.
+            <span className="text-primary font-bold">{0} vezes</span> hoje.
           </p>
         </motion.div>
 
-        <div className="flex mt-8 justify-around max-w-4xl w-5/6">
+        <div className="flex mt-8 justify-around max-w-4xl w-5/6 relative">
+          <motion.div
+            className="border-b-4 border-primary w-52 absolute left-0 bottom-0"
+            animate={{
+              x:
+                activeTab === "Sumário"
+                  ? 208 / 4 - 6
+                  : activeTab === "Perfil"
+                  ? 208 + (208 / 4 - 6.5) * 3
+                  : 208 * 2 + (208 / 4 - 6.5) * 5,
+            }}
+          ></motion.div>
           <button
             onClick={() => setActiveTab("Sumário")}
-            className={`px-4 py-2 rounded-md hover:bg-slate-200/30 w-52 ${
-              activeTab === "Sumário"
-                ? "border-b-4 border-primary"
-                : ""
-            }`}
+            className="px-4 py-2 rounded-md hover:bg-slate-200/30 w-52"
           >
             Sumário
           </button>
           <button
             onClick={() => setActiveTab("Perfil")}
-            className={`px-4 py-2 rounded-md hover:bg-slate-200/30 w-52 ${
-              activeTab === "Perfil"
-                ? "border-b-4 border-primary"
-                : ""
-            }`}
+            className="px-4 py-2 rounded-md hover:bg-slate-200/30 w-52"
           >
             Perfil
           </button>
           <button
             onClick={() => setActiveTab("Definições")}
-            className={`px-4 py-2 rounded-md hover:bg-slate-200/30 w-52 ${
-              activeTab === "Definições"
-                ? "border-b-4 border-primary"
-                : ""
-            }`}
+            className="px-4 py-2 rounded-md hover:bg-slate-200/30 w-52"
           >
             Definições
           </button>
@@ -84,9 +82,7 @@ const ProfileSectionContainer: React.FC<
       </div>
 
       <div className="w-5/6 mx-auto max-w-4xl">
-        {activeTab === "Sumário" && (
-          <StatsSection student={student} />
-        )}
+        {activeTab === "Sumário" && <StatsSection student={student} />}
         {activeTab === "Perfil" && (
           <ProfileSection student={student} interests={interests} />
         )}
