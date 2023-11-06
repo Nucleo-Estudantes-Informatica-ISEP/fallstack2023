@@ -10,7 +10,7 @@
     --secondary: #d2eaef;
     --accent: #00c3ff;
     --accent-alternative: #068198;
-    background-image: url(/assets/images/bg_light_desktop.jpg);
+    background-image: url(/assets/images/bg_light_desktop.webp);
     background-size: cover;
   }
   .dark {
@@ -20,7 +20,7 @@
     --secondary: #10282d;
     --accent: #00c3ff;
     --accent-alternative: #00C2FF;
-    background-image: url(/assets/images/bg_dark_desktop.jpg);
+    background-image: url(/assets/images/bg_dark_desktop.webp);
     background-size: cover;
   }
 

@@ -25,9 +25,23 @@ export async function PATCH(req: NextRequest, { params }: StudentProps) {
   const student = await prisma.student.update({
     where: { code: params.code },
     data: {
-      ...body,
+      bio: body.bio,
+      interests: body.interests,
     }
   });
 
-  return NextResponse.json({ student });
+  return NextResponse.json(student);
+}
+
+export async function GET(req: NextRequest, { params }: StudentProps) {
+  const student = await prisma.student.findUnique({
+    where: { code: params.code },
+    include: {
+      interests: true,
+    },
+  });
+
+  console.log('STUDENT INTERESTS => ', student?.interests)
+
+  return NextResponse.json(student);
 }

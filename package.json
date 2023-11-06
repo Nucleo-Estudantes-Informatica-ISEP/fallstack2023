@@ -15,8 +15,8 @@
     "@nextui-org/react": "^2.2.1",
     "@prisma/client": "5.5.2",
     "axios": "^1.6.0",
-    "framer-motion": "^10.16.4",
     "bcrypt": "^5.1.1",
+    "framer-motion": "^10.16.4",
     "jsonwebtoken": "^9.0.2",
     "next": "14.0.1",
     "next-themes": "^0.2.1",
@@ -25,6 +25,8 @@
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "swal": "^0.1.0",
+    "sweetalert": "^2.1.2",
     "typewriter-effect": "^2.21.0",
     "zod": "^3.22.4"
   },

@@ -13,24 +13,26 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 }) => {
   return (
     <section className="w-full flex flex-col bg-white rounded-md">
-      <div className="mx-12 gap-y-4 flex mb-12">
-        <div className="flex flex-col ">
-          <h2 className="text-xl font-semibold text-left text-gray-600">
+      <div className="mx-4 md:mx-12 gap-y-4 flex flex-col md:flex-row mb-12">
+        <div className="flex flex-col mb-4 md:mb-0 md:w-1/2 mt-4">
+          <h2 className="text-xl font-semibold text-center md:text-left text-gray-600">
             Nome
           </h2>
-          <p className="text-3xl font-bold text-left text-black">
+          <p className="text-3xl font-bold text-center md:text-left text-black">
             {student.name}
           </p>
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-xl font-semibold text-left text-gray-600">Ano</h2>
-          <p className="text-3xl font-bold text-left text-black">
+        <div className="flex flex-col md:w-1/2 mt-4">
+          <h2 className="text-xl font-semibold text-center md:text-left text-gray-600">
+            Ano
+          </h2>
+          <p className="text-3xl font-bold text-center md:text-left text-black">
             {student.year}º Ano Licenciatura
           </p>
         </div>
       </div>
-      <BioSection code={student.code} bio={student.bio} />
-      <InterestsSection code={student.code} userInterests={interests} />
+      <BioSection bio={student.bio} />
+      <InterestsSection userInterests={interests} />
     </section>
   );
 };

@@ -5,30 +5,20 @@ import { Interest } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 interface InterestsSectionProps {
-  code: string;
   userInterests: string[];
 }
 
 const InterestsSection: React.FC<InterestsSectionProps> = ({
   userInterests,
 }) => {
-  const [interests, setInterests] = useState<Interest[]>([]);
-
-  async function fetchInterests() {
-    const res = await fetch(BASE_URL + "/interests");
-    const json = await res.json();
-    setInterests(json);
+  let orderedInterests = userInterests;
+  if (userInterests.length > 0) {
+    orderedInterests = userInterests.sort((a, b) => {
+      if (userInterests.includes(a)) return -1;
+      if (userInterests.includes(b)) return 1;
+      return 0;
+    });
   }
-
-  useEffect(() => {
-    fetchInterests();
-  }, []);
-
-  const orderedInterests = interests.sort((a, b) => {
-    if (userInterests.includes(a.name)) return -1;
-    if (userInterests.includes(b.name)) return 1;
-    return 0;
-  });
 
   return (
     <section className="flex flex-wrap mb-16 space-y-5 w-11/12 md:w-2/3 pl-12 md:mx-0">
@@ -40,9 +30,9 @@ const InterestsSection: React.FC<InterestsSectionProps> = ({
           {orderedInterests.map((interest) => (
             <div
               className="flex relative py-1 px-3 rounded-xl text-black bg-slate-200"
-              key={interest.id}
+              key={interest}
             >
-              {interest.name}
+              {interest}
             </div>
           ))}
         </div>
