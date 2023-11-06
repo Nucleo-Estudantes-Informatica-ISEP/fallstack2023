@@ -1,12 +1,12 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-import { COOKIE_NAME } from "@/services/cookies";
 import prisma from "@/lib/prisma";
 import { Session } from "@/types/Session";
+import config from "@/config";
 
 const getServerSession = async () => {
-  const cookie = cookies().get(COOKIE_NAME);
+  const cookie = cookies().get(config.cookieName);
   const token = cookie?.value as string;
   if (!token) return null;
 

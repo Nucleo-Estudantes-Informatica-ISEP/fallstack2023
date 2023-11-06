@@ -1,4 +1,8 @@
 const config = {
+  authCookieMaxAge: 34560000, // 400 days (in seconds) - its the maximum value for the maxAge of a cookie
+
+  cookieName: "@Fallstack23:auth",
+
   uploads: {
     profile: {
       types: ["image/png", "image/jpeg"],

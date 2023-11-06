@@ -1,14 +1,12 @@
-import { COOKIE_NAME } from "@/services/cookies";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import config from "@/config";
+
 export async function POST(req: Request) {
   try {
-
     // deletes the auth cookie
-    cookies().delete({
-      name: COOKIE_NAME
-    });
+    cookies().delete({ name: config.cookieName });
 
     return NextResponse.json(
       { message: "Signout successfully" },

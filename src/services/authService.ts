@@ -2,8 +2,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
-import { AUTH_COOKIE_MAX_AGE, COOKIE_NAME } from "@/services/cookies";
 import { Session } from "@/types/Session";
+import config from "@/config";
 
 const validatePassword = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
@@ -28,8 +28,8 @@ const verifyJwt = (token: string) => {
 
 const setCookie = (token: string) => {
   cookies().set({
-    name: COOKIE_NAME,
-    maxAge: AUTH_COOKIE_MAX_AGE,
+    name: config.cookieName,
+    maxAge: config.authCookieMaxAge,
     value: token,
     path: "/",
     sameSite: "strict",
