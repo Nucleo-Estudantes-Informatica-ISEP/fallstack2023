@@ -26,10 +26,10 @@
 
   @media (max-width: 768px) {
     :root {
-      background-image: url(/assets/images/bg_light_mobile.webp);
+      background-image: url(/assets/images/bg_light_mobile.jpg);
     }
     .dark {
-      background-image: url(/assets/images/bg_dark_mobile.webp);
+      background-image: url(/assets/images/bg_dark_mobile.jpg);
     }    
   }
 }
