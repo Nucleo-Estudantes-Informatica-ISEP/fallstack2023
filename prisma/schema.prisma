@@ -25,7 +25,7 @@ model Student {
   code      String            @unique
   name      String
   bio       String?
-  year      Int
+  year      String
   interests StudentInterest[]
   savedBy   SavedStudent[]
   cv        String?

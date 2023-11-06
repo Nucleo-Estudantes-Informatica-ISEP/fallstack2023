@@ -15,10 +15,7 @@ export async function POST(req: Request) {
 
     // checks if user exists
     if (!(await userExists(userId))) {
-      return NextResponse.json(
-        { message: "User does not exist" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "User does not exist" }, { status: 401 });
     }
 
     // checks if student already exists
@@ -29,10 +26,7 @@ export async function POST(req: Request) {
     });
 
     if (existingStudent) {
-      return NextResponse.json(
-        { message: "Student already exists" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "Student already exists" }, { status: 401 });
     }
 
     // create code for student
@@ -67,20 +61,13 @@ export async function POST(req: Request) {
 
     // check if student was created
     if (!student) {
-      return NextResponse.json(
-        { message: "Something went wrong" },
-        { status: 500 }
-      );
+      return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
     }
 
     return NextResponse.json({ student: student }, { status: 201 });
   } catch (e) {
-    if (e instanceof ZodError)
-      return NextResponse.json({ error: e.errors }, { status: 400 });
+    if (e instanceof ZodError) return NextResponse.json({ error: e.errors }, { status: 400 });
 
-    return NextResponse.json(
-      { error: "Something went wrong" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
