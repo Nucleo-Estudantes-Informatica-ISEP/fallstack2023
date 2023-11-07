@@ -1,9 +1,5 @@
 "use client";
 
-import { BASE_URL } from "@/services/api";
-import { Interest } from "@prisma/client";
-import { useEffect, useState } from "react";
-
 interface InterestsSectionProps {
   userInterests: string[];
 }
@@ -21,15 +17,15 @@ const InterestsSection: React.FC<InterestsSectionProps> = ({
   }
 
   return (
-    <section className="flex flex-wrap mb-16 space-y-5 w-11/12 md:w-2/3 pl-12 md:mx-0">
+    <section className="mb-16 flex w-11/12 flex-wrap space-y-5 pl-12 md:mx-0 md:w-2/3">
       <div className="flex flex-col">
-        <h3 className="font-bold text-left text-xl text-gray-600 my-2">
+        <h3 className="my-2 text-left text-xl font-bold text-gray-600">
           Interesses
         </h3>
-        <div className="flex items-center w-3/4 mx-auto md:mx-0 gap-x-6">
+        <div className="mx-auto flex w-3/4 items-center gap-x-6 md:mx-0">
           {orderedInterests.map((interest) => (
             <div
-              className="flex relative py-1 px-3 rounded-xl text-black bg-slate-200"
+              className="relative flex rounded-xl bg-slate-200 px-3 py-1 text-black"
               key={interest}
             >
               {interest}
