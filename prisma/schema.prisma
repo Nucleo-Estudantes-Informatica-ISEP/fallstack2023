@@ -31,6 +31,8 @@ model Student {
   savedBy   SavedStudent[]
   cv        String?
   image     String?
+  linkedin  String?
+  github    String?
 
   userId Int @unique
 }
