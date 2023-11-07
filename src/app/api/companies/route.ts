@@ -1,24 +1,23 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import { ZodError } from "zod";
-import { userExists } from "../common";
+
+import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 import { postCompanySchema } from "@/schemas/postCompanySchema";
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession();
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = postCompanySchema.parse(requestBody);
-    // valid body
-    const { userId, name, tier } = body;
 
-    // checks if user exists
-    if (!(await userExists(userId))) {
-      return NextResponse.json(
-        { message: "User does not exist" },
-        { status: 401 }
-      );
-    }
+    // valid body
+    const userId = session.id;
+    const { name, tier } = body;
 
     // checks if company already exists
     const existingCompany = await prisma.company.findFirst({
