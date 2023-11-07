@@ -13,10 +13,9 @@ interface ProfileSectionContainerProps {
   interests: string[];
 }
 
-const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
-  student,
-  interests,
-}) => {
+const ProfileSectionContainer: React.FC<
+  ProfileSectionContainerProps
+> = ({ student, interests }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
   >("Sumário");
@@ -31,7 +30,8 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
         <motion.div
           animate={{
             height: activeTab !== "Definições" ? "auto" : 0,
-            visibility: activeTab !== "Definições" ? "visible" : "hidden",
+            visibility:
+              activeTab !== "Definições" ? "visible" : "hidden",
             marginTop: activeTab !== "Definições" ? "3rem" : 0,
             opacity: activeTab !== "Definições" ? 1 : 0,
           }}
@@ -44,7 +44,8 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </p>
           <p className="text-center px-4">
             O teu perfil já foi gravado{" "}
-            <span className="text-primary font-bold">{0} vezes</span> hoje.
+            <span className="text-primary font-bold">{0} vezes</span>{" "}
+            hoje.
           </p>
         </motion.div>
 
@@ -54,10 +55,10 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
             animate={{
               x:
                 activeTab === "Sumário"
-                  ? 208 / 4 - 6
+                  ? "22.5%"
                   : activeTab === "Perfil"
-                  ? 208 + (208 / 4 - 6.5) * 3
-                  : 208 * 2 + (208 / 4 - 6.5) * 5,
+                  ? "165%"
+                  : "308%",
             }}
           ></motion.div>
           <button
@@ -82,7 +83,9 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
       </div>
 
       <div className="w-5/6 mx-auto max-w-4xl">
-        {activeTab === "Sumário" && <StatsSection student={student} />}
+        {activeTab === "Sumário" && (
+          <StatsSection student={student} />
+        )}
         {activeTab === "Perfil" && (
           <ProfileSection student={student} interests={interests} />
         )}

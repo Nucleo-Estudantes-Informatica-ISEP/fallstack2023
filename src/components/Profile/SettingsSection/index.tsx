@@ -1,13 +1,12 @@
 "use client";
 
 import UserImage from "@/components/UserImage";
+import { BASE_URL } from "@/services/api";
 import { Student, User } from "@prisma/client";
-import Input from "../Input";
-import InterestSelector from "../InterestSelector";
 import { useRef, useState } from "react";
 import swal from "sweetalert";
-import { BASE_URL } from "@/services/api";
-import { user } from "@nextui-org/react";
+import Input from "../Input";
+import InterestSelector from "../InterestSelector";
 
 interface SettingsSectionProps {
   student: Student & { user: User };
@@ -18,7 +17,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   interests,
   student,
 }) => {
-  const [userInterests, setUserInterests] = useState<string[]>(interests);
+  const [userInterests, setUserInterests] =
+    useState<string[]>(interests);
   const [userBio, setUserBio] = useState<string | null>(student.bio);
   const bioRef = useRef<HTMLTextAreaElement>(null);
 
@@ -37,11 +37,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       }),
     });
 
-    if (res.status === 200) {
-      swal("Perfil atualizado com sucesso!");
-    } else {
-      swal("Ocorreu um erro ao atualizar o teu perfil...");
-    }
+    if (res.status === 200) swal("Perfil atualizado com sucesso!");
+    else swal("Ocorreu um erro ao atualizar o teu perfil...");
   };
 
   return (
@@ -52,7 +49,12 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
       <div className="mx-4 md:mx-12 gap-y-4 flex flex-col mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-8">
-          <Input name="Nome" value={student.name} type="text" disabled={true} />
+          <Input
+            name="Nome"
+            value={student.name}
+            type="text"
+            disabled={true}
+          />
           <Input
             name="Ano"
             value={`${student.year}º Ano Licenciatura`}
