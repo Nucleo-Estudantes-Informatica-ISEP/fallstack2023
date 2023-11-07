@@ -1,9 +1,12 @@
-import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+import prisma from "@/lib/prisma";
+
 const schema = z.object({
   bio: z.string(),
+  linkedin: z.string(),
+  github: z.string(),
   interests: z.array(z.string()),
 });
 
@@ -26,10 +29,10 @@ export async function PATCH(req: NextRequest, { params }: StudentProps) {
     where: { code: params.code },
     data: {
       bio: body.bio,
-      interests: body.interests,
-    }
+      linkedin: body.linkedin,
+      github: body.github,
+    },
   });
-
   return NextResponse.json(student);
 }
 
@@ -41,7 +44,7 @@ export async function GET(req: NextRequest, { params }: StudentProps) {
     },
   });
 
-  console.log('STUDENT INTERESTS => ', student?.interests)
+  console.log("STUDENT INTERESTS => ", student?.interests);
 
   return NextResponse.json(student);
 }
