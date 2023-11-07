@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Student, User } from "@prisma/client";
 import swal from "sweetalert";
 
@@ -9,6 +9,7 @@ import UserImage from "@/components/UserImage";
 
 import Input from "../Input";
 import InterestSelector from "../InterestSelector";
+import UserBioTextArea from "../UserBioTextArea";
 
 interface SettingsSectionProps {
   student: Student & { user: User };
@@ -19,23 +20,29 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   interests,
   student,
 }) => {
+  const LIMIT = 255;
+
   const [userInterests, setUserInterests] = useState<string[]>(interests);
-  const [userBio, setUserBio] = useState<string | null>(student.bio);
-  const [userGithub, setUserGithub] = useState<string | null>(student.github);
-  const [userLinkedin, setUserLinkedin] = useState<string | null>(
-    student.linkedin
-  );
+  const [userBio, setUserBio] = useState<string>(student.bio ?? "");
+
+  const githubRef = useRef<HTMLInputElement>(null);
+  const linkedinRef = useRef<HTMLInputElement>(null);
+
+  function handleUserBioChange(bio: string) {
+    if (bio.length > LIMIT) return;
+    setUserBio(bio);
+  }
 
   const handleSave = async () => {
-    if (userBio && userBio?.length > 255) {
-      swal("A tua bio não pode ter mais de 255 caracteres!");
+    if (userBio && userBio?.length > LIMIT) {
+      swal(`A tua bio não pode ter mais de ${LIMIT} caracteres!`);
       return;
     }
 
     // check if linkedin follows the format https://www.linkedin.com/in/example/
     if (
-      userLinkedin &&
-      !userLinkedin?.match(
+      linkedinRef.current?.value &&
+      !linkedinRef.current?.value?.match(
         /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9_-]+\/?)+$/
       )
     ) {
@@ -45,8 +52,10 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
     // check if github follows the format https://github/example
     if (
-      userGithub &&
-      !userGithub?.match(/^(https:\/\/github\.com\/)([a-zA-Z0-9_-]+\/?)+$/)
+      githubRef.current?.value &&
+      !githubRef.current?.value?.match(
+        /^(https:\/\/github\.com\/)([a-zA-Z0-9_-]+\/?)+$/
+      )
     ) {
       swal("O teu Github não segue o formato correto!");
       return;
@@ -56,8 +65,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       method: "PATCH",
       body: JSON.stringify({
         bio: userBio,
-        github: userGithub,
-        linkedin: userLinkedin,
+        github: githubRef.current?.value,
+        linkedin: linkedinRef.current?.value,
       }),
     });
 
@@ -67,51 +76,49 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
   return (
     <section className="flex w-full flex-col rounded-md bg-white">
-      <div className="mx-4 flex flex-col items-center gap-y-4 md:mx-12 md:flex-row">
+      <div className="mx-4 flex flex-col items-center md:mx-12 md:flex-row">
         <div className="my-8 flex-1 justify-center p-3">
           <UserImage editable={true} />
         </div>
 
-        <div className="w-full grid-cols-1 gap-y-4 md:mx-12">
-          <Input name="Nome" value={student.name} type="text" disabled={true} />
+        <div className="flex w-full flex-col gap-y-4 md:ml-12">
+          <Input name="Nome" defaultValue={student.name} disabled={true} />
           <Input
             name="Ano"
-            value={`${student.year}º Ano Licenciatura`}
-            type="text"
+            defaultValue={`${student.year}º Ano Licenciatura`}
             disabled={true}
           />
           <Input
             name="Email"
-            value={student.user.email}
-            type="text"
+            defaultValue={student.user.email}
             disabled={true}
           />
         </div>
       </div>
 
-      <div className="mx-4 mb-12 flex flex-col gap-y-4 md:mx-12">
+      <div className="mx-4 mb-12 mt-4 flex flex-col gap-y-4 md:mx-12">
         <Input
           name="Linkedin"
-          value={userLinkedin}
-          type="text"
+          defaultValue={linkedinRef.current?.value}
           placeholder="https://www.linkedin.com/in/example/"
-          setValue={setUserLinkedin}
+          ref={linkedinRef}
         />
         <Input
           name="Github"
-          value={userGithub}
-          type="text"
+          defaultValue={githubRef.current?.value}
           placeholder="https://github.com/example"
-          setValue={setUserGithub}
+          ref={githubRef}
         />
 
-        <Input
+        <UserBioTextArea
           name="Bio"
-          value={userBio}
-          type="textarea"
+          defaultValue={userBio}
           rows={5}
           placeholder="Escreve algo sobre ti..."
-          setValue={setUserBio}
+          setValue={handleUserBioChange}
+          value={userBio}
+          limit={LIMIT}
+          warningLimit={LIMIT - 30}
         />
 
         <label className="text-lg text-slate-700">Interesses</label>

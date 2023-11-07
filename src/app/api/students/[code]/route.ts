@@ -31,6 +31,7 @@ export async function PATCH(req: NextRequest, { params }: StudentProps) {
       bio: body.bio,
       linkedin: body.linkedin,
       github: body.github,
+      interests: body.interests,
     },
   });
   return NextResponse.json(student);
@@ -43,8 +44,6 @@ export async function GET(req: NextRequest, { params }: StudentProps) {
       interests: true,
     },
   });
-
-  console.log("STUDENT INTERESTS => ", student?.interests);
 
   return NextResponse.json(student);
 }

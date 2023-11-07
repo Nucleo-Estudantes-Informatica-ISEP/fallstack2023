@@ -1,4 +1,5 @@
 import { Student, User } from "@prisma/client";
+
 import BioSection from "../BioSection";
 import InterestsSection from "../InterestsSection";
 
@@ -12,21 +13,21 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
   student,
 }) => {
   return (
-    <section className="w-full flex flex-col bg-white rounded-md">
-      <div className="mx-4 md:mx-12 gap-y-4 flex flex-col md:flex-row mb-12">
-        <div className="flex flex-col mb-4 md:mb-0 md:w-1/2 mt-4">
-          <h2 className="text-xl font-semibold text-center md:text-left text-gray-600">
+    <section className="flex w-full flex-col rounded-md bg-white">
+      <div className="mx-4 mb-12 flex flex-col gap-y-4 md:mx-12 md:flex-row">
+        <div className="my-4 flex flex-col md:mb-0 md:w-1/2">
+          <h2 className="text-center text-xl font-semibold text-gray-600 md:text-left">
             Nome
           </h2>
-          <p className="text-3xl font-bold text-center md:text-left text-black">
+          <p className="text-center text-3xl font-bold text-black md:text-left">
             {student.name}
           </p>
         </div>
-        <div className="flex flex-col md:w-1/2 mt-4">
-          <h2 className="text-xl font-semibold text-center md:text-left text-gray-600">
+        <div className="mt-4 flex flex-col md:w-1/2">
+          <h2 className="text-center text-xl font-semibold text-gray-600 md:text-left">
             Ano
           </h2>
-          <p className="text-3xl font-bold text-center md:text-left text-black">
+          <p className="text-center text-3xl font-bold text-black md:text-left">
             {student.year}º Ano Licenciatura
           </p>
         </div>

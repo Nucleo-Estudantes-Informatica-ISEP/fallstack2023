@@ -25,6 +25,7 @@
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-loading-skeleton": "^3.3.1",
     "swal": "^0.1.0",
     "sweetalert": "^2.1.2",
     "typewriter-effect": "^2.21.0",

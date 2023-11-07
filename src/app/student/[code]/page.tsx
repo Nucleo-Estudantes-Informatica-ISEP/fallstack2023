@@ -1,5 +1,5 @@
-import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import prisma from "@/lib/prisma";
+import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 
 interface ProfileProps {
   params: {
@@ -21,8 +21,8 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   if (!student) {
     return (
-      <section className="w-full flex flex-col items-center">
-        <p className="md:text-2xl text-xl font-bold uppercase text-center py-4">
+      <section className="flex w-full flex-col items-center">
+        <p className="py-4 text-center text-xl font-bold uppercase md:text-2xl">
           Não encontramos o teu perfil...
         </p>
       </section>
@@ -43,7 +43,7 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   );
 
   return (
-    <section className="w-full flex flex-col items-center">
+    <section className="flex w-full flex-col items-center">
       <ProfileSectionContainer
         interests={sanitizedInterests}
         student={student}
