@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import { Student } from "@prisma/client";
+
+import { BASE_URL } from "@/services/api";
+
 import HistorySection from "../../HistorySection";
 
 interface StatsProps {
@@ -6,28 +10,40 @@ interface StatsProps {
 }
 
 const StatsSection: React.FC<StatsProps> = ({ student }) => {
+  const [companiesLeft, setCompaniesLeft] = useState(0);
+
+  useEffect(() => {
+    async function fetchCompaniesLeft() {
+      const res = await fetch(`${BASE_URL}/students/${student.code}/stats`);
+      const json = await res.json();
+      setCompaniesLeft(json);
+    }
+
+    fetchCompaniesLeft();
+  }, [student.code]);
+
   return (
-    <section className="w-full flex flex-col bg-white rounded-md pb-8">
-      <div className="flex mx-12 mt-12 mb-4 justify-around">
+    <section className="flex w-full flex-col rounded-md bg-white pb-8">
+      <div className="mx-12 mb-4 mt-12 flex justify-around">
         <div className="flex flex-col">
-          <h2 className="text-xl font-semibold text-left text-gray-600">
+          <h2 className="text-left text-xl font-semibold text-gray-600">
             Total de scans
           </h2>
-          <p className="text-3xl font-bold text-left text-black">
-            10
-          </p>
+          <p className="text-left text-3xl font-bold text-black">10</p>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-xl font-semibold text-left text-gray-600">
+          <h2 className="text-left text-xl font-semibold text-gray-600">
             Total de gravações de perfil
           </h2>
-          <p className="text-3xl font-bold text-left text-black">6</p>
+          <p className="text-left text-3xl font-bold text-black">6</p>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-xl font-semibold text-left text-gray-600">
+          <h2 className="text-left text-xl font-semibold text-gray-600">
             Empresas restantes
           </h2>
-          <p className="text-3xl font-bold text-left text-black">6</p>
+          <p className="text-left text-3xl font-bold text-black">
+            {companiesLeft}
+          </p>
         </div>
       </div>
       <HistorySection />

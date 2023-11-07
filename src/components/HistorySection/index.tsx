@@ -1,16 +1,16 @@
 import {
   Table,
-  TableHeader,
-  TableColumn,
   TableBody,
-  TableRow,
   TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
 } from "@nextui-org/react";
 
 const HistorySection = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center my-2">
-      <h1 className="w-1/2 text-center text-black font-bold mx-auto text-xl">
+    <div className="my-2 flex w-full flex-col items-center justify-center">
+      <h1 className="mx-auto w-1/2 text-center text-xl font-bold text-black">
         Histórico de Scans
       </h1>
       <Table aria-label="Example static collection table" className="w-3/4">

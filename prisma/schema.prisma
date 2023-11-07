@@ -65,6 +65,7 @@ model SavedStudent {
   id        Int      @id @default(autoincrement())
   student   Student  @relation(fields: [studentId], references: [id])
   company   Company  @relation(fields: [companyId], references: [id])
+  isScanned Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int

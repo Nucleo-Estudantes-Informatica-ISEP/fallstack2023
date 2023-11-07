@@ -1,7 +1,6 @@
 "use client";
 
 import { Dispatch, Ref, SetStateAction } from "react";
-import swal from "sweetalert";
 
 interface InputProps {
   type: "text" | "textarea";
@@ -27,7 +26,7 @@ const Input: React.FC<InputProps> = ({
   setUserBio,
 }) => {
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex w-full flex-col">
       <label className="text-lg text-slate-700" htmlFor={name}>
         {name}
       </label>
@@ -39,8 +38,8 @@ const Input: React.FC<InputProps> = ({
           id={name}
           placeholder={placeholder}
           defaultValue={value ?? undefined}
-          className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
-         rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
+          className={`rounded-md border border-gray-300 bg-slate-200 px-4
+         py-2 text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
         />
       )}
       {type === "textarea" && setUserBio && (
@@ -59,15 +58,15 @@ const Input: React.FC<InputProps> = ({
               minHeight: "100px",
               maxHeight: "200px",
             }}
-            className={`px-4 py-2 bg-slate-200 text-black disabled:text-gray-600
-          rounded-md border border-gray-300 focus:border-primary focus:ring-0 ${className}`}
+            className={`rounded-md border border-gray-300 bg-slate-200 px-4
+          py-2 text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
           />
           <p
             className={`text-right text-slate-700 ${
               value && value.length > 255 ? "text-red-500" : ""
             }`}
           >
-            {value?.length} / 255 caracteres
+            {value?.length ? value?.length : 0} / 255 caracteres
           </p>
         </>
       )}

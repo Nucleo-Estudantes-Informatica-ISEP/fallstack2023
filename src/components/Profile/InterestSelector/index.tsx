@@ -1,8 +1,10 @@
 "use client";
 
-import { BASE_URL } from "@/services/api";
-import { Interest } from "@prisma/client";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Interest } from "@prisma/client";
+import Skeleton from "react-loading-skeleton";
+
+import { BASE_URL } from "@/services/api";
 
 interface InterestSelectorProps {
   userInterests: string[];
@@ -32,35 +34,41 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
   });
 
   return (
-    <div className="w-full flex flex-wrap gap-x-6 gap-y-4">
-      {orderedInterests.map((interest) => (
-        <button
-          onClick={() =>
-            !userInterests.includes(interest.name) &&
-            setUserInterests([...userInterests, interest.name])
-          }
-          key={interest.id}
-          className={`relative py-1 px-3 rounded-xl text-black ${
-            userInterests.includes(interest.name)
-              ? "bg-orange-300/80"
-              : "bg-slate-200"
-          }`}
-        >
-          {interest.name}
-          {userInterests.includes(interest.name) && (
+    <div className="flex w-full flex-wrap gap-x-6 gap-y-4">
+      {userInterests.length > 0 ? (
+        <>
+          {orderedInterests.map((interest) => (
             <button
               onClick={() =>
-                setUserInterests((cur) =>
-                  cur.filter((i) => i !== interest.name)
-                )
+                !userInterests.includes(interest.name) &&
+                setUserInterests([...userInterests, interest.name])
               }
-              className="absolute -right-1 -top-1 w-4 h-4 flex items-center justify-center text-xs rounded-full text-red text-white bg-red-400/80 z-20"
+              key={interest.id}
+              className={`relative rounded-xl px-3 py-1 text-black ${
+                userInterests.includes(interest.name)
+                  ? "bg-orange-300/80"
+                  : "bg-slate-200"
+              }`}
             >
-              X
+              {interest.name}
+              {userInterests.includes(interest.name) && (
+                <button
+                  onClick={() =>
+                    setUserInterests((cur) =>
+                      cur.filter((i) => i !== interest.name)
+                    )
+                  }
+                  className="text-red absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs text-white"
+                >
+                  X
+                </button>
+              )}
             </button>
-          )}
-        </button>
-      ))}
+          ))}
+        </>
+      ) : (
+        <Skeleton height={20} count={20} />
+      )}
     </div>
   );
 };

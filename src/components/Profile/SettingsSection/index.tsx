@@ -1,10 +1,12 @@
 "use client";
 
-import UserImage from "@/components/UserImage";
-import { BASE_URL } from "@/services/api";
-import { Student, User } from "@prisma/client";
 import { useRef, useState } from "react";
+import { Student, User } from "@prisma/client";
 import swal from "sweetalert";
+
+import { BASE_URL } from "@/services/api";
+import UserImage from "@/components/UserImage";
+
 import Input from "../Input";
 import InterestSelector from "../InterestSelector";
 
@@ -17,8 +19,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   interests,
   student,
 }) => {
-  const [userInterests, setUserInterests] =
-    useState<string[]>(interests);
+  const [userInterests, setUserInterests] = useState<string[]>(interests);
   const [userBio, setUserBio] = useState<string | null>(student.bio);
   const bioRef = useRef<HTMLTextAreaElement>(null);
 
@@ -42,19 +43,14 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   };
 
   return (
-    <section className="w-full flex flex-col bg-white rounded-md">
-      <div className="flex justify-center my-8 w-full">
+    <section className="flex w-full flex-col rounded-md bg-white">
+      <div className="my-8 flex w-full justify-center">
         <UserImage editable={true} />
       </div>
 
-      <div className="mx-4 md:mx-12 gap-y-4 flex flex-col mb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-8">
-          <Input
-            name="Nome"
-            value={student.name}
-            type="text"
-            disabled={true}
-          />
+      <div className="mx-4 mb-12 flex flex-col gap-y-4 md:mx-12">
+        <div className="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-8">
+          <Input name="Nome" value={student.name} type="text" disabled={true} />
           <Input
             name="Ano"
             value={`${student.year}º Ano Licenciatura`}
@@ -88,7 +84,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
         <button
           onClick={handleSave}
-          className="bg-primary rounded-lg py-1.5 mt-4 hover:brightness-95 duration-100"
+          className="mt-4 rounded-lg bg-primary py-1.5 duration-100 hover:brightness-95"
         >
           Salvar
         </button>
