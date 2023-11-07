@@ -14,9 +14,10 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   role      Role     @default(STUDENT)
+  isAdmin   Boolean  @default(false)
 
-  student Student[]
-  company Company[]
+  student Student?
+  company Company?
 }
 
 model Student {
@@ -31,7 +32,7 @@ model Student {
   cv        String?
   image     String?
 
-  userId Int
+  userId Int @unique
 }
 
 model Company {
@@ -42,7 +43,7 @@ model Company {
   savedStudents SavedStudent[]
   image         String?
 
-  userId Int
+  userId Int @unique
 }
 
 model Interest {

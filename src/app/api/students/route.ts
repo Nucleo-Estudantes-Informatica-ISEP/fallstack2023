@@ -1,33 +1,27 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import { ZodError } from "zod";
-import { userExists } from "../common";
-import generateRandomCode from "@/utils/GenerateCode";
+
+import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 import { postStudentSchema } from "@/schemas/postStudentSchema";
+import generateRandomCode from "@/utils/GenerateCode";
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession();
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    if (session.role !== "STUDENT" || session.student !== null)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = postStudentSchema.parse(requestBody);
+
     // valid body
-    const { userId, name, year } = body;
-
-    // checks if user exists
-    if (!(await userExists(userId))) {
-      return NextResponse.json({ message: "User does not exist" }, { status: 401 });
-    }
-
-    // checks if student already exists
-    const existingStudent = await prisma.student.findFirst({
-      where: {
-        userId: userId,
-      },
-    });
-
-    if (existingStudent) {
-      return NextResponse.json({ message: "Student already exists" }, { status: 401 });
-    }
+    const userId = session.id;
+    const { name, year } = body;
 
     // create code for student
     let code: string = "";
@@ -61,13 +55,20 @@ export async function POST(req: Request) {
 
     // check if student was created
     if (!student) {
-      return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
+      return NextResponse.json(
+        { message: "Something went wrong" },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({ student: student }, { status: 201 });
   } catch (e) {
-    if (e instanceof ZodError) return NextResponse.json({ error: e.errors }, { status: 400 });
+    if (e instanceof ZodError)
+      return NextResponse.json({ error: e.errors }, { status: 400 });
 
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
   }
 }

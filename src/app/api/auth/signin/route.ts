@@ -1,10 +1,9 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { ZodError} from "zod";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { AUTH_COOKIE_MAX_AGE, COOKIE_NAME } from "@/services/cookies";
+import { ZodError } from "zod";
+
+import prisma from "@/lib/prisma";
+import { setCookie, signJwt } from "@/services/authService";
 import { signInSchema } from "@/schemas/signInSchema";
 
 export async function POST(req: Request) {
@@ -44,25 +43,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const { id } = user;
+
     // create token
-    const token = jwt.sign(
-      { userId: user.id, userRole: user.role },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
+    const token = signJwt({ id });
 
     // set cookie with token
-    cookies().set({
-      name: COOKIE_NAME,
-      maxAge: AUTH_COOKIE_MAX_AGE,
-      value: token,
-      path: "/",
-      sameSite: "strict",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-    });
+    setCookie(token);
 
     return NextResponse.json(
       { message: "Sign in successfully" },

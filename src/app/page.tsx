@@ -1,6 +1,9 @@
 "use client";
 
 import { FunctionComponent, useRef } from "react";
+
+import ThemeProvider from "@/components/Theme/ThemeProvider";
+
 import Logo from "../../public/assets/images/logo_white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
