@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 
 import { storage } from "@/lib/firebaseAdmin";
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
-
-const schema = z.object({
-  uploadId: z.string().uuid(),
-});
+import { avatarSchema } from "@/schemas/avatarSchema";
 
 interface StudentParams {
   params: {
@@ -27,7 +23,7 @@ export async function POST(
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const body = await req.json();
-  const parsed = schema.safeParse(body);
+  const parsed = avatarSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
 
   const { uploadId } = parsed.data;
