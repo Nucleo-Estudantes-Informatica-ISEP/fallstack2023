@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Interest } from "@prisma/client";
-import Skeleton from "react-loading-skeleton";
+import { Reorder } from "framer-motion";
 
 import { BASE_URL } from "@/services/api";
 
@@ -34,21 +34,34 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
   });
 
   return (
-    <div className="flex w-full flex-wrap gap-x-6 gap-y-4">
-      {userInterests.length > 0 ? (
-        <>
-          {orderedInterests.map((interest) => (
+    <Reorder.Group
+      axis="x"
+      values={orderedInterests}
+      onReorder={(values) => setInterests(values)}
+      className="flex w-full flex-wrap gap-x-6 gap-y-4"
+    >
+      {orderedInterests.map((interest) => (
+        <Reorder.Item
+          onClick={() =>
+            !userInterests.includes(interest.name) &&
+            setUserInterests([...userInterests, interest.name])
+          }
+          key={interest.id}
+          className={`relative rounded-xl px-3 py-1 text-black ${
+            userInterests.includes(interest.name)
+              ? "bg-orange-300/80"
+              : "bg-slate-200"
+          }`}
+          value={interest.name}
+        >
+          {interest.name}
+          {userInterests.includes(interest.name) && (
             <button
               onClick={() =>
                 !userInterests.includes(interest.name) &&
                 setUserInterests([...userInterests, interest.name])
               }
-              key={interest.id}
-              className={`relative rounded-xl px-3 py-1 text-black ${
-                userInterests.includes(interest.name)
-                  ? "bg-orange-300/80"
-                  : "bg-slate-200"
-              }`}
+              className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"
             >
               {interest.name}
               {userInterests.includes(interest.name) && (
@@ -64,12 +77,10 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
                 </button>
               )}
             </button>
-          ))}
-        </>
-      ) : (
-        <Skeleton height={20} count={20} />
-      )}
-    </div>
+          )}
+        </Reorder.Item>
+      ))}
+    </Reorder.Group>
   );
 };
 

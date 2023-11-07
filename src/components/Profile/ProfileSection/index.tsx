@@ -15,7 +15,11 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
   return (
     <section className="flex w-full flex-col rounded-md bg-white">
       <div className="mx-4 mb-12 flex flex-col gap-y-4 md:mx-12 md:flex-row">
+<<<<<<< HEAD
         <div className="mb-4 mt-4 flex flex-col md:mb-0 md:w-1/2">
+=======
+        <div className="my-4 flex flex-col md:mb-0 md:w-1/2">
+>>>>>>> eb6043ead7f9197669cb1392e790eeb8609191da
           <h2 className="text-center text-xl font-semibold text-gray-600 md:text-left">
             Nome
           </h2>
