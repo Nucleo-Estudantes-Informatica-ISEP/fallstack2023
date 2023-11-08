@@ -127,7 +127,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
         <button
           onClick={handleSave}
-          className="mt-4 rounded-lg bg-primary py-1.5 duration-100 hover:brightness-95"
+          className="mt-4 rounded-lg bg-primary py-2 duration-100 hover:brightness-95"
         >
           Salvar
         </button>
