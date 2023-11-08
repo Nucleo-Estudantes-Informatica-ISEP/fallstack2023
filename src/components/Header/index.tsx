@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
-import { ChevronDown } from "react-bootstrap-icons";
-import AnimatedText from "../AnimatedText";
 import Image, { StaticImageData } from "next/image";
+
+import { ChevronDown } from "react-bootstrap-icons";
 
 interface HeaderProps {
   logoSrc: StaticImageData;
@@ -14,28 +14,34 @@ interface HeaderProps {
 const Header: FunctionComponent<HeaderProps> = ({
   logoSrc,
   logoAlt,
-  eventDate,
-  eventName,
   contentRef,
 }) => {
   return (
     <section className="flex h-screen w-full flex-col items-center justify-center">
-      <Image
-        className="h-[300px] w-1/3 drop-shadow-md transition-all duration-200 hover:scale-105 hover:drop-shadow-fallstack-logo-shadow lg:h-[400px]"
-        src={logoSrc}
-        alt={logoAlt}
-      />
-      <h5 className="text-1xl my-2 mx-0 animate-fade text-center font-good__times text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-2xl">
-        {eventDate}
-      </h5>
-      <h1 className="my-2 mx-0 animate-fade text-center font-good__times text-4xl text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-6xl">
-        {eventName}
-      </h1>
-      <h5 className="text-1xl my-2 mx-0 animate-fade text-center font-good__times text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-3xl">
-        <div>The time has come for</div>
-        <AnimatedText />
-      </h5>
-
+      <div className="lg flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
+          <h1 className="relative font-poppins text-7xl font-bold max-md:w-min max-md:text-center lg:text-8xl">
+            <span className="absolute -left-2 top-4 -z-10 h-12 w-fit flex-shrink-0 -rotate-1 rounded-[66px] bg-primary px-2 text-transparent lg:h-20">
+              Internship
+            </span>{" "}
+            Internship Kickstart
+          </h1>
+          <h2 className="font-poppins text-5xl font-medium max-sm:text-center lg:text-7xl">
+            Your{" "}
+            <span className="relative">
+              <span className="absolute -left-3 top-4 -z-10 h-6 w-fit flex-shrink-0 rotate-1 rounded-[66px] bg-accent px-3 text-transparent lg:top-6 lg:h-9">
+                future
+              </span>
+              future starts here
+            </span>
+          </h2>
+        </div>
+        <Image
+          className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
+          src={logoSrc}
+          alt={logoAlt}
+        />
+      </div>
       <div className="bottom-4 mx-0 flex h-12 w-12 animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105">
         <a
           className="animate-fade opacity-0"

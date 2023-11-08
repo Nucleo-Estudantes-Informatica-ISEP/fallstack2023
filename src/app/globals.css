@@ -19,7 +19,7 @@
     --primary: #ed8326;
     --secondary: #10282d;
     --accent: #00c3ff;
-    --accent-alternative: #00C2FF;
+    --accent-alternative: #00c2ff;
     background-image: url(/assets/images/bg_dark_desktop.webp);
     background-size: contain;
   }
@@ -30,6 +30,10 @@
     }
     .dark {
       background-image: url(/assets/images/bg_dark_mobile.jpg);
-    }    
+    }
+  }
+
+  :root {
+    scroll-behavior: smooth;
   }
 }
