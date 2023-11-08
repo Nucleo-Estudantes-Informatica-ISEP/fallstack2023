@@ -14,6 +14,7 @@ import StatsSection from "../StatsSection";
 interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
+  stats: number[];
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({

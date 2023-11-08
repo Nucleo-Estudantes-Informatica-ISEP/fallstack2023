@@ -37,6 +37,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Roboto", "Arial", "sans-serif"],
+        poppins: ["Poppins", "Arial", "sans-serif"],
+        archivo: ["Archivo", "Arial", "sans-serif"],
       },
       dropShadow: {
         "3xl": "2px 2px 0.5px rgba(0, 0, 0, 0.33)",
