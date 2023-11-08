@@ -34,6 +34,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   }
 
   const handleSave = async () => {
+    console.log(linkedinRef.current?.value);
+
     if (userBio && userBio?.length > LIMIT) {
       swal(`A tua bio não pode ter mais de ${LIMIT} caracteres!`);
       return;
@@ -99,15 +101,15 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       <div className="mx-4 mb-12 mt-4 flex flex-col gap-y-4 md:mx-12">
         <Input
           name="Linkedin"
-          defaultValue={linkedinRef.current?.value}
+          defaultValue={student.linkedin}
           placeholder="https://www.linkedin.com/in/example/"
-          ref={linkedinRef}
+          inputRef={linkedinRef}
         />
         <Input
           name="Github"
-          defaultValue={githubRef.current?.value}
+          defaultValue={student.github}
           placeholder="https://github.com/example"
-          ref={githubRef}
+          inputRef={githubRef}
         />
 
         <UserBioTextArea

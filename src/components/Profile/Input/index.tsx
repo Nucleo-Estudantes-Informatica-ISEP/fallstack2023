@@ -6,7 +6,7 @@ interface InputProps {
   className?: string;
   disabled?: boolean;
   defaultValue?: string | null;
-  ref?: React.Ref<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({
   className,
   disabled,
   defaultValue,
-  ref,
+  inputRef,
 }) => {
   return (
     <div className="flex w-full flex-col">
@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
         id={name}
         placeholder={placeholder}
         defaultValue={defaultValue ?? undefined}
-        ref={ref}
+        ref={inputRef}
         className={`rounded-md border border-gray-300 bg-slate-200 px-4
          py-2 text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
       />
