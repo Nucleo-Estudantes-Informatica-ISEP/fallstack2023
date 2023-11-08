@@ -15,6 +15,7 @@ interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
   isOwnProfile: boolean;
+  stats: number[];
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
@@ -25,8 +26,6 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
   >(isOwnProfile ? "Sumário" : "Perfil");
-
-  console.log(isOwnProfile);
 
   return (
     <div className="mb-12 w-full items-center justify-center">
