@@ -14,8 +14,17 @@ const StatsSection: React.FC<StatsProps> = ({ student }) => {
 
   useEffect(() => {
     async function fetchCompaniesLeft() {
-      const res = await fetch(`${BASE_URL}/students/${student.code}/stats`);
+      const res = await fetch(`${BASE_URL}/students/${student.code}/stats`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const json = await res.json();
+      if (res.status !== 200) {
+        console.log(json);
+        return;
+      }
       setCompaniesLeft(json);
     }
 
