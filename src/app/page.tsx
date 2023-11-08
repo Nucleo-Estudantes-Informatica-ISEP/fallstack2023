@@ -1,10 +1,11 @@
 "use client";
 
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent, useEffect, useRef } from "react";
 
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 
-import Logo from "../../public/assets/images/logo_white.png";
+import LogoDark from "../../public/assets/images/logo_dark.png";
+import LogoWhite from "../../public/assets/images/logo_white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
@@ -12,8 +13,16 @@ import Header from "../components/Header";
 import HeroContainer from "../components/HeroContainer";
 import Topbar from "../components/TopBar";
 
+import { useTheme } from "next-themes";
+
 const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    console.log(theme);
+  }, [theme]);
 
   return (
     <ThemeProvider>
@@ -21,7 +30,10 @@ const App: FunctionComponent = () => {
         <GenericContainer>
           <Topbar />
           <Header
-            logoSrc={Logo}
+            logoSrc={{
+              white: LogoWhite,
+              dark: LogoDark,
+            }}
             logoAlt="Logo principal do evento Fall-Stack 2023"
             contentRef={contentRef}
           />

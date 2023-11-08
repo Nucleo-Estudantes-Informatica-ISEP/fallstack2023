@@ -1,10 +1,14 @@
 import { FunctionComponent } from "react";
 import Image, { StaticImageData } from "next/image";
 
+import { useTheme } from "next-themes";
 import { ChevronDown } from "react-bootstrap-icons";
 
 interface HeaderProps {
-  logoSrc: StaticImageData;
+  logoSrc: {
+    white: StaticImageData;
+    dark: StaticImageData;
+  };
   logoAlt: string;
   contentRef: React.RefObject<HTMLDivElement>;
 }
@@ -14,6 +18,8 @@ const Header: FunctionComponent<HeaderProps> = ({
   logoAlt,
   contentRef,
 }) => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <section className="flex h-screen w-full flex-col items-center justify-center">
       <div className="lg flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
@@ -34,11 +40,19 @@ const Header: FunctionComponent<HeaderProps> = ({
             </span>
           </h2>
         </div>
-        <Image
-          className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
-          src={logoSrc}
-          alt={logoAlt}
-        />
+        {theme === "light" ? (
+          <Image
+            className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
+            src={logoSrc.dark}
+            alt={logoAlt}
+          />
+        ) : (
+          <Image
+            className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
+            src={logoSrc.white}
+            alt={logoAlt}
+          />
+        )}
       </div>
       <div className="bottom-4 mx-0 flex h-12 w-12 animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105">
         <a
