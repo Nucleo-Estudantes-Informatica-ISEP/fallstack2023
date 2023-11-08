@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent, useEffect, useRef } from "react";
+import { FunctionComponent, useRef } from "react";
 
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 
@@ -13,16 +13,8 @@ import Header from "../components/Header";
 import HeroContainer from "../components/HeroContainer";
 import Topbar from "../components/TopBar";
 
-import { useTheme } from "next-themes";
-
 const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
 
   return (
     <ThemeProvider>
