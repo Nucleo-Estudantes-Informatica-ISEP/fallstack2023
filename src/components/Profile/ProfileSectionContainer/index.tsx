@@ -14,15 +14,19 @@ import StatsSection from "../StatsSection";
 interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
+  isOwnProfile: boolean;
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   student,
   interests,
+  isOwnProfile,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
-  >("Sumário");
+  >(isOwnProfile ? "Sumário" : "Perfil");
+
+  console.log(isOwnProfile);
 
   return (
     <div className="mb-12 w-full items-center justify-center">
@@ -82,25 +86,30 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
                   ? "165%"
                   : "308%",
             }}
+            initial={{ x: isOwnProfile ? "22.5%" : "165%" }}
           ></motion.div>
-          <button
-            onClick={() => setActiveTab("Sumário")}
-            className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
-          >
-            Sumário
-          </button>
+          {isOwnProfile && (
+            <button
+              onClick={() => setActiveTab("Sumário")}
+              className={`w-52 rounded-md px-4 py-2 hover:bg-slate-200/30`}
+            >
+              Sumário
+            </button>
+          )}
           <button
             onClick={() => setActiveTab("Perfil")}
             className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
           >
             Perfil
           </button>
-          <button
-            onClick={() => setActiveTab("Definições")}
-            className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
-          >
-            Definições
-          </button>
+          {isOwnProfile && (
+            <button
+              onClick={() => setActiveTab("Definições")}
+              className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
+            >
+              Definições
+            </button>
+          )}
         </div>
       </div>
 
