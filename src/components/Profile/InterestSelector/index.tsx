@@ -47,7 +47,7 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
             setUserInterests([...userInterests, interest.name])
           }
           key={interest.id}
-          className={`relative rounded-xl px-3 py-1 text-black ${
+          className={`relative cursor-pointer rounded-xl px-3 py-1 text-black ${
             userInterests.includes(interest.name)
               ? "bg-orange-300/80"
               : "bg-slate-200"
@@ -58,23 +58,13 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
           {userInterests.includes(interest.name) && (
             <button
               onClick={() =>
-                !userInterests.includes(interest.name) &&
-                setUserInterests([...userInterests, interest.name])
+                setUserInterests((cur) =>
+                  cur.filter((i) => i !== interest.name)
+                )
               }
               className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"
             >
-              {userInterests.includes(interest.name) && (
-                <button
-                  onClick={() =>
-                    setUserInterests((cur) =>
-                      cur.filter((i) => i !== interest.name)
-                    )
-                  }
-                  className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"
-                >
-                  X
-                </button>
-              )}
+              X
             </button>
           )}
         </Reorder.Item>
