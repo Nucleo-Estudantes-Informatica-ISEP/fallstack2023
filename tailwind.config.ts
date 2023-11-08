@@ -27,8 +27,7 @@ const config: Config = {
         "1080/1080": "1080 / 1080",
       },
       gridTemplateColumns: {
-        "responsiveness-180px-columns":
-          "repeat(auto-fit, minmax(250px, 1fr))",
+        "responsiveness-180px-columns": "repeat(auto-fit, minmax(250px, 1fr))",
       },
       keyframes: {
         fade: {

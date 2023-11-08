@@ -10,16 +10,16 @@ const BioSection: React.FC<BioSectionProps> = ({ bio }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div className="flex flex-col mt-4 space-y-2 w-11/12 pl-12 md:mx-0">
+    <div className="mt-4 flex w-11/12 flex-col space-y-2 pl-12 md:mx-0">
       <div className="flex">
-        <h3 className="font-bold text-left text-xl text-gray-600">Sobre</h3>
+        <h3 className="text-left text-xl font-bold text-gray-600">Sobre</h3>
       </div>
       <textarea
         ref={inputRef}
         rows={3}
         id="bio"
         name="bio"
-        className="text-black bg-transparent block w-full h-32 text-base mx-auto mt-1 rounded-md resize-none focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"
+        className="mx-auto mt-1 block h-32 w-full resize-none rounded-md bg-transparent text-base text-black focus-within:text-primary focus:border-primary focus:ring-primary focus:ring-opacity-50"
         defaultValue={bio?.toString()}
         disabled={true}
       />

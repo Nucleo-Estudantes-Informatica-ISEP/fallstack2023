@@ -48,7 +48,7 @@ const UserBioTextArea: React.FC<UserBioTextAreaProps> = ({
           maxHeight: "200px",
         }}
         className={`rounded-md border border-gray-300 bg-slate-200 px-4
-          py-2 text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
+         py-2 text-black placeholder:text-gray-400 focus:border-primary focus:ring-0 disabled:cursor-not-allowed disabled:text-gray-600 ${className}`}
       />
       <p
         className={`text-right ${

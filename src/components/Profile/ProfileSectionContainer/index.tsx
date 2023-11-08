@@ -71,33 +71,45 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </p>
         </motion.div>
 
-        <div className="relative mt-8 flex w-5/6 max-w-4xl justify-around">
+        <div className="relative mt-8 flex w-full max-w-4xl flex-col items-center justify-center text-center md:w-5/6 md:flex-row md:justify-between">
           <motion.div
-            className="absolute bottom-0 left-0 w-52 border-b-4 border-primary"
+            className="invisible absolute bottom-0 left-0 w-52 border-b-4 border-primary md:visible"
             animate={{
               x:
                 activeTab === "Sumário"
-                  ? "22.5%"
+                  ? 0
                   : activeTab === "Perfil"
-                  ? "165%"
-                  : "308%",
+                  ? 300
+                  : 600,
             }}
           ></motion.div>
           <button
             onClick={() => setActiveTab("Sumário")}
-            className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
+            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+              activeTab === "Sumário"
+                ? "font-bold text-primary"
+                : "font-normal text-white"
+            }`}
           >
             Sumário
           </button>
           <button
             onClick={() => setActiveTab("Perfil")}
-            className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
+            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+              activeTab === "Perfil"
+                ? "font-bold text-primary"
+                : "font-normal text-white"
+            }`}
           >
             Perfil
           </button>
           <button
             onClick={() => setActiveTab("Definições")}
-            className="w-52 rounded-md px-4 py-2 hover:bg-slate-200/30"
+            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+              activeTab === "Definições"
+                ? "font-bold text-primary"
+                : "font-normal text-white"
+            }`}
           >
             Definições
           </button>

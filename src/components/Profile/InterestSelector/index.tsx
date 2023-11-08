@@ -63,7 +63,6 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
               }
               className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"
             >
-              {interest.name}
               {userInterests.includes(interest.name) && (
                 <button
                   onClick={() =>
@@ -71,7 +70,7 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
                       cur.filter((i) => i !== interest.name)
                     )
                   }
-                  className="text-red absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs text-white"
+                  className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"
                 >
                   X
                 </button>

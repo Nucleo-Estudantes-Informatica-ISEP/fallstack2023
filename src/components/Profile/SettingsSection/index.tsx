@@ -85,11 +85,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
         <div className="flex w-full flex-col gap-y-4 md:ml-12">
           <Input name="Nome" defaultValue={student.name} disabled={true} />
-          <Input
-            name="Ano"
-            defaultValue={`${student.year}º Ano Licenciatura`}
-            disabled={true}
-          />
+          <Input name="Ano" defaultValue={student.year} disabled={true} />
           <Input
             name="Email"
             defaultValue={student.user.email}
