@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 
 interface ProfileProps {
@@ -8,7 +9,7 @@ interface ProfileProps {
 }
 
 const profile: React.FC<ProfileProps> = async ({ params }) => {
-  // TODO: get session from user
+  const session = await getServerSession();
 
   const student = await prisma.student.findUnique({
     where: {
@@ -47,6 +48,9 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
       <ProfileSectionContainer
         interests={sanitizedInterests}
         student={student}
+        isOwnProfile={
+          !!session && !!session.student && session.student.code === params.code
+        }
       />
     </section>
   );

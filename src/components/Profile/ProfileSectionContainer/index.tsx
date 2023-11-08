@@ -14,15 +14,19 @@ import StatsSection from "../StatsSection";
 interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
+  isOwnProfile: boolean;
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   student,
   interests,
+  isOwnProfile,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
-  >("Sumário");
+  >(isOwnProfile ? "Sumário" : "Perfil");
+
+  console.log(isOwnProfile);
 
   return (
     <div className="mb-12 w-full items-center justify-center">
@@ -82,6 +86,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
                   ? 300
                   : 600,
             }}
+            initial={{ x: isOwnProfile ? "22.5%" : "165%" }}
           ></motion.div>
           <button
             onClick={() => setActiveTab("Sumário")}
