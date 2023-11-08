@@ -5,6 +5,7 @@ import { Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
 
 import UserImage from "@/components/UserImage";
+import { Github, Linkedin } from "@/styles/Icons";
 
 import ProfileSection from "../ProfileSection";
 import SettingsSection from "../SettingsSection";
@@ -47,6 +48,26 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           <p className="px-4 text-center">
             O teu perfil já foi gravado{" "}
             <span className="font-bold text-primary">{0} vezes</span> hoje.
+          </p>
+          <p className="flex gap-x-4 pt-6">
+            {student.github && (
+              <a
+                href={student.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-10 w-10 md:h-6 md:w-6" />
+              </a>
+            )}
+            {student.linkedin && (
+              <a
+                href={student.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="h-10 w-10 md:h-6 md:w-6" />
+              </a>
+            )}
           </p>
         </motion.div>
 

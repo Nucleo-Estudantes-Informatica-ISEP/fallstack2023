@@ -28,7 +28,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
             Ano
           </h2>
           <p className="text-center text-3xl font-bold text-black md:text-left">
-            {student.year}º Ano Licenciatura
+            {student.year}
           </p>
         </div>
       </div>
