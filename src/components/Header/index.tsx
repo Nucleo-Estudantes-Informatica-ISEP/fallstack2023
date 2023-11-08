@@ -6,8 +6,6 @@ import { ChevronDown } from "react-bootstrap-icons";
 interface HeaderProps {
   logoSrc: StaticImageData;
   logoAlt: string;
-  eventDate: string;
-  eventName: string;
   contentRef: React.RefObject<HTMLDivElement>;
 }
 

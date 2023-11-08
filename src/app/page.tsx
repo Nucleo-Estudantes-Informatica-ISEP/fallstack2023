@@ -23,8 +23,6 @@ const App: FunctionComponent = () => {
           <Header
             logoSrc={Logo}
             logoAlt="Logo principal do evento Fall-Stack 2023"
-            eventName="FALLSTACK"
-            eventDate="28 e 29 de Novembro"
             contentRef={contentRef}
           />
           <Content contentRef={contentRef} />
