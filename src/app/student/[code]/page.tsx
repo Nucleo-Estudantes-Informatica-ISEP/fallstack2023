@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
+import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
 
 interface ProfileProps {
   params: {
@@ -45,13 +46,17 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   return (
     <section className="flex w-full flex-col items-center">
-      <ProfileSectionContainer
-        interests={sanitizedInterests}
-        student={student}
-        isOwnProfile={
-          !!session && !!session.student && session.student.code === params.code
-        }
-      />
+      {!session || session.student?.code !== params.code ? (
+        <PublicProfileSectionContainer
+          interests={sanitizedInterests}
+          student={student}
+        />
+      ) : (
+        <ProfileSectionContainer
+          interests={sanitizedInterests}
+          student={student}
+        />
+      )}
     </section>
   );
 };

@@ -14,19 +14,15 @@ import StatsSection from "../StatsSection";
 interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
-  isOwnProfile: boolean;
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   student,
   interests,
-  isOwnProfile,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
-  >(isOwnProfile ? "Sumário" : "Perfil");
-
-  console.log(isOwnProfile);
+  >("Sumário");
 
   return (
     <div className="mb-12 w-full items-center justify-center">
@@ -60,7 +56,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-10 w-10 md:h-6 md:w-6" />
+                <Github className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
             {student.linkedin && (
@@ -69,7 +65,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="h-10 w-10 md:h-6 md:w-6" />
+                <Linkedin className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
           </p>
@@ -86,7 +82,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
                   ? 300
                   : 600,
             }}
-            initial={{ x: isOwnProfile ? "22.5%" : "165%" }}
+            initial={"165%"}
           ></motion.div>
           <button
             onClick={() => setActiveTab("Sumário")}

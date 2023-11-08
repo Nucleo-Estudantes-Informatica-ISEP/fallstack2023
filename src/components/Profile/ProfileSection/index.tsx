@@ -13,7 +13,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
   student,
 }) => {
   return (
-    <section className="flex w-full flex-col rounded-md bg-white">
+    <section className="flex w-full flex-col rounded-md bg-white py-4">
       <div className="mx-4 mb-12 flex flex-col gap-y-4 md:mx-12 md:flex-row">
         <div className="my-4 flex flex-col md:mb-0 md:w-1/2">
           <h2 className="text-center text-xl font-semibold text-gray-600 md:text-left">
@@ -32,7 +32,11 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           </p>
         </div>
       </div>
-      {student.bio && <BioSection bio={student.bio} />}
+      {student.bio && (
+        <div className="mb-8">
+          <BioSection bio={student.bio} />
+        </div>
+      )}
       {interests.length > 0 && <InterestsSection userInterests={interests} />}
     </section>
   );

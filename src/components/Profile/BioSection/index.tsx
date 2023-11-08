@@ -16,10 +16,9 @@ const BioSection: React.FC<BioSectionProps> = ({ bio }) => {
       </div>
       <textarea
         ref={inputRef}
-        rows={3}
         id="bio"
         name="bio"
-        className="mx-auto mt-1 block h-32 w-full resize-none rounded-md bg-transparent text-base text-black focus-within:text-primary focus:border-primary focus:ring-primary focus:ring-opacity-50"
+        className="mx-auto mt-1 block w-full resize-none rounded-md bg-transparent text-base text-black focus-within:text-primary focus:border-primary focus:ring-primary"
         defaultValue={bio?.toString()}
         disabled={true}
       />
