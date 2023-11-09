@@ -3,12 +3,12 @@ import { Student } from "@prisma/client";
 import prisma from "./prisma";
 
 export async function getStudentInterests(student: Student) {
-  return await prisma.studentInterest.findMany({
+  return await prisma.student.findUnique({
     where: {
-      studentId: student.id,
+      id: student.id,
     },
     select: {
-      interest: true,
+      interests: true,
     },
   });
 }

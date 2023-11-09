@@ -31,7 +31,9 @@ export async function PATCH(req: NextRequest, { params }: StudentProps) {
       bio: body.bio,
       linkedin: body.linkedin,
       github: body.github,
-      interests: body.interests,
+      interests: {
+        set: body.interests.map((interest: string) => ({ name: interest })),
+      },
     },
   });
   return NextResponse.json(student);

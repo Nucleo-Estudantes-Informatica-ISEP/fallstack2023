@@ -1,4 +1,3 @@
-import { getStudentInterests } from "@/lib/fetchInterests";
 import { getStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import getServerSession from "@/services/getServerSession";
@@ -21,11 +20,7 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
     return Custom404();
   }
 
-  const interests = await getStudentInterests(student);
-
-  const sanitizedInterests = interests.map(
-    (interest) => interest.interest.name
-  );
+  const sanitizedInterests = student.interests.map((interest) => interest.name);
 
   const stats = await getStats(student.code);
 
