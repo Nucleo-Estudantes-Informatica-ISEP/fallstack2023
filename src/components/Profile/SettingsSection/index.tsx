@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { Student, User } from "@prisma/client";
 import swal from "sweetalert";
 
+import { ProfileData } from "@/types/ProfileData";
 import { BASE_URL } from "@/services/api";
 import UserImage from "@/components/UserImage";
 
@@ -14,29 +15,35 @@ import UserBioTextArea from "../UserBioTextArea";
 interface SettingsSectionProps {
   student: Student & { user: User };
   interests: string[];
+  profile: ProfileData;
+  setProfile: Dispatch<SetStateAction<ProfileData>>;
 }
 
 const SettingsSection: React.FC<SettingsSectionProps> = ({
-  interests,
+  // interests,
   student,
+  profile,
+  setProfile,
 }) => {
   const LIMIT = 255;
-
-  const [userInterests, setUserInterests] = useState<string[]>(interests);
-  const [userBio, setUserBio] = useState<string>(student.bio ?? "");
 
   const githubRef = useRef<HTMLInputElement>(null);
   const linkedinRef = useRef<HTMLInputElement>(null);
 
   function handleUserBioChange(bio: string) {
     if (bio.length > LIMIT) return;
-    setUserBio(bio);
+    // setUserBio(bio);
+    setProfile({ ...profile, bio });
+  }
+
+  function setUserInterests(interests: string[]) {
+    setProfile({ ...profile, interests });
   }
 
   const handleSave = async () => {
     console.log(linkedinRef.current?.value);
 
-    if (userBio && userBio?.length > LIMIT) {
+    if (profile.bio && profile.bio?.length > LIMIT) {
       swal(`A tua bio não pode ter mais de ${LIMIT} caracteres!`);
       return;
     }
@@ -66,9 +73,10 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",
       body: JSON.stringify({
-        bio: userBio,
+        bio: profile.bio,
         github: githubRef.current?.value,
         linkedin: linkedinRef.current?.value,
+        interests: profile.interests,
       }),
     });
 
@@ -97,31 +105,31 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       <div className="mx-4 mb-12 mt-4 flex flex-col gap-y-4 md:mx-12">
         <Input
           name="Linkedin"
-          defaultValue={student.linkedin}
+          defaultValue={profile.linkedin}
           placeholder="https://www.linkedin.com/in/example/"
           inputRef={linkedinRef}
         />
         <Input
           name="Github"
-          defaultValue={student.github}
+          defaultValue={profile.github}
           placeholder="https://github.com/example"
           inputRef={githubRef}
         />
 
         <UserBioTextArea
           name="Bio"
-          defaultValue={userBio}
+          defaultValue={profile.bio}
           rows={5}
           placeholder="Escreve algo sobre ti..."
           setValue={handleUserBioChange}
-          value={userBio}
+          value={profile.bio ? profile.bio : ""}
           limit={LIMIT}
           warningLimit={LIMIT - 30}
         />
 
         <label className="text-lg text-slate-700">Interesses</label>
         <InterestSelector
-          userInterests={userInterests}
+          userInterests={profile.interests}
           setUserInterests={setUserInterests}
         />
 
