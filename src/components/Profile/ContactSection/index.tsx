@@ -10,7 +10,7 @@ interface ContactSectionProps {
 
 const ContactSection: React.FC<ContactSectionProps> = ({ email }) => {
   return (
-    <div className="my-4 flex w-11/12 flex-col space-y-2 pl-12 text-black">
+    <div className="my-4 flex flex-col space-y-2 px-12 text-black">
       <div className="flex">
         <h3 className="text-left text-xl font-bold text-gray-600">Contactos</h3>
       </div>
