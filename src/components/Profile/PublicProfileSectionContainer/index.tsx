@@ -62,7 +62,12 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
         <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
           {student.bio && <BioSection bio={student.bio} />}
           <ContactSection email={student.user.email} />
-          {student.cv && <CvSection cv={student.cv} name={student.name} />}
+          {student.cv && (
+            <CvSection
+              student={student}
+              text={"Abrir o CV de" + student.name}
+            />
+          )}
           {interests.length > 0 && (
             <InterestsSection userInterests={interests} />
           )}

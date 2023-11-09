@@ -9,7 +9,7 @@ interface StatsProps {
 
 const StatsSection: React.FC<StatsProps> = ({ stats }) => {
   return (
-    <section className="flex w-full flex-col rounded-md bg-white pb-8">
+    <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
       <div className="mx-12 mb-4 mt-12 flex justify-around">
         <div className="flex flex-col">
           <h2 className="text-left text-xl font-semibold text-gray-600">
