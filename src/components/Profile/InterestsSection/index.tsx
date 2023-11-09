@@ -17,12 +17,12 @@ const InterestsSection: React.FC<InterestsSectionProps> = ({
   }
 
   return (
-    <section className="my-4 flex w-11/12 flex-wrap space-y-5 pl-12 md:mx-0 md:w-2/3">
+    <section className="my-4 flex flex-wrap space-y-5 px-12">
       <div className="flex flex-col">
         <h3 className="text-left text-xl font-bold text-gray-600">
           Interesses
         </h3>
-        <div className="mt-2 flex w-full flex-wrap items-center gap-x-6 gap-y-2 md:mx-0">
+        <div className="mt-2 flex w-full flex-wrap items-center gap-x-6 gap-y-3">
           {orderedInterests.map((interest) => (
             <div
               className="relative flex rounded-xl bg-slate-200 px-3 py-1 text-black"

@@ -21,7 +21,7 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
   interests,
 }) => {
   return (
-    <div className="my-14 w-full items-center justify-center">
+    <div className="mt-14 w-full items-center justify-center md:my-14">
       <div className="mb-12 flex h-full  w-full flex-col items-center">
         <motion.div
           transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
           </p>
         </motion.div>
       </div>
-      <div className="mx-auto w-5/6 max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl md:w-5/6">
         <section className="flex w-full flex-col rounded-md bg-white py-4">
           {student.bio && <BioSection bio={student.bio} />}
           <ContactSection email={student.user.email} />
