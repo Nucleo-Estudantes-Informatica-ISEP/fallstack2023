@@ -26,7 +26,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   >("Sumário");
 
   return (
-    <div className="mb-12 w-full items-center justify-center">
+    <div className="w-full items-center justify-center md:mb-12">
       <div
         className={`flex w-full flex-col items-center ${
           activeTab === "Definições" ? "pt-12" : ""
@@ -74,7 +74,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
 
         <div className="relative mt-8 flex w-full max-w-4xl flex-col items-center justify-center text-center md:w-5/6 md:flex-row md:justify-between">
           <motion.div
-            className="invisible absolute bottom-0 left-0 w-52 border-b-4 border-primary md:visible"
+            className="absolute bottom-0 left-0 hidden w-52 border-b-4 border-primary md:visible"
             animate={{
               x:
                 activeTab === "Sumário"
@@ -118,7 +118,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
         </div>
       </div>
 
-      <div className="mx-auto w-5/6 max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && <StatsSection student={student} />}
         {activeTab === "Perfil" && (
           <ProfileSection student={student} interests={interests} />

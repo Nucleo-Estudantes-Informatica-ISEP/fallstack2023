@@ -77,7 +77,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   };
 
   return (
-    <section className="flex w-full flex-col rounded-md bg-white">
+    <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
       <div className="mx-4 flex flex-col items-center md:mx-12 md:flex-row">
         <div className="my-8 flex-1 justify-center p-3">
           <UserImage editable={true} />
