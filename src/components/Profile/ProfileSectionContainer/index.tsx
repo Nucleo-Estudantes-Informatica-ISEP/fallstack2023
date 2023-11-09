@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
 
+import { ProfileData } from "@/types/ProfileData";
 import UserImage from "@/components/UserImage";
 import { Github, Linkedin } from "@/styles/Icons";
 
@@ -24,6 +25,13 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
   >("Sumário");
+
+  const [profile, setProfile] = useState<ProfileData>({
+    interests,
+    bio: student.bio,
+    linkedin: student.linkedin,
+    github: student.github,
+  });
 
   return (
     <div className="w-full items-center justify-center md:mb-12">
@@ -121,10 +129,19 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
       <div className="mx-auto w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && <StatsSection student={student} />}
         {activeTab === "Perfil" && (
-          <ProfileSection student={student} interests={interests} />
+          <ProfileSection
+            student={student}
+            interests={interests}
+            profile={profile}
+          />
         )}
         {activeTab === "Definições" && (
-          <SettingsSection student={student} interests={interests} />
+          <SettingsSection
+            student={student}
+            interests={interests}
+            profile={profile}
+            setProfile={setProfile}
+          />
         )}
       </div>
     </div>

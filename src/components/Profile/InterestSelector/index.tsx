@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Interest } from "@prisma/client";
 import { Reorder } from "framer-motion";
 
@@ -8,7 +8,7 @@ import { BASE_URL } from "@/services/api";
 
 interface InterestSelectorProps {
   userInterests: string[];
-  setUserInterests: Dispatch<SetStateAction<string[]>>;
+  setUserInterests: (interests: string[]) => void;
 }
 
 const InterestSelector: React.FC<InterestSelectorProps> = ({
@@ -58,8 +58,8 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
           {userInterests.includes(interest.name) && (
             <button
               onClick={() =>
-                setUserInterests((cur) =>
-                  cur.filter((i) => i !== interest.name)
+                setUserInterests(
+                  userInterests.filter((i) => i !== interest.name)
                 )
               }
               className="absolute -right-1 -top-1 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-red-400/80 text-xs  text-white"

@@ -1,5 +1,7 @@
 import { Student, User } from "@prisma/client";
 
+import { ProfileData } from "@/types/ProfileData";
+
 import BioSection from "../BioSection";
 import CvSection from "../CvSection";
 import InterestsSection from "../InterestsSection";
@@ -7,11 +9,13 @@ import InterestsSection from "../InterestsSection";
 interface ProfileSectionProps {
   student: Student & { user: User };
   interests: string[];
+  profile: ProfileData;
 }
 
 const ProfileSection: React.FC<ProfileSectionProps> = ({
-  interests,
+  // interests,
   student,
+  profile,
 }) => {
   return (
     <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
@@ -35,7 +39,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       </div>
       {student.bio && <BioSection bio={student.bio} />}
       {student.cv && <CvSection student={student} text={"Abrir o meu CV"} />}
-      {interests.length > 0 && <InterestsSection userInterests={interests} />}
+      {profile.interests.length > 0 && (
+        <InterestsSection userInterests={profile.interests} />
+      )}
     </section>
   );
 };
