@@ -22,7 +22,7 @@ const InterestsSection: React.FC<InterestsSectionProps> = ({
         <h3 className="text-left text-xl font-bold text-gray-600">
           Interesses
         </h3>
-        <div className="mx-auto mt-2 flex w-3/4 items-center gap-x-6 md:mx-0">
+        <div className="mt-2 flex w-full flex-wrap items-center gap-x-6 gap-y-2 md:mx-0">
           {orderedInterests.map((interest) => (
             <div
               className="relative flex rounded-xl bg-slate-200 px-3 py-1 text-black"
