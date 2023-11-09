@@ -16,7 +16,7 @@ const EventInfos: FunctionComponent<EventInfosProps> = ({
     endTime
 }) => {
     return (
-        <section className="my-6 flex flex-col items-center justify-around gap-4 md:px-28 lg:flex-row lg:justify-center">
+        <section className="flex flex-col inline-flex items-center justify-around gap-4 md:px-28 lg:justify-center">
             <InfoBit icon={<CalendarEvent />} info={`${days.join(' e ')} de ${month}`} />
             <InfoBit icon={<Alarm />} info={`${beginningTime} - ${endTime}`} />
             <InfoBit icon={<GeoAlt />} info={'Instituto Superior de Engenharia do Porto'} />

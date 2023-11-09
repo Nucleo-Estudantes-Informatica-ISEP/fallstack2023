@@ -19,7 +19,7 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
   return (
     <section
       ref={contentRef}
-      className="center container mx-auto w-11/12 rounded-lg p-10 sm:w-3/4 lg:p-14"
+      className="center container mx-auto rounded-lg p-10 sm:w-3/4 lg:py-14 lg:w-full"
     >
       <InfoText
         days={[19, 20]}
