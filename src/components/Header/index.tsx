@@ -26,7 +26,7 @@ const Header: FunctionComponent<HeaderProps> = ({
     <section className="flex h-screen w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
-          <h1 className="relative font-poppins text-7xl font-bold max-md:w-min max-md:text-center lg:text-8xl">
+          <h1 className="font-poppins text-7xl font-bold max-md:w-min max-md:text-center lg:text-8xl">
             <Highlight>Internship</Highlight> Kickstart
           </h1>
           <h2 className="font-poppins text-5xl font-medium max-sm:text-center lg:text-7xl">
