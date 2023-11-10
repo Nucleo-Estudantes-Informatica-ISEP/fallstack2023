@@ -1,4 +1,5 @@
 import React from "react";
+
 import useTabWidth from "../../hooks/useTabWidth";
 
 interface ModalTabsProps {
@@ -25,7 +26,7 @@ const ModalTabs: React.FC<ModalTabsProps> = ({
   return (
     <div className="mx-auto flex w-full flex-col items-center justify-between md:flex-row">
       <div
-        className={`absolute top-28 left-0 ${tabWidth} mt-2 mr-2 hidden h-1 rounded-lg bg-modal-accent transition-transform duration-300 ease-in-out hover:brightness-90 sm:block ${
+        className={`absolute left-0 top-28 ${tabWidth} bg-modal-accent mr-2 mt-2 hidden h-1 rounded-lg transition-transform duration-300 ease-in-out hover:brightness-90 sm:block ${
           activeTabIndex === 0
             ? "md:translate-x-0"
             : activeTabIndex === 1
@@ -37,18 +38,9 @@ const ModalTabs: React.FC<ModalTabsProps> = ({
       {hasDetailsSection && (
         <li
           className={`z-10 mx-4 h-full max-h-10 flex-1 cursor-pointer list-none rounded-lg py-2 text-center text-lg font-semibold 
-                ${
-                  activeTabIndex === 0 ? "font-semibold" : "font-thin"
-                }
-                ${
-                  activeTabIndex === 0
-                    ? "text-modal-active"
-                    : "text-black"
-                }
-                ${
-                  activeTabIndex !== 0 &&
-                  "hover:bg-modal-hover-accent"
-                }`}
+                ${activeTabIndex === 0 ? "font-semibold" : "font-thin"}
+                ${activeTabIndex === 0 ? "text-modal-active" : "text-black"}
+                ${activeTabIndex !== 0 && "hover:bg-modal-hover-accent"}`}
           onClick={() => setActiveTabIndex(0)}
         >
           Detalhes
@@ -57,18 +49,9 @@ const ModalTabs: React.FC<ModalTabsProps> = ({
       {hasLinksSection && (
         <li
           className={`z-10 mx-4 h-full max-h-10 flex-1 cursor-pointer list-none rounded-lg py-2 text-center text-lg font-semibold 
-                ${
-                  activeTabIndex === 1 ? "font-semibold" : "font-thin"
-                }
-                ${
-                  activeTabIndex === 1
-                    ? "text-modal-active"
-                    : "text-black"
-                }
-                ${
-                  activeTabIndex !== 1 &&
-                  "hover:bg-modal-hover-accent"
-                }`}
+                ${activeTabIndex === 1 ? "font-semibold" : "font-thin"}
+                ${activeTabIndex === 1 ? "text-modal-active" : "text-black"}
+                ${activeTabIndex !== 1 && "hover:bg-modal-hover-accent"}`}
           onClick={() => setActiveTabIndex(1)}
         >
           Links
@@ -77,18 +60,9 @@ const ModalTabs: React.FC<ModalTabsProps> = ({
       {hasVideoSection && (
         <li
           className={`z-10 mx-4 h-full max-h-10 flex-1 cursor-pointer list-none rounded-lg py-2 text-center text-lg font-semibold 
-                ${
-                  activeTabIndex === 2 ? "font-semibold" : "font-thin"
-                }
-                ${
-                  activeTabIndex === 2
-                    ? "text-modal-active"
-                    : "text-black"
-                }
-                ${
-                  activeTabIndex !== 2 &&
-                  "hover:bg-modal-hover-accent"
-                }`}
+                ${activeTabIndex === 2 ? "font-semibold" : "font-thin"}
+                ${activeTabIndex === 2 ? "text-modal-active" : "text-black"}
+                ${activeTabIndex !== 2 && "hover:bg-modal-hover-accent"}`}
           onClick={() => setActiveTabIndex(2)}
         >
           Vídeo

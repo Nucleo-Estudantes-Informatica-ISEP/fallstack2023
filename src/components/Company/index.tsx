@@ -1,7 +1,8 @@
 import React from "react";
+import Image, { StaticImageData } from "next/image";
+
 import { ModalInformation } from "../../types/ModalProps";
 import Modal from "../Modal";
-import Image, { StaticImageData } from "next/image";
 
 export interface CompanyProps {
   logoHref: StaticImageData;

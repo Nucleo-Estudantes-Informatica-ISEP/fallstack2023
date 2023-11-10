@@ -1,5 +1,10 @@
 import React, { useEffect, useId } from "react";
 
+import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
+import ModalProps from "../../types/ModalProps";
+import ModalTabs from "../ModalTabs";
+import SocialMediaCard from "../SocialMediaCard";
+
 import {
   Facebook,
   Globe,
@@ -9,10 +14,6 @@ import {
   X,
   Youtube,
 } from "react-bootstrap-icons";
-import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
-import ModalProps from "../../types/ModalProps";
-import ModalTabs from "../ModalTabs";
-import SocialMediaCard from "../SocialMediaCard";
 
 const Modal: React.FC<ModalProps> = ({
   hidden,
@@ -102,11 +103,7 @@ const Modal: React.FC<ModalProps> = ({
         />
       )}
       {website && (
-        <SocialMediaCard
-          href={website}
-          icon={<Globe />}
-          title="Webiste"
-        />
+        <SocialMediaCard href={website} icon={<Globe />} title="Webiste" />
       )}
     </ul>,
     <div
@@ -128,14 +125,14 @@ const Modal: React.FC<ModalProps> = ({
   return !hidden ? (
     <div className="fixed inset-0 z-10 animate-fade-imm bg-gray-700/60 transition-opacity">
       <div className="fixed inset-0 my-auto flex h-[90%] items-center justify-center overflow-hidden rounded-lg outline-none focus:outline-none md:h-3/5">
-        <div className="scrollbar-medium relative mx-auto h-full w-4/5 max-w-3xl overflow-y-scroll rounded-lg scrollbar scrollbar-track-white scrollbar-thumb-slate-200">
+        <div className="scrollbar-medium scrollbar scrollbar-track-white scrollbar-thumb-slate-200 relative mx-auto h-full w-4/5 max-w-3xl overflow-y-scroll rounded-lg">
           <div className="min-h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
             <div className="flex w-full items-start justify-center rounded-t border-b border-solid border-slate-200 p-5">
               <h3 className="w-full text-center text-3xl font-semibold capitalize">
                 {title}
               </h3>
               <button
-                className="absolute right-4 ml-auto rounded-xl border-0 bg-transparent p-1 text-3xl font-semibold leading-none transition-colors duration-300 ease-in-out focus:outline-none hover:rounded-full hover:bg-gray-100"
+                className="absolute right-4 ml-auto rounded-xl border-0 bg-transparent p-1 text-3xl font-semibold leading-none transition-colors duration-300 ease-in-out hover:rounded-full hover:bg-gray-100 focus:outline-none"
                 onClick={() => setHidden(true)}
               >
                 {<X className="text-red-600" />}
@@ -149,7 +146,7 @@ const Modal: React.FC<ModalProps> = ({
               hasDetailsSection={!!bodyText}
               hasVideoSection={!!videoHref}
             />
-            <div className="h-min-fit relative z-30 h-full flex-auto py-6 px-8 md:px-12">
+            <div className="h-min-fit relative z-30 h-full flex-auto px-8 py-6 md:px-12">
               {tabs[activeTabIndex]}
             </div>
           </div>

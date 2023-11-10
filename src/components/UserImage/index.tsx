@@ -1,9 +1,10 @@
 "use client";
 
-import axios from "axios";
-import { AnimationProps, motion } from "framer-motion";
-import Image from "next/image";
 import { ChangeEvent } from "react";
+import Image from "next/image";
+import { AnimationProps, motion } from "framer-motion";
+
+import axios from "axios";
 
 interface UserImageProps {
   image?: string;
@@ -16,11 +17,7 @@ const content = {
   key2: "value2",
 };
 
-const UserImage: React.FC<UserImageProps> = ({
-  image,
-  hidden,
-  editable,
-}) => {
+const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -34,24 +31,21 @@ const UserImage: React.FC<UserImageProps> = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("data", JSON.stringify(content));
     formData.append("profile_picture", e.target.files[0]);
-    axios
-      .put("/api/update", formData)
-      .then(console.log)
-      .catch(console.log);
+    axios.put("/api/update", formData).then(console.log).catch(console.log);
   };
 
   if (!editable)
     return (
-      <div className="flex flex-col items-center relative md:w-52 md:h-52 w-24 h-24 my-2 rounded-full">
+      <div className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full md:h-52 md:w-52">
         <Image
           width={328}
           height={328}
           src={`/assets/images/${image || "default_user"}.png`}
           alt="profile image"
-          className="w-full h-full rounded-full"
+          className="h-full w-full rounded-full"
         />
       </div>
     );
@@ -60,35 +54,35 @@ const UserImage: React.FC<UserImageProps> = ({
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="flex flex-col items-center relative hover:cursor-pointer md:w-52 md:h-52 w-24 h-24 my-2 rounded-full"
+      className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full hover:cursor-pointer md:h-52 md:w-52"
     >
       <Image
         width={328}
         height={328}
         src={`/assets/images/${image || "default_user"}.png`}
         alt="profile image"
-        className="w-full h-full rounded-full"
+        className="h-full w-full rounded-full"
       />
-      <div className="absolute top-0 left-0 w-full h-full rounded-full bg-black bg-opacity-0 hover:bg-opacity-30 flex flex-col items-center justify-center">
+      <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-0 hover:bg-opacity-30">
         <motion.div
           {...animation}
-          className="w-full h-full rounded-full absolute top-0 left-0 bg-primary bg-opacity-70"
+          className="absolute left-0 top-0 h-full w-full rounded-full bg-primary bg-opacity-70"
         />
         <motion.input
           onChange={handleChange}
           accept="*"
           type="file"
-          className="w-full h-full rounded-full absolute top-0 left-0 opacity-0 z-10"
+          className="absolute left-0 top-0 z-10 h-full w-full rounded-full opacity-0"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         ></motion.input>
         {!hidden && (
           <motion.div
             {...animation}
-            className="w-full h-full rounded-full absolute top-0 left-0 flex flex-col items-center justify-center"
+            className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full"
           >
-            <p className="text-white text-2xl">+</p>
-            <p className="text-white text-sm">Adicionar</p>
+            <p className="text-2xl text-white">+</p>
+            <p className="text-sm text-white">Adicionar</p>
           </motion.div>
         )}
       </div>

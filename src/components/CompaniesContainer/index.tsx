@@ -1,4 +1,5 @@
 import { FunctionComponent, useId } from "react";
+
 import { CompaniesTier } from "../../utils/GetColorTier";
 import Company, { CompanyProps } from "../Company";
 
@@ -7,9 +8,10 @@ interface CompaniesContainerProps {
   companies: CompanyProps[];
 }
 
-const CompaniesContainer: FunctionComponent<
-  CompaniesContainerProps
-> = ({ tier, companies }) => {
+const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
+  tier,
+  companies,
+}) => {
   const getTierStyling = (tier: CompaniesTier): string => {
     switch (tier) {
       case "Diamond":
@@ -29,7 +31,7 @@ const CompaniesContainer: FunctionComponent<
         <h2
           className={`${getTierStyling(
             tier
-          )} z-0 mb-8 border-b-2 text-center font-good__times lg:mb-4`}
+          )} font-good__times z-0 mb-8 border-b-2 text-center lg:mb-4`}
         >
           {tier}
         </h2>

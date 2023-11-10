@@ -2,8 +2,8 @@ import ThemeChanger from "../Theme/ThemeChanger";
 
 const Topbar: React.FC = () => {
   return (
-    <nav className="fixed w-full z-20">
-      <div className="flex space-x-5 p-5 justify-end">
+    <nav className="fixed z-20 w-full">
+      <div className="flex justify-end space-x-5 p-5">
         <ThemeChanger />
       </div>
     </nav>

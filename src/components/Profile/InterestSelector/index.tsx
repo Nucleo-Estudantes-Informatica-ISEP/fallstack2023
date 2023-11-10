@@ -46,7 +46,7 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
             !userInterests.includes(interest.name) &&
             setUserInterests([...userInterests, interest.name])
           }
-          key={interest.id}
+          key={interest.name}
           className={`relative cursor-pointer rounded-xl px-3 py-1 text-black ${
             userInterests.includes(interest.name)
               ? "bg-orange-300/80"

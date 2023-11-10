@@ -1,7 +1,9 @@
 import { FunctionComponent } from "react";
-import { ChevronDown } from "react-bootstrap-icons";
-import AnimatedText from "../AnimatedText";
 import Image, { StaticImageData } from "next/image";
+
+import AnimatedText from "../AnimatedText";
+
+import { ChevronDown } from "react-bootstrap-icons";
 
 interface HeaderProps {
   logoSrc: StaticImageData;
@@ -25,13 +27,13 @@ const Header: FunctionComponent<HeaderProps> = ({
         src={logoSrc}
         alt={logoAlt}
       />
-      <h5 className="text-1xl my-2 mx-0 animate-fade text-center font-good__times text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-2xl">
+      <h5 className="text-1xl font-good__times mx-0 my-2 animate-fade text-center text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-2xl">
         {eventDate}
       </h5>
-      <h1 className="my-2 mx-0 animate-fade text-center font-good__times text-4xl text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-6xl">
+      <h1 className="font-good__times mx-0 my-2 animate-fade text-center text-4xl text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-6xl">
         {eventName}
       </h1>
-      <h5 className="text-1xl my-2 mx-0 animate-fade text-center font-good__times text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-3xl">
+      <h5 className="text-1xl font-good__times mx-0 my-2 animate-fade text-center text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-3xl">
         <div>The time has come for</div>
         <AnimatedText />
       </h5>
