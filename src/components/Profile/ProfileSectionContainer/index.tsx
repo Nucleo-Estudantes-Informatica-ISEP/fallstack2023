@@ -15,12 +15,15 @@ import StatsSection from "../StatsSection";
 interface ProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
-  stats: number[];
+  globalStats: number[];
+  todayStats: number;
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   student,
   interests,
+  globalStats,
+  todayStats,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
@@ -54,23 +57,24 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           <p className="px-4 text-center text-xl font-semibold">
             <span className="font-bold">{student.name}</span>
           </p>
-          <p className="px-4 text-center">
+          <p className="p-2 text-center">
             O teu perfil já foi gravado{" "}
-            <span className="font-bold text-primary">{0} vezes</span> hoje.
+            <span className="font-bold text-primary">{todayStats} vezes</span>{" "}
+            hoje.
           </p>
           <p className="flex gap-x-4 pt-6">
-            {student.github && (
+            {profile.github && (
               <a
-                href={student.github}
+                href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Github className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
-            {student.linkedin && (
+            {profile.linkedin && (
               <a
-                href={student.linkedin}
+                href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -127,7 +131,9 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
       </div>
 
       <div className="mx-auto w-full max-w-4xl md:w-5/6">
-        {activeTab === "Sumário" && <StatsSection student={student} />}
+        {activeTab === "Sumário" && (
+          <StatsSection student={student} stats={globalStats} />
+        )}
         {activeTab === "Perfil" && (
           <ProfileSection
             student={student}

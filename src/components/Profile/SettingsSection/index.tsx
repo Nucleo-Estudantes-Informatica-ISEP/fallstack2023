@@ -41,8 +41,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   }
 
   const handleSave = async () => {
-    console.log(linkedinRef.current?.value);
-
+    // check if bio is longer than 255 characters
     if (profile.bio && profile.bio?.length > LIMIT) {
       swal(`A tua bio não pode ter mais de ${LIMIT} caracteres!`);
       return;
@@ -69,6 +68,12 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       swal("O teu Github não segue o formato correto!");
       return;
     }
+
+    setProfile({
+      ...profile,
+      linkedin: linkedinRef.current?.value || null,
+      github: githubRef.current?.value || null,
+    });
 
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",

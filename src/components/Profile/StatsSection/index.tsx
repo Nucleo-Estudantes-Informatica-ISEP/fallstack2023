@@ -7,34 +7,37 @@ interface StatsProps {
   stats?: number[];
 }
 
-const StatsSection: React.FC<StatsProps> = ({ stats }) => {
+const StatsSection: React.FC<StatsProps> = ({ stats, student }) => {
   return (
-    <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
-      <div className="mx-12 mb-4 mt-12 flex justify-around">
-        <div className="flex flex-col">
-          <h2 className="text-left text-xl font-semibold text-gray-600">
-            Total de scans
+    <section className="flex w-full flex-col items-center justify-center rounded-t-3xl bg-white p-4 md:rounded-md md:p-8">
+      <div className="mb-6 grid grid-cols-1 items-center justify-center gap-4 md:grid-cols-3 md:gap-24">
+        <div className="flex flex-col items-start">
+          <h2 className="font-poppins text-xl font-semibold text-gray-600">
+            Total de <br />
+            scans
           </h2>
-          <p className="text-left text-3xl font-bold text-black">
+          <p className="mt-4 text-xl font-bold text-black md:text-4xl">
             {stats ? stats[0] : 0}
           </p>
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-left text-xl font-semibold text-gray-600">
-            Total de gravações de perfil
+        <div className="flex flex-col items-center">
+          <h2 className="text-left font-poppins text-xl font-semibold text-gray-600">
+            Total de gravações <br />
+            de perfil
           </h2>
-          <p className="text-left text-3xl font-bold text-black">
+          <p className="mt-4 font-bold text-black md:text-4xl">
             {stats ? stats[1] : 0}
           </p>
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-left text-xl font-semibold text-gray-600">
-            Empresas restantes
+        <div className="flex flex-col items-end">
+          <h2 className="text-start font-poppins text-xl font-semibold text-gray-600">
+            Empresas <br />
+            restantes
           </h2>
-          <p className="text-left text-3xl font-bold text-black">{10}</p>
+          <p className="mt-4 font-bold text-black md:text-4xl">{10}</p>
         </div>
       </div>
-      <HistorySection />
+      <HistorySection code={student.code} />
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { getStats } from "@/lib/fetchStats";
+import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
@@ -22,7 +22,8 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   const sanitizedInterests = student.interests.map((interest) => interest.name);
 
-  const stats = await getStats(student.code);
+  const globalStats = await getStats(student.code);
+  const todayStats = await getTodayStats(student.id);
 
   return (
     <section className="flex w-full flex-col items-center">
@@ -35,7 +36,8 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
         <ProfileSectionContainer
           interests={sanitizedInterests}
           student={student}
-          stats={stats}
+          globalStats={globalStats}
+          todayStats={todayStats}
         />
       )}
     </section>
