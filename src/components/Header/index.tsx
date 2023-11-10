@@ -1,6 +1,8 @@
 import { FunctionComponent } from "react";
 import Image, { StaticImageData } from "next/image";
 
+import Highlight from "../Highlight";
+
 import { useTheme } from "next-themes";
 import { ChevronDown } from "react-bootstrap-icons";
 
@@ -25,19 +27,10 @@ const Header: FunctionComponent<HeaderProps> = ({
       <div className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
           <h1 className="relative font-poppins text-7xl font-bold max-md:w-min max-md:text-center lg:text-8xl">
-            <span className="absolute -left-2 top-4 -z-10 h-12 w-fit shrink-0 -rotate-1 rounded-[66px] bg-primary px-2 text-transparent lg:h-20">
-              Internship
-            </span>{" "}
-            Internship Kickstart
+            <Highlight>Internship</Highlight> Kickstart
           </h1>
           <h2 className="font-poppins text-5xl font-medium max-sm:text-center lg:text-7xl">
-            Your{" "}
-            <span className="relative">
-              <span className="absolute -left-3 top-4 -z-10 h-6 w-fit shrink-0 rotate-1 rounded-[66px] bg-accent px-3 text-transparent lg:top-6 lg:h-9">
-                future
-              </span>
-              future starts here
-            </span>
+            Your <Highlight>future</Highlight> starts here
           </h2>
         </div>
         <Image
