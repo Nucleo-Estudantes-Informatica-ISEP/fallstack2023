@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
 import Highlight from "../Highlight";
@@ -20,22 +20,35 @@ const Header: FunctionComponent<HeaderProps> = ({
   logoAlt,
   contentRef,
 }) => {
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
+
+  // If we don't wait for the theme to be loaded, the image will be broken -> always being false until the theme is changed
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <section className="flex h-screen w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
-          <h1 className="relative font-poppins text-7xl font-bold max-md:w-min max-md:text-center lg:text-8xl">
-            <Highlight>Internship</Highlight> Kickstart
+          <h1 className="w-min font-poppins text-7xl font-bold max-lg:text-center md:text-8xl lg:w-fit">
+            <Highlight color="primary" tilt="left">
+              Internship
+            </Highlight>{" "}
+            Kickstart
           </h1>
           <h2 className="font-poppins text-5xl font-medium max-sm:text-center lg:text-7xl">
-            Your <Highlight>future</Highlight> starts here
+            Your{" "}
+            <Highlight color="accent" tilt="right">
+              future
+            </Highlight>{" "}
+            starts here
           </h2>
         </div>
         <Image
           className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
-          src={theme === "dark" ? logoSrc.white : logoSrc.dark}
+          src={mounted && theme === "light" ? logoSrc.dark : logoSrc.white}
           alt={logoAlt}
         />
       </div>
