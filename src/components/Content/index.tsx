@@ -1,8 +1,7 @@
 import Connect from "../../../public/assets/images/connect.png";
 import Pitch from "../../../public/assets/images/pitch.png";
 import { ScheduleDays } from "../../utils/ScheduleDays";
-import Activity1 from "../Activity1";
-import Activity2 from "../Activity2";
+import Activity from "../Activity";
 import CompaniesSection from "../CompaniesSection";
 import InfoText from "../InfoText";
 import Map from "../Map";
@@ -31,23 +30,23 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
 
       <section className="my-16 grid w-full grid-cols-1 justify-items-center gap-y-10 md:grid-rows-2 md:gap-y-15">
         <div className="col-span-1">
-          <Activity1 logo={Pitch} title={"Pitch"} day={28}>
+          <Activity logo={Pitch} title={"Pitch"} day={28}>
             O primeiro dia é dedicado aos <span className="font-bold text-orange-600">pitches </span>
             por parte das empresas presentes no evento.<br />
             Ao longo do dia terás a oportunidade de <span className="font-bold text-orange-600">conhecer </span>
             melhor as empresas de forma a conseguires filtrar os teus
             <span className="font-bold text-orange-600"> interesses</span> para o próximo dia.
-          </Activity1>
+          </Activity>
         </div>
 
         <div className="col-span-1">
-          <Activity2 logo={Connect} title={"Connection's train"} day={29}>
+          <Activity logo={Connect} title={"Connection's train"} day={29} imageOrientation="right">
             No segundo dia terás a oportunidade de <span className="font-bold text-orange-600">interagir </span>
             diretamente com os representantes das empresas presentes de forma a
             <span className="font-bold text-orange-600"> esclareceres</span> as tuas dúvidas. Aproveita esta
             oportunidade para aumentares a tua rede de contactos e receberes
             <span className="font-bold text-orange-600"> feedback</span> por parte das empresas do teu interesse.
-          </Activity2>
+          </Activity>
         </div>
       </section>
     </section>
