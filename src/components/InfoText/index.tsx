@@ -14,7 +14,7 @@ const InfoText: React.FC<InfoTextProps> = ({ days, month, beginningTime, endTime
     return (
         <>
             <HeadingText text="FALLSTACK" />
-            <div className="flex flex-row mb-24">
+            <div className="flex flex-col mb-24 lg:flex-row">
                 <EventInfos days={days} month={month} beginningTime={beginningTime} endTime={endTime} />
 
                 <EventDescription>
