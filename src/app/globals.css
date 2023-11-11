@@ -14,6 +14,7 @@
     --accent-alternative: #068198;
     background-image: url(/assets/images/bg_light_desktop.webp);
     background-size: cover;
+    background-position: center;
   }
   .dark {
     --text: #ffffff;
@@ -24,6 +25,7 @@
     --accent-alternative: #00c2ff;
     background-image: url(/assets/images/bg_dark_desktop.webp);
     background-size: cover;
+    background-position: center;
   }
 
   body {
@@ -46,5 +48,9 @@
     .dark {
       background-image: url(/assets/images/bg_dark_mobile.jpg);
     }
+  }
+
+  :root {
+    scroll-behavior: smooth;
   }
 }
