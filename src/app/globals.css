@@ -47,4 +47,8 @@
       background-image: url(/assets/images/bg_dark_mobile.jpg);
     }
   }
+
+  :root {
+    scroll-behavior: smooth;
+  }
 }

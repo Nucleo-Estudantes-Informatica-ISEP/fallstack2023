@@ -4,7 +4,8 @@ import { FunctionComponent, useRef } from "react";
 
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 
-import Logo from "../../public/assets/images/logo_white.png";
+import LogoDark from "../../public/assets/images/logo_dark.png";
+import LogoWhite from "../../public/assets/images/logo_white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
@@ -21,10 +22,11 @@ const App: FunctionComponent = () => {
         <GenericContainer>
           <Topbar />
           <Header
-            logoSrc={Logo}
+            logoSrc={{
+              white: LogoWhite,
+              dark: LogoDark,
+            }}
             logoAlt="Logo principal do evento Fall-Stack 2023"
-            eventName="FALLSTACK"
-            eventDate="28 e 29 de Novembro"
             contentRef={contentRef}
           />
           <Content contentRef={contentRef} />
