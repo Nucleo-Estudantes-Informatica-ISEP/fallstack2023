@@ -18,7 +18,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
       <div className="flex justify-center drop-shadow-lg hover:drop-shadow-xl lg:m-8">
         <div className="my-6 w-max  transition-all duration-300 hover:scale-105">
           <a href={lastEditionUrl} target="_blank" rel="noreferrer">
-            <div className="font-good__times rounded-3xl border-[5px] border-double border-white p-5 text-2xl text-white drop-shadow-3xl transition-all duration-300 lg:text-[2.5rem]">
+            <div className="rounded-3xl border-[5px] border-double border-white p-5 text-2xl text-white drop-shadow-3xl transition-all duration-300 lg:text-[2.5rem]">
               Edição Anterior
             </div>
           </a>
@@ -39,7 +39,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
 
       <div className="m-8 flex items-center justify-center gap-14 lg:gap-20">
         <a
-          className="facebook drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+          className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
           href="https://www.facebook.com/nei.isep"
           target="_blank"
           rel="noreferrer"
@@ -47,7 +47,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
           <Facebook color="white" size={30} />
         </a>
         <a
-          className="twitter drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+          className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
           href="https://twitter.com/nei_isep"
           target="_blank"
           rel="noreferrer"
@@ -55,7 +55,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
           <Twitter color="white" size={30} />
         </a>
         <a
-          className="instagram drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+          className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
           href="https://www.instagram.com/nei_isep"
           target="_blank"
           rel="noreferrer"
@@ -63,7 +63,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
           <Instagram color="white" size={30} />
         </a>
         <a
-          className="linkedin drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+          className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
           href="https://www.linkedin.com/company/nei-isep"
           target="_blank"
           rel="noreferrer"
@@ -72,7 +72,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
         </a>
       </div>
 
-      <h4 className="font-good__times select-none py-6 text-center text-white drop-shadow-3xl">
+      <h4 className="select-none py-6 text-center text-white drop-shadow-3xl">
         Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
       </h4>
     </footer>

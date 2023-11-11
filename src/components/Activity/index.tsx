@@ -20,7 +20,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
         <div id="w-full">
           <Image src={logo} alt={`Atividade ${title}`} className="w-32" />
         </div>
-        <h5 className="font-good__times my-5 text-2xl text-gray-600">
+        <h5 className="my-5 text-2xl text-gray-600">
           {title}
           <br />
           (Dia {day})
