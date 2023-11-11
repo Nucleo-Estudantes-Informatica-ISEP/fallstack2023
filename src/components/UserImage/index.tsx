@@ -4,18 +4,12 @@ import { ChangeEvent } from "react";
 import Image from "next/image";
 import { AnimationProps, motion } from "framer-motion";
 
-import axios from "axios";
-
 interface UserImageProps {
   image?: string;
   hidden?: boolean;
   editable?: boolean;
+  code: string;
 }
-
-const content = {
-  key1: "value1",
-  key2: "value2",
-};
 
 const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
   const animation: AnimationProps = {
@@ -31,10 +25,7 @@ const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-    const formData = new FormData();
-    formData.append("data", JSON.stringify(content));
-    formData.append("profile_picture", e.target.files[0]);
-    axios.put("/api/update", formData).then(console.log).catch(console.log);
+    //TODO: upload image
   };
 
   if (!editable)
@@ -43,7 +34,7 @@ const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
         <Image
           width={328}
           height={328}
-          src={`/assets/images/${image || "default_user"}.png`}
+          src={image ? image : `/assets/images/default_user.png`}
           alt="profile image"
           className="h-full w-full rounded-full"
         />

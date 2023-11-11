@@ -37,7 +37,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           </p>
         </div>
       </div>
-      {student.bio && <BioSection bio={student.bio} />}
+      {profile.bio && <BioSection bio={profile.bio} />}
       {student.cv && <CvSection student={student} text={"Abrir o meu CV"} />}
       {profile.interests.length > 0 && (
         <InterestsSection userInterests={profile.interests} />

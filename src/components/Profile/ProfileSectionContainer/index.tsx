@@ -53,7 +53,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center"
         >
-          <UserImage />
+          <UserImage code={student.code} />
           <p className="px-4 text-center text-xl font-semibold">
             <span className="font-bold">{student.name}</span>
           </p>
