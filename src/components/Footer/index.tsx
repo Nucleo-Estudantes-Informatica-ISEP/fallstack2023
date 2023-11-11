@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { Facebook, Instagram, Linkedin, Twitter } from "react-bootstrap-icons";
+import { RiTwitterXFill } from "react-icons/ri";
 import NeiLogo from "../../../public/assets/images/logo-white.png";
 import Image from "next/image";
 
@@ -16,7 +17,7 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
       <div className="flex justify-center drop-shadow-lg hover:drop-shadow-xl lg:m-8">
         <div className="my-6 w-max  transition-all duration-300 hover:scale-105">
           <a href={lastEditionUrl} target="_blank" rel="noreferrer">
-            <div className="rounded-3xl border-[5px] border-double border-white p-5 font-good__times text-2xl text-white drop-shadow-3xl transition-all duration-300 lg:text-[2.5rem]">
+            <div className="rounded-2xl bg-secondary p-6 lg:p-7 font-poppins font-bold text-2xl text-white drop-shadow-3xl transition-all duration-300 sm:text-[2.5rem] lg:text-[3.5rem]">
               Edição Anterior
             </div>
           </a>
@@ -34,45 +35,49 @@ const Footer: FunctionComponent<FooterProps> = ({ lastEditionUrl }) => {
           </a>
         </div>
       </div>
-
-      <div className="m-8 flex items-center justify-center gap-14 lg:gap-20">
-        <a
-          className="facebook drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
-          href="https://www.facebook.com/nei.isep"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Facebook color="white" size={30} />
-        </a>
-        <a
-          className="twitter drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
-          href="https://twitter.com/nei_isep"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Twitter color="white" size={30} />
-        </a>
-        <a
-          className="instagram drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
-          href="https://www.instagram.com/nei_isep"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Instagram color="white" size={30} />
-        </a>
-        <a
-          className="linkedin drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
-          href="https://www.linkedin.com/company/nei-isep"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Linkedin color="white" size={30} />
-        </a>
+      <div className="pt-2">
+        <hr className="lg:w-11/12 md:w-6/12 sm:5/12 w-7/12  h-1 mx-auto my-4 bg-white border-0"></hr>
       </div>
-
-      <h4 className="select-none py-6 text-center font-good__times text-white drop-shadow-3xl">
-        Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
-      </h4>
+      <div className="lg:flex justify-between lg:pb-6">
+        <h4 className="select-none sm:text-center lg:pb-0 pb-3 right-10 lg:pl-20 font-good__times text-white drop-shadow-3xl">
+          Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
+        </h4>
+        <div className="mb-8 flex justify-center lg:pr-20 items-center gap-5">
+          <a
+            className="facebook drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            href="https://www.facebook.com/nei.isep"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Facebook color="white" size={20} />
+          </a>
+          <a
+            className="linkedin drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            href="https://www.linkedin.com/company/nei-isep"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Linkedin color="white" size={20} />
+          </a>
+          <a
+            className="instagram drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            href="https://www.instagram.com/nei_isep"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Instagram color="white" size={20} />
+          </a>
+          <a
+            className="twitter drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            href="https://twitter.com/nei_isep"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <RiTwitterXFill color="white" size={20} />
+          </a>
+        </div>
+      </div>
+      
     </footer>
   );
 };
