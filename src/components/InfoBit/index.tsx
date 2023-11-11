@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent } from "react";
 
 interface InfoBitProps {
-    icon: React.ReactNode;
-    info: string;
+  icon: React.ReactNode;
+  info: string;
 }
 
 const InfoBit: FunctionComponent<InfoBitProps> = ({ icon, info }) => {

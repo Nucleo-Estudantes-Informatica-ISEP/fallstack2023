@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 interface HeadingTextProps {
-    text: string;
+  text: string;
 }
 
 const HeadingText: React.FC<HeadingTextProps> = ({ text }) => {

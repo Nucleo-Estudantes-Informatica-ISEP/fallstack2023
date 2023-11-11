@@ -4,17 +4,17 @@ import HighlightInfoBit from '../HighlightInfoBit';
 import InfoBit from '../InfoBit';
 
 interface EventInfosProps {
-    days: number[];
-    month: string;
-    beginningTime: string;
-    endTime: string;
+  days: number[];
+  month: string;
+  beginningTime: string;
+  endTime: string;
 }
 
 const EventInfos: FunctionComponent<EventInfosProps> = ({
-    days,
-    month,
-    beginningTime,
-    endTime
+  days,
+  month,
+  beginningTime,
+  endTime,
 }) => {
     return (
         <section className="flex flex-col my-16 inline-flex gap-8 mx-auto justify-around lg:px-28 lg:my-0 lg:justify-center">

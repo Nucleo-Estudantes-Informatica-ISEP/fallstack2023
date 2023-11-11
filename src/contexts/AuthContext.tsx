@@ -2,8 +2,8 @@
 
 import { createContext, useEffect, useState } from "react";
 
-import getSession from "@/services/getSession";
 import { UserWithProfile } from "@/types/UserWithProfile";
+import getSession from "@/services/getSession";
 
 export interface AuthContextData {
   user: UserWithProfile | null;

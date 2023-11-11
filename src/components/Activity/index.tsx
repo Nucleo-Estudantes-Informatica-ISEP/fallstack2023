@@ -1,5 +1,5 @@
-import Image, { StaticImageData } from "next/image";
 import { FunctionComponent } from "react";
+import Image, { StaticImageData } from "next/image";
 
 interface ActivityProps {
   logo: StaticImageData;

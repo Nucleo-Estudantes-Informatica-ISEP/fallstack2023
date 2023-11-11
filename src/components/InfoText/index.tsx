@@ -1,13 +1,14 @@
-import React from 'react';
-import EventDescription from '../EventDescription';
-import EventInfos from '../EventInfos/index';
-import HeadingText from '../HeadingText';
+import React from "react";
+
+import EventDescription from "../EventDescription";
+import EventInfos from "../EventInfos/index";
+import HeadingText from "../HeadingText";
 
 interface InfoTextProps {
-    days: number[];
-    month: string;
-    beginningTime: string;
-    endTime: string;
+  days: number[];
+  month: string;
+  beginningTime: string;
+  endTime: string;
 }
 
 const InfoText: React.FC<InfoTextProps> = ({ days, month, beginningTime, endTime }) => {
