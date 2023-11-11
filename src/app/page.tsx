@@ -2,6 +2,7 @@
 
 import { FunctionComponent, useRef } from "react";
 
+import ComingSoon from "@/components/ComingSoon";
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 
 import LogoDark from "../../public/assets/images/logo_dark.png";
@@ -30,6 +31,7 @@ const App: FunctionComponent = () => {
             contentRef={contentRef}
           />
           <Content contentRef={contentRef} />
+          <ComingSoon />
           <Footer lastEditionUrl="https://fallstack-22-23.nei-isep.org/" />
         </GenericContainer>
       </HeroContainer>
