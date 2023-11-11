@@ -1,7 +1,9 @@
-import { FunctionComponent } from 'react';
-import { Alarm, CalendarEvent, GeoAlt } from 'react-bootstrap-icons';
-import HighlightInfoBit from '../HighlightInfoBit';
-import InfoBit from '../InfoBit';
+import { FunctionComponent } from "react";
+
+import HighlightInfoBit from "../HighlightInfoBit";
+import InfoBit from "../InfoBit";
+
+import { Alarm, CalendarEvent, GeoAlt } from "react-bootstrap-icons";
 
 interface EventInfosProps {
   days: number[];
@@ -16,13 +18,24 @@ const EventInfos: FunctionComponent<EventInfosProps> = ({
   beginningTime,
   endTime,
 }) => {
-    return (
-        <section className="flex flex-col my-16 inline-flex gap-8 mx-auto justify-around lg:px-28 lg:my-0 lg:justify-center">
-            <HighlightInfoBit icon={<CalendarEvent />} info={`${days.join(' e ')} de ${month}`} highlightColor='accent' />
-            <HighlightInfoBit icon={<Alarm />} info={`${beginningTime} - ${endTime}`} highlightColor='primary' />
-            <InfoBit icon={<GeoAlt />} info={'Instituto Superior de Engenharia do Porto'} />
-        </section>
-    );
+  return (
+    <section className="mx-auto my-16 flex flex-col justify-around gap-8 lg:my-0 lg:justify-center lg:px-28">
+      <HighlightInfoBit
+        icon={<CalendarEvent />}
+        info={`${days.join(" e ")} de ${month}`}
+        highlightColor="accent"
+      />
+      <HighlightInfoBit
+        icon={<Alarm />}
+        info={`${beginningTime} - ${endTime}`}
+        highlightColor="primary"
+      />
+      <InfoBit
+        icon={<GeoAlt />}
+        info={"Instituto Superior de Engenharia do Porto"}
+      />
+    </section>
+  );
 };
 
 export default EventInfos;
