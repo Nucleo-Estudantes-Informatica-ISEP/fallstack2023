@@ -19,7 +19,7 @@ const Activity: FunctionComponent<ActivityProps> = ({
   imageOrientation = imageOrientation || "left";
   return (
     <section className="grid w-full grind-rows-3 grid-cols-1 lg:grid-rows-2 lg:grid-cols-2 items-center justify-center place-contant-center">
-      <h5 className="mt-5 mb-24 ml-10 lg:col-span-2 font-good__times text-5xl text-current font-bold">
+      <h5 className="mt-5 mb-24 w-full lg:ml-10 lg:col-span-2 text-5xl text-current font-bold">
         Dia {day} - {title}
       </h5>
       <div className="leading-8 lg:text-2xl md:w-10/12 lg:mx-0 lg:ml-auto mx-auto text-justify">{children}</div>
