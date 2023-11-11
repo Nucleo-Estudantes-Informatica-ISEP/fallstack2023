@@ -20,8 +20,8 @@ const Highlight: FunctionComponent<HighlightProps> = ({
       }
        ${
          tilt === "left"
-           ? "after:top-0 after:-rotate-2 after:transform"
-           : "after:bottom-0 after:rotate-2 after:transform"
+           ? "after:top-0 after:-rotate-2"
+           : "after:bottom-0 after:rotate-2"
        }
        after:px-2`}
     >
