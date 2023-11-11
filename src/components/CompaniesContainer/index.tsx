@@ -1,4 +1,4 @@
-import { FunctionComponent, useId } from "react";
+import { FunctionComponent } from "react";
 
 import { CompaniesTier } from "../../utils/GetColorTier";
 import Company, { CompanyProps } from "../Company";
@@ -31,7 +31,7 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
         <h2
           className={`${getTierStyling(
             tier
-          )} font-good__times z-0 mb-8 border-b-2 text-center lg:mb-4`}
+          )} z-0 mb-8 border-b-2 text-center lg:mb-4`}
         >
           {tier}
         </h2>
@@ -39,8 +39,7 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
 
       <div className="mt-4 grid grid-cols-responsiveness-180px-columns place-items-center justify-center gap-x-12 gap-y-4 lg:mt-12  xl:grid-cols-3">
         {companies.map((company) => {
-          const companyId = useId();
-          return <Company key={companyId} {...company} />;
+          return <Company key={company.name} {...company} />;
         })}
       </div>
     </section>

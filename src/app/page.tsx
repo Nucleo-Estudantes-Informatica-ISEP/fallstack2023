@@ -6,6 +6,8 @@ import Topbar from "@/components/TopBar";
 
 import LogoDark from "../../public/assets/images/logo_dark.png";
 import LogoWhite from "../../public/assets/images/logo_white.png";
+import NeiLogoBlack from "../../public/assets/images/logo-black.png";
+import NeiLogoWhite from "../../public/assets/images/logo-white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
@@ -28,7 +30,13 @@ const App: FunctionComponent = () => {
           contentRef={contentRef}
         />
         <Content contentRef={contentRef} />
-        <Footer lastEditionUrl="https://fallstack-22-23.nei-isep.org/" />
+        <Footer
+          lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
+          neiLogoSrc={{
+            white: NeiLogoWhite,
+            dark: NeiLogoBlack,
+          }}
+        />
       </GenericContainer>
     </HeroContainer>
   );
