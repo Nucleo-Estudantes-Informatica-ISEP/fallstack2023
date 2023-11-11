@@ -6,12 +6,12 @@ interface InfoBitProps {
 }
 
 const InfoBit: FunctionComponent<InfoBitProps> = ({ icon, info }) => {
-  return (
-    <span className="flex w-full items-center justify-center gap-4">
-      <span className="text-3xl">{icon}</span>
-      <b className="w-[20ch] ">{info}</b>
-    </span>
-  );
+    return (
+        <span className="flex lg:w-auto items-center gap-4">
+            <span className="text-3xl">{icon}</span>
+            <b className="w-[20ch] ">{info}</b>
+        </span>
+    );
 };
 
 export default InfoBit;
