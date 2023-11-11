@@ -1,10 +1,10 @@
 import {
   AppOptions,
-  ServiceAccount,
   cert,
-  initializeApp,
   getApp,
   getApps,
+  initializeApp,
+  ServiceAccount,
 } from "firebase-admin/app";
 import { getStorage } from "firebase-admin/storage";
 

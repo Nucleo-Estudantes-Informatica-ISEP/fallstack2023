@@ -1,25 +1,17 @@
 import Interview from "../../../public/assets/images/interview.png";
 import Roundtables from "../../../public/assets/images/roundtables.png";
-import { ScheduleDays } from "../../utils/ScheduleDays";
 import Activity from "../Activity";
-import CompaniesSection from "../CompaniesSection";
 import InfoText from "../InfoText";
-import Map from "../Map";
-import Schedule from "../Schedule";
-import SponsorsSection from "../SponsorsSection";
 
 interface ContentProps {
   contentRef: React.RefObject<HTMLDivElement>;
 }
 
 const Content: React.FC<ContentProps> = ({ contentRef }) => {
-  const REGISTRATION_LINK =
-    "https://docs.google.com/forms/d/e/1FAIpQLSfKNCeOUtT_RboqnAFRfaiWRB6y969mhC__QElflp4rEJe-nA/viewform";
-
   return (
     <section
       ref={contentRef}
-      className="center container mx-auto w-11/12 rounded-lg p-10 sm:w-3/4 lg:p-14"
+      className="container mx-auto w-11/12 rounded-lg p-10 sm:w-3/4 lg:p-14"
     >
       <InfoText
         days={[19, 20]}
