@@ -1,3 +1,5 @@
+// adapted from: https://codesandbox.io/s/y09komm059?file=/src/canvasUtils.js
+
 import { Area } from "react-easy-crop";
 
 export function createImage(url: string): Promise<HTMLImageElement> {
