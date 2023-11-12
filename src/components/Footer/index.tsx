@@ -47,7 +47,7 @@ const Footer: FunctionComponent<FooterProps> = ({
         <div className="mx-8 my-4 max-h-[200px] max-w-[200px] transition-all duration-300 hover:scale-105 sm:max-w-[275px] lg:max-w-[350px]">
           <a href={NEI_WEBSITE_URL} target="_blank" rel="noreferrer">
             <Image
-              className="mx-auto block h-auto max-w-full drop-shadow-3xl transition-all duration-300 hover:drop-shadow-4xl"
+              className="mx-auto block h-auto max-w-full drop-shadow-xl transition-all duration-300 hover:drop-shadow-2xl"
               src={
                 mounted && theme === "light"
                   ? neiLogoSrc.dark
@@ -62,12 +62,12 @@ const Footer: FunctionComponent<FooterProps> = ({
         <hr className="mx-auto my-4 h-1 w-11/12 border-0 bg-text"></hr>
       </div>
       <div className="justify-between lg:flex lg:pb-6">
-        <h4 className="right-10 select-none pb-3 drop-shadow-3xl sm:text-center lg:pb-0 lg:pl-20">
+        <h4 className="right-10 select-none pb-3 drop-shadow-xl sm:text-center lg:pb-0 lg:pl-20">
           Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
         </h4>
         <div className="mb-8 flex items-center justify-center gap-5 lg:pr-20">
           <a
-            className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
             href="https://www.facebook.com/nei.isep"
             target="_blank"
             rel="noreferrer"
@@ -75,7 +75,7 @@ const Footer: FunctionComponent<FooterProps> = ({
             <RiFacebookCircleFill color="text" size={24} />
           </a>
           <a
-            className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
             href="https://www.linkedin.com/company/nei-isep"
             target="_blank"
             rel="noreferrer"
@@ -83,7 +83,7 @@ const Footer: FunctionComponent<FooterProps> = ({
             <RiLinkedinBoxFill color="text" size={26} />
           </a>
           <a
-            className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
             href="https://www.instagram.com/nei_isep"
             target="_blank"
             rel="noreferrer"
@@ -91,7 +91,7 @@ const Footer: FunctionComponent<FooterProps> = ({
             <RiInstagramLine color="accent" size={24} />
           </a>
           <a
-            className="drop-shadow-3xl transition-all duration-300 hover:scale-110 hover:drop-shadow-4xl"
+            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
             href="https://twitter.com/nei_isep"
             target="_blank"
             rel="noreferrer"
