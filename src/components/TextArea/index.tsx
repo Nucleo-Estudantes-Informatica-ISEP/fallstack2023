@@ -1,22 +1,24 @@
 "use client";
 
-interface InputProps {
+interface TextAreaProps {
   name: string;
   center?: boolean;
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  maxLength?: number;
   defaultValue?: string | null;
-  ref?: React.Ref<HTMLInputElement>;
+  ref?: React.Ref<HTMLTextAreaElement>;
 }
 
-const Input: React.FC<InputProps> = ({
+const TextArea: React.FC<TextAreaProps> = ({
   name,
   center,
   placeholder,
   className,
   disabled,
   defaultValue,
+  maxLength,
   ref,
 }) => {
   return (
@@ -29,14 +31,14 @@ const Input: React.FC<InputProps> = ({
       >
         {name}
       </label>
-      <input
-        type="text"
+      <textarea
         name={name}
         disabled={disabled}
         id={name}
         placeholder={placeholder}
         defaultValue={defaultValue ?? undefined}
         ref={ref}
+        maxLength={maxLength}
         className={`rounded-md border border-gray-400 bg-slate-200 px-4 py-1
          text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
       />
@@ -44,4 +46,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default TextArea;

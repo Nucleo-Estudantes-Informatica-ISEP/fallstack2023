@@ -15,8 +15,8 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     <button
       {...rest}
       onClick={onClick}
-      className={`} rounded-lg border border-transparent bg-primary px-4 py-2 text-center
-        text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-opacity-80 focus:outline-none focus:ring active:bg-primary ${className}`}
+      className={`rounded-lg border border-transparent bg-primary px-4 py-1 text-center
+        text-sm leading-5 text-white transition-colors duration-150 focus:outline-none focus:ring active:bg-primary ${className}`}
     >
       {children}
     </button>
