@@ -15,7 +15,7 @@ dependencies:
     specifier: ^9.0.2
     version: 9.0.2
   next:
-    specifier: 14.0.1
+    specifier: ^14.0.1
     version: 14.0.1(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
   next-themes:
     specifier: ^0.2.1

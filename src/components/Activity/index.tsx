@@ -18,14 +18,25 @@ const Activity: FunctionComponent<ActivityProps> = ({
 }) => {
   imageOrientation = imageOrientation || "left";
   return (
-    <section className="grid w-full grind-rows-3 grid-cols-1 lg:grid-rows-2 lg:grid-cols-2 items-center justify-center place-contant-center">
-      <h5 className="mt-5 mb-24 w-full lg:ml-10 lg:col-span-2 text-5xl text-current font-bold">
+    <section className="grid w-full grid-cols-1 grid-rows-3 items-center justify-center lg:grid-cols-2 lg:grid-rows-2">
+      <h5 className="w-full text-5xl font-bold lg:col-span-2 lg:ml-10">
         Dia {day} - {title}
       </h5>
-      <div className="leading-8 lg:text-2xl md:w-10/12 lg:mx-0 lg:ml-auto mx-auto text-justify">{children}</div>
+      <div className="mx-auto text-center text-xl leading-7 md:w-10/12 md:text-justify md:leading-8 lg:mx-0 lg:ml-auto lg:text-2xl">
+        {children}
+      </div>
 
-      <div id="w-full" className={`row-start-2 ${ imageOrientation === "right" ? "lg:col-start-2" : "lg:col-start-1"}`}>
-        <Image src={logo} alt={`Atividade ${title}`} className="w-1/2 lg:w-3/5 mx-auto mb-10 lg:mb-0" />
+      <div
+        id="w-full"
+        className={`row-start-2 ${
+          imageOrientation === "right" ? "lg:col-start-2" : "lg:col-start-1"
+        }`}
+      >
+        <Image
+          src={logo}
+          alt={`Atividade ${title}`}
+          className="mx-auto mb-10 w-1/2 lg:mb-0 lg:w-3/5"
+        />
       </div>
     </section>
   );

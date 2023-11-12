@@ -1,6 +1,5 @@
 import Connect from "../../../public/assets/images/connect.png";
 import Pitch from "../../../public/assets/images/pitch.png";
-import { ScheduleDays } from "../../utils/ScheduleDays";
 import Activity from "../Activity";
 import InfoText from "../InfoText";
 
@@ -12,7 +11,7 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
   return (
     <section
       ref={contentRef}
-      className="center container mx-auto rounded-lg p-10 sm:w-3/4 lg:py-14 lg:w-full"
+      className="container mx-auto rounded-lg p-10 sm:w-3/4 lg:w-full lg:py-14"
     >
       <InfoText
         days={[19, 20]}
@@ -21,21 +20,33 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
         endTime="17:30h"
       />
 
-      <section className="my-16 grid w-full grid-cols-1 justify-items-center gap-y-10 md:grid-rows-2 md:gap-y-15">
+      <section className="my-16 grid w-full grid-cols-1 justify-items-center gap-y-10 md:grid-rows-2 md:gap-y-14">
         <Activity logo={Pitch} title={"Pitch"} day={28}>
-          O primeiro dia é dedicado aos <span className="font-bold text-orange-600">pitches </span>
-          por parte das empresas presentes no evento.<br />
-          Ao longo do dia terás a oportunidade de <span className="font-bold text-orange-600">conhecer </span>
+          O primeiro dia é dedicado aos{" "}
+          <span className="font-bold text-orange-600">pitches </span>
+          por parte das empresas presentes no evento.
+          <br />
+          Ao longo do dia terás a oportunidade de{" "}
+          <span className="font-bold text-orange-600">conhecer </span>
           melhor as empresas de forma a conseguires filtrar os teus
-          <span className="font-bold text-orange-600"> interesses</span> para o próximo dia.
+          <span className="font-bold text-orange-600"> interesses</span> para o
+          próximo dia.
         </Activity>
 
-        <Activity logo={Connect} title={"Connection's train"} day={29} imageOrientation="right">
-          No segundo dia terás a oportunidade de <span className="font-bold text-orange-600">interagir </span>
+        <Activity
+          logo={Connect}
+          title={"Connection's train"}
+          day={29}
+          imageOrientation="right"
+        >
+          No segundo dia terás a oportunidade de{" "}
+          <span className="font-bold text-orange-600">interagir </span>
           diretamente com os representantes das empresas presentes de forma a
-          <span className="font-bold text-orange-600"> esclareceres</span> as tuas dúvidas. Aproveita esta
-          oportunidade para aumentares a tua rede de contactos e receberes
-          <span className="font-bold text-orange-600"> feedback</span> por parte das empresas do teu interesse.
+          <span className="font-bold text-orange-600"> esclareceres</span> as
+          tuas dúvidas. Aproveita esta oportunidade para aumentares a tua rede
+          de contactos e receberes
+          <span className="font-bold text-orange-600"> feedback</span> por parte
+          das empresas do teu interesse.
         </Activity>
       </section>
     </section>
