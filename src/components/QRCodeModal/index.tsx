@@ -21,13 +21,11 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
 
   return !hidden ? (
     <div
-      className="scrollbar-hide fixed inset-6 start-2 z-10 overflow-y-hidden rounded-lg sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8 lg:inset-16 lg:end-14 lg:start-10"
+      className="scrollbar-hide fixed inset-6 start-2 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8  lg:inset-16 lg:end-14 lg:start-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
     >
-      <div className="fixed bg-gray-500 bg-opacity-0 transition-opacity"></div>
-
       <div className="flex min-h-screen  items-center justify-center">
         <div className="max-w-7/8 relative w-full ">
           <div className="relative h-screen w-full transform bg-white text-left shadow-xl transition-all">
