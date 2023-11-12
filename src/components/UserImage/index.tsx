@@ -3,6 +3,9 @@
 import { ChangeEvent } from "react";
 import Image from "next/image";
 import { AnimationProps, motion } from "framer-motion";
+import swal from "sweetalert";
+
+import { BASE_URL } from "@/services/api";
 
 interface UserImageProps {
   image?: string;
@@ -11,7 +14,12 @@ interface UserImageProps {
   code: string;
 }
 
-const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
+const UserImage: React.FC<UserImageProps> = ({
+  image,
+  hidden,
+  editable,
+  code,
+}) => {
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -23,9 +31,46 @@ const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
     },
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-    //TODO: upload image
+
+    const uploadPost = await fetch(`${BASE_URL}/upload/`, {
+      method: "POST",
+      body: JSON.stringify({
+        target: "profile",
+        contentType: "image/png",
+      }),
+    });
+
+    if (!uploadPost.ok) swal("Erro ao fazer upload da imagem!");
+
+    const { url, headers } = await uploadPost.json();
+
+    console.log(url, headers);
+
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    console.log(formData);
+
+    const uploadPut = await fetch(url + headers, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (!uploadPut.ok) swal("Erro ao fazer upload da imagem!");
+
+    const { id } = await uploadPut.json();
+
+    const res = await fetch(`${BASE_URL}/students/${code}/avatar/${id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        uploadId: id,
+      }),
+    });
+
+    if (!res.ok) swal("Erro ao fazer upload da imagem!");
   };
 
   if (!editable)
@@ -57,7 +102,7 @@ const UserImage: React.FC<UserImageProps> = ({ image, hidden, editable }) => {
       <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-0 hover:bg-opacity-30">
         <motion.div
           {...animation}
-          className="absolute left-0 top-0 h-full w-full rounded-full bg-primary bg-opacity-70"
+          className="bg-primary/50 absolute left-0 top-0 h-full w-full rounded-full"
         />
         <motion.input
           onChange={handleChange}
