@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 
 import HighlightInfoBit from "../HighlightInfoBit";
+import InfoBit from "../InfoBit";
 
 import { Alarm, CalendarEvent, GeoAlt } from "react-bootstrap-icons";
 
