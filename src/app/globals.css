@@ -17,6 +17,7 @@
     background-size: cover;
     background-position: center;
   }
+
   .dark {
     --text: #ffffff;
     --background: #00171a;
@@ -46,9 +47,11 @@
   @media (max-width: 768px) {
     :root {
       background-image: url(/assets/images/bg_light_mobile.jpg);
+      background-size: contain;
     }
     .dark {
       background-image: url(/assets/images/bg_dark_mobile.jpg);
+      background-size: contain;
     }
   }
 
