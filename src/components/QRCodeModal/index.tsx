@@ -42,7 +42,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
             <div className="flex min-h-screen items-start justify-center">
               <div className="max-w-7/8 w-full">
                 <div className="relative h-screen p-10 text-center shadow-xl sm:p-0 md:p-0 lg:p-6">
-                  <h1 className="mb-6 text-3xl font-bold text-black sm:mb-0 sm:mt-6 sm:text-3xl md:text-4xl lg:text-6xl">
+                  <h1 className="mb-6 mt-3 text-3xl font-bold text-black sm:mb-0 sm:mt-6 sm:text-3xl md:text-4xl lg:text-6xl">
                     Partilha o teu <span className="text-primary">Perfil</span>
                   </h1>
                   {/* Grid */}
