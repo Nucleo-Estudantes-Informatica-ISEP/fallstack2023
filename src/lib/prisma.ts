@@ -18,15 +18,19 @@ const prismaClientSingleton = () => {
     model: {
       user: {
         async findUserWithProfile(id: number) {
-          const user = await prisma.user.findUnique({
-            where: { id },
-            include: {
-              company: true,
-              student: { include: { interests: true } },
-            },
-          });
-          if (!user) return null;
-          return exclude(user, ["password"]);
+          try {
+            const user = await prisma.user.findUnique({
+              where: { id },
+              include: {
+                company: true,
+                student: { include: { interests: true } },
+              },
+            });
+            if (!user) return null;
+            return exclude(user, ["password"]);
+          } catch (error) {
+            console.log(error);
+          }
         },
       },
     },
