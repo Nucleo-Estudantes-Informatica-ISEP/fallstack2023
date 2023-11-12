@@ -35,7 +35,7 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
 
         <Activity
           logo={Connect}
-          title={"Connection's train"}
+          title={"Connection's Train"}
           day={29}
           imageOrientation="right"
         >
