@@ -103,6 +103,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.5.6
     version: 0.5.6(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.0.3)
+  react-easy-crop:
+    specifier: ^5.0.2
+    version: 5.0.2(react-dom@18.2.0)(react@18.2.0)
   tailwindcss:
     specifier: ^3.3.0
     version: 3.3.5
@@ -3758,6 +3761,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /normalize-wheel@1.0.1:
+    resolution: {integrity: sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==}
+    dev: true
+
   /npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
@@ -4291,7 +4298,18 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
+
+  /react-easy-crop@5.0.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-j4A/0s0v/Gx5YGXvw3SOFIMmRk5YCdob2ABL5cD00Q9HQPKIz6tkCYLdj0RMO0REPtCAOsZ2ZZLI6fUofiDP6w==}
+    peerDependencies:
+      react: '>=16.4.0'
+      react-dom: '>=16.4.0'
+    dependencies:
+      normalize-wheel: 1.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.0.1
+    dev: true
 
   /react-icons@4.11.0(react@18.2.0):
     resolution: {integrity: sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==}
@@ -4309,7 +4327,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -4467,7 +4484,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -4924,6 +4940,10 @@ packages:
       json5: 1.0.2
       minimist: 1.2.8
       strip-bom: 3.0.0
+    dev: true
+
+  /tslib@2.0.1:
+    resolution: {integrity: sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==}
     dev: true
 
   /tslib@2.6.2:

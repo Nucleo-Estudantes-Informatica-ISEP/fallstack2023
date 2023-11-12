@@ -8,7 +8,7 @@ import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
   contentType: z.enum(["image/png", "image/jpeg", "application/pdf"]),
-  target: z.enum(["profile", "cv"]),
+  target: z.enum(["avatar", "cv"]),
 });
 
 export async function POST(req: NextRequest) {
