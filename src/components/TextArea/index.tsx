@@ -1,14 +1,14 @@
 "use client";
 
-interface TextAreaProps {
+interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   center?: boolean;
   placeholder?: string;
   className?: string;
   disabled?: boolean;
   maxLength?: number;
-  defaultValue?: string | null;
-  ref?: React.Ref<HTMLTextAreaElement>;
+  inputRef?: React.Ref<HTMLTextAreaElement>;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -17,9 +17,9 @@ const TextArea: React.FC<TextAreaProps> = ({
   placeholder,
   className,
   disabled,
-  defaultValue,
   maxLength,
-  ref,
+  inputRef,
+  ...rest
 }) => {
   return (
     <div className="flex w-full flex-col">
@@ -36,11 +36,11 @@ const TextArea: React.FC<TextAreaProps> = ({
         disabled={disabled}
         id={name}
         placeholder={placeholder}
-        defaultValue={defaultValue ?? undefined}
-        ref={ref}
+        ref={inputRef}
         maxLength={maxLength}
         className={`rounded-md border border-gray-400 bg-slate-200 px-4 py-1
          text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
+        {...rest}
       />
     </div>
   );

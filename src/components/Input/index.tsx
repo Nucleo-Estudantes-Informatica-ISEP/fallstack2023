@@ -1,13 +1,13 @@
 "use client";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   center?: boolean;
   placeholder?: string;
   className?: string;
   disabled?: boolean;
-  defaultValue?: string | null;
-  ref?: React.Ref<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
+  type?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,8 +16,9 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   className,
   disabled,
-  defaultValue,
-  ref,
+  inputRef,
+  type = "text",
+  ...rest
 }) => {
   return (
     <div className="flex w-full flex-col">
@@ -30,15 +31,15 @@ const Input: React.FC<InputProps> = ({
         {name}
       </label>
       <input
-        type="text"
+        type={type}
         name={name}
         disabled={disabled}
         id={name}
         placeholder={placeholder}
-        defaultValue={defaultValue ?? undefined}
-        ref={ref}
+        ref={inputRef}
         className={`rounded-md border border-gray-400 bg-slate-200 px-4 py-1
          text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
+        {...rest}
       />
     </div>
   );
