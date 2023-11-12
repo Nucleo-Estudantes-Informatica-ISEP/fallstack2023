@@ -52,12 +52,12 @@ const Header: FunctionComponent<HeaderProps> = ({
           alt={logoAlt}
         />
       </div>
-      <div className="bottom-4 mx-0 flex h-12 w-12 animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105">
+      <div className="bottom-6 mx-0 mt-12 flex h-12 w-12 animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105 md:mt-0">
         <a
           className="animate-fade opacity-0"
           onClick={() => contentRef.current?.scrollIntoView()}
         >
-          <ChevronDown color="white" size={30} />
+          <ChevronDown size={30} />
         </a>
       </div>
     </section>
