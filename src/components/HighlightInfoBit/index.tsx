@@ -20,8 +20,11 @@ const HighlightInfoBit: FunctionComponent<InfoBitProps> = ({
       <Highlight
         color={highlightColor}
         tilt={highlightColor === "accent" ? "right" : "left"}
+        className={
+          highlightColor === "accent" ? "after:bottom-0.5" : "after:top-0.5"
+        }
       >
-        <b className="w-[20ch] ">{info}</b>
+        <b>{info}</b>
       </Highlight>
     </span>
   );

@@ -34,13 +34,11 @@ const Footer: FunctionComponent<FooterProps> = ({
   return (
     <footer className="w-full text-center">
       <div className="flex justify-center drop-shadow-lg hover:drop-shadow-xl lg:m-8">
-        <div className="my-6 w-max  transition-all duration-300 hover:scale-105">
-          <a href={lastEditionUrl} target="_blank" rel="noreferrer">
-            <div className="rounded-2xl bg-secondary p-6 font-poppins text-2xl font-bold drop-shadow-3xl transition-all duration-300 sm:text-[2.5rem] lg:p-7 lg:text-[3.5rem]">
-              Edição Anterior
-            </div>
-          </a>
-        </div>
+        <a href={lastEditionUrl} target="_blank" rel="noreferrer">
+          <div className="bg-secondary/40 my-6 rounded-2xl px-8 py-4 font-poppins text-2xl font-bold transition-all duration-300 hover:scale-105 lg:text-4xl">
+            Edição Anterior
+          </div>
+        </a>
       </div>
 
       <div className="flex items-center justify-center lg:m-8">

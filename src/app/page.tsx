@@ -12,7 +12,7 @@ import NeiLogoWhite from "../../public/assets/images/logo-white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
-import Header from "../components/Header";
+import Hero from "../components/Hero";
 import HeroContainer from "../components/HeroContainer";
 import Topbar from "../components/TopBar";
 
@@ -24,7 +24,7 @@ const App: FunctionComponent = () => {
       <HeroContainer>
         <GenericContainer>
           <Topbar />
-          <Header
+          <Hero
             logoSrc={{
               white: LogoWhite,
               dark: LogoDark,

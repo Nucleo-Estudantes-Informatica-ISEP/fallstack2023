@@ -15,7 +15,7 @@ interface HeaderProps {
   contentRef: React.RefObject<HTMLDivElement>;
 }
 
-const Header: FunctionComponent<HeaderProps> = ({
+const Hero: FunctionComponent<HeaderProps> = ({
   logoSrc,
   logoAlt,
   contentRef,
@@ -29,16 +29,16 @@ const Header: FunctionComponent<HeaderProps> = ({
   }, []);
 
   return (
-    <section className="flex h-screen w-full flex-col items-center justify-center">
+    <section className="relative flex h-full min-h-screen w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
-          <h1 className="w-min font-poppins text-7xl font-bold max-lg:text-center md:text-8xl lg:w-fit">
+          <h1 className="w-min font-poppins text-6xl font-bold max-lg:text-center md:text-8xl lg:w-fit">
             <Highlight color="primary" tilt="left">
               Internship
             </Highlight>{" "}
             Kickstart
           </h1>
-          <h2 className="font-poppins text-5xl font-medium max-sm:text-center lg:text-7xl">
+          <h2 className="font-poppins text-3xl font-medium max-sm:text-center md:text-5xl lg:text-7xl">
             Your{" "}
             <Highlight color="accent" tilt="right">
               future
@@ -47,21 +47,19 @@ const Header: FunctionComponent<HeaderProps> = ({
           </h2>
         </div>
         <Image
-          className="h-[440px] object-contain drop-shadow-md lg:h-[580px] lg:w-1/4"
+          className="max-h-[440px] w-1/2 object-contain drop-shadow-md lg:max-h-[580px] lg:w-1/4"
           src={mounted && theme === "light" ? logoSrc.dark : logoSrc.white}
           alt={logoAlt}
         />
       </div>
-      <div className="bottom-6 mx-0 mt-12 flex h-12 w-12 animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105 md:mt-0">
-        <a
-          className="animate-fade opacity-0"
-          onClick={() => contentRef.current?.scrollIntoView()}
-        >
-          <ChevronDown size={30} />
-        </a>
-      </div>
+      <a
+        className="absolute bottom-4 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105 md:mt-0"
+        onClick={() => contentRef.current?.scrollIntoView()}
+      >
+        <ChevronDown className="h-6 w-6 " />
+      </a>
     </section>
   );
 };
 
-export default Header;
+export default Hero;

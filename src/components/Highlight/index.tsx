@@ -4,12 +4,14 @@ interface HighlightProps {
   children: ReactNode;
   color?: "accent" | "primary";
   tilt?: "left" | "right";
+  className?: string;
 }
 
 const Highlight: FunctionComponent<HighlightProps> = ({
   children,
   color,
   tilt,
+  className,
 }) => {
   color = color || "primary";
   tilt = tilt || "left";
@@ -17,13 +19,11 @@ const Highlight: FunctionComponent<HighlightProps> = ({
     <span
       className={`relative after:absolute after:-left-2 after:-z-10 after:box-content after:h-[90%] after:w-full after:rounded-[66px] ${
         color === "accent" ? "after:bg-accent" : "after:bg-primary"
-      }
-       ${
-         tilt === "left"
-           ? "after:top-0 after:-rotate-1"
-           : "after:bottom-0 after:rotate-1"
-       }
-       after:px-2`}
+      } ${
+        tilt === "left"
+          ? "after:top-1 after:-rotate-1"
+          : "after:bottom-1 after:rotate-1"
+      } after:px-2 ${className}`}
     >
       {children}
     </span>
