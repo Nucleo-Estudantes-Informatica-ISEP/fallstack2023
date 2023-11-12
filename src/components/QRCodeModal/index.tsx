@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 
 import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
 
-import { BsFillClipboardFill, BsQrCodeScan } from "react-icons/bs";
+import { BsFillClipboardFill, BsQrCodeScan, BsX } from "react-icons/bs";
 
 interface QRCodeModalProps {
   hidden: boolean;
@@ -25,16 +25,20 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
-      onClick={() => setHidden(true)}
     >
       <div className="fixed bg-gray-500 bg-opacity-0 transition-opacity"></div>
 
       <div className="flex min-h-screen  items-center justify-center">
         <div className="max-w-7/8 relative w-full ">
-          <div
-            className="relative h-screen w-full transform bg-white text-left shadow-xl transition-all"
-            onClick={handleModalClick}
-          >
+          <div className="relative h-screen w-full transform bg-white text-left shadow-xl transition-all">
+            {/* Close button */}
+            <button
+              className="absolute right-4 top-4 z-10 cursor-pointer text-gray-500"
+              style={{ pointerEvents: "auto" }}
+              onClick={() => setHidden(true)}
+            >
+              <BsX size={34} />
+            </button>
             <div className="flex min-h-screen items-start justify-center">
               <div className="max-w-7/8 w-full">
                 <div className="relative h-screen p-10 text-center shadow-xl sm:p-0 md:p-0 lg:p-6">
@@ -58,7 +62,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
                             <input
                               type="text"
                               value="CODE"
-                              className="w-56 border-none bg-gray-200 p-2 text-center text-2xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72 "
+                              className="w-56 border-none bg-gray-200 p-2 text-center text-xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72 "
                               disabled
                             />
                             <BsFillClipboardFill
@@ -67,7 +71,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
                             />
                           </div>
                         </div>
-                        <p className="lg-mr-0 mt-6 text-sm md:text-sm lg:text-base text-black sm:mr-6 md:mr-4">
+                        <p className="lg-mr-0 mt-6 text-sm text-black sm:mr-6 md:mr-4 md:text-sm lg:text-base">
                           Partilha o teu <b>código</b> com as empresas de forma
                           a poderem <b>guardar</b> o teu perfil!
                         </p>
