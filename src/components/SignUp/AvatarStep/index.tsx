@@ -1,8 +1,7 @@
-import { FunctionComponent, useState } from "react";
+import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { Student } from "@prisma/client";
 import { Area } from "react-easy-crop";
-import { MdOutlineArrowBack as BackIcon } from "react-icons/md";
 
 import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
 import AvatarCropper from "@/components/AvatarCropper";
@@ -11,6 +10,8 @@ import { getCroppedImg } from "@/utils/canvas";
 
 interface AvatarStepProps {
   student: Student;
+  currentStep: number;
+  setCurrentStep: Dispatch<SetStateAction<number>>;
 }
 
 const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
@@ -38,9 +39,6 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
 
   return (
     <>
-      <div className="absolute -left-2 -top-12 cursor-pointer text-3xl text-secondary">
-        <BackIcon />
-      </div>
       <div className="mb-5 flex justify-center">
         <Image
           src={"/assets/images/logo_dark.png"}

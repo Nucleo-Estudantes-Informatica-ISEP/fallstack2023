@@ -59,6 +59,7 @@ const AvatarCropper: FunctionComponent<AvatarCropperProps> = ({
         onZoomChange={setZoom}
         classes={{
           cropAreaClassName: "!border-primary",
+          containerClassName: "rounded-lg",
         }}
         style={{
           mediaStyle: {
