@@ -6,7 +6,7 @@ interface HeadingTextProps {
 
 const HeadingText: React.FC<HeadingTextProps> = ({ text }) => {
   return (
-    <h1 className="my-6 text-center text-2xl text-gray-600 md:text-3xl lg:my-12 lg:text-5xl">
+    <h1 className="mt-40 text-center font-poppins text-5xl font-bold uppercase md:text-6xl lg:mb-24 lg:mt-12 lg:text-7xl">
       {text}
     </h1>
   );
