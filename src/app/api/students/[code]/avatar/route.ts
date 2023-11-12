@@ -41,7 +41,7 @@ export async function POST(
   const [meta] = await storage.bucket().file(distribution).makePublic();
 
   const { bucket, object } = meta;
-  const url = `https://storage.googleapis.com/${bucket}/${object}`;
+  const url = `https://${bucket}.storage.googleapis.com/${object}`;
 
   // remove old avatar if existent
   if (session.student.image) {

@@ -15,13 +15,16 @@ const HighlightInfoBit: FunctionComponent<InfoBitProps> = ({
 }) => {
   highlightColor = highlightColor || "primary";
   return (
-    <span className="flex items-center gap-4 lg:w-auto">
+    <span className="flex items-center gap-x-6 lg:w-auto">
       <span className="text-3xl">{icon}</span>
       <Highlight
         color={highlightColor}
         tilt={highlightColor === "accent" ? "right" : "left"}
+        className={
+          highlightColor === "accent" ? "after:bottom-0.5" : "after:top-0.5"
+        }
       >
-        <b className="w-[20ch] ">{info}</b>
+        <b>{info}</b>
       </Highlight>
     </span>
   );

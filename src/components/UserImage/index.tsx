@@ -11,7 +11,7 @@ interface UserImageProps {
   image?: string;
   hidden?: boolean;
   editable?: boolean;
-  code: string;
+  code?: string;
 }
 
 const UserImage: React.FC<UserImageProps> = ({

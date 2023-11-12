@@ -63,11 +63,7 @@ const Schedule: React.FC<Props> = ({
             {secondDayTitle}
           </button>
         </div>
-<<<<<<< HEAD
-        <table className="text-md w-98 mt-6 w-full table-auto border-collapse ">
-=======
         <table className="mt-6 w-full table-auto border-collapse text-base ">
->>>>>>> dev
           <thead>
             <tr className="border-b-2 border-gray-500">
               <th className="w-1/3 p-4 text-left">Hora</th>

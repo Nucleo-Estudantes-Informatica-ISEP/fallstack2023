@@ -19,8 +19,8 @@ const InfoText: React.FC<InfoTextProps> = ({
 }) => {
   return (
     <>
-      <HeadingText text="FALLSTACK" />
-      <div className="mb-24 flex flex-col lg:flex-row">
+      <HeadingText text="Fallstack" />
+      <div className="mb-24 flex flex-col text-xl lg:flex-row">
         <EventInfos
           days={days}
           month={month}
@@ -29,18 +29,18 @@ const InfoText: React.FC<InfoTextProps> = ({
         />
 
         <EventDescription>
-          <p className="text-justify">
+          <p>
             O <span className="font-bold text-orange-600">Fallstack</span>{" "}
             aproxima, todos os anos, estudantes do curso de Engenharia
             Informática do
             <span className="font-bold">
               {" "}
-              Instituto Superior de Engenharia do Porto
+              Instituto Superior de Engenharia do Porto{" "}
             </span>
             de empresas que atuam no setor informático.
           </p>
 
-          <p className="mt-6 text-justify">
+          <p className="mt-6">
             Graças a este evento, os estudantes têm uma oportunidade única de
             <span className="font-bold text-orange-600"> interagir</span> com
             empresas diretamente ao longo de dois dias de evento repletos de
