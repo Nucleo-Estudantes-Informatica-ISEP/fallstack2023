@@ -19,7 +19,7 @@ const EventInfos: FunctionComponent<EventInfosProps> = ({
   endTime,
 }) => {
   return (
-    <section className="mx-auto my-16 flex flex-col justify-around gap-8 lg:my-0 lg:justify-center lg:px-28">
+    <section className="mx-auto my-16 flex flex-col justify-around gap-8 text-lg lg:my-0 lg:justify-center lg:px-28 lg:text-2xl">
       <HighlightInfoBit
         icon={<CalendarEvent />}
         info={`${days.join(" e ")} de ${month}`}
