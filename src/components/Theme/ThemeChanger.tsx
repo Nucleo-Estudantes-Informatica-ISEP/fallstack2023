@@ -18,7 +18,7 @@ export default function ThemeChanger() {
   if (!mounted) {
     // Show default icons while loading from the server.
     return (
-      <div className="flex h-5 w-5 items-center justify-center rounded-full text-primary dark:text-primary ">
+      <div className="flex h-full w-full items-center justify-center rounded-full text-primary dark:text-primary ">
         <BsMoonStarsFill className="dark:hidden" size={20} />
         <BsFillSunFill className="hidden dark:block" size={20} />
       </div>
@@ -26,7 +26,7 @@ export default function ThemeChanger() {
   }
 
   return (
-    <button className="flex h-6 w-6 items-center justify-center p-0.5 text-primary transition-colors hover:text-primary dark:text-primary dark:hover:text-white">
+    <button className="flex h-full w-full items-center justify-center text-primary transition-colors hover:text-primary dark:text-primary dark:hover:text-white">
       {theme === "light" ? (
         <BsMoonStarsFill onClick={() => setTheme("dark")} size={20} />
       ) : (

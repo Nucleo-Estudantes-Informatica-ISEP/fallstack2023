@@ -1,5 +1,8 @@
+"use client";
+
 import { FunctionComponent, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
 
 import Highlight from "../Highlight";
 
@@ -30,7 +33,20 @@ const Hero: FunctionComponent<HeaderProps> = ({
 
   return (
     <section className="relative flex h-full min-h-screen w-full flex-col items-center justify-center">
-      <div className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row">
+      <motion.div
+        initial={{
+          opacity: 0,
+          marginTop: 200,
+        }}
+        whileInView={{
+          opacity: 1,
+          marginTop: 0,
+        }}
+        viewport={{
+          once: true,
+        }}
+        className="flex w-full flex-col-reverse items-center justify-center gap-28 md:px-14 lg:flex-row"
+      >
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start">
           <h1 className="w-min font-poppins text-6xl font-bold max-lg:text-center md:text-8xl lg:w-fit">
             <Highlight color="primary" tilt="left">
@@ -51,7 +67,7 @@ const Hero: FunctionComponent<HeaderProps> = ({
           src={mounted && theme === "light" ? logoSrc.dark : logoSrc.white}
           alt={logoAlt}
         />
-      </div>
+      </motion.div>
       <a
         className="absolute bottom-4 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105 md:mt-0"
         onClick={() => contentRef.current?.scrollIntoView()}
