@@ -1,6 +1,7 @@
-import React from "react";
+"use client";
 
-import EventDescription from "../EventDescription";
+import { motion } from "framer-motion";
+
 import EventInfos from "../EventInfos/index";
 import HeadingText from "../HeadingText";
 
@@ -28,7 +29,20 @@ const InfoText: React.FC<InfoTextProps> = ({
           endTime={endTime}
         />
 
-        <EventDescription>
+        <motion.section
+          initial={{
+            opacity: 0,
+            marginRight: -500,
+          }}
+          whileInView={{
+            marginRight: 0,
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="flex flex-col space-y-2 text-center leading-7 md:text-left md:text-2xl md:leading-8 lg:px-10"
+        >
           <p>
             O <span className="font-bold text-orange-600">Fallstack</span>{" "}
             aproxima, todos os anos, estudantes do curso de Engenharia
@@ -47,7 +61,7 @@ const InfoText: React.FC<InfoTextProps> = ({
             <span className="font-bold text-orange-600"> partilha</span> de
             conhecimento e experiências.
           </p>
-        </EventDescription>
+        </motion.section>
       </div>
     </>
   );

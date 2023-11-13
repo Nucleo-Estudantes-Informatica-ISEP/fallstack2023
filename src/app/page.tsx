@@ -3,7 +3,7 @@
 import { FunctionComponent, useRef } from "react";
 
 import ComingSoon from "@/components/ComingSoon";
-import Topbar from "@/components/TopBar";
+import TopBar from "@/components/TopBar";
 
 import LogoDark from "../../public/assets/images/logo_dark.png";
 import LogoWhite from "../../public/assets/images/logo_white.png";
@@ -21,7 +21,7 @@ const App: FunctionComponent = () => {
   return (
     <HeroContainer>
       <GenericContainer>
-        <Topbar />
+        <TopBar />
         <Hero
           logoSrc={{
             white: LogoWhite,
