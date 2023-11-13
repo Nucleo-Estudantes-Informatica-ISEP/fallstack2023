@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import Cropper, { Area, Point } from "react-easy-crop";
+import { MdFileUpload as UploadIcon } from "react-icons/md";
 
 import { resizeImage } from "@/utils/canvas";
 import { readFile } from "@/utils/files";
@@ -46,7 +47,7 @@ const AvatarCropper: FunctionComponent<AvatarCropperProps> = ({
   };
 
   return imageSrc ? (
-    <div className="relative h-80">
+    <div className="relative h-96 md:h-80">
       <Cropper
         image={imageSrc}
         crop={crop}
@@ -70,7 +71,29 @@ const AvatarCropper: FunctionComponent<AvatarCropperProps> = ({
       />
     </div>
   ) : (
-    <input type="file" onChange={onFileChange} accept="image/*" />
+    <div className="flex w-full flex-row items-center justify-center text-slate-700">
+      <input
+        type="file"
+        name="avatar"
+        id="avatar"
+        accept="image/*"
+        hidden
+        className={`rounded-md border border-gray-400 bg-slate-200 px-4 py-1
+         text-black focus:border-primary focus:ring-0 disabled:text-gray-600`}
+        onChange={onFileChange}
+      />
+      <label
+        className={
+          "flex flex-1 cursor-pointer flex-row items-center rounded-md border border-gray-400 bg-slate-200 px-4 py-1 md:text-lg"
+        }
+        htmlFor="avatar"
+      >
+        <span className="mr-2 min-w-min text-lg md:text-xl">
+          <UploadIcon />
+        </span>
+        <span className="w-52 truncate">Insere uma imagem.</span>
+      </label>
+    </div>
   );
 };
 export default AvatarCropper;

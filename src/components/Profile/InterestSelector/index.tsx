@@ -9,11 +9,13 @@ import { BASE_URL } from "@/services/api";
 interface InterestSelectorProps {
   userInterests: string[];
   setUserInterests: (interests: string[]) => void;
+  scrollable?: boolean;
 }
 
 const InterestSelector: React.FC<InterestSelectorProps> = ({
   setUserInterests,
   userInterests,
+  scrollable = false,
 }) => {
   const [interests, setInterests] = useState<Interest[]>([]);
 
@@ -40,7 +42,9 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
       axis="x"
       values={orderedInterests}
       onReorder={(values) => setInterests(values)}
-      className="flex w-full flex-wrap gap-x-6 gap-y-4"
+      className={`flex w-full flex-wrap gap-x-6 gap-y-4 ${
+        scrollable && "h-52 overflow-y-scroll pt-4"
+      }`}
     >
       {orderedInterests.map((interest) => (
         <Reorder.Item

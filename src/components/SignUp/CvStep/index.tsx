@@ -1,8 +1,10 @@
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import Image from "next/image";
+import { FaFilePdf } from "react-icons/fa";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
 import { getSignedUrl, uploadToBucket } from "@/lib/upload";
+import FileInput from "@/components/FileInput";
 import PrimaryButton from "@/components/PrimaryButton";
 
 interface CvStepProps {
@@ -50,15 +52,13 @@ const CvStep: FunctionComponent<CvStepProps> = ({
     }
   };
 
-  // TODO: change, preview on new tab & reset file input
-
   return (
     <>
       <div className="mb-5 flex justify-center">
         <Image
           src={"/assets/images/logo_dark.png"}
-          width={128}
-          height={128}
+          width={64}
+          height={64}
           alt="Logo"
         />
       </div>
@@ -67,30 +67,21 @@ const CvStep: FunctionComponent<CvStepProps> = ({
         Tens o teu CV pronto?
       </p>
 
-      {data.cv ? (
-        <a
-          href={data.cv.preview}
-          target="_blank"
-          className="cursor-pointer text-black underline"
-        >
-          {data.cv.name}
-        </a>
-      ) : (
-        <input type="file" onChange={onFileChange} accept="application/pdf" />
-      )}
+      <FileInput
+        name="Insere um ficheiro."
+        placeholder="CV ficheiro"
+        accept="application/pdf"
+        onChange={onFileChange}
+        file={data.cv ? data.cv : null}
+        icon={<FaFilePdf />}
+        onClear={() => setData({ ...data, cv: null })}
+      />
 
       {error && <p className="mt-1 text-sm font-bold text-red-600">{error}</p>}
 
       <PrimaryButton onClick={handleNext} className="mb-5 mt-4 font-bold">
         CONTINUAR
       </PrimaryButton>
-
-      <button
-        onClick={handleNext}
-        className="text-center text-sm text-gray-600"
-      >
-        Ignorar
-      </button>
     </>
   );
 };

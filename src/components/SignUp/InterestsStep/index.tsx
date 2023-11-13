@@ -30,19 +30,20 @@ const InterestsStep: FunctionComponent<InterestsStepProps> = ({
       <div className="mb-5 flex justify-center">
         <Image
           src={"/assets/images/logo_dark.png"}
-          width={128}
-          height={128}
+          width={64}
+          height={64}
           alt="Logo"
         />
       </div>
 
-      <p className="mb-4 text-center text-slate-700 md:text-lg">
+      <p className="mb-1 text-center text-slate-700 md:text-lg">
         És interessado? Então diz lá os teus interesses.
       </p>
 
       <InterestSelector
         userInterests={interests}
         setUserInterests={setInterests}
+        scrollable
       />
 
       <PrimaryButton onClick={handleNext} className="my-5 font-bold">

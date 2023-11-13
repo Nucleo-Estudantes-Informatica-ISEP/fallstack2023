@@ -16,7 +16,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
             className="object-cover max-md:rounded-t-xl md:rounded-l-xl"
           />
         </div>
-        <div className="flex w-full items-start justify-center px-6 py-16 pb-40 md:px-12 md:py-16">
+        <div className="flex w-full items-start justify-center px-6 py-16 pb-32 md:px-12 md:py-16">
           {children}
         </div>
       </div>

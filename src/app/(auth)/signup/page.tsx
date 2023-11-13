@@ -43,7 +43,7 @@ const SignUpPage: React.FC = () => {
   const handlePrev = () => setCurrentStep(currentStep - 1);
 
   return (
-    <section className="relative flex w-full flex-col md:mt-12">
+    <section className="relative flex w-full flex-col max-md:h-96 md:mt-4">
       {currentStep > 0 && (
         <button
           onClick={handlePrev}

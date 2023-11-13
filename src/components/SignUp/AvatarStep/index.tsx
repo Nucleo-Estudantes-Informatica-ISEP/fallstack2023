@@ -42,8 +42,8 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
       <div className="mb-5 flex justify-center">
         <Image
           src={"/assets/images/logo_dark.png"}
-          width={128}
-          height={128}
+          width={64}
+          height={64}
           alt="Logo"
         />
       </div>
@@ -54,7 +54,7 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
 
       <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
 
-      <PrimaryButton onClick={handleSubmit} className="my-5 font-bold">
+      <PrimaryButton onClick={handleSubmit} className="mb-5 mt-4 font-bold">
         CONCLUIR
       </PrimaryButton>
     </>
