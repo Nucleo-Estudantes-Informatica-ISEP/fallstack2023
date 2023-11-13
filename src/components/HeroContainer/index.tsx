@@ -7,7 +7,7 @@ interface HeroContainerProps {
 
 const HeroContainer: FunctionComponent<HeroContainerProps> = ({ children }) => {
   return (
-    <section className={`aspect-auto min-h-screen w-full font-sans`}>
+    <section className="aspect-auto min-h-screen w-full overflow-x-hidden font-sans">
       {children}
     </section>
   );

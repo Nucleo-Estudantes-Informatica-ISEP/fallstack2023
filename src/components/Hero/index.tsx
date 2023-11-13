@@ -63,16 +63,16 @@ const Hero: FunctionComponent<HeaderProps> = ({
           </h2>
         </div>
         <Image
-          className="max-h-[440px] w-1/2 object-contain drop-shadow-md lg:max-h-[580px] lg:w-1/4"
+          className="mt-12 max-h-[440px] w-1/2 object-contain drop-shadow-md md:mt-0 lg:max-h-[580px] lg:w-1/4"
           src={mounted && theme === "light" ? logoSrc.dark : logoSrc.white}
           alt={logoAlt}
         />
       </motion.div>
       <a
-        className="absolute bottom-4 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105"
+        className="absolute bottom-6 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105"
         onClick={() => contentRef.current?.scrollIntoView()}
       >
-        <ChevronDown className="mt-4 h-6 w-6" />
+        <ChevronDown className="h-6 w-6" />
       </a>
     </section>
   );

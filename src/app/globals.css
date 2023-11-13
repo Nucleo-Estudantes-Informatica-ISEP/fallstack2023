@@ -13,7 +13,7 @@
     --secondary-40: rgba(210, 234, 239, 0.4);
     --accent: #00c3ff;
     --accent-alternative: #068198;
-    background-image: url(/assets/images/bg_light_desktop.webp);
+    background-image: url(/assets/images/bg_light.webp);
     background-size: cover;
     background-position: center;
   }
@@ -26,14 +26,13 @@
     --secondary-40: rgba(16, 40, 45, 0.4);
     --accent: #00c3ff;
     --accent-alternative: #00c2ff;
-    background-image: url(/assets/images/bg_dark_desktop.webp);
+    background-image: url(/assets/images/bg_dark.webp);
     background-size: cover;
     background-position: center;
   }
 
   body {
     font-family: "Archivo", sans-serif;
-    overflow-x: hidden;
   }
 
   h1,
@@ -47,12 +46,11 @@
 
   @media (max-width: 768px) {
     :root {
-      background-image: url(/assets/images/bg_light_mobile.webp);
       background-size: contain;
       background-repeat: repeat-y;
     }
+
     .dark {
-      background-image: url(/assets/images/bg_dark_mobile.webp);
       background-size: contain;
       background-repeat: repeat-y;
     }

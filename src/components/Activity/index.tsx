@@ -25,11 +25,11 @@ const Activity: FunctionComponent<ActivityProps> = ({
     <motion.section
       initial={{
         opacity: 0,
-        marginLeft: imageOrientation === "left" ? -500 : 1000,
+        x: imageOrientation === "left" ? -40 : 40,
       }}
       whileInView={{
         opacity: 1,
-        marginLeft: 0,
+        x: 0,
       }}
       viewport={{
         once: true,
