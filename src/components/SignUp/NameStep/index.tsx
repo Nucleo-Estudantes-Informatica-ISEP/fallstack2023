@@ -57,7 +57,7 @@ const NameStep: FunctionComponent<NameStepProps> = ({
       </p>
 
       <Input
-        name="Precisamos de roubar os teus dados para criar a tua conta. Qual é o teu nome?"
+        name="Precisamos de alguns dados para criar a tua conta. Qual é o teu nome?"
         placeholder="Insere o teu nome"
         center
         inputRef={inputRef}
