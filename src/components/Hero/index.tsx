@@ -69,10 +69,10 @@ const Hero: FunctionComponent<HeaderProps> = ({
         />
       </motion.div>
       <a
-        className="absolute bottom-4 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105 md:mt-0"
+        className="absolute bottom-4 flex animate-bounce cursor-pointer items-center justify-center text-center transition-all duration-200 hover:scale-105"
         onClick={() => contentRef.current?.scrollIntoView()}
       >
-        <ChevronDown className="h-6 w-6 " />
+        <ChevronDown className="mt-4 h-6 w-6" />
       </a>
     </section>
   );

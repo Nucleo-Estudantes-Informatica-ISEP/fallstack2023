@@ -33,6 +33,7 @@
 
   body {
     font-family: "Archivo", sans-serif;
+    overflow-x: hidden;
   }
 
   h1,
@@ -46,12 +47,14 @@
 
   @media (max-width: 768px) {
     :root {
-      background-image: url(/assets/images/bg_light_mobile.jpg);
+      background-image: url(/assets/images/bg_light_mobile.webp);
       background-size: contain;
+      background-repeat: repeat-y;
     }
     .dark {
-      background-image: url(/assets/images/bg_dark_mobile.jpg);
+      background-image: url(/assets/images/bg_dark_mobile.webp);
       background-size: contain;
+      background-repeat: repeat-y;
     }
   }
 

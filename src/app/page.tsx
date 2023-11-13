@@ -20,30 +20,32 @@ const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
-    <ThemeProvider>
-      <HeroContainer>
-        <GenericContainer>
-          <TopBar />
-          <Hero
-            logoSrc={{
-              white: LogoWhite,
-              dark: LogoDark,
-            }}
-            logoAlt="Logo principal do evento Fall-Stack 2023"
-            contentRef={contentRef}
-          />
-          <Content contentRef={contentRef} />
-          <ComingSoon />
-          <Footer
-            lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
-            neiLogoSrc={{
-              white: NeiLogoWhite,
-              dark: NeiLogoBlack,
-            }}
-          />
-        </GenericContainer>
-      </HeroContainer>
-    </ThemeProvider>
+    <section className="overflow-hidden">
+      <ThemeProvider>
+        <HeroContainer>
+          <GenericContainer>
+            <TopBar />
+            <Hero
+              logoSrc={{
+                white: LogoWhite,
+                dark: LogoDark,
+              }}
+              logoAlt="Logo principal do evento Fall-Stack 2023"
+              contentRef={contentRef}
+            />
+            <Content contentRef={contentRef} />
+            <ComingSoon />
+            <Footer
+              lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
+              neiLogoSrc={{
+                white: NeiLogoWhite,
+                dark: NeiLogoBlack,
+              }}
+            />
+          </GenericContainer>
+        </HeroContainer>
+      </ThemeProvider>
+    </section>
   );
 };
 
