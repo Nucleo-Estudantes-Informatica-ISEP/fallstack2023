@@ -38,7 +38,6 @@ function HeadsUp() {
                         <p>Ao criares uma conta podes usufruir do evento na sua totalidade.</p>
                         <p>Criamos um sistema no qual as empresas podem salvar o teu perfil para consultarem mais tarde e gravarem o teu CV para que a tua presenção não seja esquecida!</p>
                     </div>
-
                 </div>
             )}
         </>

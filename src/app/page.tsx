@@ -15,6 +15,7 @@ import GenericContainer from "../components/GenericContainer";
 import Hero from "../components/Hero";
 import HeroContainer from "../components/HeroContainer";
 import TopBar from "../components/TopBar";
+
 import HeadsUp from "../components/HeadsUp";
 
 const App: FunctionComponent = () => {
