@@ -33,7 +33,9 @@ const FileInput: React.FC<InputProps> = ({
   ...rest
 }) => {
   return (
-    <div className="flex w-full flex-row items-center justify-center text-slate-700">
+    <div
+      className={`flex w-full flex-row items-center justify-center text-slate-700 ${className}`}
+    >
       <input
         type="file"
         name={name}
@@ -43,7 +45,7 @@ const FileInput: React.FC<InputProps> = ({
         accept={accept}
         hidden
         className={`rounded-md border border-gray-400 bg-slate-200 px-4 py-1
-         text-black focus:border-primary focus:ring-0 disabled:text-gray-600 ${className}`}
+         text-black focus:border-primary focus:ring-0 disabled:text-gray-600`}
         {...rest}
       />
       <label

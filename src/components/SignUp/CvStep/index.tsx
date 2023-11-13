@@ -1,5 +1,6 @@
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FaFilePdf } from "react-icons/fa";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
@@ -80,9 +81,23 @@ const CvStep: FunctionComponent<CvStepProps> = ({
         file={data.cv ? data.cv : null}
         icon={<FaFilePdf />}
         onClear={() => setData({ ...data, cv: null })}
+        className="z-10"
       />
 
-      {error && <p className="mt-1 text-sm font-bold text-red-600">{error}</p>}
+      {error && (
+        <motion.p
+          className="mt-1 text-sm font-bold text-red-600"
+          animate={{
+            y: [-15, 0],
+          }}
+          transition={{
+            ease: "easeOut",
+            duration: 0.2,
+          }}
+        >
+          {error}
+        </motion.p>
+      )}
 
       <PrimaryButton
         loading={loading}

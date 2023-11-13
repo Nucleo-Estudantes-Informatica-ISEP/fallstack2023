@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
 import Input from "@/components/Input";
@@ -66,10 +67,23 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
         onKeyUp={handleKeyUp}
         defaultValue={data.password ? data.password : undefined}
         autoFocus
-        className={error ? "border-2 border-red-600" : ""}
+        className={`${error ? "border-2 border-red-600" : ""} z-10`}
       />
 
-      {error && <p className="mt-1 text-sm font-bold text-red-600">{error}</p>}
+      {error && (
+        <motion.p
+          className="mt-1 text-sm font-bold text-red-600"
+          animate={{
+            y: [-15, 0],
+          }}
+          transition={{
+            ease: "easeOut",
+            duration: 0.2,
+          }}
+        >
+          {error}
+        </motion.p>
+      )}
 
       <PrimaryButton onClick={handleNext} className="mb-5 mt-4 font-bold">
         CONTINUAR
