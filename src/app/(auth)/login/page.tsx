@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { logIn } from "@/lib/auth";
 import useSession from "@/hooks/useSession";
-import { BASE_URL } from "@/services/api";
 import Input from "@/components/Input";
 import PrimaryButton from "@/components/PrimaryButton";
 
@@ -27,16 +27,9 @@ const LoginPage: React.FC = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    try {
-      await fetch(BASE_URL + "/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-      });
-
+    if (await logIn(email, password)) {
       session.fetchSession();
       router.push("/");
-    } catch (e) {
-      console.error(e);
     }
   };
 

@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
     // valid body
     const userId = session.id;
-    const { name, year, avatar, cv } = body;
+    const { name, year, avatar, cv, bio, interests } = body;
 
     // create code for student
     let code: string = "";
@@ -40,14 +40,17 @@ export async function POST(req: Request) {
       codeExists = student !== null;
     }
 
-    const uploaded = `uploaded/avatar/${avatar}`;
-
-    const [exists] = await storage.bucket().file(uploaded).exists();
-    if (!exists)
-      return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
-
     let avatarUrl = null;
     if (avatar) {
+      const uploaded = `uploaded/avatar/${avatar}`;
+
+      const [exists] = await storage.bucket().file(uploaded).exists();
+      if (!exists)
+        return NextResponse.json(
+          { error: "Invalid avatar upload id" },
+          { status: 400 }
+        );
+
       // move avatar to distribution
       const distribution = `distribution/avatar/${avatar}`;
       await storage.bucket().file(uploaded).move(distribution);
@@ -66,7 +69,7 @@ export async function POST(req: Request) {
       if (!cvExists)
         return NextResponse.json(
           { error: "Invalid CV upload id" },
-          { status: 404 }
+          { status: 400 }
         );
 
       // move to distribution
@@ -78,6 +81,10 @@ export async function POST(req: Request) {
     const student = await prisma.student.create({
       data: {
         name: name,
+        bio,
+        interests: {
+          connect: interests.map((interest) => ({ name: interest })),
+        },
         code: code,
         user: {
           connect: {
@@ -98,7 +105,7 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json({ student: student }, { status: 201 });
+    return NextResponse.json(student, { status: 201 });
   } catch (e) {
     if (e instanceof ZodError)
       return NextResponse.json({ error: e.errors }, { status: 400 });

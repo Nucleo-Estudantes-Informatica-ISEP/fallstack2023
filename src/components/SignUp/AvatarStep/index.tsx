@@ -1,9 +1,12 @@
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Student } from "@prisma/client";
 import { Area } from "react-easy-crop";
 
-import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
+import { StudentSignUpData } from "@/types/StudentSignUpData";
+import { signUp } from "@/lib/auth";
+import { getSignedUrl, uploadToBucket } from "@/lib/upload";
 import AvatarCropper from "@/components/AvatarCropper";
 import PrimaryButton from "@/components/PrimaryButton";
 import { getCroppedImg } from "@/utils/canvas";
@@ -12,11 +15,15 @@ interface AvatarStepProps {
   student: Student;
   currentStep: number;
   setCurrentStep: Dispatch<SetStateAction<number>>;
+  data: StudentSignUpData;
+  setData: Dispatch<SetStateAction<StudentSignUpData>>;
 }
 
-const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
+const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
@@ -30,8 +37,9 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ student }) => {
 
       await uploadToBucket(signed, image);
 
-      const imgUrl = await setTarget(student.code, signed);
-      window.open(imgUrl, "_blank");
+      const signup = await signUp({ ...data, avatar: signed.id });
+
+      if (signup) router.push("/");
     } catch (e) {
       console.error(e);
     }

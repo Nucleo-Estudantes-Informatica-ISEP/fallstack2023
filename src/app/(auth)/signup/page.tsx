@@ -13,6 +13,7 @@ import EmailStep from "@/components/SignUp/EmailStep";
 import InterestsStep from "@/components/SignUp/InterestsStep";
 import NameStep from "@/components/SignUp/NameStep";
 import PasswordStep from "@/components/SignUp/PasswordStep";
+import YearStep from "@/components/SignUp/YearStep";
 
 const SignUpPage: React.FC = () => {
   const session = useSession();
@@ -27,16 +28,17 @@ const SignUpPage: React.FC = () => {
       key={"2"}
       {...{ currentStep, setCurrentStep, data, setData }}
     />,
-    <BioStep key={"3"} {...{ currentStep, setCurrentStep, data, setData }} />,
+    <YearStep key={"3"} {...{ currentStep, setCurrentStep, data, setData }} />,
+    <BioStep key={"4"} {...{ currentStep, setCurrentStep, data, setData }} />,
     <InterestsStep
-      key={"4"}
+      key={"5"}
       {...{ currentStep, setCurrentStep, data, setData }}
     />,
-    <CvStep key={"5"} {...{ currentStep, setCurrentStep, data, setData }} />,
+    <CvStep key={"6"} {...{ currentStep, setCurrentStep, data, setData }} />,
     <AvatarStep
-      key={"6"}
+      key={"7"}
       student={session.user?.student as Student}
-      {...{ currentStep, setCurrentStep }}
+      {...{ currentStep, setCurrentStep, data, setData }}
     />,
   ];
 

@@ -10,4 +10,5 @@ export interface StudentSignUpData {
     preview: string;
   } | null;
   avatar: string | null;
+  year: string | null;
 }
