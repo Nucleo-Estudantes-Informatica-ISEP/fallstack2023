@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
-import Input from "@/components/Input";
+import InputSelect from "@/components/InputSelect";
 import PrimaryButton from "@/components/PrimaryButton";
 
 interface YearStepProps {
@@ -26,7 +26,7 @@ const YearStep: FunctionComponent<YearStepProps> = ({
 }) => {
   const [error, setError] = useState<string | null>(null);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLSelectElement>(null);
 
   const handleNext = () => {
     if (!inputRef.current?.value) return setError("Este campo é obrigatório.");
@@ -35,9 +35,17 @@ const YearStep: FunctionComponent<YearStepProps> = ({
     setCurrentStep(currentStep + 1);
   };
 
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLSelectElement>) => {
     if (e.key === "Enter") handleNext();
   };
+
+  const options = [
+    "1º Ano Licenciatura",
+    "2º Ano Licenciatura",
+    "3º Ano Licenciatura",
+    "1º Ano Mestrado",
+    "2º Ano Mestrado",
+  ];
 
   return (
     <>
@@ -50,8 +58,7 @@ const YearStep: FunctionComponent<YearStepProps> = ({
         />
       </div>
 
-      <Input
-        type="email"
+      <InputSelect
         name="Insere o teu ano."
         placeholder="Insere o ano"
         center
@@ -60,6 +67,7 @@ const YearStep: FunctionComponent<YearStepProps> = ({
         defaultValue={data.year ? data.year : undefined}
         autoFocus
         className={error ? "border-2 border-red-600" : ""}
+        options={options}
       />
 
       {error && <p className="mt-1 text-sm font-bold text-red-600">{error}</p>}

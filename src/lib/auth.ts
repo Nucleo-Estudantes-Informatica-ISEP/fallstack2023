@@ -3,15 +3,13 @@ import { BASE_URL } from "@/services/api";
 
 export async function signUp(data: StudentSignUpData) {
   try {
-    const resUser = await fetch(BASE_URL + "/auth/signup", {
+    await fetch(BASE_URL + "/auth/signup", {
       method: "POST",
       body: JSON.stringify({
         email: data.email,
         password: data.password,
       }),
     });
-
-    if (resUser.status !== 201) return false;
 
     const resStudent = await fetch(BASE_URL + "/students", {
       method: "POST",
@@ -21,7 +19,7 @@ export async function signUp(data: StudentSignUpData) {
         year: data.year,
         interests: data.interests,
         avatar: data.avatar,
-        cv: data.cv,
+        cv: data.cv?.id,
       }),
     });
 

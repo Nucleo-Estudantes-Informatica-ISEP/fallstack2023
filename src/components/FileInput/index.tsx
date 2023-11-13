@@ -55,7 +55,7 @@ const FileInput: React.FC<InputProps> = ({
         <span className="mr-2 min-w-min text-lg md:text-xl">
           {file ? icon : <UploadIcon />}
         </span>
-        <span className="w-52 truncate">{file ? file.name : name}</span>
+        <span className="w-44 truncate">{file ? file.name : name}</span>
         {file && (
           <>
             <button
