@@ -9,4 +9,6 @@ export const postStudentSchema = object({
     "2º Ano Mestrado",
   ]),
   name: string(),
+  avatar: string().uuid().optional(),
+  cv: string().uuid().optional(),
 });
