@@ -5,9 +5,11 @@ import { Student, User } from "@prisma/client";
 import swal from "sweetalert";
 
 import { ProfileData } from "@/types/ProfileData";
+import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
 import { BASE_URL } from "@/services/api";
 import UserImage from "@/components/UserImage";
 
+import ImportCvSection from "../ImportCvSection";
 import Input from "../Input";
 import InterestSelector from "../InterestSelector";
 import UserBioTextArea from "../UserBioTextArea";
@@ -29,6 +31,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
   const githubRef = useRef<HTMLInputElement>(null);
   const linkedinRef = useRef<HTMLInputElement>(null);
+  const cvRef = useRef<HTMLInputElement>(null);
 
   function handleUserBioChange(bio: string) {
     if (bio.length > LIMIT) return;
@@ -41,7 +44,6 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   }
 
   const handleSave = async () => {
-    // check if bio is longer than 255 characters
     if (profile.bio && profile.bio?.length > LIMIT) {
       swal(`A tua bio não pode ter mais de ${LIMIT} caracteres!`);
       return;
@@ -74,6 +76,12 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       linkedin: linkedinRef.current?.value || null,
       github: githubRef.current?.value || null,
     });
+
+    if (cvRef.current?.files?.length) {
+      const uploadRes = await getSignedUrl("cv", "application/pdf");
+      await uploadToBucket(uploadRes, cvRef.current?.files[0]);
+      await setTarget(student.code, uploadRes);
+    }
 
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",
@@ -119,6 +127,11 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
           defaultValue={profile.github}
           placeholder="https://github.com/example"
           inputRef={githubRef}
+        />
+
+        <ImportCvSection
+          inputRef={cvRef}
+          text={student.cv ? "Alterar CV" : "Importar CV"}
         />
 
         <UserBioTextArea

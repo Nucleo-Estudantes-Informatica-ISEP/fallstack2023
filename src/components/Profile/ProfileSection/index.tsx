@@ -3,8 +3,8 @@ import { Student, User } from "@prisma/client";
 import { ProfileData } from "@/types/ProfileData";
 
 import BioSection from "../BioSection";
-import CvSection from "../CvSection";
 import InterestsSection from "../InterestsSection";
+import OpenCvSection from "../OpenCvSection";
 
 interface ProfileSectionProps {
   student: Student & { user: User };
@@ -38,7 +38,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
         </div>
       </div>
       {profile.bio && <BioSection bio={profile.bio} />}
-      {student.cv && <CvSection student={student} text={"Abrir o meu CV"} />}
+      {student.cv && (
+        <OpenCvSection student={student} text={"Abrir o meu CV"} />
+      )}
       {profile.interests.length > 0 && (
         <InterestsSection userInterests={profile.interests} />
       )}

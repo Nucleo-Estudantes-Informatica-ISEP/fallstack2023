@@ -3,4 +3,5 @@ export interface ProfileData {
   bio: string | null;
   linkedin: string | null;
   github: string | null;
+  cv: string | null;
 }
