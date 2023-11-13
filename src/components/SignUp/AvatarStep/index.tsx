@@ -22,24 +22,26 @@ interface AvatarStepProps {
 const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async () => {
     try {
       if (!imageSrc || !croppedAreaPixels) return;
+      setLoading(true);
 
       const image = await getCroppedImg(imageSrc, croppedAreaPixels);
-      if (!image) return;
+      if (!image) return setLoading(false);
 
       const signed = await getSignedUrl("avatar", image.type);
-      if (!signed) return; // TODO: show error
+      if (!signed) return setLoading(false); // TODO: show error
 
       await uploadToBucket(signed, image);
 
       const signup = await signUp({ ...data, avatar: signed.id });
-
       if (signup) router.push("/");
+      else setLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -62,7 +64,11 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
 
       <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
 
-      <PrimaryButton onClick={handleSubmit} className="mb-5 mt-4 font-bold">
+      <PrimaryButton
+        disabled={loading}
+        onClick={handleSubmit}
+        className="mb-5 mt-4 font-bold"
+      >
         CONCLUIR
       </PrimaryButton>
     </>
