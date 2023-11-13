@@ -25,8 +25,11 @@ const OpenCvSection: React.FC<OpenCvProps> = ({ student, text }) => {
         </h3>
       </div>
       <div className="flex items-center">
-        <OpenCv className="h-5 w-5"></OpenCv>
-        <a onClick={() => handleCv(student)} className="cursor-pointer pl-2">
+        <OpenCv className="mb-1 h-5 w-5"></OpenCv>
+        <a
+          onClick={() => handleCv(student)}
+          className="cursor-pointer pl-2 underline"
+        >
           {text}
         </a>
       </div>
