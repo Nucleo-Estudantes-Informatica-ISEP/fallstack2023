@@ -47,7 +47,7 @@ const AvatarCropper: FunctionComponent<AvatarCropperProps> = ({
   };
 
   return imageSrc ? (
-    <div className="relative h-96 md:h-80">
+    <div className="relative h-72 md:h-80">
       <Cropper
         image={imageSrc}
         crop={crop}

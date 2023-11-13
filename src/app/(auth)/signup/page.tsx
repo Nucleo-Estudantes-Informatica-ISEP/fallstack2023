@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Student } from "@prisma/client";
+import { motion } from "framer-motion";
 import { MdOutlineArrowBack as BackIcon } from "react-icons/md";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
@@ -45,7 +46,7 @@ const SignUpPage: React.FC = () => {
   const handlePrev = () => setCurrentStep(currentStep - 1);
 
   return (
-    <section className="relative flex w-full flex-col max-md:h-96 md:mt-4">
+    <div className="relative w-full max-md:h-96 md:mt-4">
       {currentStep > 0 && (
         <button
           onClick={handlePrev}
@@ -54,8 +55,19 @@ const SignUpPage: React.FC = () => {
           <BackIcon />
         </button>
       )}
-      {steps[currentStep]}
-    </section>
+      <motion.section
+        key={currentStep}
+        initial={{ x: "100%" }}
+        animate={{ x: "0" }}
+        exit={{ x: "-100%" }}
+        transition={{
+          bounce: 0,
+        }}
+        className="flex flex-col"
+      >
+        {steps[currentStep]}
+      </motion.section>
+    </div>
   );
 };
 
