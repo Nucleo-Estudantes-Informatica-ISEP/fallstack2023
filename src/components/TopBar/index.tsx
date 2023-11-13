@@ -10,7 +10,7 @@ const TopBar: React.FC = () => {
   const opacity = useTransform(() => scrollYProgress.get() * 1.2);
 
   return (
-    <nav className="fixed z-20 h-12 w-full overflow-hidden">
+    <nav className="fixed z-20 h-16 w-full overflow-hidden">
       <motion.div
         className="absolute left-0 top-0 h-16 w-screen bg-secondary"
         style={{
