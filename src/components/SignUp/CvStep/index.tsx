@@ -20,6 +20,7 @@ const CvStep: FunctionComponent<CvStepProps> = ({
   data,
   setData,
 }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleNext = () => {
@@ -28,19 +29,22 @@ const CvStep: FunctionComponent<CvStepProps> = ({
 
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
+      setLoading(true);
       const file = e.target.files[0];
 
       const signed = await getSignedUrl("cv", file.type);
-      if (!signed) return; // TODO: show error
+      if (!signed) return setLoading(false); // TODO: show error
 
-      if (file.size > signed.maxSize)
+      if (file.size > signed.maxSize) {
+        setLoading(false);
         return setError("O ficheiro é demasiado grande.");
+      }
 
       if (error) setError(null);
 
       const res = await uploadToBucket(signed, file);
 
-      if (res.status !== 200) return; // TODO: show error
+      if (res.status !== 200) return setLoading(false); // TODO: show error
 
       const cv = {
         name: file.name,
@@ -49,6 +53,7 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       };
 
       setData({ ...data, cv });
+      setLoading(false);
     }
   };
 
@@ -79,7 +84,11 @@ const CvStep: FunctionComponent<CvStepProps> = ({
 
       {error && <p className="mt-1 text-sm font-bold text-red-600">{error}</p>}
 
-      <PrimaryButton onClick={handleNext} className="mb-5 mt-4 font-bold">
+      <PrimaryButton
+        loading={loading}
+        onClick={handleNext}
+        className="mb-5 mt-4 font-bold"
+      >
         CONTINUAR
       </PrimaryButton>
     </>

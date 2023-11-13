@@ -28,18 +28,21 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
 
   const handleSubmit = async () => {
     try {
-      if (!imageSrc || !croppedAreaPixels) return;
       setLoading(true);
 
-      const image = await getCroppedImg(imageSrc, croppedAreaPixels);
-      if (!image) return setLoading(false);
+      let avatar = null;
+      if (imageSrc && croppedAreaPixels) {
+        const image = await getCroppedImg(imageSrc, croppedAreaPixels);
+        if (!image) return setLoading(false);
 
-      const signed = await getSignedUrl("avatar", image.type);
-      if (!signed) return setLoading(false); // TODO: show error
+        const signed = await getSignedUrl("avatar", image.type);
+        if (!signed) return setLoading(false); // TODO: show error
 
-      await uploadToBucket(signed, image);
+        await uploadToBucket(signed, image);
+        avatar = signed.id;
+      }
 
-      const signup = await signUp({ ...data, avatar: signed.id });
+      const signup = await signUp({ ...data, avatar });
       if (signup) router.push("/");
       else setLoading(false);
     } catch (e) {
@@ -65,7 +68,7 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
       <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
 
       <PrimaryButton
-        disabled={loading}
+        loading={loading}
         onClick={handleSubmit}
         className="mb-5 mt-4 font-bold"
       >
