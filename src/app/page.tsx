@@ -15,6 +15,7 @@ import GenericContainer from "../components/GenericContainer";
 import Hero from "../components/Hero";
 import HeroContainer from "../components/HeroContainer";
 import TopBar from "../components/TopBar";
+import HeadsUp from "../components/HeadsUp";
 
 const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,7 @@ const App: FunctionComponent = () => {
           />
           <Content contentRef={contentRef} />
           <ComingSoon />
+          <HeadsUp />
           <Footer
             lastEditionUrl="https://fallstack2022.nei-isep.org/"
             neiLogoSrc={{
