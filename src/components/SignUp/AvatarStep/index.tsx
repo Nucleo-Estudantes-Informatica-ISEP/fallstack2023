@@ -1,7 +1,6 @@
-import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Student } from "@prisma/client";
 import { Area } from "react-easy-crop";
 import { toast } from "react-toastify";
 
@@ -13,11 +12,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import { getCroppedImg } from "@/utils/canvas";
 
 interface AvatarStepProps {
-  student: Student;
-  currentStep: number;
-  setCurrentStep: Dispatch<SetStateAction<number>>;
   data: StudentSignUpData;
-  setData: Dispatch<SetStateAction<StudentSignUpData>>;
 }
 
 const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
