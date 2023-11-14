@@ -32,7 +32,7 @@ const EmailStep: FunctionComponent<EmailStepProps> = ({
   const handleNext = () => {
     if (!inputRef.current?.value) return setError("Este campo é obrigatório.");
 
-    const emailRegex = new RegExp(/^([0-9]{7}|[a-zA-Z]{3})+@isep.ipp.pt$/i);
+    const emailRegex = new RegExp(/^([0-9]{7}|[a-zA-Z]{3})@isep.ipp.pt$/i);
 
     const email = inputRef.current.value;
 

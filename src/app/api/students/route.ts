@@ -13,8 +13,14 @@ export async function POST(req: Request) {
     if (!session)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    if (session.role !== "STUDENT" || session.student !== null)
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (session.role !== "STUDENT")
+      return NextResponse.json({ error: "Invalid role." }, { status: 403 });
+
+    if (session.student !== null)
+      return NextResponse.json(
+        { error: "Já tens um perfil criado." },
+        { status: 403 }
+      );
 
     // validate the request body against the schema
     const requestBody = await req.json();

@@ -34,7 +34,10 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       const file = e.target.files[0];
 
       const signed = await getSignedUrl("cv", file.type);
-      if (!signed) return setLoading(false); // TODO: show error
+      if (!signed) {
+        setError("Ocorreu um erro ao dar upload.");
+        return setLoading(false); // TODO: show error
+      }
 
       if (file.size > signed.maxSize) {
         setLoading(false);

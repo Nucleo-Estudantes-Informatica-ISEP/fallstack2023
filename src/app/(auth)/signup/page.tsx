@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Student } from "@prisma/client";
-import { motion } from "framer-motion";
 import { MdOutlineArrowBack as BackIcon } from "react-icons/md";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
@@ -55,18 +54,7 @@ const SignUpPage: React.FC = () => {
           <BackIcon />
         </button>
       )}
-      <motion.section
-        key={currentStep}
-        initial={{ x: "100%" }}
-        animate={{ x: "0" }}
-        exit={{ x: "-100%" }}
-        transition={{
-          bounce: 0,
-        }}
-        className="flex flex-col"
-      >
-        {steps[currentStep]}
-      </motion.section>
+      <section className="flex flex-col">{steps[currentStep]}</section>
     </div>
   );
 };

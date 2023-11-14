@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Student } from "@prisma/client";
 import { Area } from "react-easy-crop";
+import { toast } from "react-toastify";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
 import { signUp } from "@/lib/auth";
@@ -36,15 +37,25 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
         if (!image) return setLoading(false);
 
         const signed = await getSignedUrl("avatar", image.type);
-        if (!signed) return setLoading(false); // TODO: show error
+        if (!signed) return setLoading(false);
 
         await uploadToBucket(signed, image);
         avatar = signed.id;
       }
 
       const signup = await signUp({ ...data, avatar });
-      if (signup) router.push("/");
-      else setLoading(false);
+
+      if (signup instanceof Error) {
+        toast.error(signup.message);
+        return setLoading(false);
+      }
+
+      if (!signup) {
+        toast.error("Ocorreu um erro ao criar a conta.");
+        return setLoading(false);
+      }
+
+      router.push("/");
     } catch (e) {
       console.error(e);
     }
