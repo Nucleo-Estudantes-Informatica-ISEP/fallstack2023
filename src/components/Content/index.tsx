@@ -2,6 +2,8 @@ import Connect from "../../../public/assets/images/connect.png";
 import Pitch from "../../../public/assets/images/pitch.png";
 import Activity from "../Activity";
 import InfoText from "../InfoText";
+import FaqSection from "../FaqSection";
+
 
 interface ContentProps {
   contentRef: React.RefObject<HTMLDivElement>;
@@ -49,6 +51,13 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
           das empresas do teu interesse.
         </Activity>
       </section>
+      <hr />
+
+      <FaqSection
+      />
+
+      <hr />
+
     </section>
   );
 };
