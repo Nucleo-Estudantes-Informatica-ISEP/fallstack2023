@@ -23,11 +23,11 @@ const HighlightInfoBit: FunctionComponent<InfoBitProps> = ({
     <motion.div
       initial={{
         opacity: 0,
-        marginLeft: side === "left" ? -500 : 100,
+        x: side === "left" ? -40 : 40,
       }}
       whileInView={{
         opacity: 1,
-        marginLeft: 0,
+        x: 0,
       }}
       viewport={{
         once: true,
