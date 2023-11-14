@@ -8,8 +8,8 @@ import { Github, Linkedin } from "@/styles/Icons";
 
 import BioSection from "../BioSection";
 import ContactSection from "../ContactSection";
-import CvSection from "../CvSection";
 import InterestsSection from "../InterestsSection";
+import CvSection from "../OpenCvSection";
 
 interface PublicProfileSectionContainerProps {
   student: Student & { user: User };

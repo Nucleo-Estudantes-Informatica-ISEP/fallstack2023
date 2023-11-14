@@ -34,6 +34,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
     bio: student.bio,
     linkedin: student.linkedin,
     github: student.github,
+    cv: student.cv,
   });
 
   return (
