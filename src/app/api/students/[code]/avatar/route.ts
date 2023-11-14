@@ -44,15 +44,15 @@ export async function POST(
   const url = `https://${bucket}.storage.googleapis.com/${object}`;
 
   // remove old avatar if existent
-  if (session.student.image) {
-    const imageId = session.student.image.split("/").reverse()[0];
-    const old = `distribution/avatar/${imageId}`;
+  if (session.student.avatar) {
+    const imageId = session.student.avatar.split("/").reverse()[0];
+    const old = `distribution/profile/${imageId}`;
     await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 
   await prisma.student.update({
     where: { code },
-    data: { image: url },
+    data: { avatar: url },
   });
 
   return NextResponse.json({ url });
