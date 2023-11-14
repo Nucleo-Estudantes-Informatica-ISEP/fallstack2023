@@ -1,25 +1,31 @@
 "use client";
 
-import { ChangeEvent } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import Image from "next/image";
+import { Student } from "@prisma/client";
 import { AnimationProps, motion } from "framer-motion";
 import swal from "sweetalert";
 
+import { ProfileData } from "@/types/ProfileData";
+import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
 import { BASE_URL } from "@/services/api";
 
 interface UserImageProps {
-  image?: string;
+  student: Student;
   hidden?: boolean;
   editable?: boolean;
-  code?: string;
+  setProfile?: Dispatch<SetStateAction<ProfileData>>;
 }
 
-const UserImage: React.FC<UserImageProps> = ({
-  image,
-  hidden,
-  editable,
-  code,
-}) => {
+const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
+  const [image, setImage] = useState("");
+
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -34,44 +40,46 @@ const UserImage: React.FC<UserImageProps> = ({
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
-    const uploadPost = await fetch(`${BASE_URL}/upload/`, {
-      method: "POST",
-      body: JSON.stringify({
-        target: "profile",
-        contentType: "image/png",
-      }),
-    });
-
-    if (!uploadPost.ok) swal("Erro ao fazer upload da imagem!");
-
-    const { url, headers } = await uploadPost.json();
-
-    console.log(url, headers);
-
     const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
 
-    console.log(formData);
+    const uploadPost = await getSignedUrl("profile", file.type);
 
-    const uploadPut = await fetch(url + headers, {
-      method: "PUT",
-      body: formData,
-    });
+    if (!uploadPost) swal("Erro ao fazer upload da imagem!");
 
+    const uploadPut = await uploadToBucket(uploadPost, file);
     if (!uploadPut.ok) swal("Erro ao fazer upload da imagem!");
 
-    const { id } = await uploadPut.json();
+    const res = await setTarget(student.code, uploadPost);
 
-    const res = await fetch(`${BASE_URL}/students/${code}/avatar/${id}`, {
-      method: "POST",
-      body: JSON.stringify({
-        uploadId: id,
-      }),
-    });
-
-    if (!res.ok) swal("Erro ao fazer upload da imagem!");
+    if (!res) swal("Erro ao fazer upload da imagem!");
   };
+
+  const getImage = async (student: Student) => {
+    if (!student.image) return "/assets/images/default_user.png";
+    const res = await fetch(
+      BASE_URL + "/students/" + student.code + "/profile"
+    );
+    const { url } = await res.json();
+    setImage(url);
+  };
+
+  useEffect(() => {
+    getImage(student);
+  }, [student]);
+
+  if (!image) {
+    return (
+      <div className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full md:h-52 md:w-52">
+        <Image
+          width={328}
+          height={328}
+          src="/assets/images/default_user.png"
+          alt="profile image"
+          className="h-full w-full rounded-full"
+        />
+      </div>
+    );
+  }
 
   if (!editable)
     return (
@@ -79,7 +87,7 @@ const UserImage: React.FC<UserImageProps> = ({
         <Image
           width={328}
           height={328}
-          src={image ? image : `/assets/images/default_user.png`}
+          src={image}
           alt="profile image"
           className="h-full w-full rounded-full"
         />
@@ -95,7 +103,7 @@ const UserImage: React.FC<UserImageProps> = ({
       <Image
         width={328}
         height={328}
-        src={`/assets/images/${image || "default_user"}.png`}
+        src={image}
         alt="profile image"
         className="h-full w-full rounded-full"
       />

@@ -27,7 +27,7 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center"
         >
-          <UserImage />
+          <UserImage student={student} />
           <div className="mt-3">
             <p className="px-4 text-center text-3xl font-bold md:text-5xl">
               <span>{student.name}</span>
