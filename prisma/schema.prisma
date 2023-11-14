@@ -30,7 +30,7 @@ model Student {
   interests Interest[]
   savedBy   SavedStudent[]
   cv        String?
-  image     String?
+  avatar    String?        @map("image")
 
   userId Int @unique
 }

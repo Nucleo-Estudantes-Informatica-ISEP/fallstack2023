@@ -7,7 +7,7 @@ import ThemeChanger from "../Theme/ThemeChanger";
 const TopBar: React.FC = () => {
   const { scrollYProgress } = useScroll();
 
-  const opacity = useTransform(() => scrollYProgress.get() * 1.2);
+  const opacity = useTransform(() => scrollYProgress.get() * 1.5);
 
   return (
     <nav className="fixed z-20 h-16 w-full overflow-hidden">
@@ -17,7 +17,7 @@ const TopBar: React.FC = () => {
           opacity,
         }}
       />
-      <div className="absolute right-4 top-2 z-10 flex h-12 justify-end space-x-5 p-5">
+      <div className="absolute right-4 top-2 flex h-12 justify-end space-x-5 p-5">
         <ThemeChanger />
       </div>
     </nav>
