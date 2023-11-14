@@ -10,7 +10,7 @@ import {
 import Cropper, { Area, Point } from "react-easy-crop";
 import { MdFileUpload as UploadIcon } from "react-icons/md";
 
-import { resizeImage } from "@/utils/canvas";
+import { resizeMinWidthImage } from "@/utils/canvas";
 import { readFile } from "@/utils/files";
 
 interface AvatarCropperProps {
@@ -40,7 +40,7 @@ const AvatarCropper: FunctionComponent<AvatarCropperProps> = ({
       const read = await readFile(file);
 
       // needs resize to avoid crop issues
-      const imageDataUrl = await resizeImage(read, 325);
+      const imageDataUrl = await resizeMinWidthImage(read, 325);
 
       setImageSrc(imageDataUrl);
     }
