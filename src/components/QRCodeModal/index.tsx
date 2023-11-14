@@ -44,7 +44,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
                     Partilha o teu <span className="text-primary">Perfil</span>
                   </h1>
                   {/* Grid */}
-                  <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-2 md:mt-6 lg:mt-20">
+                  <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:grid-cols-2 md:mt-6 lg:mt-20 xl:mt-44">
                     {/* left column */}
                     <div className="flex items-center justify-center ">
                       {/* THIS GONNA BE ADJUSTED WHEN THE QR CODE IS REALLY IMPLEMENTED FOR NOW ITS JUST AN ICON*/}
