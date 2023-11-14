@@ -1,5 +1,6 @@
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
+import { BASE_URL } from "@/services/api";
 import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
@@ -25,6 +26,11 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   const globalStats = await getStats(student.code);
   const todayStats = await getTodayStats(student.id);
 
+  const res = await fetch(BASE_URL + "/companies");
+  const companies = await res.json();
+
+  const totalCompanies = companies.length;
+
   return (
     <section className="flex w-full flex-col items-center">
       {!session || session.student?.code !== params.code ? (
@@ -38,6 +44,7 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
           student={student}
           globalStats={globalStats}
           todayStats={todayStats}
+          totalCompanies={totalCompanies}
         />
       )}
     </section>

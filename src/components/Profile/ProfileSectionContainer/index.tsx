@@ -17,6 +17,7 @@ interface ProfileSectionContainerProps {
   interests: string[];
   globalStats: number[];
   todayStats: number;
+  totalCompanies: number;
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
@@ -24,6 +25,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   interests,
   globalStats,
   todayStats,
+  totalCompanies,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
@@ -129,7 +131,11 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
 
       <div className="mx-auto w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && (
-          <StatsSection student={student} stats={globalStats} />
+          <StatsSection
+            student={student}
+            stats={globalStats}
+            companies={totalCompanies}
+          />
         )}
         {activeTab === "Perfil" && (
           <ProfileSection
