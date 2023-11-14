@@ -5,7 +5,7 @@ const config = {
 
   uploads: {
     profile: {
-      types: ["image/png", "image/jpeg"],
+      types: ["image/png", "image/jpeg", "image/jpg"],
       maxSize: 5 * 1024 * 1024, // 5mb
     },
     cv: {

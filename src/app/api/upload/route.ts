@@ -7,7 +7,12 @@ import { storage } from "@/lib/firebaseAdmin";
 import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
-  contentType: z.enum(["image/png", "image/jpeg", "application/pdf"]),
+  contentType: z.enum([
+    "image/png",
+    "image/jpeg",
+    "image/jpg",
+    "application/pdf",
+  ]),
   target: z.enum(["profile", "cv"]),
 });
 

@@ -93,7 +93,11 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
       <div className="mx-4 flex flex-col items-center md:mx-12 md:flex-row">
         <div className="my-8 flex-1 justify-center p-3">
-          <UserImage editable={true} code={student.code} />
+          <UserImage
+            student={student}
+            editable={true}
+            setProfile={setProfile}
+          />
         </div>
 
         <div className="flex w-full flex-col gap-y-4 md:ml-12">

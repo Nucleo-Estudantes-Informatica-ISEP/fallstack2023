@@ -52,8 +52,46 @@ export async function POST(
 
   await prisma.student.update({
     where: { code },
-    data: { image: url },
+    data: { image: uploadId },
   });
+
+  return NextResponse.json({ url });
+}
+
+export async function GET(
+  req: NextRequest,
+  { params: { code } }: StudentParams
+) {
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  // companies & own student can access the cv
+  if (session.role !== "COMPANY" && session.student?.code !== code)
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  // fetch student as the logged user may be a company
+  const student = await prisma.student.findUnique({ where: { code } });
+
+  if (!student)
+    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+
+  if (!student.image)
+    return NextResponse.json(
+      { error: "Student has no image" },
+      { status: 404 }
+    );
+
+  const filename = `distribution/profile/${student.image}`;
+
+  const [url] = await storage
+    .bucket()
+    .file(filename)
+    .getSignedUrl({
+      action: "read",
+      version: "v4",
+      expires: Date.now() + 5 * 60 * 1000 * 24, // 5 minutes
+    });
 
   return NextResponse.json({ url });
 }
