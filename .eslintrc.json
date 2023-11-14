@@ -18,10 +18,10 @@
   ],
   "rules": {
     // I suggest you add those two rules:
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-empty-function": "off",
     "react-hooks/rules-of-hooks": "warn",
-    "tailwindcss/classnames-order": "error"
+    "tailwindcss/classnames-order": "warn"
   }
 }

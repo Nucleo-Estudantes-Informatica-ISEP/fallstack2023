@@ -14,7 +14,7 @@ import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
 import Hero from "../components/Hero";
 import HeroContainer from "../components/HeroContainer";
-import Topbar from "../components/TopBar";
+import TopBar from "../components/TopBar";
 
 const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ const App: FunctionComponent = () => {
     <ThemeProvider>
       <HeroContainer>
         <GenericContainer>
-          <Topbar />
+          <TopBar />
           <Hero
             logoSrc={{
               white: LogoWhite,
@@ -35,7 +35,7 @@ const App: FunctionComponent = () => {
           <Content contentRef={contentRef} />
           <ComingSoon />
           <Footer
-            lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
+            lastEditionUrl="https://fallstack2022.nei-isep.org/"
             neiLogoSrc={{
               white: NeiLogoWhite,
               dark: NeiLogoBlack,

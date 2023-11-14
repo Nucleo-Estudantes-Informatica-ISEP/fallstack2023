@@ -17,12 +17,10 @@ const Highlight: FunctionComponent<HighlightProps> = ({
   tilt = tilt || "left";
   return (
     <span
-      className={`relative after:absolute after:-left-2 after:-z-10 after:box-content after:h-[90%] after:w-full after:rounded-[66px] ${
+      className={`relative after:absolute after:left-1/2 after:top-1/2 after:-z-10 after:box-content after:h-[90%] after:w-full after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-[66px] ${
         color === "accent" ? "after:bg-accent" : "after:bg-primary"
       } ${
-        tilt === "left"
-          ? "after:top-1 after:-rotate-1"
-          : "after:bottom-1 after:rotate-1"
+        tilt === "left" ? "after:-rotate-1" : "after:rotate-1"
       } after:px-2 ${className}`}
     >
       {children}

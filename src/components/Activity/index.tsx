@@ -1,5 +1,8 @@
+"use client";
+
 import { FunctionComponent } from "react";
 import Image, { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
 
 interface ActivityProps {
   logo: StaticImageData;
@@ -17,12 +20,26 @@ const Activity: FunctionComponent<ActivityProps> = ({
   imageOrientation,
 }) => {
   imageOrientation = imageOrientation || "left";
+
   return (
-    <section className="grid w-full grid-cols-1 grid-rows-3 items-center justify-center lg:grid-cols-2 lg:grid-rows-2">
-      <h5 className="w-full text-5xl font-bold lg:col-span-2 lg:ml-10">
+    <motion.section
+      initial={{
+        opacity: 0,
+        x: imageOrientation === "left" ? -40 : 40,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+      }}
+      className="my-12 grid w-full grid-cols-1 grid-rows-[1fr_3fr_3fr] items-center justify-center gap-8 lg:grid-cols-2 lg:grid-rows-[1fr_4fr]"
+    >
+      <h5 className="w-full text-center font-poppins text-4xl font-bold md:text-left md:text-5xl lg:col-span-2">
         Dia {day} - {title}
       </h5>
-      <div className="mx-auto text-center text-xl leading-7 md:w-10/12 md:text-justify md:leading-8 lg:mx-0 lg:ml-auto lg:text-2xl">
+      <div className="mx-auto w-full text-center text-xl leading-7 md:text-justify md:leading-8 lg:text-2xl">
         {children}
       </div>
 
@@ -35,10 +52,10 @@ const Activity: FunctionComponent<ActivityProps> = ({
         <Image
           src={logo}
           alt={`Atividade ${title}`}
-          className="mx-auto mb-10 w-1/2 lg:mb-0 lg:w-3/5"
+          className="mx-auto w-3/4 lg:w-4/5"
         />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

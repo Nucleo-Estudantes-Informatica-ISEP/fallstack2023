@@ -2,7 +2,7 @@ import React from "react";
 
 const ComingSoon: React.FC = () => {
   return (
-    <section className="mb-12 flex w-full items-center justify-center text-center text-xl md:text-4xl">
+    <section className="mb-8 flex w-full items-center justify-center text-center text-xl md:text-4xl">
       <h2 className="mr-1 text-center font-poppins">
         Mais informações em breve
       </h2>
