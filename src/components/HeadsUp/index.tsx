@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import useSession from "../../hooks/useSession";
 
@@ -6,9 +6,11 @@ function HeadsUp() {
     const [isLogged, setIsLogged] = useState(false);
     const session = useSession();
 
-    if(session.user) {
-        setIsLogged(true);
-    }
+    useEffect(() => {
+        if(session.user) {
+            setIsLogged(true);
+        }
+    }, []);
 
     return (
         <>
