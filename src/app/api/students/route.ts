@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
+import { storage } from "@/lib/firebaseAdmin";
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
 import { postStudentSchema } from "@/schemas/postStudentSchema";
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
 
     // valid body
     const userId = session.id;
-    const { name, year } = body;
+    const { name, year, avatar, cv, bio, interests } = body;
 
     // create code for student
     let code: string = "";
@@ -39,10 +40,51 @@ export async function POST(req: Request) {
       codeExists = student !== null;
     }
 
+    let avatarUrl = null;
+    if (avatar) {
+      const uploaded = `uploaded/avatar/${avatar}`;
+
+      const [exists] = await storage.bucket().file(uploaded).exists();
+      if (!exists)
+        return NextResponse.json(
+          { error: "Invalid avatar upload id" },
+          { status: 400 }
+        );
+
+      // move avatar to distribution
+      const distribution = `distribution/avatar/${avatar}`;
+      await storage.bucket().file(uploaded).move(distribution);
+
+      // create a public accessible url
+      const [meta] = await storage.bucket().file(distribution).makePublic();
+
+      const { bucket, object } = meta;
+      avatarUrl = `https://${bucket}.storage.googleapis.com/${object}`;
+    }
+
+    if (cv) {
+      const uploaded = `uploaded/cv/${cv}`;
+
+      const [cvExists] = await storage.bucket().file(uploaded).exists();
+      if (!cvExists)
+        return NextResponse.json(
+          { error: "Invalid CV upload id" },
+          { status: 400 }
+        );
+
+      // move to distribution
+      const distribution = `distribution/cv/${cv}`;
+      await storage.bucket().file(uploaded).move(distribution);
+    }
+
     // create student
     const student = await prisma.student.create({
       data: {
         name: name,
+        bio,
+        interests: {
+          connect: interests.map((interest) => ({ name: interest })),
+        },
         code: code,
         user: {
           connect: {
@@ -50,6 +92,8 @@ export async function POST(req: Request) {
           },
         },
         year: year,
+        image: avatarUrl,
+        cv,
       },
     });
 
@@ -61,7 +105,7 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json({ student: student }, { status: 201 });
+    return NextResponse.json(student, { status: 201 });
   } catch (e) {
     if (e instanceof ZodError)
       return NextResponse.json({ error: e.errors }, { status: 400 });
