@@ -36,7 +36,7 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       const signed = await getSignedUrl("cv", file.type);
       if (!signed) {
         setError("Ocorreu um erro ao dar upload.");
-        return setLoading(false); // TODO: show error
+        return setLoading(false);
       }
 
       if (file.size > signed.maxSize) {
@@ -48,7 +48,10 @@ const CvStep: FunctionComponent<CvStepProps> = ({
 
       const res = await uploadToBucket(signed, file);
 
-      if (res.status !== 200) return setLoading(false); // TODO: show error
+      if (res.status !== 200) {
+        setError("Ocorreu um erro ao dar upload.");
+        return setLoading(false);
+      }
 
       const cv = {
         name: file.name,
