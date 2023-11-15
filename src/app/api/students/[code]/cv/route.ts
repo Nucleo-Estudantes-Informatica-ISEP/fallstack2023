@@ -19,14 +19,6 @@ export async function GET(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  const session = await getServerSession();
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  // companies & own student can access the cv
-  if (session.role !== "COMPANY" && session.student?.code !== code)
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
   // fetch student as the logged user may be a company
   const student = await prisma.student.findUnique({ where: { code } });
 

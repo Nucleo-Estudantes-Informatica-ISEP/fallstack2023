@@ -1,4 +1,5 @@
 import { Student, User } from "@prisma/client";
+import Skeleton from "react-loading-skeleton";
 
 import { ProfileData } from "@/types/ProfileData";
 
@@ -41,8 +42,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       {student.cv && (
         <OpenCvSection student={student} text={"Abrir o meu CV"} />
       )}
-      {profile.interests.length > 0 && (
+      {profile.interests.length > 0 ? (
         <InterestsSection userInterests={profile.interests} />
+      ) : (
+        <Skeleton height={40} />
       )}
     </section>
   );

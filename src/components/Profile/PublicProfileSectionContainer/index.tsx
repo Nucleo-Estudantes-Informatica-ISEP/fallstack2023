@@ -2,6 +2,7 @@
 
 import { Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
 
 import UserImage from "@/components/UserImage";
 import { Github, Linkedin } from "@/styles/Icons";
@@ -27,7 +28,11 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center"
         >
-          <UserImage student={student} />
+          {student.image ? (
+            <UserImage student={student} />
+          ) : (
+            <Skeleton circle={true} height={120} width={120} />
+          )}
           <div className="mt-3">
             <p className="px-4 text-center text-3xl font-bold md:text-5xl">
               <span>{student.name}</span>
@@ -65,11 +70,13 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
           {student.cv && (
             <CvSection
               student={student}
-              text={"Abrir o CV de" + student.name}
+              text={"Abrir o CV de " + student.name}
             />
           )}
-          {interests.length > 0 && (
+          {interests.length > 0 ? (
             <InterestsSection userInterests={interests} />
+          ) : (
+            <Skeleton height={40} />
           )}
         </section>
       </div>

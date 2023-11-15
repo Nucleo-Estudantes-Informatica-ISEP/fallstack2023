@@ -2,6 +2,7 @@
 
 import { Dispatch, SetStateAction, useRef } from "react";
 import { Student, User } from "@prisma/client";
+import Skeleton from "react-loading-skeleton";
 import swal from "sweetalert";
 
 import { ProfileData } from "@/types/ProfileData";
@@ -95,27 +96,39 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
     if (res.status === 200) swal("Perfil atualizado com sucesso!");
     else swal("Ocorreu um erro ao atualizar o teu perfil...");
+
+    window.location.reload();
   };
 
   return (
     <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
       <div className="mx-4 flex flex-col items-center md:mx-12 md:flex-row">
         <div className="my-8 flex-1 justify-center p-3">
-          <UserImage
-            student={student}
-            editable={true}
-            setProfile={setProfile}
-          />
+          {student ? (
+            <UserImage
+              student={student}
+              editable={true}
+              setProfile={setProfile}
+            />
+          ) : (
+            <Skeleton circle={true} height={120} width={120} />
+          )}
         </div>
 
         <div className="flex w-full flex-col gap-y-4 md:ml-12">
-          <Input name="Nome" defaultValue={student.name} disabled={true} />
-          <Input name="Ano" defaultValue={student.year} disabled={true} />
-          <Input
-            name="Email"
-            defaultValue={student.user.email}
-            disabled={true}
-          />
+          {student ? (
+            <>
+              <Input name="Nome" defaultValue={student.name} disabled={true} />
+              <Input name="Ano" defaultValue={student.year} disabled={true} />
+              <Input
+                name="Email"
+                defaultValue={student.user.email}
+                disabled={true}
+              />
+            </>
+          ) : (
+            <Skeleton height={40} />
+          )}
         </div>
       </div>
 
@@ -138,22 +151,30 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
           text={student.cv ? "Alterar CV" : "Importar CV"}
         />
 
-        <UserBioTextArea
-          name="Bio"
-          defaultValue={profile.bio}
-          rows={5}
-          placeholder="Escreve algo sobre ti..."
-          setValue={handleUserBioChange}
-          value={profile.bio ? profile.bio : ""}
-          limit={LIMIT}
-          warningLimit={LIMIT - 30}
-        />
+        {profile.bio ? (
+          <UserBioTextArea
+            name="Bio"
+            defaultValue={profile.bio}
+            rows={5}
+            placeholder="Escreve algo sobre ti..."
+            setValue={handleUserBioChange}
+            value={profile.bio ? profile.bio : ""}
+            limit={LIMIT}
+            warningLimit={LIMIT - 30}
+          />
+        ) : (
+          <Skeleton height={100} />
+        )}
 
         <label className="text-lg text-slate-700">Interesses</label>
-        <InterestSelector
-          userInterests={profile.interests}
-          setUserInterests={setUserInterests}
-        />
+        {profile.interests ? (
+          <InterestSelector
+            userInterests={profile.interests}
+            setUserInterests={setUserInterests}
+          />
+        ) : (
+          <Skeleton height={100} />
+        )}
 
         <button
           onClick={handleSave}

@@ -4,4 +4,5 @@ export interface ProfileData {
   linkedin: string | null;
   github: string | null;
   cv: string | null;
+  image: string | null;
 }

@@ -14,7 +14,6 @@ import swal from "sweetalert";
 
 import { ProfileData } from "@/types/ProfileData";
 import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
-import { BASE_URL } from "@/services/api";
 
 interface UserImageProps {
   student: Student;
@@ -51,16 +50,14 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
 
     const res = await setTarget(student.code, uploadPost);
 
+    getImage(student);
+
     if (!res) swal("Erro ao fazer upload da imagem!");
   };
 
   const getImage = async (student: Student) => {
     if (!student.image) return "/assets/images/default_user.png";
-    const res = await fetch(
-      BASE_URL + "/students/" + student.code + "/profile"
-    );
-    const { url } = await res.json();
-    setImage(url);
+    setImage(student.image);
   };
 
   useEffect(() => {
@@ -87,7 +84,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         <Image
           width={328}
           height={328}
-          src={image}
+          src={student.image || "/assets/images/default_user.png"}
           alt="profile image"
           className="h-full w-full rounded-full"
         />
@@ -103,11 +100,11 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
       <Image
         width={328}
         height={328}
-        src={image}
+        src={student.image || "/assets/images/default_user.png"}
         alt="profile image"
         className="h-full w-full rounded-full"
       />
-      <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-0 hover:bg-opacity-30">
+      <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full hover:bg-black/30">
         <motion.div
           {...animation}
           className="bg-primary/50 absolute left-0 top-0 h-full w-full rounded-full"
