@@ -8,7 +8,7 @@ const Sponsor: React.FC<FaqProps> = ({ question, answer }) => {
         <div className="flex flex-col justify-center">
             <div className="my-4">
                 <p
-                    className="font-bold text-xl text-orange-600 text-center "
+                    className="font-bold text-3xl text-orange-600 text-center "
                 >
                     {question}
 
@@ -16,7 +16,7 @@ const Sponsor: React.FC<FaqProps> = ({ question, answer }) => {
             </div>
             <div className="mb-4">
                 <p
-                    className="font-light px-2 text-justify"
+                    className="font-light text-xl px-2 text-justify"
                 >
                     {answer}
 
