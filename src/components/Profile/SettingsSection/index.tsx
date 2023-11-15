@@ -89,7 +89,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",
       body: JSON.stringify({
-        bio: profile.bio,
+        bio: profile.bio ? profile.bio : undefined,
         github: githubRef.current?.value,
         linkedin: linkedinRef.current?.value,
         interests: profile.interests,
