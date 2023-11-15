@@ -37,6 +37,7 @@ export async function GET(
       action: "read",
       version: "v4",
       expires: Date.now() + 5 * 60 * 1000, // 5 minutes
+      virtualHostedStyle: true,
     });
 
   return NextResponse.json({ url });
