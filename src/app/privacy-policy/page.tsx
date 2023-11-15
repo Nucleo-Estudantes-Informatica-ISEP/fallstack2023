@@ -1,6 +1,6 @@
 const PrivacyPolicyPage: React.FC = () => {
   return (
-    <section className="w-full px-8 py-24 md:px-24">
+    <section className="w-full px-8 py-24 text-justify md:px-24">
       <h1 className="text-center text-4xl font-bold">
         Política de Privacidade – FallStack
       </h1>
