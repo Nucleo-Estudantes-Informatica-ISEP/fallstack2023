@@ -32,12 +32,16 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
   const handleNext = () => {
     if (!inputRef.current?.value) return setError("Este campo é obrigatório.");
 
-    const passwordRegex = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+    const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/);
 
     const password = inputRef.current.value;
 
+    if (password.length < 8)
+      return setError("A password deve conter pelo menos 8 caracteres.");
     if (!password.match(passwordRegex))
-      return setError("A password é demasiado insegura.");
+      return setError(
+        "A password deve conter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número."
+      );
 
     setData({ ...data, password: inputRef.current.value });
     setCurrentStep(currentStep + 1);

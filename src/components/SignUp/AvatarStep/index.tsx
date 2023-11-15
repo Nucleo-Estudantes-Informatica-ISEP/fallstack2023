@@ -1,6 +1,7 @@
+"use client";
+
 import { FunctionComponent, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Area } from "react-easy-crop";
@@ -12,6 +13,7 @@ import { getSignedUrl, uploadToBucket } from "@/lib/upload";
 import useSession from "@/hooks/useSession";
 import AvatarCropper from "@/components/AvatarCropper";
 import PrimaryButton from "@/components/PrimaryButton";
+import PrivacyPolicyModal from "@/components/PrivacyPolicyModal/page";
 import { getCroppedImg } from "@/utils/canvas";
 
 interface AvatarStepProps {
@@ -20,6 +22,7 @@ interface AvatarStepProps {
 
 const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
   const session = useSession();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
@@ -89,11 +92,19 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
       <label htmlFor="tac" className="z-10 mt-4 text-black">
         <input type="checkbox" id="tac" className="mr-3" ref={tacRef} />
         Aceito a{" "}
-        <Link href={"/privacy-policy"} className="text-primary underline">
+        <button
+          onClick={() => setIsModalVisible(true)}
+          className="text-primary underline"
+        >
           política de privacidade
-        </Link>
+        </button>
         .
       </label>
+
+      <PrivacyPolicyModal
+        isVisible={isModalVisible}
+        setIsVisible={setIsModalVisible}
+      />
 
       {error && (
         <motion.p

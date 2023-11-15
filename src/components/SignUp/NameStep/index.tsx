@@ -52,7 +52,7 @@ const NameStep: FunctionComponent<NameStepProps> = ({
         />
       </div>
 
-      <p className="mb-2 text-center text-2xl font-bold text-secondary">
+      <p className="mb-2 text-center text-2xl font-bold text-primary">
         Bem-vindo!
       </p>
 

@@ -14,7 +14,6 @@ interface ProfileSectionProps {
 }
 
 const ProfileSection: React.FC<ProfileSectionProps> = ({
-  // interests,
   student,
   profile,
 }) => {

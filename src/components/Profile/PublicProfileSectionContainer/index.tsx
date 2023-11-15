@@ -22,22 +22,22 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
   interests,
 }) => {
   return (
-    <div className="mt-14 h-full w-full items-center justify-center md:my-14">
-      <div className="mb-12 flex h-full w-full flex-col items-center">
+    <div className="mt-12 h-full w-full items-center justify-center md:my-14">
+      <div className="mb-12 mt-4 flex h-full w-full flex-col items-center">
         <motion.div
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center pt-8"
         >
           {student.avatar ? (
             <UserImage student={student} />
           ) : (
             <Skeleton circle={true} height={120} width={120} />
           )}
-          <div className="mt-3">
-            <p className="px-4 text-center text-3xl font-bold md:text-5xl">
+          <div className="flex flex-col gap-y-2 px-4 text-center">
+            <p className="text-3xl font-bold md:text-5xl">
               <span>{student.name}</span>
             </p>
-            <p className="px-4 pt-3 text-center text-lg md:text-xl">
+            <p className="text-lg md:text-xl">
               <span>{student.year}</span>
             </p>
           </div>

@@ -43,7 +43,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
     <div className="h-full w-full items-center justify-center md:mb-12">
       <div
         className={`flex w-full flex-col items-center ${
-          activeTab === "Definições" ? "pt-12" : ""
+          activeTab === "Definições" ? "pt-12" : "pt-4"
         } mb-12 h-full bg-secondary`}
       >
         <motion.div
@@ -54,7 +54,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
             opacity: activeTab !== "Definições" ? 1 : 0,
           }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center"
+          className="mt-4 flex flex-col items-center justify-center"
         >
           <UserImage student={student} />
 
@@ -88,22 +88,22 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </p>
         </motion.div>
 
-        <div className="relative mt-8 flex w-full max-w-4xl flex-row justify-between text-center md:w-5/6 md:flex-row">
+        <div className="relative mb-4 mt-8 flex w-full max-w-3xl flex-col items-center justify-between gap-y-4 text-center text-lg md:mb-0 md:flex-row lg:w-5/6">
           <motion.div
-            className="absolute bottom-0 left-0 hidden w-52 border-b-4 border-primary md:visible"
+            className="absolute bottom-0 left-0 hidden w-44 border-b-4 border-primary md:block"
             animate={{
               x:
                 activeTab === "Sumário"
                   ? 0
                   : activeTab === "Perfil"
-                  ? 300
-                  : 600,
+                  ? "168%"
+                  : "336%",
             }}
             initial={"165%"}
           ></motion.div>
           <button
             onClick={() => setActiveTab("Sumário")}
-            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+            className={`w-44 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
               activeTab === "Sumário" ? "font-bold text-primary" : "font-normal"
             }`}
           >
@@ -111,7 +111,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </button>
           <button
             onClick={() => setActiveTab("Perfil")}
-            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+            className={`w-44 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
               activeTab === "Perfil" ? "font-bold text-primary" : "font-normal"
             }`}
           >
@@ -119,7 +119,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </button>
           <button
             onClick={() => setActiveTab("Definições")}
-            className={`w-52 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
+            className={`w-44 rounded-md px-4 py-2 md:hover:bg-slate-200/30 ${
               activeTab === "Definições"
                 ? "font-bold text-primary"
                 : "font-normal"

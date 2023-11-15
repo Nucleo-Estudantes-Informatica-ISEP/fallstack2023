@@ -13,13 +13,13 @@ const ContactSection: React.FC<ContactSectionProps> = ({ inputRef, text }) => {
   return (
     <div className="my-4 flex flex-col space-y-2 text-black">
       <label className="text-lg text-slate-700">Curriculum Vitae</label>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 hover:cursor-pointer hover:text-primary">
         <ImportCv className="mb-2 h-6 w-6"></ImportCv>
         <a
           onClick={() => document.getElementById("inputCv")?.click()}
-          className="cursor-pointer pl-2"
+          className="pl-2 underline"
         >
-          <label className="underline">{text}</label>
+          {text}
 
           <label id="lbl" className="ml-4 text-sm" htmlFor=""></label>
         </a>

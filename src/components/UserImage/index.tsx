@@ -65,7 +65,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
     getImage(student);
   }, [student]);
 
-  if (!image) {
+  if (!image)
     return (
       <div className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full md:h-52 md:w-52">
         <Image
@@ -77,7 +77,6 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         />
       </div>
     );
-  }
 
   if (!editable)
     return (
