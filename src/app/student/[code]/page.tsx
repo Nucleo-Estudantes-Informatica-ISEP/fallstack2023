@@ -1,3 +1,4 @@
+import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import { BASE_URL } from "@/services/api";
@@ -26,8 +27,7 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   const globalStats = await getStats(student.code);
   const todayStats = await getTodayStats(student.id);
 
-  const res = await fetch(BASE_URL + "/companies");
-  const companies = await res.json();
+  const companies = await getCompanies();
 
   const totalCompanies = companies.length;
 
