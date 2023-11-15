@@ -40,7 +40,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   });
 
   return (
-    <div className="w-full items-center justify-center md:mb-12">
+    <div className="h-full w-full items-center justify-center md:mb-12">
       <div
         className={`flex w-full flex-col items-center ${
           activeTab === "Definições" ? "pt-12" : ""

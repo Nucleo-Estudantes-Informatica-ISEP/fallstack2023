@@ -21,8 +21,8 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
   interests,
 }) => {
   return (
-    <div className="mt-14 w-full items-center justify-center md:my-14">
-      <div className="mb-12 flex h-full  w-full flex-col items-center">
+    <div className="mt-14 h-full w-full items-center justify-center md:my-14">
+      <div className="mb-12 flex h-full w-full flex-col items-center">
         <motion.div
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center"
@@ -58,21 +58,14 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
           </p>
         </motion.div>
       </div>
-      <div className="mx-auto w-full max-w-4xl md:w-5/6">
-        <section className="flex w-full flex-col rounded-t-3xl bg-white py-4 md:rounded-md">
-          {student.bio && <BioSection bio={student.bio} />}
-          <ContactSection email={student.user.email} />
-          {student.cv && (
-            <CvSection
-              student={student}
-              text={"Abrir o CV de" + student.name}
-            />
-          )}
-          {interests.length > 0 && (
-            <InterestsSection userInterests={interests} />
-          )}
-        </section>
-      </div>
+      <section className="mx-auto flex h-full w-full max-w-4xl flex-col rounded-md bg-white py-4 md:w-5/6">
+        {student.bio && <BioSection bio={student.bio} />}
+        <ContactSection email={student.user.email} />
+        {student.cv && (
+          <CvSection student={student} text={"Abrir o CV de " + student.name} />
+        )}
+        {interests.length > 0 && <InterestsSection userInterests={interests} />}
+      </section>
     </div>
   );
 };
