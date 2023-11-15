@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import prisma from "@/lib/prisma";
+import getServerSession from "@/services/getServerSession";
 
 const schema = z.object({
   bio: z.string(),
@@ -19,6 +20,15 @@ interface StudentProps {
 }
 
 export async function PATCH(req: NextRequest, { params }: StudentProps) {
+  const session = await getServerSession();
+  const { code } = params;
+
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  if (!session.student || session.student.code !== code)
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
   const body = await req.json();
 
   const safeParse = schemaPartial.safeParse(body);
