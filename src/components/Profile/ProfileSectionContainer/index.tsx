@@ -87,7 +87,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           </p>
         </motion.div>
 
-        <div className="relative mt-8 flex w-full max-w-4xl flex-col items-center justify-center text-center md:w-5/6 md:flex-row md:justify-between">
+        <div className="relative mt-8 flex w-full max-w-4xl flex-row justify-between text-center md:w-5/6 md:flex-row">
           <motion.div
             className="absolute bottom-0 left-0 hidden w-52 border-b-4 border-primary md:visible"
             animate={{

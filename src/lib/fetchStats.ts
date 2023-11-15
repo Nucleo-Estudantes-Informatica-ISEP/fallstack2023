@@ -7,7 +7,7 @@ export async function getStats(code: string): Promise<number[]> {
         code: code,
       },
     },
-    by: "isScanned",
+    by: "isSaved",
     _count: {
       _all: true,
     },
@@ -31,7 +31,7 @@ export async function getTodayStats(id: number): Promise<number> {
         gte: startOfDay,
       },
     },
-    by: "isScanned",
+    by: "isSaved",
     _count: {
       _all: true,
     },

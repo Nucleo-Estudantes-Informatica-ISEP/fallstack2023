@@ -15,31 +15,27 @@ const StatsSection: React.FC<StatsProps> = ({ stats, student, companies }) => {
 
   return (
     <section className="flex w-full flex-col items-center justify-center rounded-t-3xl bg-white p-4 md:rounded-md md:p-8">
-      <div className="mb-6 grid grid-cols-1 items-center justify-center gap-4 md:grid-cols-3 md:gap-24">
-        <div className="flex flex-col items-start">
-          <h2 className="font-poppins text-xl font-semibold text-gray-600">
-            Total de <br />
-            scans
+      <h1 className="mx-auto my-6 w-1/2 text-center font-poppins text-2xl font-extrabold uppercase text-black md:my-2">
+        Visão Geral
+      </h1>
+      <div className="mb-6 grid w-full grid-cols-1 items-center justify-center gap-y-4 md:my-6 md:grid-cols-3">
+        <div className="flex flex-col items-center gap-y-2 md:gap-y-4">
+          <p className="mt-4 text-4xl font-bold text-black">{totalScans}</p>
+          <h2 className="text-center font-poppins font-semibold leading-6 text-gray-600 md:text-xl">
+            {totalScans === 1 ? "Scan" : "Scans"}
           </h2>
-          <p className="mt-4 text-xl font-bold text-black md:text-4xl">
-            {totalScans}
-          </p>
         </div>
-        <div className="flex flex-col items-center">
-          <h2 className="text-left font-poppins text-xl font-semibold text-gray-600">
-            Total de gravações <br />
-            de perfil
+        <div className="flex flex-col items-center gap-y-2 md:gap-y-4 md:border-x-4">
+          <p className="mt-4 text-4xl font-bold text-black">{totalSaves}</p>
+          <h2 className=" text-center font-poppins font-semibold leading-6 text-gray-600 md:text-xl">
+            {totalSaves === 1 ? "Gravação de Perfil" : "Gravações de Perfil"}
           </h2>
-          <p className="mt-4 font-bold text-black md:text-4xl">{totalSaves}</p>
         </div>
-        <div className="flex flex-col items-end">
-          <h2 className="text-start font-poppins text-xl font-semibold text-gray-600">
-            Empresas <br />
-            restantes
+        <div className="flex flex-col items-center gap-y-2 md:gap-y-4">
+          <p className="mt-4 text-4xl font-bold text-black">{companiesLeft}</p>
+          <h2 className="text-center font-poppins font-semibold leading-6 text-gray-600 md:text-xl">
+            Empresas restantes
           </h2>
-          <p className="mt-4 font-bold text-black md:text-4xl">
-            {companiesLeft}
-          </p>
         </div>
       </div>
       <HistorySection code={student.code} />
