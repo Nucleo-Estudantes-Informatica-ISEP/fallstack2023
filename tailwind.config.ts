@@ -50,8 +50,14 @@ const config: Config = {
       translate: {
         200: "200%",
       },
+      height: {
+        144: "36rem",
+        168: "42rem",
+        192: "48rem",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
