@@ -1,5 +1,5 @@
 export interface HistoryData {
-  isScanned: boolean;
+  isSaved: boolean;
   createdAt: string;
   companyId: number;
   studentId: number;

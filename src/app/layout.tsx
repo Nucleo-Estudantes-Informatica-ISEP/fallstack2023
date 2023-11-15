@@ -23,7 +23,7 @@ export default function RootLayout({
         <AuthContextProvider>
           <ThemeProvider>
             <Topbar />
-            <main>{children}</main>
+            {children}
           </ThemeProvider>
         </AuthContextProvider>
       </body>

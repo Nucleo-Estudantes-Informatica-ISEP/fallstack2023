@@ -56,13 +56,13 @@ model Interest {
 model SavedStudent {
   student   Student  @relation(fields: [studentId], references: [id])
   company   Company  @relation(fields: [companyId], references: [id])
-  isScanned Boolean  @default(false)
+  isSaved Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int
   companyId Int
 
-  @@id([studentId, companyId])
+  @@id([studentId, companyId,  isSaved])
 }
 
 enum Role {

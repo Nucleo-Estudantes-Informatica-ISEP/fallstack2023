@@ -45,52 +45,60 @@ const HistorySection = ({ code }: HistorySectionProps) => {
   }, [code]);
 
   return (
-    <div className="my-2 flex w-full flex-col items-center justify-center">
-      <h1 className="mx-auto w-1/2 text-center font-poppins text-lg font-semibold uppercase text-black">
+    <div className="mt-12 flex w-full flex-col items-center justify-center">
+      <h1 className="mx-auto text-center font-poppins text-2xl font-extrabold uppercase text-black">
         Histórico de Scans
       </h1>
       <Table
         aria-label="Example static collection table"
-        className="w-3/4 items-center justify-center"
+        className="mt-2 w-5/6 items-center justify-center"
       >
         <TableHeader>
-          <TableColumn className="text-start text-gray-500">
+          <TableColumn className="w-1/3 text-center text-lg text-black">
             Empresa
           </TableColumn>
-          <TableColumn className="text-start text-gray-500">Data</TableColumn>
-          <TableColumn className="text-start text-gray-500">Ação</TableColumn>
+          <TableColumn className="w-1/3 text-center text-lg text-black">
+            Data
+          </TableColumn>
+          <TableColumn className="w-1/3 text-center text-lg text-black">
+            Ação
+          </TableColumn>
         </TableHeader>
         <TableBody className="justify-center text-center">
-          {historyData ? (
+          {historyData && historyData.length !== 0 ? (
             historyData.map((item) => (
               <TableRow
                 key={item.studentId}
-                className="border-t-2 border-gray-500"
+                className={
+                  historyData.indexOf(item) === 0
+                    ? "border-t-2 border-gray-600"
+                    : "border-t-2 border-gray-300"
+                }
               >
-                <TableCell className="text-start font-poppins font-semibold text-black">
+                <TableCell className="text-center font-poppins font-semibold text-gray-600">
                   {item.company.name}
                 </TableCell>
-                <TableCell className="text-start font-poppins font-semibold text-black">
+                <TableCell className="text-center font-poppins font-semibold text-gray-600">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
-                <TableCell className="text-start font-poppins font-semibold text-black">
-                  {item.isScanned ? (
+                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                  {item.isSaved ? (
                     <span className="text-primary">SALVOU</span>
                   ) : (
-                    <span className="text-secondary">SCAN</span>
+                    <span className="text-gray-600">SCAN</span>
                   )}
                 </TableCell>
               </TableRow>
             ))
           ) : (
-            <TableRow className="border-t-2 border-gray-500">
-              <TableCell className="text-start font-poppins font-semibold text-black">
+            <TableRow className="border-t-2 border-gray-600">
+              <TableCell className="text-center font-poppins font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-start font-poppins font-semibold text-black">
+              <TableCell className="text-center font-poppins font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-start font-poppins font-semibold text-black">
+              <TableCell className="text-center font-poppins font-semibold text-black">
                 --
               </TableCell>
             </TableRow>

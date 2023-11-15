@@ -32,7 +32,7 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   const totalCompanies = companies.length;
 
   return (
-    <section className="flex w-full flex-col items-center">
+    <section className="flex h-full min-h-screen w-full flex-col items-center">
       {!session || session.student?.code !== params.code ? (
         <PublicProfileSectionContainer
           interests={sanitizedInterests}
