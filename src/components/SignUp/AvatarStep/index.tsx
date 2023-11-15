@@ -1,6 +1,8 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { Area } from "react-easy-crop";
 import { toast } from "react-toastify";
 
@@ -19,11 +21,17 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
+  const tacRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = async () => {
     try {
+      if (!tacRef.current?.checked)
+        return setError("Tens de aceitar os termos e condições.");
+
       setLoading(true);
 
       let avatar = null;
@@ -61,8 +69,8 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
       <div className="mb-5 flex justify-center">
         <Image
           src={"/assets/images/logo_dark.png"}
-          width={64}
-          height={64}
+          width={32}
+          height={32}
           alt="Logo"
         />
       </div>
@@ -72,6 +80,30 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
       </p>
 
       <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
+
+      <label htmlFor="tac" className="z-10 mt-4 text-black">
+        <input type="checkbox" id="tac" className="mr-3" ref={tacRef} />
+        Aceito a{" "}
+        <Link href={"/privacy-policy"} className="text-primary underline">
+          política de privacidade
+        </Link>
+        .
+      </label>
+
+      {error && (
+        <motion.p
+          className="mt-1 text-sm font-bold text-red-600"
+          animate={{
+            y: [-15, 0],
+          }}
+          transition={{
+            ease: "easeOut",
+            duration: 0.2,
+          }}
+        >
+          {error}
+        </motion.p>
+      )}
 
       <PrimaryButton
         loading={loading}
