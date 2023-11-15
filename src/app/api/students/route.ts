@@ -98,7 +98,7 @@ export async function POST(req: Request) {
           },
         },
         year: year,
-        image: avatarUrl,
+        avatar: avatarUrl,
         cv,
       },
     });
