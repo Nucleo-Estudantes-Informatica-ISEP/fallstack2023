@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { StudentSignUpData } from "@/types/StudentSignUpData";
 import { signUp } from "@/lib/auth";
 import { getSignedUrl, uploadToBucket } from "@/lib/upload";
+import useSession from "@/hooks/useSession";
 import AvatarCropper from "@/components/AvatarCropper";
 import PrimaryButton from "@/components/PrimaryButton";
 import { getCroppedImg } from "@/utils/canvas";
@@ -18,6 +19,8 @@ interface AvatarStepProps {
 }
 
 const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
+  const session = useSession();
+
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [loading, setLoading] = useState(false);
@@ -58,6 +61,7 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
         return setLoading(false);
       }
 
+      session.fetchSession();
       router.push("/");
     } catch (e) {
       console.error(e);
