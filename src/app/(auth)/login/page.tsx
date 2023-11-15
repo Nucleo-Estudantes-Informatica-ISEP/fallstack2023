@@ -50,7 +50,7 @@ const LoginPage: React.FC = () => {
     if (await logIn(email, password)) {
       session.fetchSession();
       router.push("/");
-      return;
+      return router.refresh();
     }
 
     setEmailError("Email ou password incorretos.");

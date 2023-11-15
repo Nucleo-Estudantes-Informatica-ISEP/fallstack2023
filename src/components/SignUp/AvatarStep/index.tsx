@@ -63,6 +63,7 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
 
       session.fetchSession();
       router.push("/");
+      router.refresh();
     } catch (e) {
       console.error(e);
     }
