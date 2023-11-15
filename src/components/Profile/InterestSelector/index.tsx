@@ -20,9 +20,7 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
   const [interests, setInterests] = useState<Interest[]>([]);
 
   async function fetchInterests() {
-    const res = await fetch(BASE_URL + "/interests", {
-      cache: "force-cache",
-    });
+    const res = await fetch(BASE_URL + "/interests");
     const json = await res.json();
     setInterests(json);
   }
