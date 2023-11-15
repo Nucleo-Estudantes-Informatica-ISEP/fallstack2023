@@ -62,7 +62,7 @@ export async function POST(
 
   const [exists] = await storage.bucket().file(uploaded).exists();
   if (!exists)
-    return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
+    return NextResponse.json({ error: "Invalid upload id" }, { status: 400 });
 
   // move to distribution
   const distribution = `distribution/cv/${uploadId}`;

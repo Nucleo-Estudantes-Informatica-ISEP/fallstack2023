@@ -38,7 +38,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
     linkedin: student.linkedin,
     github: student.github,
     cv: student.cv,
-    image: student.image,
+    avatar: student.avatar,
   });
 
   return (
@@ -58,7 +58,7 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center"
         >
-          {profile.image ? (
+          {profile.avatar ? (
             <Skeleton circle={true} height={120} width={120} />
           ) : (
             <UserImage student={student} />

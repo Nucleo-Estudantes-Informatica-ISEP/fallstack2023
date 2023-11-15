@@ -27,14 +27,14 @@ export async function POST(
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
 
   const { uploadId } = parsed.data;
-  const uploaded = `uploaded/profile/${uploadId}`;
+  const uploaded = `uploaded/avatar/${uploadId}`;
 
   const [exists] = await storage.bucket().file(uploaded).exists();
   if (!exists)
-    return NextResponse.json({ error: "Invalid upload id" }, { status: 404 });
+    return NextResponse.json({ error: "Invalid upload id" }, { status: 400 });
 
   // move to distribution
-  const distribution = `distribution/profile/${uploadId}`;
+  const distribution = `distribution/avatar/${uploadId}`;
   await storage.bucket().file(uploaded).move(distribution);
 
   // create a public accessible url
@@ -54,36 +54,6 @@ export async function POST(
     where: { code },
     data: { avatar: url },
   });
-
-  return NextResponse.json({ url });
-}
-
-export async function GET(
-  req: NextRequest,
-  { params: { code } }: StudentParams
-) {
-  // fetch student as the logged user may be a company
-  const student = await prisma.student.findUnique({ where: { code } });
-
-  if (!student)
-    return NextResponse.json({ error: "Student not found" }, { status: 404 });
-
-  if (!student.image)
-    return NextResponse.json(
-      { error: "Student has no image" },
-      { status: 404 }
-    );
-
-  const filename = `distribution/profile/${student.image}`;
-
-  const [url] = await storage
-    .bucket()
-    .file(filename)
-    .getSignedUrl({
-      action: "read",
-      version: "v4",
-      expires: Date.now() + 5 * 60 * 1000 * 24, // 5 minutes
-    });
 
   return NextResponse.json({ url });
 }

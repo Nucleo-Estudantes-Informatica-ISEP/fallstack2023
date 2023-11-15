@@ -47,8 +47,17 @@ const config: Config = {
         "fallstack-logo-shadow": "2px 3px 4px #f97316",
         "fallstack-text-shadow": "1px 1px 0.5px #f97316",
       },
+      translate: {
+        200: "200%",
+      },
+      height: {
+        144: "36rem",
+        168: "42rem",
+        192: "48rem",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
