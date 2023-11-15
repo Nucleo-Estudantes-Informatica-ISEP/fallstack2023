@@ -15,6 +15,7 @@ const LoginPage: React.FC = () => {
   const session = useSession();
   const router = useRouter();
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [pwError, setPwError] = useState<string | null>(null);
 
@@ -41,6 +42,8 @@ const LoginPage: React.FC = () => {
 
     if (error) return;
 
+    setLoading(true);
+
     const email = emailRef.current?.value as string;
     const password = passwordRef.current?.value as string;
 
@@ -50,7 +53,13 @@ const LoginPage: React.FC = () => {
       return;
     }
 
+    setEmailError("Email ou password incorretos.");
     setPwError("Email ou password incorretos.");
+    setLoading(false);
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleClick();
   };
 
   return (
@@ -68,6 +77,7 @@ const LoginPage: React.FC = () => {
         placeholder="Insere o teu email"
         inputRef={emailRef}
         autoFocus={!!emailError}
+        onKeyUp={handleKeyUp}
       />
 
       {emailError && (
@@ -93,6 +103,7 @@ const LoginPage: React.FC = () => {
         type="password"
         inputRef={passwordRef}
         autoFocus={!!pwError}
+        onKeyUp={handleKeyUp}
       />
 
       {pwError && (
@@ -110,7 +121,11 @@ const LoginPage: React.FC = () => {
         </motion.p>
       )}
 
-      <PrimaryButton onClick={handleClick} className="mb-5 mt-4 font-bold">
+      <PrimaryButton
+        loading={loading}
+        onClick={handleClick}
+        className="mb-5 mt-4 font-bold"
+      >
         LOGIN
       </PrimaryButton>
 
