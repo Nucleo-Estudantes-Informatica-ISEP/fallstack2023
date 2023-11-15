@@ -23,7 +23,7 @@ export async function GET(
         code: code,
       },
     },
-    by: "isScanned",
+    by: "isSaved",
     _count: {
       _all: true,
     },
