@@ -1,7 +1,6 @@
 import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
-import { BASE_URL } from "@/services/api";
 import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
