@@ -18,7 +18,7 @@ const UserButton: React.FC<UserButtonProps> = ({ user }) => {
   return (
     <Link
       href={profileUrl}
-      className="flex h-full w-full items-center justify-center fill-black text-2xl transition-colors hover:text-primary dark:fill-white"
+      className="z-20 flex h-full w-full items-center justify-center fill-black text-2xl transition-colors hover:text-primary dark:fill-white"
     >
       <LiaUser />
     </Link>

@@ -23,7 +23,7 @@ interface UserImageProps {
 }
 
 const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<string | null>(null);
 
   const animation: AnimationProps = {
     variants: {
@@ -41,7 +41,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
 
     const file = e.target.files[0];
 
-    const uploadPost = await getSignedUrl("profile", file.type);
+    const uploadPost = await getSignedUrl("avatar", file.type);
 
     if (!uploadPost) swal("Erro ao fazer upload da imagem!");
 
@@ -56,8 +56,9 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
   };
 
   const getImage = async (student: Student) => {
-    if (!student.image) return "/assets/images/default_user.png";
-    setImage(student.image);
+    if (!student.avatar) return "/assets/images/default_user.png";
+
+    setImage(image ? student.avatar : "/assets/images/default_user.png");
   };
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         <Image
           width={328}
           height={328}
-          src={student.image || "/assets/images/default_user.png"}
+          src={student.avatar || "/assets/images/default_user.png"}
           alt="profile image"
           className="h-full w-full rounded-full"
         />
@@ -100,7 +101,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
       <Image
         width={328}
         height={328}
-        src={student.image || "/assets/images/default_user.png"}
+        src={student.avatar || "/assets/images/default_user.png"}
         alt="profile image"
         className="h-full w-full rounded-full"
       />
