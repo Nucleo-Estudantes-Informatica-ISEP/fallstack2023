@@ -2,7 +2,7 @@ import { FaqProps } from '../components/Faq';
 
 export const FAQ: FaqProps[] = [
     {
-        question: "Porquê que me devo inscrever no Evento?",
+        question: "Porque é que me devo inscrever no evento?",
         answer: "O Fallstack, para além de um evento, é uma oportunidade, uma porta aberta para te dar as boas-vindas a diversas empresas responsáveis pela contínua evolução do nosso mundo. Ao inscreveres-te, vais conseguir participar em todas as experiências que este evento tem guardadas para ti, para além de seres elegível a giveaways a decorrer no evento. E claro, ter as tuas faltas justificadas!"
     },
     {
