@@ -84,8 +84,6 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       await setTarget(student.code, uploadRes);
     }
 
-    console.log(profile);
-
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",
       body: JSON.stringify({
