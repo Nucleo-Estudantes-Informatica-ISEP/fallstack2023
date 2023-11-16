@@ -30,7 +30,9 @@ model Student {
   interests Interest[]
   savedBy   SavedStudent[]
   cv        String?
-  image     String?
+  linkedin  String?
+  github    String?
+  avatar    String?        @map("image")
 
   userId Int @unique
 }
@@ -47,20 +49,20 @@ model Company {
 }
 
 model Interest {
-  id         Int       @id @default(autoincrement())
-  name       String    @unique
+  name       String    @id
   interestOf Student[]
 }
 
 model SavedStudent {
   student   Student  @relation(fields: [studentId], references: [id])
   company   Company  @relation(fields: [companyId], references: [id])
+  isSaved Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int
   companyId Int
 
-  @@id([studentId, companyId])
+  @@id([studentId, companyId,  isSaved])
 }
 
 enum Role {
