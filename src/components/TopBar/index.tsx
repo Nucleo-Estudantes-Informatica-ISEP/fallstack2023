@@ -1,3 +1,4 @@
+import QRCodeButton from "../QRCodeButton";
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -19,6 +20,7 @@ const TopBar: React.FC = () => {
       />
       <div className="absolute right-4 top-2 flex h-12 justify-end space-x-5 p-5">
         <ThemeChanger />
+        <QRCodeButton />
       </div>
     </nav>
   );
