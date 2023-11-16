@@ -1,5 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 import {
   RiFacebookCircleFill,
   RiInstagramLine,
@@ -35,7 +37,7 @@ const Footer: FunctionComponent<FooterProps> = ({
     <footer className="w-full text-center">
       <div className="flex justify-center drop-shadow-lg hover:drop-shadow-xl lg:m-8">
         <a href={lastEditionUrl} target="_blank" rel="noreferrer">
-          <div className="bg-secondary/40 my-6 rounded-2xl px-8 py-4 font-poppins text-2xl font-bold transition-all duration-300 hover:scale-105 lg:text-4xl">
+          <div className="my-6 rounded-2xl bg-secondary/40 px-8 py-4 font-poppins text-2xl font-bold transition-all duration-300 hover:scale-105 lg:text-4xl">
             Edição Anterior
           </div>
         </a>
@@ -96,6 +98,9 @@ const Footer: FunctionComponent<FooterProps> = ({
           >
             <RiTwitterXFill color="text" size={24} />
           </a>
+          <Link href="/privacy-policy">
+            <MdOutlinePrivacyTip color="text" size={24} />
+          </Link>
         </div>
       </div>
     </footer>

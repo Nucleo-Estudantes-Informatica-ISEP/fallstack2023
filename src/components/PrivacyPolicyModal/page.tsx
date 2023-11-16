@@ -23,7 +23,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
         className="fixed left-0 top-0 z-30 flex h-full min-h-screen w-screen items-center justify-center bg-black/80"
         onClick={() => setIsVisible(false)}
       >
-        <section className="relative my-24 h-full w-5/6 overflow-scroll bg-background px-8 py-24 text-justify md:px-24">
+        <section className="relative my-24 h-full w-5/6 overflow-scroll bg-background px-8 py-24 md:px-24">
           <button
             className="absolute left-4 top-4 text-2xl font-bold text-primary"
             onClick={() => setIsVisible(false)}
@@ -39,7 +39,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             <h2 className="text-2xl font-semibold">
               Aplicação do Regulamento Geral sobre a Proteção de Dados
             </h2>
-            <p className="mt-2">Em vigor a partir de 20 de junho de 2023.</p>
+            <p className="mt-2">Em vigor a partir de 16 de novembro de 2023.</p>
             <p className="mt-2">
               O Núcleo de Estudantes de Informática do Instituto Superior de
               Engenharia do Porto (NEI- ISEP), em conformidade com o Regulamento

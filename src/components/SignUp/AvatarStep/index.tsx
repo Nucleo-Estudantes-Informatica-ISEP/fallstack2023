@@ -84,7 +84,7 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
       </div>
 
       <p className="mb-4 text-center text-slate-700 md:text-lg">
-        Está quase! Só falta a tua foto de perfil.
+        Está quase! Só falta a tua foto de perfil. (Opcional)
       </p>
 
       <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
