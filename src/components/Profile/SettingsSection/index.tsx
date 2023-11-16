@@ -54,7 +54,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     if (
       linkedinRef.current?.value &&
       !linkedinRef.current?.value?.match(
-        /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9_-]+\/?)+$/
+        /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9ç_-]+\/?)+$/
       )
     ) {
       swal("O teu Linkedin não segue o formato correto!");
