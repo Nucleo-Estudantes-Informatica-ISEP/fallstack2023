@@ -8,8 +8,6 @@ import {
 } from "firebase-admin/app";
 import { getStorage } from "firebase-admin/storage";
 
-import { BASE_URL } from "@/services/api";
-
 const config: ServiceAccount = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
   privateKey: process.env.FIREBASE_PRIVATE_KEY,
@@ -25,18 +23,20 @@ const createAdminApp = () => {
   if (!getApps().length) {
     const app = initializeApp(options);
 
-    // initial cors config
-    getStorage(app)
-      .bucket()
-      .setCorsConfiguration([
-        {
-          origin: [BASE_URL],
-          method: ["PUT"],
-          responseHeader: ["*"],
-          maxAgeSeconds: 3600,
-        },
-      ])
-      .then(() => console.log("Bucket CORS configuration updated!"));
+    if (process.env.NODE_ENV !== "production") {
+      // initial cors config
+      getStorage(app)
+        .bucket()
+        .setCorsConfiguration([
+          {
+            origin: ["*"],
+            method: ["PUT"],
+            responseHeader: ["*"],
+            maxAgeSeconds: 3600,
+          },
+        ])
+        .then(() => console.log("Bucket CORS configuration updated!"));
+    }
 
     return app;
   }
