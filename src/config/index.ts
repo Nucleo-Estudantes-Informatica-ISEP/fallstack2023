@@ -10,7 +10,7 @@ const config = {
     },
     cv: {
       types: ["application/pdf"],
-      maxSize: 2 * 1024 * 1024, // 2mb
+      maxSize: 5 * 1024 * 1024, // 5mb
     },
   },
 };

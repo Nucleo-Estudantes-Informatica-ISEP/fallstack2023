@@ -86,7 +86,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
           height={328}
           src={student.avatar || "/assets/images/default_user.png"}
           alt="profile image"
-          className="h-full w-full rounded-full"
+          className="h-full w-full rounded-full object-cover"
         />
       </div>
     );

@@ -80,7 +80,7 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       </p>
 
       <FileInput
-        name="Insere um ficheiro."
+        name="Insere um ficheiro. (Opcional)"
         placeholder="CV ficheiro"
         accept="application/pdf"
         onChange={onFileChange}

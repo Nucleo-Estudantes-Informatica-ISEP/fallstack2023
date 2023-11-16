@@ -46,6 +46,32 @@ export async function POST(req: Request) {
       codeExists = student !== null;
     }
 
+    // create student
+    const student = await prisma.student.create({
+      data: {
+        name: name,
+        bio,
+        interests: {
+          connect: interests.map((interest) => ({ name: interest })),
+        },
+        code: code,
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+        year: year,
+      },
+    });
+
+    // check if student was created
+    if (!student) {
+      return NextResponse.json(
+        { message: "Something went wrong" },
+        { status: 500 }
+      );
+    }
+
     let avatarUrl = null;
     if (avatar) {
       const uploaded = `uploaded/avatar/${avatar}`;
@@ -83,33 +109,10 @@ export async function POST(req: Request) {
       await storage.bucket().file(uploaded).move(distribution);
     }
 
-    // create student
-    const student = await prisma.student.create({
-      data: {
-        name: name,
-        bio,
-        interests: {
-          connect: interests.map((interest) => ({ name: interest })),
-        },
-        code: code,
-        user: {
-          connect: {
-            id: userId,
-          },
-        },
-        year: year,
-        avatar: avatarUrl,
-        cv,
-      },
+    await prisma.student.update({
+      data: { avatar: avatarUrl, cv },
+      where: { id: student.id },
     });
-
-    // check if student was created
-    if (!student) {
-      return NextResponse.json(
-        { message: "Something went wrong" },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json(student, { status: 201 });
   } catch (e) {
