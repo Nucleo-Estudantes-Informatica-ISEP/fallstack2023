@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaInfo } from "react-icons/fa6";
 import { IoIosLogIn } from "react-icons/io";
 
 import useSession from "@/hooks/useSession";
@@ -53,12 +52,6 @@ const TopBar: React.FC = () => {
         </Link>
         <div className="flex items-center gap-x-4">
           <ThemeChanger />
-          <Link
-            href="/about"
-            className="z-20 flex h-full w-full items-center justify-center fill-black text-2xl transition-colors hover:text-primary dark:fill-white"
-          >
-            <FaInfo size={18} />
-          </Link>
           {!session.user ? (
             <Link
               href="/login"
