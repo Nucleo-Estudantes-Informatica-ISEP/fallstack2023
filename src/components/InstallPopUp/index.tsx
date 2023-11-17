@@ -61,7 +61,7 @@ const CookieConsent: React.FC = () => {
         >
           <div>
             <p className="font-medium">
-              ✨ Adiciona o FallStack ao teu ecrã inicial!
+              ✨ Adiciona o Fallstack ao teu ecrã inicial!
             </p>
           </div>
           <div className="flex items-center justify-center gap-3 max-md:w-full max-md:flex-col-reverse md:gap-4">

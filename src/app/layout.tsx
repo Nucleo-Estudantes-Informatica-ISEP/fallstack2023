@@ -14,10 +14,10 @@ import Topbar from "@/components/TopBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  applicationName: "FallStack 2023",
-  title: "FallStack 23",
+  applicationName: "Fallstack 2023",
+  title: "Fallstack 2023",
   description:
-    "Website do evento FallStack 23. O evento decorrerá nos dias 28 e 29 de novembro no Instituto Superior de Engenharia do Porto. O evento é organizado pelo Núcleo de Estudantes de Informática do ISEP (NEI-ISEP).",
+    "Website do evento Fallstack 2023. O evento decorrerá nos dias 28 e 29 de novembro no Instituto Superior de Engenharia do Porto. O evento é organizado pelo Núcleo de Estudantes de Informática do ISEP (NEI-ISEP).",
   manifest: "/manifest.json",
 };
 
