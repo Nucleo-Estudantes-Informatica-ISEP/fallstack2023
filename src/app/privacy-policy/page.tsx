@@ -49,23 +49,7 @@ const PrivacyPolicyPage: React.FC = () => {
           Privacidade para a aplicação Fallstack. Esta aplicação visa facilitar
           a participação dos estudantes no evento organizado pelo NEI-ISEP,
           proporcionando a criação de contas e a partilha de informações
-          relevantes para o ambiente profissional.
-        </p>
-      </article>
-
-      <article className="mt-12">
-        <h2 className="text-2xl font-semibold">
-          Recolha de Informações e Finalidade da Recolha
-        </h2>
-        <p className="mt-2">
-          Para utilizar a aplicação Fallstack, é necessário criar uma conta de
-          utilizador.
-        </p>
-        <p className="mt-2">
-          A recolha de informações na aplicação Fallstack tem como objetivo
-          facilitar a participação dos estudantes no evento organizado pelo
-          NEI-ISEP, promovendo a criação de contas e a partilha de dados
-          relevantes para o contexto profissional. As informações solicitadas,
+          relevantes para o ambiente profissional. As informações solicitadas,
           como nome, email, palavra-passe, interesses, imagem de perfil,
           Curriculum Vitae (CV), perfil do LinkedIn e GitHub, são estritamente
           necessárias para autenticação, identificação e aprimoramento da
