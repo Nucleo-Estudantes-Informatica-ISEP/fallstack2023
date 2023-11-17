@@ -54,7 +54,7 @@ const CookieConsent: React.FC = () => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed -bottom-40 left-0 flex w-full flex-col items-center justify-between gap-4 border-t-gray-100 bg-white px-8 py-4 shadow-lg shadow-black dark:bg-secondary md:-bottom-20 md:flex-row"
+          className="fixed -bottom-40 left-0 flex w-full flex-col items-center justify-between gap-4 border-t-gray-100 bg-background px-8 py-4 shadow-lg shadow-black md:-bottom-20 md:flex-row"
           animate={{ y: [0, position] }}
           exit={{ y: [position, 0] }}
           transition={{ duration: 0.3, ease: "easeOut" }}
