@@ -59,4 +59,14 @@
   :root {
     scroll-behavior: smooth;
   }
+
+  .company {
+    :root {
+      background-image: url(/assets/images/bg_light_company.webp);
+    }
+
+    .dark {
+      background-image: url(/assets/images/bg_dark_company.webp);
+    }
+  }
 }
