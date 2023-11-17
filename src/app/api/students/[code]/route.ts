@@ -38,7 +38,7 @@ export async function PATCH(req: NextRequest, { params }: StudentProps) {
   const student = await prisma.student.update({
     where: { code: params.code },
     data: {
-      bio: body.bio,
+      bio: body.bio?.trim(),
       linkedin: body.linkedin,
       github: body.github,
       interests: {

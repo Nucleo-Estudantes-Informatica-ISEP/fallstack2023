@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const student = await prisma.student.create({
       data: {
         name: name,
-        bio,
+        bio: bio?.trim(),
         interests: {
           connect: interests.map((interest) => ({ name: interest })),
         },
