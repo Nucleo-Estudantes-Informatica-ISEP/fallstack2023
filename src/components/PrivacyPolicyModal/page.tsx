@@ -24,7 +24,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
           className="absolute left-0 top-0 z-0 h-screen w-screen"
           onClick={() => setIsVisible(false)}
         ></div>
-        <section className="relative my-24 h-full w-5/6 overflow-scroll bg-background px-8 py-24 md:px-24">
+        <section className="relative my-24 h-full w-5/6 overflow-y-scroll bg-background px-8 py-24 md:px-24">
           <button
             className="absolute left-4 top-4 text-2xl font-bold text-primary"
             onClick={() => setIsVisible(false)}
