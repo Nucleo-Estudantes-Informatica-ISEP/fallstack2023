@@ -7,6 +7,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
+import InstallPopUp from "@/components/InstallPopUp";
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 import Topbar from "@/components/TopBar";
 
@@ -20,7 +21,11 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -29,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Topbar />
             <main>{children}</main>
             <ToastContainer position="bottom-right" />
+            <InstallPopUp />
           </ThemeProvider>
         </AuthContextProvider>
       </body>
