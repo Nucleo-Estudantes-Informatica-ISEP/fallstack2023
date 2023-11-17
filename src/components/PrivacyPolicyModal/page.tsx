@@ -85,30 +85,14 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
               de Privacidade para a aplicação FallStack. Esta aplicação visa
               facilitar a participação dos estudantes no evento organizado pelo
               NEI-ISEP, proporcionando a criação de contas e a partilha de
-              informações relevantes para o ambiente profissional.
-            </p>
-          </article>
-
-          <article className="mt-12">
-            <h2 className="text-2xl font-semibold">
-              Recolha de Informações e Finalidade da Recolha
-            </h2>
-            <p className="mt-2">
-              Para utilizar a aplicação FallStack, é necessário criar uma conta
-              de utilizador.
-            </p>
-            <p className="mt-2">
-              A recolha de informações na aplicação FallStack tem como objetivo
-              facilitar a participação dos estudantes no evento organizado pelo
-              NEI-ISEP, promovendo a criação de contas e a partilha de dados
-              relevantes para o contexto profissional. As informações
-              solicitadas, como nome, email, palavra-passe, interesses, imagem
-              de perfil, Curriculum Vitae (CV), perfil do LinkedIn e GitHub, são
-              estritamente necessárias para autenticação, identificação e
-              aprimoramento da interação dos utilizadores com as empresas
-              participantes no evento. Esta prática está alinhada com as
-              disposições legais do Regulamento Geral sobre a Proteção de Dados
-              (RGPD).
+              informações relevantes para o ambiente profissional. As
+              informações solicitadas, como nome, email, palavra-passe,
+              interesses, imagem de perfil, Curriculum Vitae (CV), perfil do
+              LinkedIn e GitHub, são estritamente necessárias para autenticação,
+              identificação e aprimoramento da interação dos utilizadores com as
+              empresas participantes no evento. Esta prática está alinhada com
+              as disposições legais do Regulamento Geral sobre a Proteção de
+              Dados (RGPD).
             </p>
           </article>
 
