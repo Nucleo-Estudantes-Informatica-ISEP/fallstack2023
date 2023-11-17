@@ -14,6 +14,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.2.1",
     "@prisma/client": "5.5.2",
+    "@rooks/use-window-size": "^4.11.2",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
     "framer-motion": "^10.16.4",
@@ -26,11 +27,11 @@
     "react-dom": "^18",
     "react-icons": "^4.11.0",
     "react-loading-skeleton": "^3.3.1",
+    "sharp": "^0.32.6",
     "swal": "^0.1.0",
     "sweetalert": "^2.1.2",
     "typewriter-effect": "^2.21.0",
-    "zod": "^3.22.4",
-    "sharp": "^0.32.6"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",

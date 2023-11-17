@@ -1,4 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
+import useWindowSize from "@rooks/use-window-size";
+import { motion } from "framer-motion";
 
 import HeadingText from "../HeadingText";
 
@@ -21,49 +25,72 @@ const Schedule: React.FC<Props> = ({
   const [activeScheduleEventIndex, setActiveScheduleEventIndex] =
     useState<number>(0);
 
+  const { innerWidth } = useWindowSize();
+  if (!innerWidth) return null;
+
   return (
-    <div className="container flex flex-col items-center justify-center">
+    <motion.div
+      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="container flex flex-col items-center justify-center"
+    >
       <HeadingText text="Horário" />
       <div className="container flex w-full flex-col items-center justify-center">
-        <div className="flex w-full flex-col justify-center  lg:flex-row">
+        <div className="relative flex w-full flex-col justify-center md:flex-row">
+          <motion.div
+            animate={{
+              x:
+                activeScheduleEventIndex === 1 && innerWidth > 768 ? "100%" : 0,
+              y:
+                activeScheduleEventIndex === 1 && innerWidth < 768 ? "100%" : 0,
+              borderRadius:
+                activeScheduleEventIndex === 1 && innerWidth > 768
+                  ? "0 0.5rem 0.5rem 0"
+                  : innerWidth > 768 && activeScheduleEventIndex === 0
+                  ? "0.5rem 0 0 0.5rem"
+                  : activeScheduleEventIndex === 1
+                  ? "0 0 0.5rem 0.5rem"
+                  : "0.5rem 0.5rem 0 0",
+            }}
+            className="absolute left-0 top-0 -z-10 h-1/2 w-full bg-primary hover:brightness-110 md:h-full md:w-1/2"
+          />
+          <motion.div
+            animate={{
+              x:
+                activeScheduleEventIndex === 0 && innerWidth > 768 ? "100%" : 0,
+              y:
+                activeScheduleEventIndex === 0 && innerWidth < 768 ? "100%" : 0,
+              borderRadius:
+                activeScheduleEventIndex === 0 && innerWidth > 768
+                  ? "0 0.5rem 0.5rem 0"
+                  : innerWidth > 768 && activeScheduleEventIndex === 1
+                  ? "0.5rem 0 0 0.5rem"
+                  : activeScheduleEventIndex === 0
+                  ? "0 0 0.5rem 0.5rem"
+                  : "0.5rem 0.5rem 0 0",
+            }}
+            transition={{
+              stiffness: 100,
+            }}
+            className="absolute left-0 top-0 -z-20 h-1/2 w-full bg-secondary hover:brightness-110 md:h-full md:w-1/2"
+          />
           <button
-            className={`
-                    ${
-                      activeScheduleEventIndex == 0
-                        ? "bg-orange-400"
-                        : "bg-gray-200"
-                    }
-                    ${
-                      activeScheduleEventIndex == 0
-                        ? "text-white"
-                        : "text-black"
-                    }
-                    w-full rounded-t-lg px-4 py-2.5 hover:brightness-95 lg:rounded-l-lg lg:rounded-r-none`}
+            className="w-full rounded-t-lg px-4 py-2.5 hover:brightness-95 lg:rounded-l-lg lg:rounded-r-none"
             onClick={() => setActiveScheduleEventIndex(0)}
           >
-            {firstDayTitle}
+            <span className="z-20">{firstDayTitle}</span>
           </button>
           <button
-            className={`
-                    ${
-                      activeScheduleEventIndex == 1
-                        ? "bg-orange-400"
-                        : "bg-gray-200"
-                    } 
-                    ${
-                      activeScheduleEventIndex == 1
-                        ? "text-white"
-                        : "text-black"
-                    }
-                    w-full
-                    rounded-b-lg px-4 py-2.5 transition-all duration-300
-                    hover:brightness-95 lg:rounded-l-none lg:rounded-r-lg`}
+            className="w-full rounded-b-lg px-4 py-2.5 transition-all duration-300
+                    hover:brightness-95 lg:rounded-l-none lg:rounded-r-lg"
             onClick={() => setActiveScheduleEventIndex(1)}
           >
-            {secondDayTitle}
+            <span className="z-20">{secondDayTitle}</span>
           </button>
         </div>
-        <table className="mt-6 w-full table-auto border-collapse text-base ">
+        <table className="mt-6 w-full table-auto border-collapse text-lg">
           <thead>
             <tr className="border-b-2 border-gray-500">
               <th className="w-1/3 p-4 text-left">Hora</th>
@@ -71,17 +98,34 @@ const Schedule: React.FC<Props> = ({
             </tr>
           </thead>
 
-          <tbody>
+          <motion.tbody
+            initial={{
+              opacity: 0,
+              x: activeScheduleEventIndex === 0 ? -50 : 50,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2 }}
+            key={activeScheduleEventIndex}
+          >
             {scheduleEvents[activeScheduleEventIndex].map((entry, index) => (
-              <tr className="border-b-2 border-gray-500" key={index}>
+              <motion.tr
+                className="border-b-2 border-gray-500"
+                key={index}
+                initial={{
+                  opacity: 0,
+                  x: activeScheduleEventIndex === 0 ? -50 : 50,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.1 * index }}
+              >
                 <td className="p-4">{entry.hour}</td>
                 <td className="py-4 pr-4">{entry.activity}</td>
-              </tr>
+              </motion.tr>
             ))}
-          </tbody>
+          </motion.tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
