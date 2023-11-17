@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface HeadingTextProps {
-    text: string;
+  text: string;
 }
 
 const HeadingText: React.FC<HeadingTextProps> = ({ text }) => {
-    return (
-        <h1 className="my-6 text-center font-good__times text-2xl text-gray-600 md:text-3xl lg:my-12 lg:text-5xl">
-            {text}
-        </h1>
-    );
+  return (
+    <h1 className="mb-12 text-center font-poppins text-5xl font-bold uppercase md:text-6xl lg:mb-24 lg:mt-12 lg:text-7xl">
+      {text}
+    </h1>
+  );
 };
 
 export default HeadingText;

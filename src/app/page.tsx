@@ -1,13 +1,18 @@
 "use client";
 
 import { FunctionComponent, useRef } from "react";
-import Logo from "../../public/assets/images/logo.png";
+
+import ComingSoon from "@/components/ComingSoon";
+
+import LogoDark from "../../public/assets/images/logo_dark.png";
+import LogoWhite from "../../public/assets/images/logo_white.png";
+import NeiLogoBlack from "../../public/assets/images/logo-black.png";
+import NeiLogoWhite from "../../public/assets/images/logo-white.png";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import GenericContainer from "../components/GenericContainer";
-import Header from "../components/Header";
+import Hero from "../components/Hero";
 import HeroContainer from "../components/HeroContainer";
-import Topbar from "../components/TopBar";
 
 const App: FunctionComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -15,16 +20,23 @@ const App: FunctionComponent = () => {
   return (
     <HeroContainer>
       <GenericContainer>
-        <Topbar />
-        <Header
-          logoSrc={Logo}
+        <Hero
+          logoSrc={{
+            white: LogoWhite,
+            dark: LogoDark,
+          }}
           logoAlt="Logo principal do evento Fall-Stack 2023"
-          eventName="Fallstack 23/24"
-          eventDate="28 e 29 de Novembro"
           contentRef={contentRef}
         />
         <Content contentRef={contentRef} />
-        <Footer lastEditionUrl="https://fallstack-22-23.nei-isep.org/" />
+        <ComingSoon />
+        <Footer
+          lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
+          neiLogoSrc={{
+            white: NeiLogoWhite,
+            dark: NeiLogoBlack,
+          }}
+        />
       </GenericContainer>
     </HeroContainer>
   );

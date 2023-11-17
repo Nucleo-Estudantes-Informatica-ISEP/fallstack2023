@@ -1,64 +1,132 @@
-import React, { useState } from 'react';
-import HeadingText from '../HeadingText';
+"use client";
+
+import React, { useState } from "react";
+import useWindowSize from "@rooks/use-window-size";
+import { motion } from "framer-motion";
+
+import HeadingText from "../HeadingText";
 
 export interface ScheduleDay {
-    hour: string;
-    activity: string;
+  hour: string;
+  activity: string;
 }
 
 interface Props {
-    firstDayTitle: string;
-    secondDayTitle: string;
-    scheduleEvents: ScheduleDay[][];
+  firstDayTitle: string;
+  secondDayTitle: string;
+  scheduleEvents: ScheduleDay[][];
 }
 
-const Schedule: React.FC<Props> = ({ firstDayTitle, secondDayTitle, scheduleEvents }) => {
-    const [activeScheduleEventIndex, setActiveScheduleEventIndex] = useState<number>(0);
+const Schedule: React.FC<Props> = ({
+  firstDayTitle,
+  secondDayTitle,
+  scheduleEvents,
+}) => {
+  const [activeScheduleEventIndex, setActiveScheduleEventIndex] =
+    useState<number>(0);
 
-    return (
-        <div className="container flex flex-col items-center justify-center">
-            <HeadingText text="Horário" />
-            <div className="container flex w-full flex-col items-center justify-center">
-                <div className="flex w-full flex-col justify-center  lg:flex-row">
-                    <button
-                        className={`
-                    ${activeScheduleEventIndex == 0 ? 'bg-orange-400' : 'bg-gray-200'}
-                    ${activeScheduleEventIndex == 0 ? 'text-white' : 'text-black'}
-                    w-full rounded-t-lg px-4 py-2.5 hover:brightness-95 lg:rounded-l-lg lg:rounded-r-none`}
-                        onClick={() => setActiveScheduleEventIndex(0)}>
-                        {firstDayTitle}
-                    </button>
-                    <button
-                        className={`
-                    ${activeScheduleEventIndex == 1 ? 'bg-orange-400' : 'bg-gray-200'} 
-                    ${activeScheduleEventIndex == 1 ? 'text-white' : 'text-black'}
-                    w-full
-                    rounded-b-lg px-4 py-2.5 transition-all duration-300
-                    hover:brightness-95 lg:rounded-r-lg lg:rounded-l-none`}
-                        onClick={() => setActiveScheduleEventIndex(1)}>
-                        {secondDayTitle}
-                    </button>
-                </div>
-                <table className="text-md w-98 mt-6 w-full table-auto border-collapse ">
-                    <thead>
-                        <tr className="border-b-2 border-gray-500">
-                            <th className="w-1/3 py-4 px-4 text-left">Hora</th>
-                            <th className="py-4 text-left">Atividade</th>
-                        </tr>
-                    </thead>
+  const { innerWidth } = useWindowSize();
+  if (!innerWidth) return null;
 
-                    <tbody>
-                        {scheduleEvents[activeScheduleEventIndex].map((entry, index) => (
-                            <tr className="border-b-2 border-gray-500" key={index}>
-                                <td className="py-4 px-4">{entry.hour}</td>
-                                <td className="py-4 pr-4">{entry.activity}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+  return (
+    <motion.div
+      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="container flex flex-col items-center justify-center"
+    >
+      <HeadingText text="Horário" />
+      <div className="container flex w-full flex-col items-center justify-center">
+        <div className="relative flex w-full flex-col justify-center md:flex-row">
+          <motion.div
+            animate={{
+              x:
+                activeScheduleEventIndex === 1 && innerWidth > 768 ? "100%" : 0,
+              y:
+                activeScheduleEventIndex === 1 && innerWidth < 768 ? "100%" : 0,
+              borderRadius:
+                activeScheduleEventIndex === 1 && innerWidth > 768
+                  ? "0 0.5rem 0.5rem 0"
+                  : innerWidth > 768 && activeScheduleEventIndex === 0
+                  ? "0.5rem 0 0 0.5rem"
+                  : activeScheduleEventIndex === 1
+                  ? "0 0 0.5rem 0.5rem"
+                  : "0.5rem 0.5rem 0 0",
+            }}
+            className="absolute left-0 top-0 -z-10 h-1/2 w-full bg-primary hover:brightness-110 md:h-full md:w-1/2"
+          />
+          <motion.div
+            animate={{
+              x:
+                activeScheduleEventIndex === 0 && innerWidth > 768 ? "100%" : 0,
+              y:
+                activeScheduleEventIndex === 0 && innerWidth < 768 ? "100%" : 0,
+              borderRadius:
+                activeScheduleEventIndex === 0 && innerWidth > 768
+                  ? "0 0.5rem 0.5rem 0"
+                  : innerWidth > 768 && activeScheduleEventIndex === 1
+                  ? "0.5rem 0 0 0.5rem"
+                  : activeScheduleEventIndex === 0
+                  ? "0 0 0.5rem 0.5rem"
+                  : "0.5rem 0.5rem 0 0",
+            }}
+            transition={{
+              stiffness: 100,
+            }}
+            className="absolute left-0 top-0 -z-20 h-1/2 w-full bg-secondary hover:brightness-110 md:h-full md:w-1/2"
+          />
+          <button
+            className="w-full rounded-t-lg px-4 py-2.5 hover:brightness-95 lg:rounded-l-lg lg:rounded-r-none"
+            onClick={() => setActiveScheduleEventIndex(0)}
+          >
+            <span className="z-20">{firstDayTitle}</span>
+          </button>
+          <button
+            className="w-full rounded-b-lg px-4 py-2.5 transition-all duration-300
+                    hover:brightness-95 lg:rounded-l-none lg:rounded-r-lg"
+            onClick={() => setActiveScheduleEventIndex(1)}
+          >
+            <span className="z-20">{secondDayTitle}</span>
+          </button>
         </div>
-    );
+        <table className="mt-6 w-full table-auto border-collapse text-lg">
+          <thead>
+            <tr className="border-b-2 border-gray-500">
+              <th className="w-1/3 p-4 text-left">Hora</th>
+              <th className="py-4 text-left">Atividade</th>
+            </tr>
+          </thead>
+
+          <motion.tbody
+            initial={{
+              opacity: 0,
+              x: activeScheduleEventIndex === 0 ? -50 : 50,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2 }}
+            key={activeScheduleEventIndex}
+          >
+            {scheduleEvents[activeScheduleEventIndex].map((entry, index) => (
+              <motion.tr
+                className="border-b-2 border-gray-500"
+                key={index}
+                initial={{
+                  opacity: 0,
+                  x: activeScheduleEventIndex === 0 ? -50 : 50,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.1 * index }}
+              >
+                <td className="p-4">{entry.hour}</td>
+                <td className="py-4 pr-4">{entry.activity}</td>
+              </motion.tr>
+            ))}
+          </motion.tbody>
+        </table>
+      </div>
+    </motion.div>
+  );
 };
 
 export default Schedule;
