@@ -19,11 +19,12 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
 
   if (isVisible)
     return (
-      <div
-        className="fixed left-0 top-0 z-30 flex h-full min-h-screen w-screen items-center justify-center bg-black/80"
-        onClick={() => setIsVisible(false)}
-      >
-        <section className="relative my-24 h-full w-5/6 overflow-scroll bg-background px-8 py-24 text-justify md:px-24">
+      <div className="fixed left-0 top-0 z-30 flex h-full min-h-screen w-screen items-center justify-center bg-black/80">
+        <div
+          className="absolute left-0 top-0 z-0 h-screen w-screen"
+          onClick={() => setIsVisible(false)}
+        ></div>
+        <section className="relative my-24 h-full w-5/6 overflow-y-scroll bg-background px-8 py-24 md:px-24">
           <button
             className="absolute left-4 top-4 text-2xl font-bold text-primary"
             onClick={() => setIsVisible(false)}
@@ -39,7 +40,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             <h2 className="text-2xl font-semibold">
               Aplicação do Regulamento Geral sobre a Proteção de Dados
             </h2>
-            <p className="mt-2">Em vigor a partir de 20 de junho de 2023.</p>
+            <p className="mt-2">Em vigor a partir de 16 de novembro de 2023.</p>
             <p className="mt-2">
               O Núcleo de Estudantes de Informática do Instituto Superior de
               Engenharia do Porto (NEI- ISEP), em conformidade com o Regulamento
@@ -84,30 +85,14 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
               de Privacidade para a aplicação FallStack. Esta aplicação visa
               facilitar a participação dos estudantes no evento organizado pelo
               NEI-ISEP, proporcionando a criação de contas e a partilha de
-              informações relevantes para o ambiente profissional.
-            </p>
-          </article>
-
-          <article className="mt-12">
-            <h2 className="text-2xl font-semibold">
-              Recolha de Informações e Finalidade da Recolha
-            </h2>
-            <p className="mt-2">
-              Para utilizar a aplicação FallStack, é necessário criar uma conta
-              de utilizador.
-            </p>
-            <p className="mt-2">
-              A recolha de informações na aplicação FallStack tem como objetivo
-              facilitar a participação dos estudantes no evento organizado pelo
-              NEI-ISEP, promovendo a criação de contas e a partilha de dados
-              relevantes para o contexto profissional. As informações
-              solicitadas, como nome, email, palavra-passe, interesses, imagem
-              de perfil, Curriculum Vitae (CV), perfil do LinkedIn e GitHub, são
-              estritamente necessárias para autenticação, identificação e
-              aprimoramento da interação dos utilizadores com as empresas
-              participantes no evento. Esta prática está alinhada com as
-              disposições legais do Regulamento Geral sobre a Proteção de Dados
-              (RGPD).
+              informações relevantes para o ambiente profissional. As
+              informações solicitadas, como nome, email, palavra-passe,
+              interesses, imagem de perfil, Curriculum Vitae (CV), perfil do
+              LinkedIn e GitHub, são estritamente necessárias para autenticação,
+              identificação e aprimoramento da interação dos utilizadores com as
+              empresas participantes no evento. Esta prática está alinhada com
+              as disposições legais do Regulamento Geral sobre a Proteção de
+              Dados (RGPD).
             </p>
           </article>
 

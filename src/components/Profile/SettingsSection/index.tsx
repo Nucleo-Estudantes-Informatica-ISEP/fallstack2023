@@ -54,7 +54,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     if (
       linkedinRef.current?.value &&
       !linkedinRef.current?.value?.match(
-        /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9_-]+\/?)+$/
+        /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9ç_-]+\/?)+$/
       )
     ) {
       swal("O teu Linkedin não segue o formato correto!");
@@ -83,8 +83,6 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       await uploadToBucket(uploadRes, cvRef.current?.files[0]);
       await setTarget(student.code, uploadRes);
     }
-
-    console.log(profile);
 
     const res = await fetch(`${BASE_URL}/students/${student.code}`, {
       method: "PATCH",

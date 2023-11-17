@@ -37,7 +37,7 @@ const InterestsStep: FunctionComponent<InterestsStepProps> = ({
       </div>
 
       <p className="mb-1 text-center text-slate-700 md:text-lg">
-        Escolhe os teus interesses.
+        Escolhe os teus interesses. (Opcional)
       </p>
 
       <InterestSelector
