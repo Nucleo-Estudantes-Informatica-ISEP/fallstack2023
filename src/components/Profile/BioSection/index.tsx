@@ -12,7 +12,7 @@ const BioSection: React.FC<BioSectionProps> = ({ bio }) => {
       </div>
       <p
         className="mx-auto mt-1 block w-full resize-none
-        break-words rounded-md bg-transparent text-justify text-base
+        whitespace-pre-wrap break-words rounded-md bg-transparent text-justify text-base
         text-black focus-within:text-primary focus:border-primary focus:ring-primary"
       >
         {bio?.toString()}
