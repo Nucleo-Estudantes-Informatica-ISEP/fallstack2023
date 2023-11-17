@@ -38,7 +38,7 @@ const Schedule: React.FC<Props> = ({
     >
       <HeadingText text="Horário" />
       <div className="container flex w-full flex-col items-center justify-center">
-        <div className="relative flex w-full flex-col justify-center lg:flex-row">
+        <div className="relative flex w-full flex-col justify-center md:flex-row">
           <motion.div
             animate={{
               x:
