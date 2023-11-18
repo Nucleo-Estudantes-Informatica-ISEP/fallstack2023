@@ -7,20 +7,21 @@ import Skeleton from "react-loading-skeleton";
 import UserImage from "@/components/UserImage";
 import { Github, Linkedin } from "@/styles/Icons";
 
-import BioSection from "../BioSection";
-import ContactSection from "../ContactSection";
-import InterestsSection from "../InterestsSection";
-import OpenCvSection from "../OpenCvSection";
+import BioSection from "../Profile/BioSection";
+import ContactSection from "../Profile/ContactSection";
+import InterestsSection from "../Profile/InterestsSection";
+import OpenCvSection from "../Profile/OpenCvSection";
 
-interface PublicProfileSectionContainerProps {
+interface CompanyViewProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
 }
 
-const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
-  student,
-  interests,
-}) => {
+const CompanyViewProfileSectionContainer: React.FC<
+  CompanyViewProfileSectionContainerProps
+> = ({ student, interests }) => {
+  console.log("HEYYY");
+
   return (
     <div className="mt-12 h-full w-full items-center justify-center md:my-14">
       <div className="mb-12 mt-4 flex h-full w-full flex-col items-center">
@@ -41,7 +42,7 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
               <span>{student.year}</span>
             </p>
           </div>
-          <p className="flex gap-x-4 pt-6">
+          <div className="flex gap-x-4 pt-6">
             {student.github && (
               <a
                 href={student.github}
@@ -60,7 +61,10 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
                 <Linkedin className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
-          </p>
+            <button className="hover:bg-primary/100 rounded-lg bg-primary px-3 font-bold hover:scale-105 hover:shadow-xl">
+              + Salvar Perfil
+            </button>
+          </div>
         </motion.div>
       </div>
       <section className="mx-auto flex h-full w-full max-w-4xl flex-col rounded-md bg-white py-4 md:w-5/6">
@@ -77,4 +81,4 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
     </div>
   );
 };
-export default ProfileSectionContainer;
+export default CompanyViewProfileSectionContainer;

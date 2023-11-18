@@ -3,14 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
 
-interface CompanyParams {
+interface StudentParams {
   params: {
     id: number;
   };
 }
 
-export async function GET(req: NextRequest, { params: { id } }: CompanyParams) {
+export async function GET(req: NextRequest, { params: { id } }: StudentParams) {
   const session = await getServerSession();
+
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -20,15 +21,12 @@ export async function GET(req: NextRequest, { params: { id } }: CompanyParams) {
   const result = await prisma.savedStudent.findMany({
     where: {
       companyId: session.company.id,
-      isSaved: true,
     },
     include: {
       student: {
         select: {
           name: true,
-          interests: true,
           code: true,
-          cv: true,
         },
       },
     },
@@ -36,11 +34,6 @@ export async function GET(req: NextRequest, { params: { id } }: CompanyParams) {
       createdAt: "desc",
     },
   });
-
-  console.log(result);
-
-  if (!result)
-    return NextResponse.json({ error: "Student not found" }, { status: 404 });
 
   return NextResponse.json(result);
 }

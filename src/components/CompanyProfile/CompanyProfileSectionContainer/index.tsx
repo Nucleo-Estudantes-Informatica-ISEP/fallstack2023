@@ -5,6 +5,7 @@ import { Company } from "@prisma/client";
 import { motion } from "framer-motion";
 
 import CompanyImage from "../CompanyImage";
+import CompanySavedProfilesSection from "../CompanySavedProfilesSection";
 import CompanyStatsSection from "../CompanyStatsSection";
 
 interface CompanyProfileSectionContainerProps {
@@ -25,16 +26,15 @@ const CompanyProfileSectionContainer: React.FC<
         className={`mb-12 flex h-full w-full flex-col items-center bg-secondary pt-4`}
       >
         <motion.div
-          animate={{
-            height: activeTab !== "Sumário" ? "auto" : 0,
-            visibility: activeTab !== "Sumário" ? "visible" : "hidden",
-            marginTop: activeTab !== "Sumário" ? "3rem" : 0,
-            opacity: activeTab !== "Sumário" ? 1 : 0,
-          }}
+          animate={{}}
           transition={{ duration: 0.5 }}
           className="mt-4 flex flex-col items-center justify-center"
         >
           <CompanyImage company={company} />
+          <p className="my-2 items-center text-lg">{company.name}</p>
+          <p className="items-center font-semibold text-primary">
+            {company.tier}
+          </p>
         </motion.div>
 
         <div className="relative mb-4 mt-8 flex w-full max-w-3xl flex-col items-center justify-between gap-y-4 text-center text-lg md:mb-0 md:flex-row lg:w-5/6">
@@ -45,8 +45,8 @@ const CompanyProfileSectionContainer: React.FC<
                 activeTab === "Sumário"
                   ? 0
                   : activeTab === "Perfis Salvos"
-                  ? "168%"
-                  : "336%",
+                  ? "337%"
+                  : 0,
             }}
             initial={"165%"}
           ></motion.div>
@@ -66,7 +66,7 @@ const CompanyProfileSectionContainer: React.FC<
                 : "font-normal"
             }`}
           >
-            Perfil
+            Perfis Salvos
           </button>
         </div>
       </div>
@@ -78,6 +78,9 @@ const CompanyProfileSectionContainer: React.FC<
             stats={globalStats}
             students={totalStudents}
           />
+        )}
+        {activeTab === "Perfis Salvos" && (
+          <CompanySavedProfilesSection company={company} />
         )}
       </div>
     </div>

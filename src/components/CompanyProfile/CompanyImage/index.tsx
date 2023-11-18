@@ -31,14 +31,14 @@ const CompanyImage: React.FC<UserImageProps> = ({ company }) => {
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full hover:cursor-pointer md:h-52 md:w-52"
+      className="relative my-2 flex h-24 w-24 flex-col items-center md:h-52 md:w-52"
     >
       <Image
         width={328}
         height={328}
         src={company.image || "/assets/images/default_user.png"}
         alt="profile image"
-        className="h-full w-full rounded-full"
+        className="h-full w-full"
       />
     </motion.div>
   );

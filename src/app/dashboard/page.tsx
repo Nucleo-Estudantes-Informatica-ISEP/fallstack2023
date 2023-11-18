@@ -1,3 +1,5 @@
+import { getCompanyStats } from "@/lib/fetchStats";
+import { getStudents } from "@/lib/students";
 import getServerSession from "@/services/getServerSession";
 import CompanyProfileSectionContainer from "@/components/CompanyProfile/CompanyProfileSectionContainer";
 
@@ -10,12 +12,17 @@ const Dashboard: React.FC = async () => {
     return Custom404();
   }
 
+  const globalStats = await getCompanyStats(session.company.id);
+  const students = await getStudents();
+
+  const totalStudents = students.length;
+
   return (
     <section className="flex h-full min-h-screen w-full flex-col items-center">
       <CompanyProfileSectionContainer
         company={session.company}
-        globalStats={[]}
-        totalStudents={0}
+        globalStats={globalStats}
+        totalStudents={totalStudents}
       />
     </section>
   );

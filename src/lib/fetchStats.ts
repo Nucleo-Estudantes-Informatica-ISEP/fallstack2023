@@ -39,3 +39,19 @@ export async function getTodayStats(id: number): Promise<number> {
 
   return numberOfSavedStudents[1]?._count._all ?? 0;
 }
+
+export async function getCompanyStats(id: number): Promise<number[]> {
+  const result = await prisma.savedStudent.groupBy({
+    where: {
+      company: {
+        id: id,
+      },
+    },
+    by: "isSaved",
+    _count: {
+      _all: true,
+    },
+  });
+
+  return result.map((item) => item._count._all) as number[];
+}

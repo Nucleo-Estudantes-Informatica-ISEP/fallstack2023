@@ -2,6 +2,7 @@ import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import getServerSession from "@/services/getServerSession";
+import CompanyViewProfileSectionContainer from "@/components/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
 import Custom404 from "@/app/not-found";
@@ -32,7 +33,12 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   return (
     <section className="flex h-full min-h-screen w-full flex-col items-center">
-      {!session || session.student?.code !== params.code ? (
+      {!session || session.role === "COMPANY" ? (
+        <CompanyViewProfileSectionContainer
+          interests={sanitizedInterests}
+          student={student}
+        />
+      ) : !session || session.student?.code !== params.code ? (
         <PublicProfileSectionContainer
           interests={sanitizedInterests}
           student={student}

@@ -13,8 +13,10 @@ const CompanyStatsSection: React.FC<StatsProps> = ({
   company,
   students,
 }) => {
+  console.log(stats);
+
   const totalScans = stats && stats.length !== 0 ? stats[0] : 0;
-  const totalSaves = stats && stats.length !== 0 ? stats[1] : 0;
+  const totalSaves = stats && stats.length !== 1 ? stats[1] : 0;
   const studentsLeft = students - totalScans;
 
   return (
