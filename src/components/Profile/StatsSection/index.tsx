@@ -4,13 +4,13 @@ import HistorySection from "../../HistorySection";
 
 interface StatsProps {
   student: Student;
-  stats?: number[];
+  stats: number[];
   companies: number;
 }
 
 const StatsSection: React.FC<StatsProps> = ({ stats, student, companies }) => {
-  const totalScans = stats && stats.length !== 0 ? stats[0] : 0;
-  const totalSaves = stats && stats.length !== 0 ? stats[1] : 0;
+  const totalScans = stats[0];
+  const totalSaves = stats[1];
   const companiesLeft = companies - totalScans;
 
   return (

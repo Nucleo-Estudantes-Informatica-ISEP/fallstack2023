@@ -13,7 +13,18 @@ export async function getStats(code: string): Promise<number[]> {
     },
   });
 
-  return result.map((item) => item._count._all) as number[];
+  result.sort(
+    (a, b) => (a.isSaved === false ? -1 : 1) - (b.isSaved === false ? -1 : 1)
+  );
+
+  const counts = [0, 0];
+
+  result.forEach((item) => {
+    const index = item.isSaved === false ? 0 : 1;
+    counts[index] = item._count._all;
+  });
+
+  return counts;
 }
 
 export async function getTodayStats(id: number): Promise<number> {
@@ -37,7 +48,18 @@ export async function getTodayStats(id: number): Promise<number> {
     },
   });
 
-  return numberOfSavedStudents[1]?._count._all ?? 0;
+  numberOfSavedStudents.sort(
+    (a, b) => (a.isSaved === false ? -1 : 1) - (b.isSaved === false ? -1 : 1)
+  );
+
+  const counts = [0, 0];
+
+  numberOfSavedStudents.forEach((item) => {
+    const index = item.isSaved === false ? 0 : 1;
+    counts[index] = item._count._all;
+  });
+
+  return counts[1];
 }
 
 export async function getCompanyStats(id: number): Promise<number[]> {
@@ -53,5 +75,16 @@ export async function getCompanyStats(id: number): Promise<number[]> {
     },
   });
 
-  return result.map((item) => item._count._all) as number[];
+  result.sort(
+    (a, b) => (a.isSaved === false ? -1 : 1) - (b.isSaved === false ? -1 : 1)
+  );
+
+  const counts = [0, 0];
+
+  result.forEach((item) => {
+    const index = item.isSaved === false ? 0 : 1;
+    counts[index] = item._count._all;
+  });
+
+  return counts;
 }

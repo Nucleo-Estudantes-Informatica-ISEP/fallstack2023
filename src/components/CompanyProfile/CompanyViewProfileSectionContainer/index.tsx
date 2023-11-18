@@ -1,26 +1,45 @@
 "use client";
 
-import { Student, User } from "@prisma/client";
+import { Company, Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
+import { BASE_URL } from "@/services/api";
 import UserImage from "@/components/UserImage";
 import { Github, Linkedin } from "@/styles/Icons";
 
-import BioSection from "../Profile/BioSection";
-import ContactSection from "../Profile/ContactSection";
-import InterestsSection from "../Profile/InterestsSection";
-import OpenCvSection from "../Profile/OpenCvSection";
+import BioSection from "../../Profile/BioSection";
+import ContactSection from "../../Profile/ContactSection";
+import InterestsSection from "../../Profile/InterestsSection";
+import OpenCvSection from "../../Profile/OpenCvSection";
 
 interface CompanyViewProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
+  company: Company | undefined | null;
 }
 
 const CompanyViewProfileSectionContainer: React.FC<
   CompanyViewProfileSectionContainerProps
-> = ({ student, interests }) => {
-  console.log("HEYYY");
+> = ({ student, interests, company }) => {
+  console.log(student.id, company?.id);
+
+  const handleSaveProfile = async () => {
+    console.log("saving profile");
+
+    if (!company) return toast("Erro ao carregar perfil!");
+    const res = await fetch(`${BASE_URL}/companies/${company.id}/saveProfile`, {
+      method: "POST",
+      body: JSON.stringify({ studentId: student.id }),
+    });
+
+    if (res.status === 200) {
+      toast("Perfil salvo com sucesso!");
+    } else {
+      toast("Erro ao salvar perfil!");
+    }
+  };
 
   return (
     <div className="mt-12 h-full w-full items-center justify-center md:my-14">
@@ -61,7 +80,10 @@ const CompanyViewProfileSectionContainer: React.FC<
                 <Linkedin className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
-            <button className="hover:bg-primary/100 rounded-lg bg-primary px-3 font-bold hover:scale-105 hover:shadow-xl">
+            <button
+              onClick={handleSaveProfile}
+              className="hover:bg-primary/100 rounded-lg bg-primary px-3 font-bold hover:scale-105 hover:shadow-xl"
+            >
               + Salvar Perfil
             </button>
           </div>

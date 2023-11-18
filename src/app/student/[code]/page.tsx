@@ -2,7 +2,7 @@ import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import getServerSession from "@/services/getServerSession";
-import CompanyViewProfileSectionContainer from "@/components/CompanyViewProfileSectionContainer";
+import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
 import Custom404 from "@/app/not-found";
@@ -31,12 +31,15 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   const totalCompanies = companies.length;
 
+  console.log(globalStats, todayStats, totalCompanies);
+
   return (
     <section className="flex h-full min-h-screen w-full flex-col items-center">
       {!session || session.role === "COMPANY" ? (
         <CompanyViewProfileSectionContainer
           interests={sanitizedInterests}
           student={student}
+          company={session?.company}
         />
       ) : !session || session.student?.code !== params.code ? (
         <PublicProfileSectionContainer
