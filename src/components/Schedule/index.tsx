@@ -1,16 +1,10 @@
 "use client";
 
+import React, { useState } from "react";
 import useWindowSize from "@rooks/use-window-size";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
-
-
 
 import HeadingText from "../HeadingText";
-
-
-
-
 
 export interface ScheduleDay {
   hour: string;
@@ -161,7 +155,8 @@ const Schedule: React.FC<Props> = ({
               opacity: 0,
               x: activeScheduleEventIndex === 0 ? -50 : 50,
             }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.2 }}
             key={activeScheduleEventIndex}
           >
@@ -173,7 +168,8 @@ const Schedule: React.FC<Props> = ({
                   opacity: 0,
                   x: activeScheduleEventIndex === 0 ? -50 : 50,
                 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.1 * index }}
               >
                 <td className="p-4">{entry.hour}</td>
