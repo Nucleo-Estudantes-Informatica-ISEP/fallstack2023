@@ -1,10 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
 import useWindowSize from "@rooks/use-window-size";
 import { motion } from "framer-motion";
+import React, { useState } from "react";
+
+
 
 import HeadingText from "../HeadingText";
+
+
+
+
 
 export interface ScheduleDay {
   hour: string;
@@ -25,8 +31,9 @@ const Schedule: React.FC<Props> = ({
   const [activeScheduleEventIndex, setActiveScheduleEventIndex] =
     useState<number>(0);
 
-  const { innerWidth } = useWindowSize();
-  if (!innerWidth) return null;
+  const { innerWidth: width } = useWindowSize();
+
+  const innerWidth = width ? width : 0;
 
   return (
     <motion.div
