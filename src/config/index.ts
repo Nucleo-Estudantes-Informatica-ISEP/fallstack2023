@@ -4,13 +4,13 @@ const config = {
   cookieName: "@Fallstack23:auth",
 
   uploads: {
-    profile: {
+    avatar: {
       types: ["image/png", "image/jpeg"],
       maxSize: 5 * 1024 * 1024, // 5mb
     },
     cv: {
       types: ["application/pdf"],
-      maxSize: 2 * 1024 * 1024, // 2mb
+      maxSize: 5 * 1024 * 1024, // 5mb
     },
   },
 };
