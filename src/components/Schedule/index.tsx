@@ -25,8 +25,9 @@ const Schedule: React.FC<Props> = ({
   const [activeScheduleEventIndex, setActiveScheduleEventIndex] =
     useState<number>(0);
 
-  const { innerWidth } = useWindowSize();
-  if (!innerWidth) return null;
+  const { innerWidth: width } = useWindowSize();
+
+  const innerWidth = width ? width : 0;
 
   return (
     <motion.div
@@ -154,7 +155,8 @@ const Schedule: React.FC<Props> = ({
               opacity: 0,
               x: activeScheduleEventIndex === 0 ? -50 : 50,
             }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.2 }}
             key={activeScheduleEventIndex}
           >
@@ -166,7 +168,8 @@ const Schedule: React.FC<Props> = ({
                   opacity: 0,
                   x: activeScheduleEventIndex === 0 ? -50 : 50,
                 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.1 * index }}
               >
                 <td className="p-4">{entry.hour}</td>
