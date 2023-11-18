@@ -11,6 +11,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.5.2
     version: 5.5.2(prisma@5.5.2)
+  '@rooks/use-window-size':
+    specifier: ^4.11.2
+    version: 4.11.2(react@18.2.0)
   axios:
     specifier: ^1.6.0
     version: 1.6.1
@@ -3084,6 +3087,14 @@ packages:
     dependencies:
       '@react-types/overlays': 3.8.4(react@18.2.0)
       '@react-types/shared': 3.22.0(react@18.2.0)
+      react: 18.2.0
+    dev: false
+
+  /@rooks/use-window-size@4.11.2(react@18.2.0):
+    resolution: {integrity: sha512-TQvObjwn/oNUBO00dZeLaJC61BoonJmXV6Mye4hno25nnZASbBufvivTzuYJiYoAo0ciBrADaUNdrekGEs0ItA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
       react: 18.2.0
     dev: false
 

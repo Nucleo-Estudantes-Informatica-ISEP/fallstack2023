@@ -46,7 +46,7 @@ export async function POST(
   // remove old avatar if existent
   if (session.student.avatar) {
     const imageId = session.student.avatar.split("/").reverse()[0];
-    const old = `distribution/profile/${imageId}`;
+    const old = `distribution/avatar/${imageId}`;
     await storage.bucket().file(old).delete({ ignoreNotFound: true });
   }
 

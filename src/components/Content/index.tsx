@@ -1,8 +1,10 @@
 import Connect from "../../../public/assets/images/connect.png";
 import Pitch from "../../../public/assets/images/pitch.png";
+import { ScheduleDays } from "../../utils/ScheduleDays";
 import Activity from "../Activity";
 import FaqSection from "../FaqSection";
 import InfoText from "../InfoText";
+import Schedule from "../Schedule";
 
 interface ContentProps {
   contentRef: React.RefObject<HTMLDivElement>;
@@ -33,7 +35,6 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
           <span className="font-bold text-orange-600"> interesses</span> para o
           próximo dia.
         </Activity>
-
         <Activity
           logo={Connect}
           title={"Connection's Train"}
@@ -49,6 +50,12 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
           <span className="font-bold text-orange-600"> feedback</span> por parte
           das empresas do teu interesse.
         </Activity>
+        <hr />
+        <Schedule
+          firstDayTitle="Segunda-Feira - Auditório Magno"
+          secondDayTitle="Terça-Feira - Sala de Eventos"
+          scheduleEvents={ScheduleDays}
+        />{" "}
       </section>
 
       <FaqSection />

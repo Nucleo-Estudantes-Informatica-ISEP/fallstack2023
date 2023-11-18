@@ -46,9 +46,23 @@ const AvatarStep: FunctionComponent<AvatarStepProps> = ({ data }) => {
         if (!image) return setLoading(false);
 
         const signed = await getSignedUrl("avatar", image.type);
-        if (!signed) return setLoading(false);
+        if (!signed) {
+          toast.error("Ocorreu um erro.");
+          return setLoading(false);
+        }
 
-        await uploadToBucket(signed, image);
+        if (image.size > signed.maxSize) {
+          const maxMb = Math.round(signed.maxSize / Math.pow(1024, 2));
+          toast.error(`A imagem excede o tamanho máximo de ${maxMb} MB.`);
+          return setLoading(false);
+        }
+
+        const upload = await uploadToBucket(signed, image);
+        if (upload.status !== 200) {
+          toast.error("Não foi possível dar upload à imagem.");
+          return setLoading(false);
+        }
+
         avatar = signed.id;
       }
 

@@ -25,7 +25,7 @@ model Student {
   user      User           @relation(fields: [userId], references: [id])
   code      String         @unique
   name      String
-  bio       String?
+  bio       String?        @db.VarChar(300)
   year      String
   interests Interest[]
   savedBy   SavedStudent[]
@@ -56,13 +56,13 @@ model Interest {
 model SavedStudent {
   student   Student  @relation(fields: [studentId], references: [id])
   company   Company  @relation(fields: [companyId], references: [id])
-  isSaved Boolean  @default(false)
+  isSaved   Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int
   companyId Int
 
-  @@id([studentId, companyId,  isSaved])
+  @@id([studentId, companyId, isSaved])
 }
 
 enum Role {
