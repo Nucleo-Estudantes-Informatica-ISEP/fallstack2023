@@ -1,4 +1,3 @@
-import QRCodeButton from "../QRCodeButton";
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { IoIosLogIn } from "react-icons/io";
 import useSession from "@/hooks/useSession";
 import LogoutButton from "@/components/LogoutButton";
 import UserButton from "@/components/UserButton";
+import QRCodeButton from "../QRCodeButton";
 
 import ThemeChanger from "../Theme/ThemeChanger";
 
@@ -63,6 +63,7 @@ const TopBar: React.FC = () => {
           ) : (
             <>
               <UserButton user={session.user} />
+              <QRCodeButton />
               <LogoutButton />
             </>
           )}
