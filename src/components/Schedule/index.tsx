@@ -45,14 +45,43 @@ const Schedule: React.FC<Props> = ({
                 activeScheduleEventIndex === 1 && innerWidth > 768 ? "100%" : 0,
               y:
                 activeScheduleEventIndex === 1 && innerWidth < 768 ? "100%" : 0,
-              borderRadius:
+              borderTopLeftRadius:
                 activeScheduleEventIndex === 1 && innerWidth > 768
-                  ? "0 0.5rem 0.5rem 0"
+                  ? 0
                   : innerWidth > 768 && activeScheduleEventIndex === 0
-                  ? "0.5rem 0 0 0.5rem"
+                  ? 8
                   : activeScheduleEventIndex === 1
-                  ? "0 0 0.5rem 0.5rem"
-                  : "0.5rem 0.5rem 0 0",
+                  ? 0
+                  : 8,
+              borderTopRightRadius:
+                activeScheduleEventIndex === 1 && innerWidth > 768
+                  ? 8
+                  : innerWidth > 768 && activeScheduleEventIndex === 0
+                  ? 0
+                  : activeScheduleEventIndex === 1
+                  ? 0
+                  : 8,
+              borderBottomRightRadius:
+                activeScheduleEventIndex === 1 && innerWidth > 768
+                  ? 8
+                  : innerWidth > 768 && activeScheduleEventIndex === 0
+                  ? 0
+                  : activeScheduleEventIndex === 1
+                  ? 8
+                  : 0,
+              borderBottomLeftRadius:
+                activeScheduleEventIndex === 1 && innerWidth > 768
+                  ? 0
+                  : innerWidth > 768 && activeScheduleEventIndex === 0
+                  ? 8
+                  : activeScheduleEventIndex === 1
+                  ? 8
+                  : 0,
+            }}
+            transition={{
+              type: "spring",
+              duration: 0.2,
+              bounce: 0.5,
             }}
             className="absolute left-0 top-0 -z-10 h-1/2 w-full bg-primary hover:brightness-110 md:h-full md:w-1/2"
           />
@@ -62,18 +91,40 @@ const Schedule: React.FC<Props> = ({
                 activeScheduleEventIndex === 0 && innerWidth > 768 ? "100%" : 0,
               y:
                 activeScheduleEventIndex === 0 && innerWidth < 768 ? "100%" : 0,
-              borderRadius:
+              borderTopLeftRadius:
                 activeScheduleEventIndex === 0 && innerWidth > 768
-                  ? "0 0.5rem 0.5rem 0"
+                  ? 0
                   : innerWidth > 768 && activeScheduleEventIndex === 1
-                  ? "0.5rem 0 0 0.5rem"
+                  ? 8
                   : activeScheduleEventIndex === 0
-                  ? "0 0 0.5rem 0.5rem"
-                  : "0.5rem 0.5rem 0 0",
+                  ? 0
+                  : 8,
+              borderTopRightRadius:
+                activeScheduleEventIndex === 0 && innerWidth > 768
+                  ? 8
+                  : innerWidth > 768 && activeScheduleEventIndex === 1
+                  ? 0
+                  : activeScheduleEventIndex === 0
+                  ? 0
+                  : 8,
+              borderBottomRightRadius:
+                activeScheduleEventIndex === 0 && innerWidth > 768
+                  ? 8
+                  : innerWidth > 768 && activeScheduleEventIndex === 1
+                  ? 0
+                  : activeScheduleEventIndex === 0
+                  ? 8
+                  : 0,
+              borderBottomLeftRadius:
+                activeScheduleEventIndex === 0 && innerWidth > 768
+                  ? 0
+                  : innerWidth > 768 && activeScheduleEventIndex === 1
+                  ? 8
+                  : activeScheduleEventIndex === 0
+                  ? 8
+                  : 0,
             }}
-            transition={{
-              stiffness: 100,
-            }}
+            transition={{ duration: 0.1, stiffness: 500 }}
             className="absolute left-0 top-0 -z-20 h-1/2 w-full bg-secondary hover:brightness-110 md:h-full md:w-1/2"
           />
           <button
