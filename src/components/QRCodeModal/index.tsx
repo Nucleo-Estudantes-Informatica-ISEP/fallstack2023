@@ -1,27 +1,30 @@
+"use client";
+
 import React from "react";
-import Image, { StaticImageData } from "next/image";
 
 import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
 
-import { BsFillClipboardFill, BsQrCodeScan, BsX } from "react-icons/bs";
+import { BsFillClipboardFill, BsX } from "react-icons/bs";
+import QRCode from 'qrcode.react';
+import { UserWithProfile } from "@/types/UserWithProfile";
 
 interface QRCodeModalProps {
   hidden: boolean;
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
+  user: UserWithProfile;
 }
-const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
+const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden, user }) => {
   useDisableBodyScroll({ modalIsHidden: hidden });
+  const baseUrl = window.location.origin;
 
-  // Prevent closing the modal when clicking on its content
-  const handleModalClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    event.stopPropagation();
-  };
+  const profileUrl =
+  user.role === "STUDENT" && user.student
+    ? `${baseUrl}/student/${user.student.code}`
+    : "";
 
   return !hidden ? (
     <div
-      className="scrollbar-hide fixed inset-6 start-2 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8  lg:inset-16 lg:end-14 lg:start-10"
+      className="scrollbar-hide fixed inset-6 start-4 end-4 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8  lg:inset-16 lg:end-14 lg:start-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -47,10 +50,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
                   <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:grid-cols-2 md:mt-6 lg:mt-20 xl:mt-44">
                     {/* left column */}
                     <div className="flex items-center justify-center ">
-                      {/* THIS GONNA BE ADJUSTED WHEN THE QR CODE IS REALLY IMPLEMENTED FOR NOW ITS JUST AN ICON*/}
-                      <BsQrCodeScan
-                        style={{ fontSize: "15rem", color: "#000" }}
-                      />
+                        <QRCode size={250} value={profileUrl} />
                     </div>
                     {/* right column */}
                     <div className="flex items-center justify-center pb-0 pt-14 sm:pb-0 sm:pt-0">
@@ -83,7 +83,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden }) => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : <></>;
 };
 
 export default QRCodeModal;
