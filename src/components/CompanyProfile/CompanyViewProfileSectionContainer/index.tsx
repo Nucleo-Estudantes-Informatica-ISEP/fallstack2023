@@ -23,11 +23,7 @@ interface CompanyViewProfileSectionContainerProps {
 const CompanyViewProfileSectionContainer: React.FC<
   CompanyViewProfileSectionContainerProps
 > = ({ student, interests, company }) => {
-  console.log(student.id, company?.id);
-
   const handleSaveProfile = async () => {
-    console.log("saving profile");
-
     if (!company) return toast("Erro ao carregar perfil!");
     const res = await fetch(`${BASE_URL}/companies/${company.id}/saveProfile`, {
       method: "POST",
@@ -35,9 +31,11 @@ const CompanyViewProfileSectionContainer: React.FC<
     });
 
     if (res.status === 200) {
-      toast("Perfil salvo com sucesso!");
+      toast.info("Perfil salvo com sucesso!");
+    } else if (res.status === 400) {
+      toast.warning("Perfil já salvo!");
     } else {
-      toast("Erro ao salvar perfil!");
+      toast.error("Erro ao salvar perfil!");
     }
   };
 

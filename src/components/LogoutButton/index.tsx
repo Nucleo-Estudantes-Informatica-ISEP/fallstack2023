@@ -15,6 +15,7 @@ const LogoutButton: React.FC = () => {
     if (res.status === 200) {
       session.clear();
       router.refresh();
+      router.push("/");
     }
   };
 

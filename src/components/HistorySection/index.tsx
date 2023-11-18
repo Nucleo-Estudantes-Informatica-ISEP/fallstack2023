@@ -102,7 +102,7 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
                   {code ? (
                     item.company?.name
                   ) : (
-                    <span className="text-primary">{item.student?.name}</span>
+                    <span className="text-primary">{item.student.name}</span>
                   )}
                 </TableCell>
                 <TableCell className="text-center font-poppins font-semibold text-gray-600">

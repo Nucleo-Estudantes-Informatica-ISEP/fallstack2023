@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   Table,
   TableBody,
@@ -50,8 +51,6 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
     fetchHistoryData();
   }, [company]);
 
-  console.log(historyData);
-
   return (
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <Table
@@ -83,36 +82,53 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                     : "border-t-2 border-gray-300"
                 }
               >
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
-                  <span className="text-primary">{item.student?.name}</span>
+                <TableCell className="text-center font-semibold text-black">
+                  <Link
+                    href={`/student/${item.student?.code}`}
+                    className="text-primary"
+                    target="_blank"
+                  >
+                    {item.student.name}
+                  </Link>
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
-                  {item.interest?.name}
+                <TableCell className="text-center font-semibold text-black">
+                  {item.student.interests ? (
+                    item.student.interests.map((interest) => (
+                      <span
+                        className="h-12 overflow-x-hidden"
+                        key={interest.name}
+                      >
+                        {interest.name},{" "}
+                      </span>
+                    ))
+                  ) : (
+                    <span>--</span>
+                  )}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {item.student?.cv ? (
                     <OpenCvSectionCompany code={item.student?.code} />
                   ) : (
-                    <span className="text-primary">Não possui</span>
+                    <span>--</span>
                   )}
                 </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow className="border-t-2 border-gray-600">
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
             </TableRow>

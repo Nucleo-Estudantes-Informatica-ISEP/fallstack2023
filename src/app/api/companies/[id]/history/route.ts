@@ -26,7 +26,11 @@ export async function GET(req: NextRequest, { params: { id } }: CompanyParams) {
       student: {
         select: {
           name: true,
-          interests: true,
+          interests: {
+            select: {
+              name: true,
+            },
+          },
           code: true,
           cv: true,
         },

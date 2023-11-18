@@ -6,12 +6,12 @@ export interface HistoryData {
   company?: {
     name: string;
   };
-  interest?: {
-    name: string;
-  };
-  student?: {
+  student: {
     name: string;
     code: string;
     cv: string;
+    interests: {
+      name: string;
+    }[];
   };
 }
