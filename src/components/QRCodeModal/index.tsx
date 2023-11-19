@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
+import QRCode from "qrcode.react";
+import { toast } from "react-toastify";
 
 import { UserWithProfile } from "@/types/UserWithProfile";
+import { BASE_URL } from "@/services/api";
 
 import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
+// qr code components
+import QRCodeScanner from "../QRCodeScanner";
 
 import { BsFillClipboardFill, BsX } from "react-icons/bs";
-
-import QRCode from "qrcode.react";
-import QRCodeScanner  from "../QRCodeScanner";
 
 interface QRCodeModalProps {
   hidden: boolean;
@@ -22,15 +24,42 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   user,
 }) => {
   useDisableBodyScroll({ modalIsHidden: hidden });
-  
-  const [result, setResult] = React.useState<string>("");
 
-  const handleScan = (data: string) => {
-    if (data) {
-      setResult(data);
+  // handle scan
+  const handleScan = async (data: string) => {
+    // check if its content is a url for the current website
+    if (!data.includes(window.location.origin)) return;
+
+    try {
+      new URL(data);
+
+      // Open the link in a new tab
+      window.open(data, "_blank");
+
+      // get student code from url
+      const pathSegments = data.split("/");
+      const studentCode = pathSegments[pathSegments.length - 1];
+
+      // save student
+      const res = await fetch(`${BASE_URL}/companies/`, {
+        method: "POST",
+        body: JSON.stringify({
+          studentCode: studentCode,
+        }),
+      });
+
+      if (res.status === 201) {
+        toast.success("Perfil do estudante guardado com sucesso!");
+        return;
+      }
+      if (res.status === 200) {
+        toast.success("Perfil do estudante já guardado!");
+      } else toast.error("Ocorreu um erro ao guardar o perfil do estudante...");
+    } catch (error) {
+      toast.error("Ocorreu um erro a dar scan no QR Code do estudante...");
     }
   };
-  
+
   // student url
   const baseUrl = window.location.origin;
 
@@ -73,7 +102,10 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                         <span className="text-primary">Perfil</span>
                       </>
                     ) : (
-                      <>Dá  <span className="text-primary">scan</span> num estudante</>
+                      <>
+                        Dá <span className="text-primary">scan</span> num
+                        estudante
+                      </>
                     )}
                   </h1>
                   {/* Grid */}
@@ -109,11 +141,10 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                     </div>
                   ) : (
                     <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 lg:mt-20 xl:mt-44">
-
-                      <div className="flex items-center justify-center " >
-                        <QRCodeScanner  close={setHidden}/>
+                      <div className="flex items-center justify-center ">
+                        <QRCodeScanner handleScan={handleScan} />
                       </div>
-                      </div>
+                    </div>
                   )}
                 </div>
               </div>

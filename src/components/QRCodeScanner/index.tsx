@@ -4,31 +4,24 @@ import React from "react";
 import { useZxing } from "react-zxing";
 
 interface QRCodeScannerProps {
-  close: React.Dispatch<React.SetStateAction<boolean>>;
+  handleScan: (data: string) => void;
 }
 
-const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ close }) => {
+const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
   const { ref } = useZxing({
     onDecodeResult(result) {
       const decodedText = result.getText();
-      // check if its content is a url for the current website
-      if (!decodedText.includes(window.location.origin)) {
+
+      if (!decodedText) {
         return;
       }
 
-      // check if it's a valid URL
-      try {
-        new URL(decodedText);
+      // stop the camera
+      ref.current?.pause();
 
-        // stop the camera
-        ref.current?.pause();
-
-        // close the modal
-        close(true);
-
-        // Open the link in a new tab
-        window.open(decodedText, "_blank");
-      } catch (error) {}
+      // callback
+      handleScan(decodedText);
+ 
     },
   });
 
