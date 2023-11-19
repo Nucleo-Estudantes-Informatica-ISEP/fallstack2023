@@ -30,10 +30,9 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
       setResult(data);
     }
   };
+  
   // student url
   const baseUrl = window.location.origin;
-
-
 
   const profileUrl =
     user.role === "STUDENT" && user.student
@@ -42,7 +41,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
 
   const handleCopyClick = () => {
     if (user.student?.code) {
-      navigator.clipboard.writeText(profileUrl).catch(() => {});
+      navigator.clipboard.writeText(user.student?.code).catch(() => {});
     }
   };
 
