@@ -10,7 +10,7 @@ interface StatsProps {
 
 const StatsSection: React.FC<StatsProps> = ({ stats, student, companies }) => {
   const totalScans = stats && stats.length !== 0 ? stats[0] : 0;
-  const totalSaves = stats && stats.length !== 0 ? stats[1] : 0;
+  const totalSaves = stats && stats.length !== 0 ? (stats[1] ?? 0) : 0; // ?? 0 because stats[1] can be null
   const companiesLeft = companies - totalScans;
 
   return (
