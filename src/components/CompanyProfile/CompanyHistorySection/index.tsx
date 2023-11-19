@@ -55,7 +55,10 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <Table
         aria-label="Example static collection table"
-        className="mt-2 w-3/4 items-center justify-center"
+        className="mt-2 w-5/6 items-center justify-center"
+        classNames={{
+          base: "max-h-[350px] overflow-y-scroll",
+        }}
       >
         <TableHeader>
           <TableColumn className="w-1/4 text-center text-lg text-black">
@@ -76,11 +79,12 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
             historyData.map((item) => (
               <TableRow
                 key={item.studentId}
-                className={
+                className={`${
                   historyData.indexOf(item) === 0
                     ? "border-t-2 border-gray-600"
                     : "border-t-2 border-gray-300"
                 }
+                `}
               >
                 <TableCell className="text-center font-semibold text-black">
                   <Link
@@ -95,8 +99,9 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                   {item.student.interests ? (
                     item.student.interests.map((interest) => (
                       <span
-                        className="h-12 overflow-x-hidden"
+                        className="h-12"
                         key={interest.name}
+                        title={interest.name}
                       >
                         {interest.name},{" "}
                       </span>

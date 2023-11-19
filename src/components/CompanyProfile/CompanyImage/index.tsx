@@ -17,26 +17,26 @@ interface UserImageProps {
 const CompanyImage: React.FC<UserImageProps> = ({ company }) => {
   const [image, setImage] = useState<string | null>(null);
 
-  const getImage = async (company: Company) => {
-    if (!company.image) return "/assets/images/default_user.png";
-
-    setImage(image ? company.image : "/assets/images/default_user.png");
-  };
-
   useEffect(() => {
+    const getImage = async (company: Company) => {
+      if (!company.image) return "/assets/images/devscope_logo.png";
+
+      setImage(image ? company.image : "/assets/images/devscope_logo.png");
+    };
+
     getImage(company);
-  }, [company]);
+  }, [company, image]);
 
   return (
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="relative my-2 flex h-24 w-24 flex-col items-center md:h-52 md:w-52"
+      className="relative my-8 flex h-full w-full flex-col items-center"
     >
       <Image
-        width={328}
-        height={328}
-        src={company.image || "/assets/images/default_user.png"}
+        width={400}
+        height={400}
+        src={company.image || "/assets/images/devscope_logo.png"}
         alt="profile image"
         className="h-full w-full"
       />

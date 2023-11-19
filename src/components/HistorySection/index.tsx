@@ -75,6 +75,9 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
       <Table
         aria-label="Example static collection table"
         className="mt-2 w-5/6 items-center justify-center"
+        classNames={{
+          base: "max-h-[250px] overflow-y-scroll",
+        }}
       >
         <TableHeader>
           <TableColumn className="w-1/3 text-center text-lg text-black">
