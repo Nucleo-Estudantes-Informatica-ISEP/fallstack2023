@@ -23,25 +23,23 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   setHidden,
   user,
 }) => {
+  // disable body scroll
   useDisableBodyScroll({ modalIsHidden: hidden });
+
+  const [processing, setProcessing] = React.useState(false);
 
   // handle scan
   const handleScan = async (data: string) => {
-    // check if its content is a url for the current website
     if (!data.includes(window.location.origin)) return;
 
     try {
+      setProcessing(true);
+
       new URL(data);
 
-      // Open the link in a new tab
-      window.open(data, "_blank");
+      const studentCode = data.split("/").pop();
 
-      // get student code from url
-      const pathSegments = data.split("/");
-      const studentCode = pathSegments[pathSegments.length - 1];
-
-      // save student
-      const res = await fetch(`${BASE_URL}/companies/`, {
+      const res = await fetch(`${BASE_URL}/companies/history`, {
         method: "POST",
         body: JSON.stringify({
           studentCode: studentCode,
@@ -50,12 +48,22 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
 
       if (res.status === 201) {
         toast.success("Perfil do estudante guardado com sucesso!");
-        return;
+      } else if (res.status === 200) {
+        toast.success("Este perfil já foi guardado!");
+      } else {
+        toast.error("Ocorreu um erro ao guardar o perfil do estudante...");
       }
-      if (res.status === 200) {
-        toast.success("Perfil do estudante já guardado!");
-      } else toast.error("Ocorreu um erro ao guardar o perfil do estudante...");
+
+      setProcessing(false);
+
+      /* it's dumb doing this for sure, but if i dont set a delay, on mobile, it wont let open the
+       camera again and the user will need to close and open the modal again so, this is a workaround
+       the user won't even feel the delay delay */
+      setTimeout(() => {
+        window.open(data, "_blank");
+      }, 1000);
     } catch (error) {
+      setProcessing(false);
       toast.error("Ocorreu um erro a dar scan no QR Code do estudante...");
     }
   };
@@ -142,7 +150,18 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                   ) : (
                     <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 lg:mt-20 xl:mt-44">
                       <div className="flex items-center justify-center ">
-                        <QRCodeScanner handleScan={handleScan} />
+                        {processing ? (
+                          <div
+                            className="mt-24 inline-block h-24 w-24 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                            role="status"
+                          >
+                            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                              A processar...
+                            </span>
+                          </div>
+                        ) : (
+                          <QRCodeScanner handleScan={handleScan} />
+                        )}
                       </div>
                     </div>
                   )}

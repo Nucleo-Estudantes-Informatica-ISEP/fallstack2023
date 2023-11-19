@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useZxing } from "react-zxing";
+import { toast } from "react-toastify";
 
 interface QRCodeScannerProps {
   handleScan: (data: string) => void;
@@ -13,11 +14,9 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
       const decodedText = result.getText();
 
       if (!decodedText) {
+      toast.error("Ocorreu um erro a obter o perfil do estudante apartir do QR Code...");
         return;
       }
-
-      // stop the camera
-      ref.current?.pause();
 
       // callback
       handleScan(decodedText);
