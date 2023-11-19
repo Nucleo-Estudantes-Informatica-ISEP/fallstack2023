@@ -5,16 +5,17 @@ import getServerSession from "@/services/getServerSession";
 import { historySchema } from "@/schemas/historySchema";
 
 export async function POST(req: NextRequest) {
+    
   const session = await getServerSession();
 
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (session.role !== "COMPANY")
+  if (session.role !== "COMPANY" || !session.company)
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const body = await req.json();
-
+  
   const safeParse = historySchema.safeParse(body);
   if (!safeParse.success)
     return NextResponse.json({ message: safeParse.error });
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest) {
 
   // check if student is already scanned
   const history = await prisma.savedStudent.findFirst({
-    where: { studentId: studentCode, companyId: session.id },
+    where: { studentId: student.id, companyId: session.company.id },
   });
 
   if (history)
@@ -46,8 +47,8 @@ export async function POST(req: NextRequest) {
   // create history
   const entry = await prisma.savedStudent.create({
     data: {
-      studentId: studentCode,
-      companyId: session.id,
+      studentId: student.id,
+      companyId: session.company.id,
     },
   });
 
