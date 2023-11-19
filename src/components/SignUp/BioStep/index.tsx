@@ -51,7 +51,7 @@ const BioStep: FunctionComponent<BioStepProps> = ({
       </div>
 
       <TextArea
-        name="Conta-nos mais sobre ti. Quais são os teus hobbies?"
+        name="Conta-nos mais sobre ti. (Opcional)"
         placeholder="Insere a tua bio"
         className="mb-4"
         center
