@@ -50,20 +50,18 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
 
     const res = await setTarget(student.code, uploadPost);
 
-    getImage(student);
-
     if (!res) swal("Erro ao fazer upload da imagem!");
   };
 
-  const getImage = async (student: Student) => {
-    if (!student.avatar) return "/assets/images/default_user.png";
-
-    setImage(image ? student.avatar : "/assets/images/default_user.png");
-  };
-
   useEffect(() => {
+    const getImage = async (student: Student) => {
+      if (!student.avatar) return "/assets/images/default_user.png";
+
+      setImage(image ? student.avatar : "/assets/images/default_user.png");
+    };
+
     getImage(student);
-  }, [student]);
+  }, [student, image]);
 
   if (!image && !editable)
     return (
@@ -73,7 +71,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
           height={328}
           src="/assets/images/default_user.png"
           alt="profile image"
-          className="h-full w-full rounded-full"
+          className="h-full w-full rounded-full object-cover"
         />
       </div>
     );
@@ -102,7 +100,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         height={328}
         src={student.avatar || "/assets/images/default_user.png"}
         alt="profile image"
-        className="h-full w-full rounded-full"
+        className="h-full w-full rounded-full object-cover"
       />
       <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full hover:bg-black/30">
         <motion.div
