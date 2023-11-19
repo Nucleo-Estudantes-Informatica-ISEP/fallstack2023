@@ -98,34 +98,34 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
                     : "border-t-2 border-gray-300"
                 }
               >
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {code ? (
                     item.company?.name
                   ) : (
                     <span className="text-primary">{item.student.name}</span>
                   )}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {item.isSaved ? (
-                    <span className="text-primary">SALVOU</span>
+                    <span className="text-primary">SALVO</span>
                   ) : (
-                    <span className="text-gray-600">SCAN</span>
+                    <span className="text-black">SCAN</span>
                   )}
                 </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow className="border-t-2 border-gray-600">
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
             </TableRow>

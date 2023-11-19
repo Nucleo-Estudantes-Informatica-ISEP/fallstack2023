@@ -40,7 +40,7 @@ const CompanyViewProfileSectionContainer: React.FC<
   };
 
   return (
-    <div className="mt-12 h-full w-full items-center justify-center md:my-14">
+    <div className={`mt-12 h-full w-full items-center justify-center md:my-14`}>
       <div className="mb-12 mt-4 flex h-full w-full flex-col items-center">
         <motion.div
           transition={{ duration: 0.5 }}
@@ -52,7 +52,7 @@ const CompanyViewProfileSectionContainer: React.FC<
             <Skeleton circle={true} height={120} width={120} />
           )}
           <div className="flex flex-col gap-y-2 px-4 text-center">
-            <p className="text-3xl font-bold md:text-5xl">
+            <p className="text-3xl font-bold md:text-4xl">
               <span>{student.name}</span>
             </p>
             <p className="text-lg md:text-xl">

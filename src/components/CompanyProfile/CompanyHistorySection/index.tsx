@@ -58,16 +58,16 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
         className="mt-2 w-3/4 items-center justify-center"
       >
         <TableHeader>
-          <TableColumn className="w-1/3 text-center text-lg text-black">
+          <TableColumn className="w-1/4 text-center text-lg text-black">
             Aluno
           </TableColumn>
-          <TableColumn className="w-1/3 text-center text-lg text-black">
+          <TableColumn className="hidden w-1/4 text-center text-lg text-black md:table-cell">
             Interesses
           </TableColumn>
-          <TableColumn className="w-1/3 text-center text-lg text-black">
+          <TableColumn className="hidden w-1/4 text-center text-lg text-black md:table-cell">
             Data
           </TableColumn>
-          <TableColumn className="w-1/3 text-center text-lg text-black">
+          <TableColumn className="w-1/4 text-center text-lg text-black">
             CV
           </TableColumn>
         </TableHeader>
@@ -91,7 +91,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                     {item.student.name}
                   </Link>
                 </TableCell>
-                <TableCell className="text-center font-semibold text-black">
+                <TableCell className="hidden text-center font-semibold text-black md:table-cell">
                   {item.student.interests ? (
                     item.student.interests.map((interest) => (
                       <span
@@ -105,7 +105,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                     <span>--</span>
                   )}
                 </TableCell>
-                <TableCell className="text-center font-semibold text-black">
+                <TableCell className="hidden text-center font-semibold text-black md:table-cell">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
                 <TableCell className="text-center font-semibold text-black">

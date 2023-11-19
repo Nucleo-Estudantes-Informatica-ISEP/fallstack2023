@@ -41,8 +41,6 @@ export async function GET(req: NextRequest, { params: { id } }: CompanyParams) {
     },
   });
 
-  console.log(result);
-
   if (!result)
     return NextResponse.json({ error: "Student not found" }, { status: 404 });
 

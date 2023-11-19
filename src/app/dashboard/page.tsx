@@ -18,7 +18,9 @@ const Dashboard: React.FC = async () => {
   const totalStudents = students.length;
 
   return (
-    <section className="flex h-full min-h-screen w-full flex-col items-center">
+    <section
+      className={`flex h-full min-h-screen w-full flex-col items-center`}
+    >
       <CompanyProfileSectionContainer
         company={session.company}
         globalStats={globalStats}

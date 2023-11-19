@@ -31,12 +31,11 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   const totalCompanies = companies.length;
 
-  console.log(globalStats, todayStats, totalCompanies);
-  console.log("!session =>", !session);
-
   return (
-    <section className="flex h-full min-h-screen w-full flex-col items-center">
-      {!session || session.role === "COMPANY" ? (
+    <section
+      className={`flex h-full min-h-screen w-full flex-col items-center`}
+    >
+      {session && session.role === "COMPANY" ? (
         <CompanyViewProfileSectionContainer
           interests={sanitizedInterests}
           student={student}
