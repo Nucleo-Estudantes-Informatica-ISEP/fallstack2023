@@ -1,30 +1,41 @@
 "use client";
 
 import React from "react";
+import QRCode from "qrcode.react";
+
+import { UserWithProfile } from "@/types/UserWithProfile";
 
 import { useDisableBodyScroll } from "../../hooks/disableBackgroundMoving";
 
 import { BsFillClipboardFill, BsX } from "react-icons/bs";
-import QRCode from 'qrcode.react';
-import { UserWithProfile } from "@/types/UserWithProfile";
 
 interface QRCodeModalProps {
   hidden: boolean;
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
   user: UserWithProfile;
 }
-const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden, user }) => {
+const QRCodeModal: React.FC<QRCodeModalProps> = ({
+  hidden,
+  setHidden,
+  user,
+}) => {
   useDisableBodyScroll({ modalIsHidden: hidden });
   const baseUrl = window.location.origin;
 
   const profileUrl =
-  user.role === "STUDENT" && user.student
-    ? `${baseUrl}/student/${user.student.code}`
-    : "";
+    user.role === "STUDENT" && user.student
+      ? `${baseUrl}/student/${user.student.code}`
+      : "";
+
+  const handleCopyClick = () => {
+    if (user.student?.code) {
+      navigator.clipboard.writeText(profileUrl).catch(() => {});
+    }
+  };
 
   return !hidden ? (
     <div
-      className="scrollbar-hide fixed inset-6 start-4 end-4 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8  lg:inset-16 lg:end-14 lg:start-10"
+      className="scrollbar-hide fixed inset-6 end-4 start-4 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8  lg:inset-16 lg:end-14 lg:start-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -47,22 +58,22 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden, user }) =>
                     Partilha o teu <span className="text-primary">Perfil</span>
                   </h1>
                   {/* Grid */}
-                  <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:grid-cols-2 md:mt-6 lg:mt-20 xl:mt-44">
+                  <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 md:grid-cols-2 lg:mt-20 xl:mt-44">
                     {/* left column */}
                     <div className="flex items-center justify-center ">
-                        <QRCode size={250} value={profileUrl} />
+                      <QRCode size={250} value={profileUrl} />
                     </div>
                     {/* right column */}
                     <div className="flex items-center justify-center pb-0 pt-14 sm:pb-0 sm:pt-0">
                       <div className="flex flex-col items-center">
-                        <div className="rounded-lg bg-gray-200 p-2 sm:p-2 md:p-2">
+                        <div
+                          className="rounded-lg bg-gray-200 p-2 sm:p-2 md:p-2"
+                          onClick={handleCopyClick}
+                        >
                           <div className="flex items-center">
-                            <input
-                              type="text"
-                              value="CODE"
-                              className="w-56 border-none bg-gray-200 p-2 text-center text-xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72 "
-                              disabled
-                            />
+                            <div className="w-56 cursor-pointer border-none bg-gray-200 p-2 text-center text-xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72">
+                              {user.student?.code}
+                            </div>
                             <BsFillClipboardFill
                               style={{ fontSize: "1.5rem", color: "#718096" }}
                               className="cursor-pointer"
@@ -83,7 +94,9 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ hidden, setHidden, user }) =>
         </div>
       </div>
     </div>
-  ) : <></>;
+  ) : (
+    <></>
+  );
 };
 
 export default QRCodeModal;
