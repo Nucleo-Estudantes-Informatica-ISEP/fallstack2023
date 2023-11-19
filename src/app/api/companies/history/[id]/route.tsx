@@ -5,7 +5,7 @@ import getServerSession from "@/services/getServerSession";
 
 interface CompanyParams {
   params: {
-    id: number;
+    id: string;
   };
 }
 
@@ -18,7 +18,10 @@ export async function GET(
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (session.role !== "COMPANY" || session.company?.id !== id)
+    // Convert id to a number - it comes as a string from the URL
+    const numericId = parseInt(id, 10);
+    
+  if (session.role !== "COMPANY" || session.company?.id !== numericId)
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const result = await prisma.savedStudent.findMany({
