@@ -52,8 +52,8 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
         </Activity>
         <hr />
         <Schedule
-          firstDayTitle="Segunda-Feira - Auditório Magno"
-          secondDayTitle="Terça-Feira - Sala de Eventos"
+          firstDayTitle="Terça-Feira - Auditório Magno"
+          secondDayTitle="Quarta-Feira - Sala de Eventos"
           scheduleEvents={ScheduleDays}
         />{" "}
       </section>
