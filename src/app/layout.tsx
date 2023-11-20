@@ -7,15 +7,18 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
+import InstallPopUp from "@/components/InstallPopUp";
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 import Topbar from "@/components/TopBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FallStack 23",
+  applicationName: "Fallstack 2023",
+  title: "Fallstack 2023",
   description:
-    "Website do evento FallStack 23. O evento decorrerá nos dias 28 e 29 de novembro no Instituto Superior de Engenharia do Porto. O evento é organizado pelo Núcleo de Estudantes de Informática do ISEP (NEI-ISEP).",
+    "Website do evento Fallstack 2023. O evento decorrerá nos dias 28 e 29 de novembro no Instituto Superior de Engenharia do Porto. O evento é organizado pelo Núcleo de Estudantes de Informática do ISEP (NEI-ISEP).",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -31,6 +34,7 @@ export default function RootLayout({
             <Topbar />
             <main>{children}</main>
             <ToastContainer position="bottom-right" />
+            <InstallPopUp />
           </ThemeProvider>
         </AuthContextProvider>
       </body>
