@@ -61,7 +61,7 @@ const ScanTab: React.FC<ScanTabProps> = ({user}) => {
   };
 
   return (
-    <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 lg:mt-20 xl:mt-44">
+    <div className="mt-6 md:mt-0 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 lg:mt-20 xl:mt-44">
     <div className="flex items-center justify-center ">
       {processing ? (
         <div

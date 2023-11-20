@@ -27,15 +27,15 @@ const QRCodeTab: React.FC<QRCodeTabProps> = ({
   };
 
   return (
-    <div className="">
-      <div className="mb-4 flex list-none flex-row flex-wrap border-b-0 pl-0">
+    <div className="lg:pt-10">
+      <div className="flex justify-center">
         {tabTitles.map((title, index) => (
           <button
             key={index}
-            className={`px-4 py-2 ${
+            className={`px-4 py-2 focus:outline-none ${
               selectedTab === index
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-800"
+                ? "text-primary border-b-2 border-primary"
+                : "text-gray-800"
             }`}
             onClick={() => handleChangeTab(index)}
           >
