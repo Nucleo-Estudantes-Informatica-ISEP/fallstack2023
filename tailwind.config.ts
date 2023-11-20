@@ -10,8 +10,7 @@ const config: Config = {
     themeVariants: ["dark", "light"],
     extend: {
       backgroundImage: {
-        "company-dark": "url('/assets/images/bg_dark_company.webp')",
-        "company-light": "url('/assets/images/bg_light_company.webp')",
+        company: "var(--company-bg)",
       },
       colors: {
         text: "var(--text)",

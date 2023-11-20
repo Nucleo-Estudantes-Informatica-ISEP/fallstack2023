@@ -33,7 +33,9 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
 
   return (
     <section
-      className={`flex h-full min-h-screen w-full flex-col items-center`}
+      className={`${
+        session && session.role === "COMPANY" ? "bg-company" : "bg-inherit"
+      } flex h-full min-h-screen w-full flex-col items-center`}
     >
       {session && session.role === "COMPANY" ? (
         <CompanyViewProfileSectionContainer

@@ -55,22 +55,22 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <Table
         aria-label="Example static collection table"
-        className="mt-2 w-5/6 items-center justify-center"
+        className="mt-2 w-11/12 items-center justify-center"
         classNames={{
-          base: "max-h-[350px] overflow-y-scroll",
+          base: "max-h-[350px] overflow-y-scroll overflow-x-hidden",
         }}
       >
         <TableHeader>
           <TableColumn className="w-1/4 text-center text-lg text-black">
             Aluno
           </TableColumn>
-          <TableColumn className="hidden w-1/4 text-center text-lg text-black md:table-cell">
-            Interesses
-          </TableColumn>
-          <TableColumn className="hidden w-1/4 text-center text-lg text-black md:table-cell">
+          <TableColumn className="hidden w-64 text-center text-lg text-black md:table-cell">
             Data
           </TableColumn>
-          <TableColumn className="w-1/4 text-center text-lg text-black">
+          <TableColumn className="hidden w-full text-center text-lg text-black md:table-cell">
+            Interesses
+          </TableColumn>
+          <TableColumn className="w-24 text-center text-lg text-black">
             CV
           </TableColumn>
         </TableHeader>
@@ -83,10 +83,10 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                   historyData.indexOf(item) === 0
                     ? "border-t-2 border-gray-600"
                     : "border-t-2 border-gray-300"
-                }
+                } truncate
                 `}
               >
-                <TableCell className="text-center font-semibold text-black">
+                <TableCell className="w-1/4 text-center font-semibold text-black">
                   <Link
                     href={`/student/${item.student?.code}`}
                     className="text-primary"
@@ -95,7 +95,10 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                     {item.student.name}
                   </Link>
                 </TableCell>
-                <TableCell className="hidden text-center font-semibold text-black md:table-cell">
+                <TableCell className="hidden w-64 text-center font-semibold text-black md:table-cell">
+                  {formatDateDDStrMonthHourMin(item.createdAt)}
+                </TableCell>
+                <TableCell className="hidden w-full truncate text-center font-semibold text-black md:table-cell">
                   {item.student.interests ? (
                     item.student.interests.map((interest) => (
                       <span
@@ -110,10 +113,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                     <span>--</span>
                   )}
                 </TableCell>
-                <TableCell className="hidden text-center font-semibold text-black md:table-cell">
-                  {formatDateDDStrMonthHourMin(item.createdAt)}
-                </TableCell>
-                <TableCell className="text-center font-semibold text-black">
+                <TableCell className="w-24 text-center font-semibold text-black">
                   {item.student?.cv ? (
                     <OpenCvSectionCompany code={item.student?.code} />
                   ) : (

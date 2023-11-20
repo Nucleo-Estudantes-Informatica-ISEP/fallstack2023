@@ -21,9 +21,9 @@ const CompanyProfileSectionContainer: React.FC<
     "Sumário"
   );
   return (
-    <div className="h-full w-full items-center justify-center md:mb-12">
+    <div className="bg-company h-full w-full items-center justify-center md:mb-12">
       <div
-        className={`mb-12 flex h-full w-full flex-col items-center bg-secondary pt-4`}
+        className={`bg-company mb-12 flex h-full w-full flex-col items-center bg-secondary pt-4`}
       >
         <motion.div
           animate={{}}
@@ -31,8 +31,10 @@ const CompanyProfileSectionContainer: React.FC<
           className="mt-4 flex flex-col items-center justify-center"
         >
           <CompanyImage company={company} />
-          <p className="my-2 items-center text-lg">{company.name}</p>
-          <p className="items-center font-semibold text-primary">
+          <p className="my-2 items-center text-lg">
+            Bem vindo/a {company.name}
+          </p>
+          <p className="items-center text-xl font-bold text-primary">
             {company.tier}
           </p>
         </motion.div>
