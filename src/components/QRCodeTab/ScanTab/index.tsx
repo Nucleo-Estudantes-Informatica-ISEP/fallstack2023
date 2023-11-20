@@ -50,9 +50,7 @@ const ScanTab: React.FC<ScanTabProps> = ({user}) => {
       /* it's dumb doing this for sure, but if i dont set a delay, on mobile, it wont let open the
        camera again and the user will need to close and open the modal again so, this is a workaround
        the user won't even feel the delay delay */
-      setTimeout(() => {
-        window.open(data, "_self");
-      }, 1000);
+       window.open(data, "_self");
 
       setProcessing(false);
     } catch (error) {
