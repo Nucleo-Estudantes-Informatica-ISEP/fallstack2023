@@ -1,8 +1,8 @@
-import QRCodeButton from "../QRCodeButton";
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 
+import QRCodeButton from "../QRCodeButton";
 import ThemeChanger from "../Theme/ThemeChanger";
 
 const TopBar: React.FC = () => {
