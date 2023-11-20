@@ -1,6 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Student, User } from "@prisma/client";
 import Skeleton from "react-loading-skeleton";
 import swal from "sweetalert";
@@ -29,6 +30,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   setProfile,
 }) => {
   const LIMIT = 255;
+
+  const router = useRouter();
 
   const githubRef = useRef<HTMLInputElement>(null);
   const linkedinRef = useRef<HTMLInputElement>(null);
@@ -96,6 +99,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
     if (res.status === 200) swal("Perfil atualizado com sucesso!");
     else swal("Ocorreu um erro ao atualizar o teu perfil...");
+
+    router.refresh();
   };
 
   return (
