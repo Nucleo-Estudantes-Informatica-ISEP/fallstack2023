@@ -29,7 +29,7 @@ export const FAQ: FaqProps[] = [
     index: 4,
     question: "O meu CV vai ser enviado para as empresas?",
     answer:
-      "Sim! Uma das oportunidades que a criação de um per l na nossa plataforma te dá é a partilha de forma fácil do teu CV com as empresas participantes do evento. Basta fazeres upload do teu CV no teu perfil e interagires com as empresas no decorrer do evento. Posteriormente estas conseguem guardar o teu perfil e, consequentemente, o teu CV.",
+      "Sim! Uma das oportunidades que a criação de um perfil na nossa plataforma te dá é a partilha de forma fácil do teu CV com as empresas participantes do evento. Basta fazeres upload do teu CV no teu perfil e interagires com as empresas no decorrer do evento. Posteriormente estas conseguem guardar o teu perfil e, consequentemente, o teu CV.",
   },
   {
     index: 5,
@@ -47,6 +47,6 @@ export const FAQ: FaqProps[] = [
     index: 7,
     question: "Quais são os benefícios de participar no evento?",
     answer:
-      "Ao participares neste evento estás a dar a ti próprio uma prenda: um futuro académico e profissional mais promissor. No Fallstack terás a oportunidade de interagir com empresas de renome, reconhecidas pela sua excelência e profissionalismo, que irão estar presentes para ti, para te conhecerem e para encontrarem os talentos do amanhã. É uma oportunidade de cares a conhecer melhor o que o teu futuro te reserva e o que faz desta área algo tão especial e única. Vemo-nos lá!",
+      "Ao participares neste evento estás a dar a ti próprio uma prenda: um futuro académico e profissional mais promissor. No Fallstack terás a oportunidade de interagir com empresas de renome, reconhecidas pela sua excelência e profissionalismo, que irão estar presentes para ti, para te conhecerem e para encontrarem os talentos do amanhã. É uma oportunidade de ficares a conhecer melhor o que o teu futuro te reserva e o que faz desta área algo tão especial e única. Vemo-nos lá!",
   },
 ];
