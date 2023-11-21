@@ -1,7 +1,5 @@
 import React, {useId} from "react";
 import CompanyDescription from "@/components/CompanyDescription";
-import HeadingText from "@/components/HeadingText";
-import CompanySocials from "@/components/CompanySocials";
 
 interface CompanyInfoProps {
     title: string | undefined;

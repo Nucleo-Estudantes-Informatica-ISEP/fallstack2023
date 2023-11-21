@@ -1,5 +1,4 @@
 import React from "react";
-import {CompaniesTier} from "@/utils/GetColorTier";
 import Custom404 from "@/app/not-found";
 import findCompanyByName from "@/utils/CompanyByName";
 import CompanyPageSection from "@/components/CompanyPageSection";

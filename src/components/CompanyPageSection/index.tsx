@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { title } from "process";
 import { Twitter, Linkedin, Facebook, Instagram, Globe } from "react-bootstrap-icons";
 import Skeleton from "react-loading-skeleton";
