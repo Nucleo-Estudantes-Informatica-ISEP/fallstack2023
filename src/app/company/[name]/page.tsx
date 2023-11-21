@@ -5,33 +5,33 @@ import findCompanyByName from "@/utils/CompanyByName";
 import CompanyPageSection from "@/components/CompanyPageSection";
 
 interface CompanySearchProps {
-	params: {
-		name: string;
-	}
+    params: {
+        name: string;
+    }
 }
 
 
-const CompanyPage: React.FC<CompanySearchProps> = ({ params }) => {
-	const company = findCompanyByName(params.name);
+const CompanyPage: React.FC<CompanySearchProps> = ({params}) => {
+    const company = findCompanyByName(params.name);
 
-	console.log(company);
+    console.log(company);
 
-	if (company === null || company.tier === 'Silver') {
-			return Custom404();
-	}
+    if (company === null || company.tier === 'Silver') {
+        return Custom404();
+    }
 
-	const companyProps = company.props;
-	const modalInformation = companyProps.modalInformation;
+    const companyProps = company.props;
+    const modalInformation = companyProps.modalInformation;
 
-	if (modalInformation === undefined) {
-			return Custom404();
-	}
+    if (modalInformation === undefined) {
+        return Custom404();
+    }
 
-return (
-	<section className="flex h-full min-h-screen w-full flex-col items-center">
-		<CompanyPageSection company={company} modalInformation={modalInformation} />
-	</section>
-	);
+    return (
+        <section className="flex h-full min-h-screen w-full flex-col items-center">
+            <CompanyPageSection company={company} modalInformation={modalInformation}/>
+        </section>
+    );
 }
 
 /*

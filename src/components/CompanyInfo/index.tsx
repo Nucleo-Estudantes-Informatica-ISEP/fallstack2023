@@ -17,7 +17,7 @@ interface CompanyInfoProps {
     tier: string;
 }
 
-const CompanyInfo : React.FC<CompanyInfoProps> = (
+const CompanyInfo: React.FC<CompanyInfoProps> = (
     {
         title,
         bodyText,
@@ -32,7 +32,6 @@ const CompanyInfo : React.FC<CompanyInfoProps> = (
         tier
     }) => {
 
-    const hasSocials : boolean = !!(twitterLink || linkedinLink || facebookLink || youtubeLink || instagramLink || website);
 
     return (
         <section
@@ -40,30 +39,51 @@ const CompanyInfo : React.FC<CompanyInfoProps> = (
         >
             {bodyText && (
                 <CompanyDescription>
-                    <HeadingText className="text-black" text='Sobre'/>
-                    <div className="text-justify text-black">{bodyText}</div>
+                    <h1
+                        className='
+                            text-black
+                            text-lg sm:text-lg md:text-xl lg:text-2xl
+                            text-left
+                            my-5
+                            font-medium
+                        '
+                    >SOBRE</h1>
+                    <div className="
+                            text-left
+                            text-black
+                            text-md sm:text-md md:text-lg lg:text-xl
+                            my-2.5
+                            font-light
+                         ">{bodyText}</div>
                 </CompanyDescription>
             )}
             {tier === 'Diamond' &&
-                <>
-                    <HeadingText className="text-black" text={videoTitle || 'Vídeo promocional'}/>
+                <div className='flex flex-col space-y-2  leading-8 lg:px-10 lg:text-lg  mt-10'>
+                    <h1
+                        className='
+                            text-black
+                            text-lg sm:text-lg md:text-xl lg:text-2xl
+                            text-left
+                            my-5
+                            font-medium
+                        '
+                    >{videoTitle || 'Vídeo'}</h1>
                     <div className="flex items-center justify-center" key={useId()}>
                         <iframe
-                            className="max-w-full rounded-lg"
-                            width="560"
-                            height="315"
+                            className="max-w-full rounded-lg my-2.5 w-full aspect-video"
+                            //width="100"
+                            //height="315"
                             src={videoHref}
                             title={videoTitle}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen></iframe>
                     </div>
-                </>
+                </div>
             }
         </section>
-        
+
     );
 };
-
 
 
 export default CompanyInfo;

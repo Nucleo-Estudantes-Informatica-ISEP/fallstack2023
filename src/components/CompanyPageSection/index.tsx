@@ -62,7 +62,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Twitter className="h-10 w-10 md:h-8 md:w-8" />
+                <Twitter className="h-10 w-10 md:h-8 md:w-8 hover:scale-105" />
               </Link>
             )}
             {modalInformation.linkedinLink && (
@@ -71,7 +71,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="h-10 w-10 md:h-8 md:w-8" />
+                <Linkedin className="h-10 w-10 md:h-8 md:w-8 hover:drop-shadow-2xl hover:scale-105 transition-all" />
               </Link>
             )}
             {modalInformation.facebookLink && (
@@ -80,7 +80,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Facebook className="h-10 w-10 md:h-8 md:w-8" />
+                <Facebook className="h-10 w-10 md:h-8 md:w-8 hover:drop-shadow-2xl hover:scale-105 transition-all" />
               </Link>
             )}
             {modalInformation.instagramLink && (
@@ -89,7 +89,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Instagram className="h-10 w-10 md:h-8 md:w-8" />
+                <Instagram className="h-10 w-10 md:h-8 md:w-8 hover:drop-shadow-2xl hover:scale-105 transition-all" />
               </Link>
             )}
             {modalInformation.website && (
@@ -98,7 +98,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Globe className="h-10 w-10 md:h-8 md:w-8" />
+                <Globe className="h-10 w-10 md:h-8 md:w-8 hover:drop-shadow-2xl hover:scale-105 transition-all" />
               </Link>
             )}
           </p>
