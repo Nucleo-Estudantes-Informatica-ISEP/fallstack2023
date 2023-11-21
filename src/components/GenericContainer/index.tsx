@@ -1,15 +1,15 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent } from "react";
 
 interface GenericContainerProps {
-    children: React.ReactNode;
-    width?: string;
+  children: React.ReactNode;
+  width?: string;
 }
 
 const GenericContainer: FunctionComponent<GenericContainerProps> = ({
-    children,
-    width = 'w-3/4'
+  children,
+  width = "w-3/4",
 }) => {
-    return <div className={`lg:${width} my-0 mx-auto w-full`}>{children}</div>;
+  return <div className={`lg:${width} mx-auto my-0 w-full`}>{children}</div>;
 };
 
 export default GenericContainer;

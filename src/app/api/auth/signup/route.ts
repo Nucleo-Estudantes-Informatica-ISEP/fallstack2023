@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
+import { ZodError } from "zod";
+
 import prisma from "@/lib/prisma";
-import { ZodError} from "zod";
-import bcrypt from "bcrypt";
+import { hashPassword, setCookie, signJwt } from "@/services/authService";
 import { signUpSchema } from "@/schemas/signUpSchema";
 
 export async function POST(req: Request) {
   try {
-
     // validate the request body against the schema
     const requestBody = await req.json();
     const body = signUpSchema.parse(requestBody);
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     }
 
     // Hash the password before saving it in the database
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hashPassword(password);
 
     // create user
     const user = await prisma.user.create({
@@ -46,6 +46,10 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
+
+    const { id } = user;
+    const token = signJwt({ id });
+    setCookie(token);
 
     return NextResponse.json(
       { message: "Signup successfully" },

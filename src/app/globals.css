@@ -2,34 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,500;1,800&family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
+
 @layer base {
   :root {
     --text: #000000;
     --background: #e5fcff;
     --primary: #d96f12;
     --secondary: #d2eaef;
+    --secondary-40: rgba(210, 234, 239, 0.4);
     --accent: #00c3ff;
     --accent-alternative: #068198;
-    background-image: url(/assets/images/bg_light_desktop.webp);
+    background-image: url(/assets/images/bg_light.webp);
     background-size: cover;
+    background-position: center;
   }
+
   .dark {
     --text: #ffffff;
     --background: #00171a;
     --primary: #ed8326;
     --secondary: #10282d;
+    --secondary-40: rgba(16, 40, 45, 0.4);
     --accent: #00c3ff;
-    --accent-alternative: #00C2FF;
-    background-image: url(/assets/images/bg_dark_desktop.webp);
+    --accent-alternative: #00c2ff;
+    background-image: url(/assets/images/bg_dark.webp);
     background-size: cover;
+    background-position: center;
+  }
+
+  body {
+    font-family: "Archivo", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", sans-serif;
   }
 
   @media (max-width: 768px) {
     :root {
-      background-image: url(/assets/images/bg_light_mobile.jpg);
+      background-size: contain;
+      background-repeat: repeat-y;
     }
+
     .dark {
-      background-image: url(/assets/images/bg_dark_mobile.jpg);
-    }    
+      background-size: contain;
+      background-repeat: repeat-y;
+    }
+  }
+
+  :root {
+    scroll-behavior: smooth;
   }
 }

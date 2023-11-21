@@ -1,7 +1,8 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+
+import { useTheme } from "next-themes";
 import { BsFillSunFill, BsMoonStarsFill } from "react-icons/bs";
 
 export default function ThemeChanger() {
@@ -17,7 +18,7 @@ export default function ThemeChanger() {
   if (!mounted) {
     // Show default icons while loading from the server.
     return (
-      <div className="flex items-center justify-center w-5 h-5 rounded-full text-primary dark:text-primary ">
+      <div className="flex h-full w-full items-center justify-center rounded-full text-primary dark:text-primary ">
         <BsMoonStarsFill className="dark:hidden" size={20} />
         <BsFillSunFill className="hidden dark:block" size={20} />
       </div>
@@ -25,7 +26,7 @@ export default function ThemeChanger() {
   }
 
   return (
-    <button className="flex items-center justify-center w-6 h-6 p-0.5 transition-colors text-primary hover:text-primary-dark dark:text-primary dark:hover:text-white">
+    <button className="flex h-full items-center justify-center fill-black transition-colors hover:text-primary dark:fill-white">
       {theme === "light" ? (
         <BsMoonStarsFill onClick={() => setTheme("dark")} size={20} />
       ) : (

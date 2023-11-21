@@ -14,24 +14,27 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   role      Role     @default(STUDENT)
+  isAdmin   Boolean  @default(false)
 
-  student Student[]
-  company Company[]
+  student Student?
+  company Company?
 }
 
 model Student {
-  id        Int               @id @default(autoincrement())
-  user      User              @relation(fields: [userId], references: [id])
-  code      String            @unique
+  id        Int            @id @default(autoincrement())
+  user      User           @relation(fields: [userId], references: [id])
+  code      String         @unique
   name      String
-  bio       String?
+  bio       String?        @db.VarChar(300)
   year      String
-  interests StudentInterest[]
+  interests Interest[]
   savedBy   SavedStudent[]
   cv        String?
-  image     String?
+  linkedin  String?
+  github    String?
+  avatar    String?        @map("image")
 
-  userId Int
+  userId Int @unique
 }
 
 model Company {
@@ -42,32 +45,24 @@ model Company {
   savedStudents SavedStudent[]
   image         String?
 
-  userId Int
+  userId Int @unique
 }
 
 model Interest {
-  id         Int               @id @default(autoincrement())
-  name       String            @unique
-  interestOf StudentInterest[]
-}
-
-model StudentInterest {
-  id       Int      @id @default(autoincrement())
-  student  Student  @relation(fields: [studentId], references: [id])
-  interest Interest @relation(fields: [interestId], references: [id])
-
-  studentId  Int
-  interestId Int
+  name       String    @id
+  interestOf Student[]
 }
 
 model SavedStudent {
-  id        Int      @id @default(autoincrement())
   student   Student  @relation(fields: [studentId], references: [id])
   company   Company  @relation(fields: [companyId], references: [id])
+  isSaved   Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int
   companyId Int
+
+  @@id([studentId, companyId, isSaved])
 }
 
 enum Role {
