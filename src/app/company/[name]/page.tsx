@@ -1,71 +1,37 @@
 import React from "react";
-import {CompanyProps} from "@/components/Company";
-import {DiamondCompanies} from "@/utils/DiamondCompanies";
-import {GoldCompanies} from "@/utils/GoldCompanies";
-import {SilverCompanies} from "@/utils/SilverCompanies";
-import GenericContainer from "@/components/GenericContainer";
-import Footer from "@/components/Footer";
-import HeroContainer from "@/components/HeroContainer";
-import {notFound} from "next/navigation";
-import CompanyInfo from "@/components/CompanyInfo";
 import {CompaniesTier} from "@/utils/GetColorTier";
+import Custom404 from "@/app/not-found";
 import findCompanyByName from "@/utils/CompanyByName";
+import CompanyPageSection from "@/components/CompanyPageSection";
 
 interface CompanySearchProps {
-    params: {
-        name: string;
-    }
-    tier: CompaniesTier;
+	params: {
+		name: string;
+	}
 }
 
 
-const company: React.FC<CompanySearchProps> = ({params}) => {
-    const company = findCompanyByName(params.name);
+const CompanyPage: React.FC<CompanySearchProps> = ({ params }) => {
+	const company = findCompanyByName(params.name);
 
-    if (company === null || company.tier === 'Silver') {
-        return notFound();
-    }
+	console.log(company);
 
-    const companyProps = company.props;
-    const modalInformation = companyProps.modalInformation;
+	if (company === null || company.tier === 'Silver') {
+			return Custom404();
+	}
 
-    const {
-        title,
-        bodyText,
-        videoHref,
-        videoTitle,
-        twitterLink,
-        facebookLink,
-        instagramLink,
-        youtubeLink,
-        linkedinLink,
-        website
-    } = modalInformation || {};
+	const companyProps = company.props;
+	const modalInformation = companyProps.modalInformation;
 
-    return (
-        <HeroContainer>
-            <GenericContainer>
-                <h1 className="my-2 mx-0 animate-fade text-center font-good__times text-4xl text-white opacity-0 drop-shadow-3xl lg:my-6 lg:text-6xl">
-                    {title || companyProps.name}
-                </h1>
-                <CompanyInfo
-                    title={title}
-                    bodyText={bodyText}
-                    videoHref={videoHref}
-                    videoTitle={videoTitle}
-                    twitterLink={twitterLink}
-                    facebookLink={facebookLink}
-                    instagramLink={instagramLink}
-                    youtubeLink={youtubeLink}
-                    linkedinLink={linkedinLink}
-                    website={website}
-                    tier={company.tier}
-                ></CompanyInfo>
+	if (modalInformation === undefined) {
+			return Custom404();
+	}
 
-                <Footer lastEditionUrl="https://fallstack-22-23.nei-isep.org/"/>
-            </GenericContainer>
-        </HeroContainer>
-    );
+return (
+	<section className="flex h-full min-h-screen w-full flex-col items-center">
+		<CompanyPageSection company={company} modalInformation={modalInformation} />
+	</section>
+	);
 }
 
 /*
@@ -76,4 +42,4 @@ const company: React.FC<CompanySearchProps> = ({params}) => {
                     </section>
  */
 
-export default company;
+export default CompanyPage;

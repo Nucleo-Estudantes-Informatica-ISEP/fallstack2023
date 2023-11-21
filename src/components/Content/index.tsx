@@ -59,11 +59,8 @@ const Content: React.FC<ContentProps> = ({ contentRef }) => {
         />{" "}
       </section>
 
-      <hr />
-
       <CompaniesSection />
 
-      <hr />
       <FaqSection />
     </section>
   );

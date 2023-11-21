@@ -22,7 +22,7 @@ const CompanySocials: React.FC<CompanySocialsProps> = ({
                                                        }) => {
     return (
         <>
-            <HeadingText text='Redes sociais'/>
+            <HeadingText className="text-black" text='Redes sociais'/>
             <ul className="flex flex-row flex-wrap items-center justify-around px-4">
                 {twitterLink && (
                     <SocialMediaCard href={twitterLink} icon={<Twitter />} title="Twitter" />

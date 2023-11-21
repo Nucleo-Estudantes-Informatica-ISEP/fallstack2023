@@ -1,108 +1,140 @@
 import { CompanyProps } from "../components/Company";
-import { AccentureLogo, NatixisLogo, ParfoisLogo } from "./CompaniesImages";
+import { HitachiLogo, FabamaqLogo, WeezieLogo, randstadLogo } from "./CompaniesImages";
 
 /**
     Gold Companies
-    Accenture: 
-    Parfois:
-    Natixis: 
+    Hitachi Solutions
+    Weezie
+    Fabamaq
+    Randstad 
  */
 
 export const GoldCompanies: CompanyProps[] = [
   {
-    logoHref: AccentureLogo,
-    name: "Accenture",
+    logoHref: HitachiLogo,
+    name: "hitachi",
     modalInformation: {
-      title: "Accenture",
+      title: "Hitachi",
       bodyText: (
         <>
           <p>
-            Accenture is a global professional services company with leading
-            capabilities in digital, cloud and security.
+            Hitachi Solutions understands what it takes to digitally transform
+            organisations, harnessing the power of the latest technologies and
+            seamlessly integrating them into businesses. As a global consultancy
+            firm working across the private and public sectors, we specialise in
+            user-friendly business applications based on the Microsoft cloud.
+            Our close partnership with Microsoft gives our customers access to
+            the latest technology, plus valuable market insights.
           </p>
           <br />
           <p>
-            Combining unmatched experience and specialized skills across more
-            than 40 industries, we offer Strategy and Consulting, Interactive,
-            Technology and Operations services, all powered by the world’s
-            largest network of Advanced Technology and Intelligent Operations
-            centers.
+            The creative, modern solutions we build for our customers are a
+            combination of many factors. There’s the pioneering spirit which has
+            always informed everything we do. Then there’s our people. With our
+            team of experienced industry professionals, consultants and
+            technology experts, Hitachi Solutions has a wide range of
+            capabilities including digital transformation, ERP and CRM
+            implementation, change management and data science & analytics. Our
+            highly skilled team helps drive improvements to many aspects of your
+            business creating efficiencies and growth.
           </p>
           <br />
           <p>
-            Our 735,000 people deliver on the promise of technology and human
-            ingenuity every day, serving clients in more than 120 countries. We
-            embrace the power of change to create value and shared success for
-            our clients, people, shareholders, partners and communities.
+            The great work we do attracts some of the brightest people out
+            there. They make up diverse teams with different perspectives and
+            experiences which fuel innovation and enable a closer connection
+            with our customers. Join us and do your best work ever in a diverse
+            and rewarding culture that’s continually driving innovation for a
+            better future.
           </p>
         </>
       ),
-      website: "https://www.accenture.pt",
+      instagramLink: "https://www.instagram.com/hitachisolutions.portugal/",
+      linkedinLink:
+        "https://www.linkedin.com/company/hitachi-solutions-portugal/",
+      website: "https://www.hitachi.eu/pt-pt",
     },
   },
   {
-    logoHref: NatixisLogo,
-    name: "Natixis",
+    logoHref: FabamaqLogo,
+    name: "fabamaq",
     modalInformation: {
-      title: "Natixis",
+      title: "FABAMAQ",
       bodyText: (
         <>
           <p>
-            Natixis in Portugal belongs to Global Financial Services business
-            unit, the global arm of Groupe BPCE, which focuses on two global
-            businesses: Asset & Wealth Management and Corporate & Investment
-            Banking.
+            <strong>Missão FMQ</strong>
+            <br />
+            Criar jogos de casino com qualidade para o mercado global num
+            ambiente de crescimento, proximidade e partilha.
           </p>
           <br />
           <p>
-            Based in Porto, Natixis Center of Expertise mission is to transform
-            traditional banking by developing innovative solutions for the
-            bank’s business, operations and work culture worldwide, as a key
-            driver of the company’s culture of agility and innovation: a perfect
-            fit in Portuguese labour culture. Teams of IT and Banking Support
-            Activities work in an integrated, inclusive and transversal way,
-            supporting all the business lines and country platforms.
+            <strong>Visão FMQ</strong>
+            <br />
+            Ser uma Software House de referência na indústria internacional dos
+            jogos de casino.
           </p>
           <br />
           <p>
-            Join a team where you can make things change, achieve limitless
-            perspectives to evolve and grow, become an expert and reach your
-            full potential! Because you deserve much more than a job.
+            <strong>Visão FMQ</strong>
+            <br />
+            Partilha
+            <br />
+            Compromisso
+            <br />
+            Audácia
+            <br />
+            Adaptabilidade
+            <br />
+            Proximidade
           </p>
         </>
       ),
-      instagramLink: "https://www.instagram.com/natixisinportugal/?hl=en",
-      linkedinLink: "https://www.linkedin.com/company/natixis-in-portugal/",
+      instagramLink: "https://www.instagram.com/fabamaq/",
+      linkedinLink: "https://www.linkedin.com/company/fabamaq/",
+      website: "https://www.fabamaq.com",
     },
   },
   {
-    logoHref: ParfoisLogo,
-    name: "Parfois",
+    logoHref: WeezieLogo,
+    name: "Weezie",
     modalInformation: {
-      title: "Parfois",
+      title: "weezie",
       bodyText: (
         <>
-          <p>
-            Parfois is a global women’s fashion accessories brand, created in
-            1994. Aiming to be the best women’s fashion accessories brand in
-            every market wherever it decides to operate. That is only possible
-            with a team of talented, passionate, ambitious and committed
-            professionals.
-          </p>
-          <br />
-          <p>
-            Parfois is an accessories brand with savy, chic, affordable and
-            desirable fashion for every woman.
-          </p>
-          <br />
-          <p>
-            It all started in Portugal. Now, everyone can find Parfois all over
-            the world. We have more than 1000 stores present in over 70
-            countries!
-          </p>
+        <p>
+        A Weezie é uma startup de software portuguesa, com sede no Porto, que oferece soluções de gestão de redes de fibra ótica, focada na automação e digitalização dos processos associados ao desenvolvimento de uma rede de telecomunicação. 
+        A Weezie oferece uma solução que integra num só ecossistema digital a equipa de planeamento, execução, controlo e gestão, a fim de oferecer a melhor experiência ao cliente final. 
+        Com apenas 6 anos, a Weezie está presente em 5 países e já ajudou os clientes a levar a fibra ótica a 60 milhões de casas em todo o mundo.
+        </p>
         </>
       ),
-      website: "https://www.parfois.com/",
+      instagramLink: "https://www.instagram.com/weezieofficial/",
+      linkedinLink: "https://www.linkedin.com/company/weezie-io/",
+      facebookLink: "https://www.facebook.com/weeziesoftware/",
+      twitterLink: "https://twitter.com/weeziesoftware",
+      website: "https://weezie.io/",
     },
   },
+  {
+    logoHref: randstadLogo,
+    name: "randstad",
+    modalInformation: {
+      title: "randstad",
+      bodyText: (
+        <>
+        <p>
+        Randstad is the global leader in the HR services industry. By serving as a trusted human partner in today's technology-driven world of talent, we help people secure rewarding jobs and stay relevant in the ever changing world of work. 
+        Randstad was founded in 1960 and is headquartered in Diemen, the Netherlands.
+        </p>
+        </>
+      ),
+      instagramLink: "https://www.instagram.com/randstadportugal/",
+      linkedinLink: "https://www.linkedin.com/company/randstad-portugal/",
+      facebookLink: "https://www.facebook.com/RandstadPortugal",
+      twitterLink: "https://twitter.com/randstadpt",
+      website: "https://www.randstad.pt/",
+    },
+  }
 ];
