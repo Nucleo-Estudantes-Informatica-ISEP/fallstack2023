@@ -17,8 +17,8 @@ const SocialMediaCard: React.FC<SocialMediaCardProps> = ({
         className="text-social-media-link m-4 flex w-full flex-col items-center justify-center rounded-lg transition-all duration-200 ease-in-out hover:scale-110"
         href={href}
       >
-        <div className="mb-2 text-4xl">{icon}</div>
-        <span className="text-base">{title}</span>
+        <div className="mb-2 text-4xl text-black">{icon}</div>
+        <span className="text-base text-black">{title}</span>
       </a>
     </li>
   );

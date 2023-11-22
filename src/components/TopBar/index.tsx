@@ -45,7 +45,7 @@ const TopBar: React.FC = () => {
         <Link href="/" className="ml-6">
           <Image
             src={mounted && theme === "light" ? logos.dark : logos.light}
-            alt="FallStack"
+            alt="Fallstack"
             width={32}
             height={32}
           />

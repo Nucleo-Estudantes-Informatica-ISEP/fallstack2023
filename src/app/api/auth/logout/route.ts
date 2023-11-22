@@ -6,7 +6,7 @@ import config from "@/config";
 export async function POST() {
   try {
     // deletes the auth cookie
-    cookies().delete({ name: config.cookieName });
+    cookies().delete({ name: config.cookies.auth.name });
 
     return NextResponse.json(
       { message: "Signout successfully" },

@@ -31,7 +31,7 @@ const App: FunctionComponent = () => {
         <Content contentRef={contentRef} />
         <ComingSoon />
         <Footer
-          lastEditionUrl="https://fallstack-22-23.nei-isep.org/"
+          lastEditionUrl="https://fallstack2022.nei-isep.org/"
           neiLogoSrc={{
             white: NeiLogoWhite,
             dark: NeiLogoBlack,

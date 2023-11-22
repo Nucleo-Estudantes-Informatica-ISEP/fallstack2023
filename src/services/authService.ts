@@ -28,8 +28,8 @@ const verifyJwt = (token: string) => {
 
 const setCookie = (token: string) => {
   cookies().set({
-    name: config.cookieName,
-    maxAge: config.authCookieMaxAge,
+    name: config.cookies.auth.name,
+    maxAge: config.cookies.auth.maxAge,
     value: token,
     path: "/",
     sameSite: "strict",

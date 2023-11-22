@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import FactData from "@/types/FactData";
 
 export default interface ModalProps {
   hidden: boolean;
@@ -17,4 +18,5 @@ export interface ModalInformation {
   youtubeLink?: string;
   linkedinLink?: string;
   website?: string;
+  facts?: FactData[];
 }
