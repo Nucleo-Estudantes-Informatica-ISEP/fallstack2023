@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import React from "react";
 
+import React from "react";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-[100svh]">
       <body className={inter.className}>
         <AuthContextProvider>
           <ThemeProvider>

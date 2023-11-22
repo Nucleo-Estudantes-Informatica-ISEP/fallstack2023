@@ -131,7 +131,7 @@ const LoginPage: React.FC = () => {
 
       <hr className="mb-4 border-secondary" />
 
-      <Link href="/signup" className="text-sm text-secondary">
+      <Link href="/signup" className="text-sm text-black">
         Ainda não tens uma conta?
       </Link>
     </section>
