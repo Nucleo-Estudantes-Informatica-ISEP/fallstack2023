@@ -4,8 +4,13 @@ import React, { useState } from "react";
 
 import { BsQrCodeScan } from "react-icons/bs";
 import QRCodeModal from "../QRCodeModal";
+import { UserWithProfile } from "@/types/UserWithProfile";
 
-const QRCodeButton: React.FC = () => {
+interface QRCodeButtonProps {
+  user: UserWithProfile;
+}
+
+const QRCodeButton: React.FC<QRCodeButtonProps> = ({user}) => {
   const [isHidden, setIsHidden] = useState(true);
 
   return (
@@ -17,6 +22,7 @@ const QRCodeButton: React.FC = () => {
         <QRCodeModal
           setHidden={setIsHidden}
           hidden={isHidden}
+          user={user}
         />
     
     </>

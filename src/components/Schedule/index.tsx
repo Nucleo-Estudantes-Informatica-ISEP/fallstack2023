@@ -1,10 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
 import useWindowSize from "@rooks/use-window-size";
 import { motion } from "framer-motion";
+import React, { useState } from "react";
+
+
 
 import HeadingText from "../HeadingText";
+
+
+
+
 
 export interface ScheduleDay {
   hour: string;
