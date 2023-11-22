@@ -23,7 +23,9 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
       case "Gold":
         return `border-yellow-400 text-yellow-400 drop-shadow-[0px_0px_4px_#facc15] text-4xl md:text-6xl`;
       case "Silver":
-        return `border-gray-500 drop-shadow-[2px_6px_2px_#c0c0c0] text-gray-300  text-4xl md:text-6xl`;
+        return `${
+          theme === "light" ? "text-gray-400" : "text-gray-300"
+        } drop-shadow-[2px_6px_2px_#c0c0c0] "border-gray-500" text-4xl md:text-6xl`;
       default:
         throw new Error("Tier not found");
     }
@@ -39,11 +41,11 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
         {tier}
       </h2>
       <section
-        className={`mb-12 w-3/4  rounded-3xl border-2 border-black border-opacity-50 ${
+        className={`mb-12 w-full rounded-3xl  border-2 border-black border-opacity-50 md:w-3/4 ${
           theme === "light" ? "bg-gray-800" : "bg-white"
-        } bg-opacity-20 pt-10`}
+        } bg-opacity-20`}
       >
-        <div className="mt-2 grid grid-cols-1 items-center justify-center gap-x-12 gap-y-2 xl:grid-cols-2">
+        <div className="mt-2 grid grid-cols-1 items-center justify-items-center gap-x-12 gap-y-2 xl:grid-cols-2">
           {companies.map((company) => {
             return <Company key={company.name} {...company} />;
           })}
