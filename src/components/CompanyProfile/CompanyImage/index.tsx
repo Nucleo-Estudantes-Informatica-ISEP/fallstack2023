@@ -19,9 +19,11 @@ const CompanyImage: React.FC<UserImageProps> = ({ company }) => {
 
   useEffect(() => {
     const getImage = async (company: Company) => {
-      if (!company.image) return "/assets/images/devscope_logo.png";
+      if (!company.image) return "/assets/images/companies/armis_logo.png";
 
-      setImage(image ? company.image : "/assets/images/devscope_logo.png");
+      setImage(
+        image ? company.image : "/assets/images/companies/armis_logo.png"
+      );
     };
 
     getImage(company);
@@ -36,9 +38,9 @@ const CompanyImage: React.FC<UserImageProps> = ({ company }) => {
       <Image
         width={400}
         height={400}
-        src={company.image || "/assets/images/devscope_logo.png"}
+        src={company.image || "/assets/images/companies/diamond/armis_logo.png"}
         alt="profile image"
-        className="h-full w-full"
+        className="h-3/4 w-3/4"
       />
     </motion.div>
   );

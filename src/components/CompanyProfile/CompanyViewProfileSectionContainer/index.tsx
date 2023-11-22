@@ -2,7 +2,6 @@
 
 import { Company, Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
-import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
 
 import { BASE_URL } from "@/services/api";
@@ -48,11 +47,8 @@ const CompanyViewProfileSectionContainer: React.FC<
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center pt-8"
         >
-          {student.avatar ? (
-            <UserImage student={student} />
-          ) : (
-            <Skeleton circle={true} height={120} width={120} />
-          )}
+          <UserImage student={student} />
+
           <div className="flex flex-col gap-y-2 px-4 text-center">
             <p className="text-3xl font-bold md:text-4xl">
               <span>{student.name}</span>

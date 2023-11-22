@@ -60,8 +60,8 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
           base: "max-h-[350px] overflow-y-scroll overflow-x-hidden",
         }}
       >
-        <TableHeader>
-          <TableColumn className="w-1/4 text-center text-lg text-black">
+        <TableHeader className="items-center justify-center text-center">
+          <TableColumn className="w-1/2 text-center text-lg text-black md:w-1/4">
             Aluno
           </TableColumn>
           <TableColumn className="hidden w-64 text-center text-lg text-black md:table-cell">
@@ -70,7 +70,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
           <TableColumn className="hidden w-full text-center text-lg text-black md:table-cell">
             Interesses
           </TableColumn>
-          <TableColumn className="w-24 text-center text-lg text-black">
+          <TableColumn className="w-1/2 text-center text-lg text-black md:w-24">
             CV
           </TableColumn>
         </TableHeader>
@@ -123,14 +123,14 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
               </TableRow>
             ))
           ) : (
-            <TableRow className="border-t-2 border-gray-600">
+            <TableRow className="truncate border-t-2 border-gray-600">
               <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-semibold text-black">
+              <TableCell className="hidden text-center font-semibold text-black md:table-cell">
                 --
               </TableCell>
-              <TableCell className="text-center font-semibold text-black">
+              <TableCell className="hidden text-center font-semibold text-black md:table-cell">
                 --
               </TableCell>
               <TableCell className="text-center font-semibold text-black">
