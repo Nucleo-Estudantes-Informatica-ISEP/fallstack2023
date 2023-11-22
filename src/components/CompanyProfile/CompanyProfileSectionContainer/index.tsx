@@ -21,9 +21,9 @@ const CompanyProfileSectionContainer: React.FC<
     "Sumário"
   );
   return (
-    <div className="bg-company h-full w-full items-center justify-center md:mb-12">
+    <div className="bg-company-secondary h-full w-full items-center justify-center md:mb-12">
       <div
-        className={`bg-company mb-12 flex h-full w-full flex-col items-center bg-secondary pt-4`}
+        className={`bg-company mb-12 flex h-full w-full flex-col items-center pt-4`}
       >
         <motion.div
           animate={{}}
@@ -31,11 +31,8 @@ const CompanyProfileSectionContainer: React.FC<
           className="mt-4 flex flex-col items-center justify-center"
         >
           <CompanyImage company={company} />
-          <p className="my-2 items-center text-lg">
+          <p className="my-2 items-center text-2xl">
             Bem vindo/a {company.name}
-          </p>
-          <p className="items-center text-xl font-bold text-primary">
-            {company.tier}
           </p>
         </motion.div>
 
@@ -73,7 +70,7 @@ const CompanyProfileSectionContainer: React.FC<
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-4xl md:w-5/6">
+      <div className="mx-auto mb-12 w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && (
           <CompanyStatsSection
             company={company}

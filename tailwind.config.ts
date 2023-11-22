@@ -20,6 +20,7 @@ const config: Config = {
         "secondary/40": "var(--secondary-40)",
         accent: "var(--accent)",
         "accent-alternative": "var(--accent-alternative)",
+        "company-secondary": "var(--company-secondary)",
       },
       animation: {
         fade: "fade ease-out 1s 1.5s forwards",
