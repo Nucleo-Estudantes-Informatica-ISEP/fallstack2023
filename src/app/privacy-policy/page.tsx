@@ -2,7 +2,7 @@ const PrivacyPolicyPage: React.FC = () => {
   return (
     <section className="w-full px-8 py-24 md:px-24">
       <h1 className="text-center text-4xl font-bold">
-        Política de Privacidade – FallStack
+        Política de Privacidade – Fallstack
       </h1>
 
       <article className="mt-12">
@@ -14,7 +14,7 @@ const PrivacyPolicyPage: React.FC = () => {
           O Núcleo de Estudantes de Informática do Instituto Superior de
           Engenharia do Porto (NEI- ISEP), em conformidade com o Regulamento
           Geral sobre a Proteção de Dados (RGPD), apresenta a sua Política de
-          Privacidade para a aplicação FallStack. Esta aplicação visa facilitar
+          Privacidade para a aplicação Fallstack. Esta aplicação visa facilitar
           a participação dos estudantes no evento organizado pelo NEI-ISEP,
           proporcionando a criação de contas e a partilha de informações
           relevantes para o ambiente profissional.
@@ -39,14 +39,14 @@ const PrivacyPolicyPage: React.FC = () => {
           Recolha de Informações e Finalidade da Recolha
         </h2>
         <p className="mt-2">
-          Para utilizar a aplicação FallStack, é necessário criar uma conta de
+          Para utilizar a aplicação Fallstack, é necessário criar uma conta de
           utilizador.
         </p>
         <p className="mt-2">
           O Núcleo de Estudantes de Informática do Instituto Superior de
           Engenharia do Porto (NEI- ISEP), em conformidade com o Regulamento
           Geral sobre a Proteção de Dados (RGPD), apresenta a sua Política de
-          Privacidade para a aplicação FallStack. Esta aplicação visa facilitar
+          Privacidade para a aplicação Fallstack. Esta aplicação visa facilitar
           a participação dos estudantes no evento organizado pelo NEI-ISEP,
           proporcionando a criação de contas e a partilha de informações
           relevantes para o ambiente profissional. As informações solicitadas,
@@ -64,7 +64,7 @@ const PrivacyPolicyPage: React.FC = () => {
           Base Legal para o Tratamento de Dados
         </h2>
         <p className="mt-2">
-          Ao criar uma conta na aplicação FallStack, o utilizador consente
+          Ao criar uma conta na aplicação Fallstack, o utilizador consente
           explicitamente o tratamento dos seus dados para a participação no
           evento e interação com as empresas, estando esta ação fundamentada no
           consentimento do utilizador.
@@ -110,10 +110,10 @@ const PrivacyPolicyPage: React.FC = () => {
       <article className="mt-12">
         <h2 className="text-2xl font-semibold">Partilha de Informações</h2>
         <p className="mt-2">
-          Ao criar uma conta na aplicação FallStack, os utilizadores concordam
+          Ao criar uma conta na aplicação Fallstack, os utilizadores concordam
           que os seus CVs e perfis de LinkedIn e GitHub, bem como todas as suas
           informações de perfil, podem ser partilhadas com empresas
-          participantes no evento FallStack. Esta partilha tem como objetivo
+          participantes no evento Fallstack. Esta partilha tem como objetivo
           facilitar oportunidades de emprego e networking.
         </p>
       </article>
@@ -123,7 +123,7 @@ const PrivacyPolicyPage: React.FC = () => {
           Privacidade por Design e Segurança
         </h2>
         <p className="mt-2">
-          A aplicação FallStack foi desenvolvida seguindo os princípios de
+          A aplicação Fallstack foi desenvolvida seguindo os princípios de
           privacidade por design, incorporando medidas de segurança robustas,
           incluindo encriptação, para garantir a proteção adequada dos dados
           pessoais dos utilizadores.
@@ -155,7 +155,7 @@ const PrivacyPolicyPage: React.FC = () => {
       <article className="mt-12">
         <h2 className="text-2xl font-semibold">Obrigações do Utilizador</h2>
         <p className="mt-2">
-          Ao criar uma conta na aplicação FallStack, o utilizador declara ter
+          Ao criar uma conta na aplicação Fallstack, o utilizador declara ter
           lido e concordado com esta Política de Privacidade em sua totalidade.
         </p>
       </article>

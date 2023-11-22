@@ -1,77 +1,22 @@
 import { CompanyProps } from "../components/Company";
 import {
-  BysideLogoWithColors,
-  CriticalLogo,
   DevscopeLogo,
-  FabamaqLogo,
-  HitachiLogo,
-  SonaeLogo,
+  delloiteLogo,
+  armisLogo,
 } from "./CompaniesImages";
 
 export const DiamondCompanies: CompanyProps[] = [
   {
-    logoHref: CriticalLogo,
-    name: "Critical Manufacturing",
-    modalInformation: {
-      title: "Critical Manufacturing",
-      bodyText: (
-        <>
-          <p>
-            A Critical Manufacturing desenvolve e comercializa soluções de
-            software para a Indústria 4.0, com base numa solução inovadora de
-            gestão da produção - Manufacturing Execution System (MES).
-          </p>
-          <br />
-          <p>
-            A partir de Portugal, a empresa fornece algumas das maiores empresas
-            industriais que operam nos segmentos de eletrónica, semicondutores,
-            dispositivos médicos, entre outros. A Critical Manufacturing foi
-            fundada em 2009 e faz atualmente parte do grupo ASMPT, sediado em
-            Singapura e cotado na bolsa de Hong Kong, líder mundial no fabrico
-            de equipamentos eletrónicos e semicondutores.
-          </p>
-          <br />
-          <p>
-            Atualmente, a empresa conta com mais de 400 colaboradores espalhados
-            por várias localizações: Portugal (Maia), EUA, Alemanha e China.
-          </p>
-        </>
-      ),
-      videoTitle: "Vídeo promocional",
-      videoHref: "https://www.youtube.com/embed/mvjg7InqfJY",
-      facebookLink: "https://www.facebook.com/CriticalManufacturing",
-      instagramLink: "https://www.instagram.com/criticalmanufacturing/",
-      linkedinLink: "https://www.linkedin.com/company/critical-manufacturing",
-      website: "www.criticalmanufacturing.com",
-    },
-  },
-  {
     logoHref: DevscopeLogo,
-    name: "DevScope Logo",
+    name: "devScope",
     modalInformation: {
       title: "DevScope",
       bodyText: (
         <>
           <p>
-            A DevScope é especialista em dar às organizações as ferramentas e o
-            conhecimento necessários para se manterem competitivas e um dos mais
-            distinguidos parceiros Microsoft em Portugal. Actualmente, contamos
-            com certificações Gold em 9 áreas tecnológicas e somos uma das
-            poucas empresas no país com 2 especializações avançadas.
-          </p>
-          <br />
-          <p>
-            As nossas princiapais áreas de competência são AI, Analytics,
-            Low-Code, Portals, DevOps e Web & App Development. Somos pioneiros e
-            trabalhamos sempre com a tecnologia mais recente de forma a dar aos
-            nossos clientes e parceiros as soluções mais avançadas no mercado.
-          </p>
-          <br />
-          <p>
-            Ao longo quase 20 anos, desenvolvemos e implementamos soluções
-            dentro e fora de Portugal nas mais variadas áreas de actividade, do
-            retalho à saúde, passando pelo imobiliário ou o sector público,
-            produzindo sempre resultados duradouros.
+          A DevScope é especialista em dar às organizações as ferramentas e o conhecimento necessários para se manterem competitivas e um dos mais distinguidos parceiros Microsoft Portugal, 
+          tendo sido premiados Analytics Partner of the Year 2021, Power Platform Partner of the Year 2022 e Low Code Partner of the Year 2023. 
+          Ao longo de 20 anos, temos desenvolvido e implementado soluções dentro e fora de Portugal nas mais variadas áreas de atividade, do retalho à saúde, passando pelo imobiliário ou o sector público, produzindo sempre resultados duradouros.
           </p>
         </>
       ),
@@ -85,152 +30,65 @@ export const DiamondCompanies: CompanyProps[] = [
     },
   },
   {
-    logoHref: BysideLogoWithColors,
-    name: "BySide Logo",
+    logoHref: delloiteLogo,
+    name: "deloitte",
     modalInformation: {
-      title: "BySide",
+      title: "Deloitte",
       bodyText: (
         <>
+         <p className="text-bold">
+          You will never work alone 
+         </p>
+          <br />
           <p>
-            BySide is a pioneer in Lead Activation, with more than a decade of
-            experience working with some of the largest global brands in the
-            telecommunications, banking and retail sectors. BySide makes digital
-            simple through the Lead Activation Hub, a platform that eliminates
-            the barriers between online and offline by combining a Marketing
-            Cloud with a Cloud Contact Centre.
+            Acreditamos que o impacto que criamos se multiplica quando trabalhamos em  equipa. Juntos podemos mudar o mundo – torná-lo mais humano, eficiente e  tecnológico. Mas isso só é possível se conectarmos o teu talento ao de outras  pessoas como tu.
           </p>
           <br />
           <p>
-            The Engineering team is in charge of building the next version of
-            the Lead Activation Hub and optimizing a highly scalable system.
+            Na Deloitte, nunca trabalharás sozinho. Vais integrar os mais variados e desafiantes  projetos e fazer parte do nosso Global Solutions Center, onde poderás colaborar de  forma integrada com outras equipas da rede global Deloitte. Terás sempre alguém  ao teu lado para te inspirar, ajudar e desafiar a expandir os teus horizontes,  enquanto exploras soluções tecnológicas diferenciadoras. Aqui, ao encontrares um  ambiente dinâmico, colaborativo e humano, terás a oportunidade de desenvolver a  tua melhor versão.
+          </p>
+          <br />
+          <p>
+            Além disso, as nossas equipas em Portugal têm projeção internacional, o que  demonstra a nossa forte liderança global em low code/no code, em engenharia de  redes de telecomunicações, em plataformas tecnológicas de transformação  organizacional (ServiceNow e Apptio) e na indústria de serviços financeiros  (Finastra, TIA e Guidewire).
+          </p>
+          <br />
+          <p>
+            Se tens interesse em explorar e desenvolver as tuas competências nalguma destas  áreas em soluções tecnológicas – engenharia de software, cloud, integração de  sistemas, data analytics & data science, cyber risk, engenharia de redes  telecomunicações, UX design - e gostarias de trabalhar com tecnologias como AWS,  Google, Oracle, Salesforce, SAP, Mulesoft, Feedzai e SAS, entre outras, então estás  no lugar certo!
+          </p>
+          <br />
+          <p>
+            Orgulhamo-nos das nossas provas dadas de sucesso e resiliência ao longo de mais  de 175 anos de história. Registamos um crescimento notório nas áreas tecnológicas  e somos líderes na prestação dos nossos serviços, aos quais recorrem quatro em  cada cinco empresas da Fortune Global 500®, através da nossa rede global de  firmas membro, com mais de 415 mil pessoas.
+          </p>
+          <br />
+          <p>
+            Somos mais de 5500 pessoas em Portugal, das quais mais de 2600 trabalham em  áreas tecnológicas, a partir de escritórios e Digital Studios em Lisboa e no Porto, e  de polos tecnológicos em Braga, Viseu, Coimbra, Setúbal, Leiria e Faro.
+          </p>
+          <br />
+          <p>
+            A Deloitte é uma das empresas mais atrativas para trabalhar no mundo, segundo o  ranking da Universum. Em 2023, fomos distinguidos com dois prémios nos Human  Resources Awards e fazemos parte do Top5 das 25 melhores empresas para  trabalhar e desenvolver carreira em Portugal.
           </p>
         </>
       ),
-      instagramLink: "https://www.instagram.com/byside.leadactivation",
-      facebookLink: "https://www.facebook.com/leadactivation/",
-      linkedinLink: "https://www.linkedin.com/company/byside/",
+      instagramLink: "https://www.instagram.com/deloitteportugal/",
+      linkedinLink: "https://www.linkedin.com/company/deloitte-portugal/",
+      website: "https://www2.deloitte.com/pt/pt.html",
+      videoHref: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       videoTitle: "Vídeo promocional",
-      videoHref: "https://www.youtube.com/embed/HW_QqTAQL_k",
-      website: "https://byside.com",
     },
   },
   {
-    logoHref: HitachiLogo,
-    name: "Hitachi Logo",
+    logoHref: armisLogo,
+    name: "armis",
     modalInformation: {
-      title: "Hitachi",
+      title: "Armis",
       bodyText: (
-        <>
-          <p>
-            Hitachi Solutions understands what it takes to digitally transform
-            organisations, harnessing the power of the latest technologies and
-            seamlessly integrating them into businesses. As a global consultancy
-            firm working across the private and public sectors, we specialise in
-            user-friendly business applications based on the Microsoft cloud.
-            Our close partnership with Microsoft gives our customers access to
-            the latest technology, plus valuable market insights.
-          </p>
-          <br />
-          <p>
-            The creative, modern solutions we build for our customers are a
-            combination of many factors. There’s the pioneering spirit which has
-            always informed everything we do. Then there’s our people. With our
-            team of experienced industry professionals, consultants and
-            technology experts, Hitachi Solutions has a wide range of
-            capabilities including digital transformation, ERP and CRM
-            implementation, change management and data science & analytics. Our
-            highly skilled team helps drive improvements to many aspects of your
-            business creating efficiencies and growth.
-          </p>
-          <br />
-          <p>
-            The great work we do attracts some of the brightest people out
-            there. They make up diverse teams with different perspectives and
-            experiences which fuel innovation and enable a closer connection
-            with our customers. Join us and do your best work ever in a diverse
-            and rewarding culture that’s continually driving innovation for a
-            better future.
-          </p>
-        </>
+        <></>
       ),
-      instagramLink: "https://www.instagram.com/hitachisolutions.portugal/",
-      linkedinLink:
-        "https://www.linkedin.com/company/hitachi-solutions-portugal/",
+      instagramLink: "https://www.instagram.com/armisgroup/",
+      linkedinLink: "https://www.linkedin.com/company/armisgroup/",
+      website: "https://www.armisgroup.com",
+      videoHref: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       videoTitle: "Vídeo promocional",
-      videoHref: "https://www.youtube.com/embed/I4RyT-u2aIw",
-      website: "https://www.hitachi.eu/pt-pt",
-    },
-  },
-  {
-    logoHref: FabamaqLogo,
-    name: "FabamaqLogo Logo",
-    modalInformation: {
-      title: "FABAMAQ",
-      bodyText: (
-        <>
-          <p>
-            <strong>Missão FMQ</strong>
-            <br />
-            Criar jogos de casino com qualidade para o mercado global num
-            ambiente de crescimento, proximidade e partilha.
-          </p>
-          <br />
-          <p>
-            <strong>Visão FMQ</strong>
-            <br />
-            Ser uma Software House de referência na indústria internacional dos
-            jogos de casino.
-          </p>
-          <br />
-          <p>
-            <strong>Visão FMQ</strong>
-            <br />
-            Partilha
-            <br />
-            Compromisso
-            <br />
-            Audácia
-            <br />
-            Adaptabilidade
-            <br />
-            Proximidade
-          </p>
-        </>
-      ),
-      instagramLink: "https://www.instagram.com/fabamaq/",
-      linkedinLink: "https://www.linkedin.com/company/fabamaq/",
-      videoTitle: "Vídeo Institucional",
-      videoHref: "https://www.youtube.com/embed/69yKGCguOu8",
-      website: "https://www.fabamaq.com",
-    },
-  },
-  {
-    logoHref: SonaeLogo,
-    name: "Sonae MC logo",
-    modalInformation: {
-      title: "Sonae MC",
-      bodyText: (
-        <>
-          <p>
-            A MC é a empresa líder no setor do retalho alimentar, com mais de 35
-            anos de existência. Parte do grupo SONAE, apresenta um volume de
-            negócios superior a 5 mil milhões de euros e conta com mais de 35
-            mil colaboradores de norte a sul do país.
-          </p>
-          <br />
-          <p>
-            Do universo MC fazem parte insígnias de retalho alimentar
-            (Continente, Continente Modelo, Continente Bom Dia), beleza e saúde
-            (Wells e Dr. Wells), cafetaria e restauração (Cozinha Continente,
-            Bagga e Go Natural), casa e decoração (Home Story), animais e
-            veterinária (ZU) e papelaria (note!).
-          </p>
-        </>
-      ),
-      linkedinLink: "https://www.linkedin.com/company/mc-sonae/",
-      website: "https://mc.sonae.pt",
-      videoTitle: "Vídeo institucional",
-      videoHref: "https://www.youtube.com/embed/rYHBK6sxdzA",
-    },
-  },
+  }
+},
 ];
