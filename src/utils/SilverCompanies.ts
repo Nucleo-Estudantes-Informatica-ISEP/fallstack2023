@@ -1,9 +1,9 @@
 import { CompanyProps } from "../components/Company";
 import {
-  glinttLogo,
   AccentureLogo,
+  glinttLogo,
+  msgLifeIberiaLogo,
   NatixisLogo,
-  msgLifeIberiaLogo
 } from "./CompaniesImages";
 
 export const SilverCompanies: CompanyProps[] = [
@@ -25,7 +25,7 @@ export const SilverCompanies: CompanyProps[] = [
   {
     logoHref: msgLifeIberiaLogo,
     name: "msg life iberia",
-    websiteUrl: "https://www.msg-life.com/",
-  }
-
+    websiteUrl: "https://msg-insurit.com/pt-pt/",
+    className: "w-3/4",
+  },
 ];

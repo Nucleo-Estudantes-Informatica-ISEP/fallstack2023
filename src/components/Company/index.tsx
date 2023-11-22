@@ -12,17 +12,28 @@ export interface CompanyProps {
   websiteUrl?: string;
   modalInformation?: ModalInformation;
   tier?: CompaniesTier;
+  className?: string;
 }
 
-const Company: React.FC<CompanyProps> = ({ logoHref, name, websiteUrl }) => {
+const Company: React.FC<CompanyProps> = ({
+  logoHref,
+  name,
+  websiteUrl,
+  className,
+}) => {
   return (
-    <div className="flex h-3/4 min-h-[8rem] w-3/4 items-center justify-center transition duration-300 ease-in-out hover:scale-105 lg:min-h-[11rem]">
+    <div className="flex h-4/6 min-h-[8rem] w-4/6 items-center justify-items-center transition duration-300 ease-in-out hover:scale-105 lg:min-h-[11rem]">
       <Link
         rel="noreferrer"
         href={websiteUrl ? websiteUrl : "/company/" + name}
         target="_blank"
+        className="flex items-center justify-center"
       >
-        <Image className="object-cover" src={logoHref} alt={name} />
+        <Image
+          className={`${className} object-cover`}
+          src={logoHref}
+          alt={name}
+        />
       </Link>
     </div>
   );

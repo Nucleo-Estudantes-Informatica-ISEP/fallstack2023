@@ -24,8 +24,10 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
         return `border-yellow-400 text-yellow-400 drop-shadow-[0px_0px_4px_#facc15] text-4xl md:text-6xl`;
       case "Silver":
         return `${
-          theme === "light" ? "text-gray-400" : "text-gray-300"
-        } drop-shadow-[2px_6px_2px_#c0c0c0] "border-gray-500" text-4xl md:text-6xl`;
+          theme === "light"
+            ? "text-gray-500 drop-shadow-[2px_2px_20px_#6b7280]"
+            : "text-gray-300 drop-shadow-[2px_2px_20px_#c0c0c0]"
+        }  border-gray-500 text-4xl md:text-6xl`;
       default:
         throw new Error("Tier not found");
     }
@@ -41,8 +43,8 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
         {tier}
       </h2>
       <section
-        className={`mb-12 w-full rounded-3xl  border-2 border-black border-opacity-50 md:w-3/4 ${
-          theme === "light" ? "bg-gray-800" : "bg-white"
+        className={`mb-12 w-full rounded-3xl  border-2 border-black border-opacity-50 p-4 md:w-5/6 md:p-8 ${
+          theme === "light" ? "bg-gttps://www.msg-life.comray-800" : "bg-white"
         } bg-opacity-20`}
       >
         <div className="mt-2 grid grid-cols-1 items-center justify-items-center gap-x-12 gap-y-2 xl:grid-cols-2">
