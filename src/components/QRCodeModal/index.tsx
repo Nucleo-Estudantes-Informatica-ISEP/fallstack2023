@@ -28,10 +28,10 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   const tabs = [<PerfilTab user={user} />, <ScanTab user={user} />];
   const modalTitle = [
     <>
-      Partilha o teu <span className="text-primary">Perfil</span>
+      Partilha o teu <span className="text-primary">QRCODE</span>
     </>,
     <>
-      Dá <span className="text-primary">scan</span> num estudante
+      Dá <span className="text-primary">scan</span> a um QRCODE
     </>,
   ];
 
