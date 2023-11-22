@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { CompanyProps } from "../Company";
 import Image from "next/image";
 import Link from "next/link";
+import FactData from "@/types/FactData";
 
 
 interface CompanyPageSectionProps  {
@@ -24,6 +25,7 @@ interface CompanyPageSectionProps  {
     youtubeLink?: string;
     linkedinLink?: string;
     website?: string;
+    facts?: FactData[];
   }
 }
 
@@ -115,6 +117,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({ company, modalI
 			linkedinLink={modalInformation.linkedinLink}
 			website={modalInformation.website}
 			tier={company.tier}
+            facts={modalInformation.facts}
 			></CompanyInfo>
   </div>
   );

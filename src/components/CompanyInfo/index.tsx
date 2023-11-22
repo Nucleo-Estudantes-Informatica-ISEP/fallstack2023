@@ -1,5 +1,6 @@
 import React, {useId} from "react";
 import CompanyDescription from "@/components/CompanyDescription";
+import FactData from "@/types/FactData";
 
 interface CompanyInfoProps {
     title: string | undefined;
@@ -13,6 +14,7 @@ interface CompanyInfoProps {
     linkedinLink: string | undefined;
     website: string | undefined;
     tier: string;
+    facts?: FactData[];
 }
 
 const CompanyInfo: React.FC<CompanyInfoProps> = (
@@ -27,7 +29,8 @@ const CompanyInfo: React.FC<CompanyInfoProps> = (
         youtubeLink,
         linkedinLink,
         website,
-        tier
+        tier,
+        facts
     }) => {
 
 
@@ -54,6 +57,27 @@ const CompanyInfo: React.FC<CompanyInfoProps> = (
                             font-light
                          ">{bodyText}</div>
                 </CompanyDescription>
+            )}
+            {facts && (
+                <section
+                    className='
+                        flex flex-col space-y-2 leading-8 lg:px-10 my-5
+                        text-sm sm:text-sm md:text-md lg:text-lg
+                        font-light
+                    '
+                >
+                    {facts.map((fact) => (
+                        <div className='flex flex-row my-2 items-center'>
+                            <fact.iconSrc
+                                className='
+                                    h-6 w-6 sm:h-6 sm:w-6 md:h-8 md:w-8 lg:h-8 lg:w-8
+                                    fill-stone-500
+                                '
+                            />
+                            <p className='text-black text-left ml-2'>{fact.description}</p>
+                        </div>
+                    ))}
+                </section>
             )}
             {tier === 'Diamond' &&
                 <div className='flex flex-col space-y-2  leading-8 lg:px-10 lg:text-lg  mt-10'>
