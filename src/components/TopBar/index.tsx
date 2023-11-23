@@ -18,7 +18,7 @@ const TopBar: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const session = useSession();
 
-  const opacity = useTransform(() => scrollYProgress.get() * 1.5);
+  const opacity = useTransform(() => scrollYProgress.get() * 2.2);
 
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();

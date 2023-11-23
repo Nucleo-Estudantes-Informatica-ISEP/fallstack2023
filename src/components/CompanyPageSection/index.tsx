@@ -47,11 +47,11 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({
           {company.props.logoHref ? (
             <div className="relative my-8 flex h-full w-full flex-col items-center">
               <Image
-                width={360}
-                height={360}
+                width={320}
+                height={320}
                 src={company.props.logoHref}
                 alt="profile image"
-                className="h-4/5 w-4/5"
+                className="aspect-auto w-full"
               />
             </div>
           ) : (
@@ -117,6 +117,7 @@ const CompanyPageSection: React.FC<CompanyPageSectionProps> = ({
         videoTitle={modalInformation.videoTitle}
         tier={company.tier}
         facts={modalInformation.facts}
+        interests={company.props.interests}
       ></CompanyInfo>
     </div>
   );
