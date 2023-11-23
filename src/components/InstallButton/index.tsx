@@ -19,9 +19,9 @@ const InstallButton: React.FC<InstallButtonProps> = ({ className }) => {
     isInstallable && (
       <button onClick={handleConfirm} className={className}>
         {isMobile ? (
-          <InstallPwaMobile className="text-xl"></InstallPwaMobile>
+          <InstallPwaMobile className="text-xl" />
         ) : (
-          <InstallPwaDesktop className="text-2xl"></InstallPwaDesktop>
+          <InstallPwaDesktop className="text-2xl" />
         )}
       </button>
     )
