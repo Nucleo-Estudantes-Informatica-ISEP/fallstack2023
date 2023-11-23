@@ -26,7 +26,7 @@ export default function ThemeChanger() {
   }
 
   return (
-    <button className="flex h-full w-full items-center justify-center fill-black transition-colors hover:text-primary dark:fill-white">
+    <button className="flex h-full items-center justify-center fill-black transition-colors hover:text-primary dark:fill-white">
       {theme === "light" ? (
         <BsMoonStarsFill onClick={() => setTheme("dark")} size={20} />
       ) : (

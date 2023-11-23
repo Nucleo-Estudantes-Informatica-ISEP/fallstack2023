@@ -1,12 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Student } from "@prisma/client";
-import { motion } from "framer-motion";
 import { MdOutlineArrowBack as BackIcon } from "react-icons/md";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
-import useSession from "@/hooks/useSession";
 import AvatarStep from "@/components/SignUp/AvatarStep";
 import BioStep from "@/components/SignUp/BioStep";
 import CvStep from "@/components/SignUp/CvStep";
@@ -17,8 +14,6 @@ import PasswordStep from "@/components/SignUp/PasswordStep";
 import YearStep from "@/components/SignUp/YearStep";
 
 const SignUpPage: React.FC = () => {
-  const session = useSession();
-
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState<StudentSignUpData>({} as StudentSignUpData);
 
@@ -36,11 +31,7 @@ const SignUpPage: React.FC = () => {
       {...{ currentStep, setCurrentStep, data, setData }}
     />,
     <CvStep key={"6"} {...{ currentStep, setCurrentStep, data, setData }} />,
-    <AvatarStep
-      key={"7"}
-      student={session.user?.student as Student}
-      {...{ currentStep, setCurrentStep, data, setData }}
-    />,
+    <AvatarStep key={"7"} data={data} />,
   ];
 
   const handlePrev = () => setCurrentStep(currentStep - 1);
@@ -55,18 +46,7 @@ const SignUpPage: React.FC = () => {
           <BackIcon />
         </button>
       )}
-      <motion.section
-        key={currentStep}
-        initial={{ x: "100%" }}
-        animate={{ x: "0" }}
-        exit={{ x: "-100%" }}
-        transition={{
-          bounce: 0,
-        }}
-        className="flex flex-col"
-      >
-        {steps[currentStep]}
-      </motion.section>
+      <section className="flex flex-col">{steps[currentStep]}</section>
     </div>
   );
 };

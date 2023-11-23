@@ -18,12 +18,15 @@ export async function signUp(data: StudentSignUpData) {
         bio: data.bio,
         year: data.year,
         interests: data.interests,
-        avatar: data.avatar,
+        avatar: data.avatar || undefined,
         cv: data.cv?.id,
       }),
     });
 
-    return resStudent.status === 201;
+    const json = await resStudent.json();
+
+    if (resStudent.status !== 201) return new Error(json.error);
+    return true;
   } catch (e) {
     console.error(e);
     return false;

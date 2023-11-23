@@ -6,7 +6,7 @@ import config from "@/config";
 import prisma from "@/lib/prisma";
 
 const getServerSession = async () => {
-  const cookie = cookies().get(config.cookieName);
+  const cookie = cookies().get(config.cookies.auth.name);
   const token = cookie?.value as string;
   if (!token) return null;
 

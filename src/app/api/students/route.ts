@@ -13,8 +13,14 @@ export async function POST(req: Request) {
     if (!session)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    if (session.role !== "STUDENT" || session.student !== null)
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (session.role !== "STUDENT")
+      return NextResponse.json({ error: "Invalid role." }, { status: 403 });
+
+    if (session.student !== null)
+      return NextResponse.json(
+        { error: "Já tens um perfil criado." },
+        { status: 403 }
+      );
 
     // validate the request body against the schema
     const requestBody = await req.json();
@@ -38,6 +44,32 @@ export async function POST(req: Request) {
       });
 
       codeExists = student !== null;
+    }
+
+    // create student
+    const student = await prisma.student.create({
+      data: {
+        name: name,
+        bio: bio?.trim(),
+        interests: {
+          connect: interests.map((interest) => ({ name: interest })),
+        },
+        code: code,
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+        year: year,
+      },
+    });
+
+    // check if student was created
+    if (!student) {
+      return NextResponse.json(
+        { message: "Something went wrong" },
+        { status: 500 }
+      );
     }
 
     let avatarUrl = null;
@@ -77,33 +109,10 @@ export async function POST(req: Request) {
       await storage.bucket().file(uploaded).move(distribution);
     }
 
-    // create student
-    const student = await prisma.student.create({
-      data: {
-        name: name,
-        bio,
-        interests: {
-          connect: interests.map((interest) => ({ name: interest })),
-        },
-        code: code,
-        user: {
-          connect: {
-            id: userId,
-          },
-        },
-        year: year,
-        avatar: avatarUrl,
-        cv,
-      },
+    await prisma.student.update({
+      data: { avatar: avatarUrl, cv },
+      where: { id: student.id },
     });
-
-    // check if student was created
-    if (!student) {
-      return NextResponse.json(
-        { message: "Something went wrong" },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json(student, { status: 201 });
   } catch (e) {

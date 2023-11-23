@@ -4,10 +4,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "storage.googleapis.com",
+        hostname: "*.storage.googleapis.com",
       },
     ],
   },
 };
 
-module.exports = nextConfig;
+const withPWA = require("@ducanh2912/next-pwa").default({
+  dest: "public",
+});
+
+module.exports = withPWA(nextConfig);

@@ -1,7 +1,14 @@
 const config = {
-  authCookieMaxAge: 34560000, // 400 days (in seconds) - its the maximum value for the maxAge of a cookie
+  cookies: {
+    auth: {
+      name: "@Fallstack23:auth",
+      maxAge: 34560000, // 400 days (in seconds) - its the maximum value for the maxAge of a cookie
+    },
+  },
 
-  cookieName: "@Fallstack23:auth",
+  localStorage: {
+    hideInstallPrompt: "@Fallstack23:hidePrompt",
+  },
 
   uploads: {
     avatar: {
@@ -10,7 +17,7 @@ const config = {
     },
     cv: {
       types: ["application/pdf"],
-      maxSize: 2 * 1024 * 1024, // 2mb
+      maxSize: 5 * 1024 * 1024, // 5mb
     },
   },
 };

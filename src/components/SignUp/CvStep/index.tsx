@@ -34,7 +34,10 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       const file = e.target.files[0];
 
       const signed = await getSignedUrl("cv", file.type);
-      if (!signed) return setLoading(false); // TODO: show error
+      if (!signed) {
+        setError("Ocorreu um erro ao dar upload.");
+        return setLoading(false);
+      }
 
       if (file.size > signed.maxSize) {
         setLoading(false);
@@ -45,7 +48,10 @@ const CvStep: FunctionComponent<CvStepProps> = ({
 
       const res = await uploadToBucket(signed, file);
 
-      if (res.status !== 200) return setLoading(false); // TODO: show error
+      if (res.status !== 200) {
+        setError("Ocorreu um erro ao dar upload.");
+        return setLoading(false);
+      }
 
       const cv = {
         name: file.name,
@@ -74,7 +80,7 @@ const CvStep: FunctionComponent<CvStepProps> = ({
       </p>
 
       <FileInput
-        name="Insere um ficheiro."
+        name="Insere um ficheiro. (Opcional)"
         placeholder="CV ficheiro"
         accept="application/pdf"
         onChange={onFileChange}

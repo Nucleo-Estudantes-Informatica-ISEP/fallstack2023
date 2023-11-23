@@ -65,3 +65,13 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function GET() {
+  const companies = await prisma.company.findMany({
+    include: {
+      user: true,
+    },
+  });
+
+  return NextResponse.json(companies);
+}

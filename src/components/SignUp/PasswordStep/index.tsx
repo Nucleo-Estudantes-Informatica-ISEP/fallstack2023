@@ -27,19 +27,30 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
 }) => {
   const [error, setError] = useState<string | null>(null);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRefPassword = useRef<HTMLInputElement>(null);
+  const inputRefPasswordRepeat = useRef<HTMLInputElement>(null);
 
   const handleNext = () => {
-    if (!inputRef.current?.value) return setError("Este campo é obrigatório.");
+    if (!inputRefPassword.current?.value)
+      return setError("Este campo é obrigatório.");
+    if (!inputRefPasswordRepeat.current?.value)
+      return setError("Este campo é obrigatório.");
 
-    const passwordRegex = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+    if (inputRefPassword.current.value !== inputRefPasswordRepeat.current.value)
+      return setError("As passwords não coincidem.");
 
-    const password = inputRef.current.value;
+    const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/);
 
+    const password = inputRefPassword.current.value;
+
+    if (password.length < 8)
+      return setError("A password deve conter pelo menos 8 caracteres.");
     if (!password.match(passwordRegex))
-      return setError("A password é demasiado insegura.");
+      return setError(
+        "A password deve conter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número."
+      );
 
-    setData({ ...data, password: inputRef.current.value });
+    setData({ ...data, password: inputRefPassword.current.value });
     setCurrentStep(currentStep + 1);
   };
 
@@ -63,11 +74,22 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
         name="Escolhe uma password segura."
         placeholder="Insere uma password"
         center
-        inputRef={inputRef}
+        inputRef={inputRefPassword}
         onKeyUp={handleKeyUp}
         defaultValue={data.password ? data.password : undefined}
         autoFocus
-        className={`${error ? "border-2 border-red-600" : ""} z-10`}
+        className={`${error ? "border-2 border-red-600" : ""} z-10 `}
+      />
+      <Input
+        type="password"
+        name="Repete a password."
+        placeholder="Repete a password"
+        center
+        inputRef={inputRefPasswordRepeat}
+        onKeyUp={handleKeyUp}
+        defaultValue={data.password ? data.password : undefined}
+        autoFocus
+        className={`${error ? "border-2 border-red-600" : ""} z-10 `}
       />
 
       {error && (

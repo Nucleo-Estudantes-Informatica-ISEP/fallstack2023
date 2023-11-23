@@ -135,7 +135,7 @@ export async function getRotatedImage(imageSrc: string, rotation = 0) {
   });
 }
 
-export async function resizeImage(
+export async function resizeMinWidthImage(
   imageSrc: string,
   minWidth: number
 ): Promise<string | null> {
