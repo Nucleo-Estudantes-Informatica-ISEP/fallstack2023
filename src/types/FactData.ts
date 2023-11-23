@@ -1,6 +1,7 @@
-import {IconType} from "react-icons";
+import { IconType } from "react-icons";
 
 export default interface FactData {
-    iconSrc: IconType;
-    description: string;
+	iconSrc: IconType;
+	description: string;
+	className?: string;
 }
