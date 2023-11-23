@@ -8,6 +8,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
+import { InstallableContextProvider } from "@/contexts/InstallableContext";
 import InstallPopUp from "@/components/InstallPopUp";
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 import Topbar from "@/components/TopBar";
@@ -31,12 +32,14 @@ export default function RootLayout({
     <html lang="en" className="h-[100svh]">
       <body className={inter.className}>
         <AuthContextProvider>
-          <ThemeProvider>
-            <Topbar />
-            <main>{children}</main>
-            <ToastContainer position="bottom-right" />
-            <InstallPopUp />
-          </ThemeProvider>
+          <InstallableContextProvider>
+            <ThemeProvider>
+              <Topbar />
+              <main>{children}</main>
+              <ToastContainer position="bottom-right" />
+              <InstallPopUp />
+            </ThemeProvider>
+          </InstallableContextProvider>
         </AuthContextProvider>
       </body>
     </html>
