@@ -68,7 +68,7 @@ const Footer: FunctionComponent<FooterProps> = ({
         <h4 className="right-10 select-none pb-3 drop-shadow-xl sm:text-center lg:pb-0 lg:pl-20">
           Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
         </h4>
-        <div className="mb-8 flex justify-between px-4 md:items-center md:gap-x-5 md:px-0 lg:pr-20">
+        <div className="mb-8 flex justify-between px-5 md:items-center md:gap-x-5 md:px-0 lg:pr-20">
           <div className="flex gap-5">
             <Link
               className="text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
@@ -110,18 +110,18 @@ const Footer: FunctionComponent<FooterProps> = ({
           <div className="right-0 flex gap-5">
             <InstallButton />
             <Link
-              href="/about"
-              className="h-max text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-              title="Info"
-            >
-              <FaInfo size={20} />
-            </Link>
-            <Link
               href="/privacy-policy"
               title="Política de Privacidade"
               className="text-xl"
             >
               <MdOutlinePrivacyTip color="text" size={24} />
+            </Link>
+            <Link
+              href="/about"
+              className="h-max text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              title="Info"
+            >
+              <FaInfo size={20} />
             </Link>
           </div>
         </div>
