@@ -108,7 +108,7 @@ const Footer: FunctionComponent<FooterProps> = ({
             </Link>
           </div>
           <div className="right-0 flex gap-5">
-            <InstallButton className="text-xl" />
+            <InstallButton />
             <Link
               href="/about"
               className="h-max text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"

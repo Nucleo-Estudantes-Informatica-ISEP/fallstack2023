@@ -9,7 +9,10 @@ import {
   FaTrophy as Trophy,
 } from "react-icons/fa";
 import { HiPencilSquare as Pencil } from "react-icons/hi2";
-import { MdInstallMobile as InstallPwa } from "react-icons/md";
+import {
+  MdInstallDesktop as InstallPwaDesktop,
+  MdInstallMobile as InstallPwaMobile,
+} from "react-icons/md";
 
 import {
   BsBoxArrowInDown as ImportCv,
@@ -28,5 +31,6 @@ export {
   Trophy,
   Chart,
   Leaf,
-  InstallPwa,
+  InstallPwaDesktop,
+  InstallPwaMobile,
 };

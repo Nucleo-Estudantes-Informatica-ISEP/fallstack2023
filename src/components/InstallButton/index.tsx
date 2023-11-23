@@ -2,8 +2,9 @@
 
 import { LabelHTMLAttributes, useContext } from "react";
 
+import useIsMobile from "@/hooks/useIsMobile";
 import InstallableContext from "@/contexts/InstallableContext";
-import { InstallPwa } from "@/styles/Icons";
+import { InstallPwaDesktop, InstallPwaMobile } from "@/styles/Icons";
 
 interface InstallButtonProps extends LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
@@ -12,10 +13,16 @@ interface InstallButtonProps extends LabelHTMLAttributes<HTMLLabelElement> {
 const InstallButton: React.FC<InstallButtonProps> = ({ className }) => {
   const { isInstallable, handleConfirm } = useContext(InstallableContext);
 
+  const isMobile = useIsMobile();
+
   return (
     isInstallable && (
       <button onClick={handleConfirm} className={className}>
-        <InstallPwa></InstallPwa>
+        {isMobile ? (
+          <InstallPwaMobile className="text-xl"></InstallPwaMobile>
+        ) : (
+          <InstallPwaDesktop className="text-2xl"></InstallPwaDesktop>
+        )}
       </button>
     )
   );
