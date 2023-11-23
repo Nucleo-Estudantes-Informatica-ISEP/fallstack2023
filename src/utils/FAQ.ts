@@ -23,7 +23,7 @@ export const FAQ: FaqProps[] = [
     index: 3,
     question: "As faltas são justificadas durante o evento?",
     answer:
-      "Sim. As faltas serão justificadas a todos os estudantes do 3º Ano de Licenciatura de Engenharia Informática excetuando aulas em que se realizem avaliações ou outros momentos inadiáveis.",
+      "Sim. As faltas serão justificadas durante o período em que estejas presente no evento, desde que sejas estudante do 3º Ano da Licenciatura em Engenharia Informática e estejas inscrito na plataforma do FallStack! Estas justificações não se aplicam às aulas em que se realizem avaliações ou outros momentos inadiáveis.",
   },
   {
     index: 4,
