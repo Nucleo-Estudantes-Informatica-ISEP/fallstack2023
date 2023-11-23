@@ -43,7 +43,7 @@ export const GoldCompanies: CompanyProps[] = [
       instagramLink: "https://www.instagram.com/hitachisolutions.portugal/",
       linkedinLink:
         "https://www.linkedin.com/company/hitachi-solutions-portugal/",
-      website: "https://www.hitachi.eu/pt-pt",
+      website: "https://global.hitachi-solutions.com/",
       facts: [
         {
           iconSrc: Archive,
