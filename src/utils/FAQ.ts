@@ -23,7 +23,7 @@ export const FAQ: FaqProps[] = [
     index: 3,
     question: "As faltas são justificadas durante o evento?",
     answer:
-      "Sim. As faltas serão justificadas a todos os estudantes do 3o Ano de Licenciatura de Engenharia Informática excetuando aulas em que se realizem avaliações ou outros momentos inadiáveis.",
+      "Sim. As faltas serão justificadas a todos os estudantes do 3º Ano de Licenciatura de Engenharia Informática excetuando aulas em que se realizem avaliações ou outros momentos inadiáveis.",
   },
   {
     index: 4,
