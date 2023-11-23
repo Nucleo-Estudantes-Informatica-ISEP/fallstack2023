@@ -2,9 +2,9 @@ import { FunctionComponent } from "react";
 
 import { GoldCompanies } from "@/utils/GoldCompanies";
 
-import { SilverCompanies } from "../../utils/SilverCompanies";
+import { SilverCompanies } from "../../../utils/SilverCompanies";
+import HeadingText from "../../HeadingText";
 import CompaniesContainer from "../CompaniesContainer";
-import HeadingText from "../HeadingText";
 
 const CompaniesSection: FunctionComponent = () => {
   return (

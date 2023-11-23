@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { CompaniesTier } from "@/utils/GetColorTier";
 
-import { ModalInformation } from "../../types/ModalProps";
+import { ModalInformation } from "../../../types/ModalProps";
 
 export interface CompanyProps {
   logoHref: StaticImageData;

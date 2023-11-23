@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { motion } from "framer-motion";
 
-import { CompaniesTier } from "../../utils/GetColorTier";
+import { CompaniesTier } from "../../../utils/GetColorTier";
 import Company, { CompanyProps } from "../Company";
 
 import { useTheme } from "next-themes";

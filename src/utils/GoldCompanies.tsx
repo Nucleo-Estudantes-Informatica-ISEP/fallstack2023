@@ -1,6 +1,6 @@
 import { Archive, Chart, Leaf, Trophy } from "@/styles/Icons";
 
-import { CompanyProps } from "../components/Company";
+import { CompanyProps } from "../components/Companies/Company";
 import {
   FabamaqLogo,
   HitachiLogo,

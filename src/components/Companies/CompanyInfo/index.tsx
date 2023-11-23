@@ -1,7 +1,9 @@
 import React, { useId } from "react";
 
 import FactData from "@/types/FactData";
-import CompanyDescription from "@/components/CompanyDescription";
+import CompanyDescription from "@/components/Companies/CompanyDescription";
+
+import FactSection from "../FactSection";
 
 interface CompanyInfoProps {
   bodyText: React.ReactNode;
@@ -32,20 +34,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
           </div>
         </CompanyDescription>
       )}
-      {facts && (
-        <section className="my-5 flex flex-col space-y-2 text-sm font-light leading-8 sm:text-sm lg:px-10 lg:text-lg">
-          {facts.map((fact, i) => (
-            <div key={i} className="my-1 flex flex-row items-center">
-              <fact.iconSrc
-                className={`${
-                  fact.className ? fact.className : "h-6 w-6"
-                }  left-0 fill-stone-500 sm:h-8 sm:w-8 lg:h-8 lg:w-8`}
-              />
-              <p className="ml-3 text-left text-black ">{fact.description}</p>
-            </div>
-          ))}
-        </section>
-      )}
+      {facts && <FactSection facts={facts} />}
       {tier === "Diamond" && (
         <div className="mt-10 flex flex-col  space-y-2 leading-8 lg:px-10  lg:text-lg">
           <h1 className="my-5 text-left text-lg font-medium text-black sm:text-lg md:text-xl lg:text-2xl">

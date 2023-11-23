@@ -2,7 +2,7 @@ import Connect from "../../../public/assets/images/connect.png";
 import Pitch from "../../../public/assets/images/pitch.png";
 import { ScheduleDays } from "../../utils/ScheduleDays";
 import Activity from "../Activity";
-import CompaniesSection from "../CompaniesSection";
+import CompaniesSection from "../Companies/CompaniesSection";
 import FaqSection from "../FaqSection";
 import InfoText from "../InfoText";
 import Schedule from "../Schedule";
