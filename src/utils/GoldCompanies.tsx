@@ -21,7 +21,7 @@ export const GoldCompanies: CompanyProps[] = [
     logoHref: HitachiLogo,
     name: "hitachi",
     modalInformation: {
-      title: "Hitachi",
+      title: "Hitachi Solutions",
       bodyText: (
         <>
           <p>
@@ -57,6 +57,7 @@ export const GoldCompanies: CompanyProps[] = [
           iconSrc: Chart,
           description:
             "Especializados em aplicações empresariais amigáveis baseadas na Microsoft cloud",
+          className: "h-1s0 w-10",
         },
       ],
     },
@@ -84,19 +85,21 @@ export const GoldCompanies: CompanyProps[] = [
         {
           iconSrc: Trophy,
           description: "Empresa vencedora do prémio “Healthy Workplaces”",
+          className: "h-10 w-6",
         },
         {
           iconSrc: Archive,
           description: "Regime de trabalho híbrido",
+          className: "h-6 w-6",
         },
       ],
     },
   },
   {
     logoHref: WeezieLogo,
-    name: "Weezie",
+    name: "weezie",
     modalInformation: {
-      title: "weezie",
+      title: "Weezie",
       bodyText: (
         <>
           <p>
@@ -122,6 +125,7 @@ export const GoldCompanies: CompanyProps[] = [
           iconSrc: Chart,
           description:
             "Levou fibra ótica a 60 milhões de casas em todo o mundo",
+          className: "h-8 w-8",
         },
         {
           iconSrc: Archive,
@@ -134,7 +138,7 @@ export const GoldCompanies: CompanyProps[] = [
     logoHref: randstadLogo,
     name: "randstad",
     modalInformation: {
-      title: "randstad",
+      title: "Randstad",
       bodyText: (
         <>
           <p>
@@ -162,6 +166,7 @@ export const GoldCompanies: CompanyProps[] = [
           iconSrc: Trophy,
           description:
             "Maior prestadora de serviços de RH a nível nacional e internacional",
+          className: "h-10 w-10",
         },
       ],
     },
