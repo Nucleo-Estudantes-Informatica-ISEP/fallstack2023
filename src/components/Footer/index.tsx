@@ -10,6 +10,8 @@ import {
   RiTwitterXFill,
 } from "react-icons/ri";
 
+import InstallButton from "../InstallButton";
+
 import { useTheme } from "next-themes";
 
 interface FooterProps {
@@ -66,53 +68,62 @@ const Footer: FunctionComponent<FooterProps> = ({
         <h4 className="right-10 select-none pb-3 drop-shadow-xl sm:text-center lg:pb-0 lg:pl-20">
           Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
         </h4>
-        <div className="mb-8 flex items-center justify-center gap-5 lg:pr-20">
-          <Link
-            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-            href="https://www.facebook.com/nei.isep"
-            target="_blank"
-            rel="noreferrer"
-            title="Facebook"
-          >
-            <RiFacebookCircleFill color="text" size={24} />
-          </Link>
-          <Link
-            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-            href="https://www.linkedin.com/company/nei-isep"
-            target="_blank"
-            rel="noreferrer"
-            title="LinkedIn"
-          >
-            <RiLinkedinBoxFill color="text" size={26} />
-          </Link>
-          <Link
-            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-            href="https://www.instagram.com/nei_isep"
-            target="_blank"
-            rel="noreferrer"
-            title="Instagram"
-          >
-            <RiInstagramLine color="accent" size={24} />
-          </Link>
-          <Link
-            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-            href="https://twitter.com/nei_isep"
-            target="_blank"
-            rel="noreferrer"
-            title="Twitter"
-          >
-            <RiTwitterXFill color="text" size={24} />
-          </Link>
-          <Link
-            href="/about"
-            className="drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
-            title="Info"
-          >
-            <FaInfo size={20} />
-          </Link>
-          <Link href="/privacy-policy" title="Política de Privacidade">
-            <MdOutlinePrivacyTip color="text" size={24} />
-          </Link>
+        <div className="mb-8 flex justify-between px-4 md:items-center md:gap-x-5 md:px-0 lg:pr-20">
+          <div className="flex gap-5">
+            <Link
+              className="text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              href="https://www.facebook.com/nei.isep"
+              target="_blank"
+              rel="noreferrer"
+              title="Facebook"
+            >
+              <RiFacebookCircleFill color="text" size={24} />
+            </Link>
+            <Link
+              className="text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              href="https://www.linkedin.com/company/nei-isep"
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn"
+            >
+              <RiLinkedinBoxFill color="text" size={26} />
+            </Link>
+            <Link
+              className="text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              href="https://www.instagram.com/nei_isep"
+              target="_blank"
+              rel="noreferrer"
+              title="Instagram"
+            >
+              <RiInstagramLine color="accent" size={24} />
+            </Link>
+            <Link
+              className="text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              href="https://twitter.com/nei_isep"
+              target="_blank"
+              rel="noreferrer"
+              title="Twitter"
+            >
+              <RiTwitterXFill color="text" size={24} />
+            </Link>
+          </div>
+          <div className="right-0 flex gap-5">
+            <InstallButton className="text-xl" />
+            <Link
+              href="/about"
+              className="h-max text-xl drop-shadow-xl transition-all duration-300 hover:scale-110 hover:drop-shadow-2xl"
+              title="Info"
+            >
+              <FaInfo size={20} />
+            </Link>
+            <Link
+              href="/privacy-policy"
+              title="Política de Privacidade"
+              className="text-xl"
+            >
+              <MdOutlinePrivacyTip color="text" size={24} />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

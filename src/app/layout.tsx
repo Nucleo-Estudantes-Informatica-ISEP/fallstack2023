@@ -3,11 +3,12 @@ import { Inter } from "next/font/google";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import React from "react";
 
+import React from "react";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
+import { InstallableContextProvider } from "@/contexts/InstallableContext";
 import InstallPopUp from "@/components/InstallPopUp";
 import ThemeProvider from "@/components/Theme/ThemeProvider";
 import Topbar from "@/components/TopBar";
@@ -31,12 +32,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthContextProvider>
-          <ThemeProvider>
-            <Topbar />
-            <main>{children}</main>
-            <ToastContainer position="bottom-right" />
-            <InstallPopUp />
-          </ThemeProvider>
+          <InstallableContextProvider>
+            <ThemeProvider>
+              <Topbar />
+              <main>{children}</main>
+              <ToastContainer position="bottom-right" />
+              <InstallPopUp />
+            </ThemeProvider>
+          </InstallableContextProvider>
         </AuthContextProvider>
       </body>
     </html>
