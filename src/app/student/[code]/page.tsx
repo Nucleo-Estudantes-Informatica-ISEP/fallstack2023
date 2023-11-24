@@ -3,6 +3,7 @@ import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import { isSaved } from "@/lib/savedStudents";
 import getServerSession from "@/services/getServerSession";
+import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
 import Custom404 from "@/app/not-found";
@@ -43,8 +44,18 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   const totalCompanies = companies.length;
 
   return (
-    <section className="flex h-full min-h-screen w-full flex-col items-center">
-      {!session || session.student?.code !== params.code ? (
+    <section
+      className={`${
+        session && session.role === "COMPANY" ? "bg-company" : "bg-inherit"
+      } flex h-full min-h-screen w-full flex-col items-center`}
+    >
+      {session && session.role === "COMPANY" ? (
+        <CompanyViewProfileSectionContainer
+          interests={sanitizedInterests}
+          student={student}
+          company={session?.company}
+        />
+      ) : !session || session.student?.code !== params.code ? (
         <PublicProfileSectionContainer
           interests={sanitizedInterests}
           student={student}

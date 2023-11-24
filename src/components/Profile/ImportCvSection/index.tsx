@@ -4,12 +4,15 @@ import React from "react";
 
 import { ImportCv } from "@/styles/Icons";
 
-interface ContactSectionProps {
+interface ImportCvSectionProps {
   text: string;
   inputRef: React.Ref<HTMLInputElement>;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ inputRef, text }) => {
+const ImportCvSection: React.FC<ImportCvSectionProps> = ({
+  inputRef,
+  text,
+}) => {
   return (
     <div className="my-4 flex flex-col space-y-2 text-black">
       <label className="text-lg text-slate-700">Curriculum Vitae</label>
@@ -42,4 +45,4 @@ const ContactSection: React.FC<ContactSectionProps> = ({ inputRef, text }) => {
   );
 };
 
-export default ContactSection;
+export default ImportCvSection;

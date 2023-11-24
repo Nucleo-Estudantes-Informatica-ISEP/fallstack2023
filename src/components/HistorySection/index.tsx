@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
+import { Company } from "@prisma/client";
 import swal from "sweetalert";
 
 import { HistoryData } from "@/types/HistoryData";
@@ -16,33 +17,55 @@ import { BASE_URL } from "@/services/api";
 import { formatDateDDStrMonthHourMin } from "@/utils/date";
 
 interface HistorySectionProps {
-  code: string;
+  code?: string;
+  company?: Company;
 }
 
-const HistorySection = ({ code }: HistorySectionProps) => {
+const HistorySection = ({ code, company }: HistorySectionProps) => {
   const [historyData, setHistoryData] = useState<HistoryData[]>([]);
 
   useEffect(() => {
     const fetchHistoryData = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/students/${code}/history`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await response.json();
+      if (code) {
+        try {
+          const response = await fetch(`${BASE_URL}/students/${code}/history`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await response.json();
 
-        if (data.error) swal("Erro ao buscar histórico de scans!");
+          if (data.error) swal("Erro ao buscar histórico de scans!");
 
-        setHistoryData(data);
-      } catch (error) {
-        console.error("Error fetching history data:", error);
+          setHistoryData(data);
+        } catch (error) {
+          console.error("Error fetching history data:", error);
+        }
+      } else if (company) {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/companies/${company.id}/stats`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+
+          if (data.error) swal("Erro ao buscar histórico de scans!");
+
+          setHistoryData(data);
+        } catch (error) {
+          console.error("Error fetching history data:", error);
+        }
       }
     };
 
     fetchHistoryData();
-  }, [code]);
+  }, [code, company]);
 
   return (
     <div className="mt-12 flex w-full flex-col items-center justify-center">
@@ -52,10 +75,13 @@ const HistorySection = ({ code }: HistorySectionProps) => {
       <Table
         aria-label="Example static collection table"
         className="mt-2 w-5/6 items-center justify-center"
+        classNames={{
+          base: "max-h-[275px] overflow-y-scroll",
+        }}
       >
         <TableHeader>
           <TableColumn className="w-1/3 text-center text-lg text-black">
-            Empresa
+            {code ? "Empresa" : "Aluno"}
           </TableColumn>
           <TableColumn className="w-1/3 text-center text-lg text-black">
             Data
@@ -75,30 +101,34 @@ const HistorySection = ({ code }: HistorySectionProps) => {
                     : "border-t-2 border-gray-300"
                 }
               >
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
-                  {item.company.name}
+                <TableCell className="text-center font-semibold text-black">
+                  {code ? (
+                    item.company?.name
+                  ) : (
+                    <span className="text-primary">{item.student.name}</span>
+                  )}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
-                <TableCell className="text-center font-poppins font-semibold text-gray-600">
+                <TableCell className="text-center font-semibold text-black">
                   {item.isSaved ? (
-                    <span className="text-primary">SALVOU</span>
+                    <span className="text-primary">SALVO</span>
                   ) : (
-                    <span className="text-gray-600">SCAN</span>
+                    <span className="text-black">SCAN</span>
                   )}
                 </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow className="border-t-2 border-gray-600">
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
-              <TableCell className="text-center font-poppins font-semibold text-black">
+              <TableCell className="text-center font-semibold text-black">
                 --
               </TableCell>
             </TableRow>

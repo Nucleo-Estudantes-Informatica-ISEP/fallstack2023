@@ -10,7 +10,7 @@ import { Github, Linkedin } from "@/styles/Icons";
 import BioSection from "../BioSection";
 import ContactSection from "../ContactSection";
 import InterestsSection from "../InterestsSection";
-import CvSection from "../OpenCvSection";
+import OpenCvSection from "../OpenCvSection";
 
 interface PublicProfileSectionContainerProps {
   student: Student & { user: User };
@@ -67,7 +67,10 @@ const ProfileSectionContainer: React.FC<PublicProfileSectionContainerProps> = ({
         {student.bio && <BioSection bio={student.bio} />}
         <ContactSection email={student.user.email} />
         {student.cv && (
-          <CvSection student={student} text={"Abrir o CV de " + student.name} />
+          <OpenCvSection
+            student={student}
+            text={"Abrir o CV de " + student.name}
+          />
         )}
         {interests.length > 0 && <InterestsSection userInterests={interests} />}
       </section>

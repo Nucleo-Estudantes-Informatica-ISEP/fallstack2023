@@ -1,17 +1,21 @@
-import { Student } from "@prisma/client";
+import { Company } from "@prisma/client";
 
 import HistorySection from "../../HistorySection";
 
 interface StatsProps {
-  student: Student;
+  company: Company;
   stats: number[];
-  companies: number;
+  students: number;
 }
 
-const StatsSection: React.FC<StatsProps> = ({ stats, student, companies }) => {
+const CompanyStatsSection: React.FC<StatsProps> = ({
+  stats,
+  company,
+  students,
+}) => {
   const totalScans = stats[0];
   const totalSaves = stats[1];
-  const companiesLeft = companies - totalScans;
+  const studentsLeft = students - totalScans;
 
   return (
     <section className="flex w-full flex-col items-center justify-center rounded-t-3xl bg-white p-4 md:rounded-md md:p-8">
@@ -32,15 +36,15 @@ const StatsSection: React.FC<StatsProps> = ({ stats, student, companies }) => {
           </h2>
         </div>
         <div className="flex flex-col items-center gap-y-2 md:gap-y-4">
-          <p className="mt-4 text-4xl font-bold text-black">{companiesLeft}</p>
+          <p className="mt-4 text-4xl font-bold text-black">{studentsLeft}</p>
           <h2 className="text-center font-poppins font-semibold leading-6 text-gray-600 md:text-xl">
-            Empresas restantes
+            Alunos Restantes
           </h2>
         </div>
       </div>
-      <HistorySection code={student.code} />
+      <HistorySection company={company} />
     </section>
   );
 };
 
-export default StatsSection;
+export default CompanyStatsSection;

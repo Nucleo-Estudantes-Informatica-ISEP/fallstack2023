@@ -9,6 +9,7 @@ import { IoIosLogIn } from "react-icons/io";
 import useSession from "@/hooks/useSession";
 import LogoutButton from "@/components/LogoutButton";
 import UserButton from "@/components/UserButton";
+import QRCodeButton from "../QRCodeButton";
 
 import ThemeChanger from "../Theme/ThemeChanger";
 
@@ -34,9 +35,9 @@ const TopBar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed z-20 h-16 w-full overflow-hidden font-poppins">
+    <nav className={`fixed z-20 h-16 w-full overflow-hidden font-poppins`}>
       <motion.div
-        className="absolute left-0 top-0 flex h-16 w-screen items-center justify-between bg-secondary"
+        className={`absolute left-0 top-0 flex h-16 w-screen items-center justify-between bg-secondary`}
         style={{
           opacity,
         }}
@@ -62,6 +63,7 @@ const TopBar: React.FC = () => {
           ) : (
             <>
               <UserButton user={session.user} />
+              <QRCodeButton user={session.user} />
               <LogoutButton />
             </>
           )}

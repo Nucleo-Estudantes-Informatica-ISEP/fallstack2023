@@ -3,7 +3,15 @@ export interface HistoryData {
   createdAt: string;
   companyId: number;
   studentId: number;
-  company: {
+  company?: {
     name: string;
+  };
+  student: {
+    name: string;
+    code: string;
+    cv: string;
+    interests: {
+      name: string;
+    }[];
   };
 }
