@@ -85,7 +85,7 @@ const Schedule: React.FC<Props> = ({
               bounce: 0.5,
             }}
             className="absolute left-0 top-0 -z-10 h-1/2 w-full bg-primary hover:brightness-110 md:h-full md:w-1/2"
-          />
+          ></motion.div>
           <motion.div
             animate={{
               x:
@@ -127,7 +127,7 @@ const Schedule: React.FC<Props> = ({
             }}
             transition={{ duration: 0.1, stiffness: 500 }}
             className="absolute left-0 top-0 -z-20 h-1/2 w-full bg-secondary hover:brightness-110 md:h-full md:w-1/2"
-          />
+          ></motion.div>
           <button
             className="w-full rounded-t-lg px-4 py-2.5 hover:brightness-95 lg:rounded-l-lg lg:rounded-r-none"
             onClick={() => setActiveScheduleEventIndex(0)}
