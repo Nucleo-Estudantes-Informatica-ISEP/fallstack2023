@@ -48,9 +48,19 @@ const CompaniesContainer: FunctionComponent<CompaniesContainerProps> = ({
           theme === "light" ? "bg-gray-800/20" : "bg-white/20"
         }`}
       >
-        <div className="mt-2 grid grid-cols-1 items-center justify-items-center gap-x-12 gap-y-2 xl:grid-cols-2">
+        <div className="my-2 grid grid-cols-1 items-center justify-items-center gap-x-12 gap-y-2 xl:grid-cols-2">
           {companies.map((company) => (
-            <Company key={company.name} {...company} />
+            <Company
+              key={company.name}
+              {...company}
+              divClassName={
+                companies.length % 2 !== 0 &&
+                companies.findIndex((c) => c.name === company.name) ===
+                  companies.length - 1
+                  ? "xl:col-span-2"
+                  : ""
+              }
+            />
           ))}
         </div>
       </section>

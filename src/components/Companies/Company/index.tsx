@@ -14,6 +14,7 @@ export interface CompanyProps {
   tier?: CompaniesTier;
   className?: string;
   interests?: string[];
+  divClassName?: string;
 }
 
 const Company: React.FC<CompanyProps> = ({
@@ -21,9 +22,12 @@ const Company: React.FC<CompanyProps> = ({
   name,
   websiteUrl,
   className,
+  divClassName,
 }) => {
   return (
-    <div className="flex h-4/6 min-h-[8rem] w-4/6 items-center justify-items-center transition duration-300 ease-in-out hover:scale-105 lg:min-h-[11rem]">
+    <div
+      className={`${divClassName} flex h-4/6 min-h-[8rem] w-4/6 items-center justify-center justify-items-center transition duration-300 ease-in-out hover:scale-105 lg:min-h-[11rem]`}
+    >
       <Link
         rel="noreferrer"
         href={websiteUrl ? websiteUrl : "/company/" + name}

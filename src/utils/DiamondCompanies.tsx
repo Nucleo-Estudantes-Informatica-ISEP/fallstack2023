@@ -121,5 +121,6 @@ export const DiamondCompanies: CompanyProps[] = [
       videoHref: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       videoTitle: "Vídeo promocional",
     },
+    className: "w-4/6",
   },
 ];
