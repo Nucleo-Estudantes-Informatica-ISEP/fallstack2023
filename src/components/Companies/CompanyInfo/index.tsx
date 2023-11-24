@@ -37,7 +37,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
       {facts && <FactSection facts={facts} />}
       {tier === "Diamond" && (
         <div className="mt-10 flex flex-col  space-y-2 leading-8 lg:px-10  lg:text-lg">
-          <h1 className="my-5 text-left text-lg font-medium text-black sm:text-lg md:text-xl lg:text-2xl">
+          <h1 className="mb-4 text-left text-lg font-bold uppercase text-black sm:text-lg md:text-xl lg:text-2xl">
             {videoTitle || "Vídeo"}
           </h1>
           <div className="flex items-center justify-center" key={useId()}>
