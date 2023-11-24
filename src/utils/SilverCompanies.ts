@@ -1,4 +1,4 @@
-import { CompanyProps } from "../components/Company";
+import { CompanyProps } from "../components/Companies/Company";
 import {
   AccentureLogo,
   glinttLogo,

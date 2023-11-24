@@ -1,47 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { BeforeInstallPromptEvent } from "@/types/BeforeInstallPromptEvent";
 import config from "@/config";
 import useIsMobile from "@/hooks/useIsMobile";
+import InstallableContext from "@/contexts/InstallableContext";
 import PrimaryButton from "@/components/PrimaryButton";
 
 const CookieConsent: React.FC = () => {
-  const [visible, setVisible] = useState(false);
-  const [prompt, setPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const isMobile = useIsMobile();
+  const [visible, setVisible] = useState(false);
+  const { isInstallable, handleConfirm } = useContext(InstallableContext);
 
   useEffect(() => {
-    const handler = (e: BeforeInstallPromptEvent) => {
-      e.preventDefault();
-      setPrompt(e);
-
-      const hide = localStorage.getItem(config.localStorage.hideInstallPrompt);
-      setVisible(!hide);
-    };
-
-    window.addEventListener("beforeinstallprompt", handler);
-
-    return () => window.removeEventListener("beforeinstallprompt", handler);
-  }, []);
-
-  const handleConfirm = () => {
-    if (!prompt) return;
-
-    prompt.prompt();
-
-    prompt.userChoice.then((choiceResult: { outcome: string }) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("The app was added to the home screen");
-      } else {
-        console.log("The app was not added to the home screen");
-      }
-
-      setVisible(false);
-    });
-  };
+    const hide = localStorage.getItem(config.localStorage.hideInstallPrompt);
+    setVisible(isInstallable && !hide);
+  }, [isInstallable]);
 
   const handleHideForever = () => {
     localStorage.setItem(config.localStorage.hideInstallPrompt, "yes");
