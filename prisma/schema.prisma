@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  role      Role     @default(STUDENT)
-  isAdmin   Boolean  @default(false)
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  role          Role           @default(STUDENT)
+  isAdmin       Boolean        @default(false)
+  savedStudents SavedStudent[]
 
   student Student?
   company Company?
@@ -28,7 +29,7 @@ model Student {
   bio       String?        @db.VarChar(300)
   year      String
   interests Interest[]
-  savedBy   SavedStudent[]
+  saves     SavedStudent[]
   cv        String?
   linkedin  String?
   github    String?
@@ -38,12 +39,11 @@ model Student {
 }
 
 model Company {
-  id            Int            @id @default(autoincrement())
-  user          User           @relation(fields: [userId], references: [id])
-  name          String
-  tier          Tier
-  savedStudents SavedStudent[]
-  image         String?
+  id    Int     @id @default(autoincrement())
+  user  User    @relation(fields: [userId], references: [id])
+  name  String
+  tier  Tier
+  image String?
 
   userId Int @unique
 }
@@ -55,14 +55,14 @@ model Interest {
 
 model SavedStudent {
   student   Student  @relation(fields: [studentId], references: [id])
-  company   Company  @relation(fields: [companyId], references: [id])
+  savedBy   User     @relation(fields: [savedById], references: [id])
   isSaved   Boolean  @default(false)
   createdAt DateTime @default(now())
 
   studentId Int
-  companyId Int
+  savedById Int
 
-  @@id([studentId, companyId, isSaved])
+  @@id([studentId, savedById, isSaved])
 }
 
 enum Role {
