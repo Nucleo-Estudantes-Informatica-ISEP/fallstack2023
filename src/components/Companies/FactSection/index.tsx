@@ -11,8 +11,8 @@ const FactSection: React.FC<FactSectionProps> = ({ facts }) => {
         <div key={i} className="my-1 flex flex-row items-center">
           <fact.iconSrc
             className={`${
-              fact.className ? fact.className : "h-6 w-6"
-            }  left-0 fill-stone-500 sm:h-8 sm:w-8 lg:h-8 lg:w-8`}
+              fact.className ? fact.className : "text-2xl"
+            }  left-0 fill-stone-500 `}
           />
           <p className="ml-3 text-left text-black ">{fact.description}</p>
         </div>
