@@ -13,6 +13,7 @@ export interface CompanyProps {
   modalInformation?: ModalInformation;
   tier?: CompaniesTier;
   className?: string;
+  interests?: string[];
 }
 
 const Company: React.FC<CompanyProps> = ({
@@ -26,7 +27,7 @@ const Company: React.FC<CompanyProps> = ({
       <Link
         rel="noreferrer"
         href={websiteUrl ? websiteUrl : "/company/" + name}
-        target="_blank"
+        target={websiteUrl ? "_blank" : "_self"}
         className="flex items-center justify-center"
       >
         <Image
