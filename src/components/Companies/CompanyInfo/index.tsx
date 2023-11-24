@@ -57,12 +57,12 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
         </h1>
         <div className="flex w-full flex-wrap gap-4">
           {interests?.map((interest) => (
-            <span
+            <div
               key={interest}
-              className="relative flex h-8 cursor-default items-center justify-center rounded-xl bg-slate-200 px-3 py-1 text-black hover:brightness-90"
+              className="relative flex rounded-xl bg-slate-200 px-3 py-1 text-black"
             >
               {interest}
-            </span>
+            </div>
           ))}
         </div>
       </div>
