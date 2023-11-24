@@ -63,28 +63,29 @@ export async function getTodayStats(id: number): Promise<number> {
 }
 
 export async function getCompanyStats(id: number): Promise<number[]> {
-  const result = await prisma.savedStudent.groupBy({
-    where: {
-      company: {
-        id: id,
-      },
-    },
-    by: "isSaved",
-    _count: {
-      _all: true,
-    },
-  });
+  // const result = await prisma.savedStudent.groupBy({
+  //   where: {
+  //     company: {
+  //       id: id,
+  //     },
+  //   },
+  //   by: "isSaved",
+  //   _count: {
+  //     _all: true,
+  //   },
+  // });
 
-  result.sort(
-    (a, b) => (a.isSaved === false ? -1 : 1) - (b.isSaved === false ? -1 : 1)
-  );
+  // result.sort(
+  //   (a, b) => (a.isSaved === false ? -1 : 1) - (b.isSaved === false ? -1 : 1)
+  // );
 
-  const counts = [0, 0];
+  // const counts = [0, 0];
 
-  result.forEach((item) => {
-    const index = item.isSaved === false ? 0 : 1;
-    counts[index] = item._count._all;
-  });
+  // result.forEach((item) => {
+  //   const index = item.isSaved === false ? 0 : 1;
+  //   counts[index] = item._count._all;
+  // });
 
-  return counts;
+  // return counts;
+  return Promise.resolve([0, 0])
 }

@@ -25,7 +25,10 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   useDisableBodyScroll({ modalIsHidden: hidden });
 
   const tabTitles = ["Perfil", "Scan"];
-  const tabs = [<PerfilTab user={user} />, <ScanTab user={user} />];
+  const tabs = [
+    <PerfilTab key={""} user={user} />,
+    <ScanTab key={""} user={user} />,
+  ];
   const modalTitle = [
     <>
       Partilha o teu <span className="text-primary">QRCODE</span>
