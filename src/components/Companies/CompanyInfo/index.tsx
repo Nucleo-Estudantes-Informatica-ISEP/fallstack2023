@@ -37,10 +37,13 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
       {facts && <FactSection facts={facts} />}
       {tier === "Diamond" && (
         <div className="mt-10 flex flex-col  space-y-2 leading-8 lg:px-10  lg:text-lg">
-          <h1 className="mb-4 text-left text-lg font-bold uppercase text-black sm:text-lg md:text-xl lg:text-2xl">
+          <h1 className="mb-4 w-full text-left text-lg font-bold uppercase text-black sm:text-lg md:text-xl lg:text-2xl">
             {videoTitle || "Vídeo"}
           </h1>
-          <div className="flex items-center justify-center" key={useId()}>
+          <div
+            className="flex w-full items-center justify-center"
+            key={useId()}
+          >
             <iframe
               className="my-2.5 aspect-video w-full max-w-full rounded-lg"
               src={videoHref}
@@ -59,7 +62,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
           {interests?.map((interest) => (
             <div
               key={interest}
-              className="relative flex rounded-xl bg-slate-200 px-3 py-1 text-black"
+              className="relative rounded-xl bg-slate-200 px-3 py-1 text-black"
             >
               {interest}
             </div>
