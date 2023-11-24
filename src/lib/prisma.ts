@@ -23,6 +23,7 @@ const prismaClientSingleton = () => {
               where: { id },
               include: {
                 company: true,
+                savedStudents: true,
                 student: { include: { interests: true } },
               },
             });

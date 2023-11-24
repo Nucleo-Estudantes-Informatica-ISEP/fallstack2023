@@ -1,6 +1,7 @@
 import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
+import { isSaved } from "@/lib/savedStudents";
 import getServerSession from "@/services/getServerSession";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
 import PublicProfileSectionContainer from "@/components/Profile/PublicProfileSectionContainer";
@@ -12,14 +13,20 @@ interface ProfileProps {
   };
 }
 
-const profile: React.FC<ProfileProps> = async ({ params }) => {
+const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   const session = await getServerSession();
+  if (!session) return Custom404();
 
-  const student = await getStudent(params.code);
+  const { code } = params;
 
-  if (!student) {
+  const student = await getStudent(code);
+  if (!student) return Custom404();
+
+  if (
+    (session.student && session.student.code !== code) ||
+    !(await isSaved(session.id, code))
+  )
     return Custom404();
-  }
 
   const sanitizedInterests = student.interests.map((interest) => interest.name);
 
@@ -50,4 +57,4 @@ const profile: React.FC<ProfileProps> = async ({ params }) => {
   );
 };
 
-export default profile;
+export default StudentPage;
