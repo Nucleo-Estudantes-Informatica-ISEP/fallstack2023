@@ -175,10 +175,10 @@ export const DiamondCompanies: CompanyProps[] = [
             A nossa presença global estende-se por localizações estratégicas no
             Porto, Lisboa, São Paulo, Utrecht, Miami, Nova Iorque e Dubai: somos
             uma multinacional que empreende projetos internacionais em mais de
-            11 países diferentes. O nosso lema "Moving Business Through
-            Technology" dá vida à nossa missão diária, impulsionando-nos com uma
-            dedicação inabalável para dinamizar a evolução dos negócios através
-            de soluções tecnológicas de ponta.
+            11 países diferentes. O nosso lema &quotMoving Business Through
+            Technology&quot dá vida à nossa missão diária, impulsionando-nos com
+            uma dedicação inabalável para dinamizar a evolução dos negócios
+            através de soluções tecnológicas de ponta.
           </p>
           <br />
           <p>
