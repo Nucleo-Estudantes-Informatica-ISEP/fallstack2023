@@ -26,14 +26,8 @@ export async function GET(
       studentId: session.student.id,
     },
     include: {
-      company: {
-        select: {
-          name: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
+      student: true,
+      savedBy: true,
     },
   });
 

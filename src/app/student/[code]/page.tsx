@@ -15,18 +15,23 @@ interface ProfileProps {
 
 const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   const session = await getServerSession();
+  console.log(session);
+
   if (!session) return Custom404();
 
   const { code } = params;
 
+  console.log(code);
+
   const student = await getStudent(code);
   if (!student) return Custom404();
 
-  if (
-    (session.student && session.student.code !== code) ||
-    !(await isSaved(session.id, code))
-  )
-    return Custom404();
+  console.log(session.student?.code);
+
+  console.log(session.student && session.student?.code.match(code));
+  console.log(!(await isSaved(session.id, code)));
+
+  if (session.student && !session.student.code.match(code)) return Custom404();
 
   const sanitizedInterests = student.interests.map((interest) => interest.name);
 
