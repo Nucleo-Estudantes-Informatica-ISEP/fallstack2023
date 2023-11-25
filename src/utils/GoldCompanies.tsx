@@ -43,13 +43,11 @@ export const GoldCompanies: CompanyProps[] = [
         {
           iconSrc: Leaf,
           description: "Cultura diversificada e recompensadora",
-          className: "text-3xl md:text-2xl",
         },
         {
           iconSrc: Chart,
           description:
             "Especializados em aplicações empresariais amigáveis baseadas na Microsoft cloud",
-          className: "text-6xl md:text-2xl",
         },
       ],
     },
@@ -81,7 +79,6 @@ export const GoldCompanies: CompanyProps[] = [
         {
           iconSrc: Trophy,
           description: "Empresa vencedora do prémio “Healthy Workplaces”",
-          className: "text-4xl sm:text-2xl",
         },
         {
           iconSrc: Archive,
@@ -125,7 +122,6 @@ export const GoldCompanies: CompanyProps[] = [
           iconSrc: Chart,
           description:
             "Levou fibra ótica a 60 milhões de casas em todo o mundo",
-          className: "text-4xl md:text-2xl",
         },
         {
           iconSrc: Archive,
@@ -170,7 +166,6 @@ export const GoldCompanies: CompanyProps[] = [
           iconSrc: Trophy,
           description:
             "Maior prestadora de serviços de RH a nível nacional e internacional",
-          className: "text-4xl sm:text-2xl",
         },
       ],
     },
