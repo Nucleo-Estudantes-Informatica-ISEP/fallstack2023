@@ -24,7 +24,7 @@ const CompanyViewProfileSectionContainer: React.FC<
 > = ({ student, interests, company }) => {
   const handleSaveProfile = async () => {
     if (!company) return toast("Erro ao carregar perfil!");
-    const res = await fetch(`${BASE_URL}/companies/${company.id}/saveProfile`, {
+    const res = await fetch(`${BASE_URL}/companies/saveProfile`, {
       method: "POST",
       body: JSON.stringify({ studentId: student.id }),
     });
@@ -40,9 +40,9 @@ const CompanyViewProfileSectionContainer: React.FC<
 
   return (
     <div
-      className={`bg-company mt-12 h-full w-full items-center justify-center md:my-14`}
+      className={`mt-12 h-full w-full items-center justify-center bg-company md:my-14`}
     >
-      <div className="bg-company mb-12 mt-4 flex h-full w-full flex-col items-center">
+      <div className="mb-12 mt-4 flex h-full w-full flex-col items-center bg-company">
         <motion.div
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center pt-8"

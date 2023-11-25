@@ -44,15 +44,12 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
         }
       } else if (company) {
         try {
-          const response = await fetch(
-            `${BASE_URL}/companies/${company.id}/stats`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${BASE_URL}/companies/stats`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
           const data = await response.json();
 
           if (data.error) swal("Erro ao buscar histórico de scans!");

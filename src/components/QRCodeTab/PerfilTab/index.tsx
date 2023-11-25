@@ -50,8 +50,8 @@ const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
         <QRCode size={150} value={profileUrl} />
       </div>
       {/* right column */}
-      <div className="flex items-center justify-center pb-0 pt-14 sm:pb-0 sm:pt-0">
-        <div className="flex flex-col items-center relative">
+      <div className="flex items-center justify-center pb-0 pt-14 sm:py-0">
+        <div className="relative flex flex-col items-center">
           <motion.div
             className="rounded-lg bg-gray-200 p-2 sm:p-2 md:p-2"
             onClick={handleCopyClick}
@@ -61,9 +61,7 @@ const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
             style={{ userSelect: "none" }} // Disable text selection
           >
             <div className="flex items-center">
-              <motion.div
-                className="w-56 cursor-pointer border-none bg-gray-200 p-2 text-center text-xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72"
-              >
+              <motion.div className="w-56 cursor-pointer border-none bg-gray-200 p-2 text-center text-xl font-bold text-black focus:outline-none sm:w-56 sm:text-3xl md:w-72">
                 {user.student?.code}
               </motion.div>
               <motion.div whileTap={{ scale: 0.9 }}>
@@ -78,9 +76,7 @@ const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
             </div>
           </motion.div>
           {isCopied && (
-            <p className="text-green-500 mt-2 font-bold">
-              Copiado!
-            </p>
+            <p className="mt-2 font-bold text-green-500">Copiado!</p>
           )}
           <p className="lg-mr-0 mt-6 text-sm text-black sm:mr-6 md:mr-4 md:text-sm lg:text-base">
             Partilha o teu <b>código</b> com as empresas de forma a poderem{" "}
