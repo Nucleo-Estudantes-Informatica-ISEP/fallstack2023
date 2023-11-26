@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
-import error from "next/error";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 
 import { UserWithProfile } from "@/types/UserWithProfile";
 import useIsMobile from "@/hooks/useIsMobile";
-import Input from "@/components/Input";
 
 import ScanTab from "../ScanTab";
 
@@ -31,7 +29,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ user, setHidden }) => {
     const code = inputRef.current?.value;
 
     if (code) {
-      router.push(`/student/${code}`);
+      router.push(`/student/${code}/${user.company?.id}}`);
 
       setHidden(true);
     } else {

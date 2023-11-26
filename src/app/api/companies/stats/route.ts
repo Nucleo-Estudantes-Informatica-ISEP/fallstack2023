@@ -1,6 +1,7 @@
+import { NextResponse } from "next/server";
+
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   const session = await getServerSession();
@@ -20,6 +21,11 @@ export async function GET() {
         select: {
           name: true,
           code: true,
+        },
+      },
+      savedBy: {
+        select: {
+          id: true,
         },
       },
     },

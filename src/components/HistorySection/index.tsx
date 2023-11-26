@@ -100,7 +100,7 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
               >
                 <TableCell className="text-center font-semibold text-black">
                   {code ? (
-                    item.company?.name
+                    item.savedBy.company.name
                   ) : (
                     <span className="text-primary">{item.student.name}</span>
                   )}

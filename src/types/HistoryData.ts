@@ -3,9 +3,6 @@ export interface HistoryData {
   createdAt: string;
   companyId: number;
   studentId: number;
-  company?: {
-    name: string;
-  };
   student: {
     name: string;
     code: string;
@@ -13,5 +10,11 @@ export interface HistoryData {
     interests: {
       name: string;
     }[];
+  };
+  savedBy: {
+    id: number;
+    company: {
+      name: string;
+    };
   };
 }

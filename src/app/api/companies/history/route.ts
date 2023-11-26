@@ -13,6 +13,7 @@ export async function GET() {
   const result = await prisma.savedStudent.findMany({
     where: {
       savedById: session.id,
+      isSaved: true,
     },
     include: {
       student: {
@@ -25,6 +26,11 @@ export async function GET() {
           },
           code: true,
           cv: true,
+        },
+      },
+      savedBy: {
+        select: {
+          id: true,
         },
       },
     },

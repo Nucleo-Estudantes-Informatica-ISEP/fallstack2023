@@ -1,7 +1,6 @@
 import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
-import { isSaved } from "@/lib/savedStudents";
 import getServerSession from "@/services/getServerSession";
 import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
@@ -10,29 +9,25 @@ import Custom404 from "@/app/not-found";
 
 interface ProfileProps {
   params: {
-    code: string;
+    slug: string[];
   };
 }
 
 const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   const session = await getServerSession();
-  console.log(session);
 
   if (!session) return Custom404();
 
-  const { code } = params;
+  const { slug } = params;
 
-  console.log(code);
-
-  const student = await getStudent(code);
+  const student = await getStudent(slug[0]);
   if (!student) return Custom404();
 
-  console.log(session.student?.code);
-
-  console.log(session.student && session.student?.code.match(code));
-  console.log(!(await isSaved(session.id, code)));
-
-  if (session.student && !session.student.code.match(code)) return Custom404();
+  if (
+    (session.student && !session.student.code.match(slug[0])) ||
+    (session.company && slug[1] !== String(session.company.id))
+  )
+    return Custom404();
 
   const sanitizedInterests = student.interests.map((interest) => interest.name);
 
@@ -55,7 +50,7 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
           student={student}
           company={session?.company}
         />
-      ) : !session || session.student?.code !== params.code ? (
+      ) : !session || session.student?.code !== slug[0] ? (
         <PublicProfileSectionContainer
           interests={sanitizedInterests}
           student={student}

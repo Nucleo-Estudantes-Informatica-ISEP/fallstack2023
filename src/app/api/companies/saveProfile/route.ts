@@ -4,9 +4,7 @@ import { Prisma } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import getServerSession from "@/services/getServerSession";
 
-
-export async function POST(
-  req: NextRequest) {
+export async function POST(req: NextRequest) {
   const session = await getServerSession();
 
   const body = await req.json();
@@ -18,6 +16,14 @@ export async function POST(
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   try {
+    await prisma.savedStudent.create({
+      data: {
+        savedById: session.id,
+        studentId: body.studentId,
+        isSaved: false,
+      },
+    });
+
     const result = await prisma.savedStudent.create({
       data: {
         savedById: session.id,

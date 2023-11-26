@@ -85,7 +85,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
               >
                 <TableCell className="w-1/4 text-center font-semibold text-black">
                   <Link
-                    href={`/student/${item.student?.code}`}
+                    href={`/student/${item.student?.code}/${item.savedBy.id}`}
                     className="text-primary"
                     target="_blank"
                   >
