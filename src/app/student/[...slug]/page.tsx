@@ -25,7 +25,9 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
 
   if (
     (session.student && !session.student.code.match(slug[0])) ||
-    (session.company && slug[1] !== String(session.company.id))
+    (session.company &&
+      slug[1] !== String(session.company.id) &&
+      !(await isSaved(session.id, slug[0])))
   )
     return Custom404();
 

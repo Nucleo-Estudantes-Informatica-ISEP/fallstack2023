@@ -1,19 +1,13 @@
 export interface HistoryData {
   isSaved: boolean;
   createdAt: string;
-  companyId: number;
   studentId: number;
-  student: {
-    name: string;
-    code: string;
-    cv: string;
-    interests: {
-      name: string;
-    }[];
-  };
+  savedById: number;
   savedBy: {
-    id: number;
-    company: {
+    company?: {
+      name: string;
+    };
+    student?: {
       name: string;
     };
   };

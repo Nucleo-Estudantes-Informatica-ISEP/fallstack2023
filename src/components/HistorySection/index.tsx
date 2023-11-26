@@ -98,12 +98,10 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
                     : "border-t-2 border-gray-300"
                 }
               >
-                <TableCell className="text-center font-semibold text-black">
-                  {code ? (
-                    item.savedBy.company.name
-                  ) : (
-                    <span className="text-primary">{item.student.name}</span>
-                  )}
+                <TableCell className="text-center font-semibold text-gray-600">
+                  {item.savedBy.company
+                    ? item.savedBy.company.name
+                    : item.savedBy.student?.name}
                 </TableCell>
                 <TableCell className="text-center font-semibold text-black">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
