@@ -1,6 +1,7 @@
 import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
+import { isSaved } from "@/lib/savedStudents";
 import getServerSession from "@/services/getServerSession";
 import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
