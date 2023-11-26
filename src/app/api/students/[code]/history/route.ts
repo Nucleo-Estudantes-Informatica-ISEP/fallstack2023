@@ -27,9 +27,28 @@ export async function GET(
     },
     include: {
       student: true,
-      savedBy: true,
+      savedBy: {
+        include: {
+          company: true,
+        },
+      },
     },
   });
 
-  return NextResponse.json(result);
+  // Map the result to include company name for companies
+  const mappedResult = result.map((savedStudent) => {
+    const user = savedStudent.savedBy;
+
+    // Check if the user is a company
+    if (user.role === "COMPANY") {
+      return {
+        ...savedStudent,
+        companyName: user.company?.name,
+      };
+    }
+
+    return savedStudent;
+  });
+
+  return NextResponse.json(mappedResult);
 }
