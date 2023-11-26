@@ -27,8 +27,11 @@ const PrivacyPolicyPage: React.FC = () => {
           O NEI-ISEP é a entidade responsável pelo tratamento dos dados pessoais
           dos utilizadores. Qualquer questão relacionada com a privacidade pode
           ser endereçada através do email{" "}
-          <a href="mailto:info@nei-isep.org" className="text-primary underline">
-            info@nei-isep.org
+          <a
+            href="mailto:support@nei-isep.org"
+            className="text-primary underline"
+          >
+            support@nei-isep.org
           </a>
           .
         </p>
@@ -82,8 +85,11 @@ const PrivacyPolicyPage: React.FC = () => {
           opor-se a determinados tratamentos. Em caso de dúvidas ou para exercer
           estes direitos, os utilizadores podem contactar o Encarregado da
           Proteção de Dados através do email{" "}
-          <a href="mailto:info@nei-isep.org" className="text-primary underline">
-            info@nei-isep.org
+          <a
+            href="mailto:support@nei-isep.org"
+            className="text-primary underline"
+          >
+            support@nei-isep.org
           </a>{" "}
           ou apresentar uma reclamação junto da CNPD - Comissão Nacional de
           Proteção de Dados (
@@ -98,8 +104,11 @@ const PrivacyPolicyPage: React.FC = () => {
         <h2 className="text-2xl font-semibold">Conservação das Informações</h2>
         <p className="mt-2">
           Para eliminar uma conta, os utilizadores devem contactar o NEI-ISEP (
-          <a href="mailto:info@nei-isep.org" className="text-primary underline">
-            info@nei-isep.org
+          <a
+            href="mailto:support@nei-isep.org"
+            className="text-primary underline"
+          >
+            support@nei-isep.org
           </a>
           ). Este reserva-se no direito de manter as informações necessárias
           para fins administrativos, mas os CVs, perfis de LinkedIn e GitHub
