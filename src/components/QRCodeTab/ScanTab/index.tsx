@@ -4,17 +4,15 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-import { UserWithProfile } from "@/types/UserWithProfile";
 import { BASE_URL } from "@/services/api";
 
 import QRCodeScanner from "../../QRCodeScanner";
 
 interface ScanTabProps {
-  user: UserWithProfile;
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ScanTab: React.FC<ScanTabProps> = ({ user, setHidden }) => {
+const ScanTab: React.FC<ScanTabProps> = ({ setHidden }) => {
   const [processing, setProcessing] = React.useState<boolean>(false);
   const router = useRouter();
 

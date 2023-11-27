@@ -16,14 +16,6 @@ interface PerfilTabProps {
 const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
   const [qrcode, setQrcode] = useState<string | null>(null);
 
-  // student url
-  const baseUrl = window.location.origin;
-
-  const profileUrl =
-    user.role === "STUDENT" && user.student
-      ? `${baseUrl}/student/${user.student.code}`
-      : "";
-
   const controls = useAnimation();
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
 
@@ -91,7 +83,7 @@ const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
           {isCopied && (
             <p className="mt-2 font-bold text-green-500">Copiado!</p>
           )}
-          <p className="lg-mr-0 mt-6 text-sm text-black sm:mr-6 md:mr-4 md:text-sm lg:text-base">
+          <p className="mt-6 text-sm text-black sm:mr-6 md:mr-4 md:text-sm lg:mr-0 lg:text-base">
             Partilha o teu <b>código</b> com as empresas de forma a poderem{" "}
             <b>guardar</b> o teu perfil!
           </p>
