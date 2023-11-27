@@ -42,9 +42,16 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
     }
 
     setTimeout(() => {
-      setIsRandomizing(false);
       setIsConfettiVisible(true);
     }, timeoutTimer * numberOfRandomStudents);
+
+    setTimeout(
+      () => {
+        setIsConfettiVisible(false);
+        setIsRandomizing(false);
+      },
+      timeoutTimer * numberOfRandomStudents + 3000
+    );
   };
 
   return (
