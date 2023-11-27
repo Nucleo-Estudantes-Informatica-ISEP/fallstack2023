@@ -1,53 +1,37 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-import { UserWithProfile } from "@/types/UserWithProfile";
 import { BASE_URL } from "@/services/api";
 
 import QRCodeScanner from "../../QRCodeScanner";
 
 interface ScanTabProps {
-  user: UserWithProfile;
+  setHidden: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ScanTab: React.FC<ScanTabProps> = ({ user }) => {
+const ScanTab: React.FC<ScanTabProps> = ({ setHidden }) => {
   const [processing, setProcessing] = React.useState<boolean>(false);
+  const router = useRouter();
 
   // handle scan for the companies
   const handleScan = async (data: string) => {
-    if (!data.includes(window.location.origin)) return;
-
     try {
       setProcessing(true);
 
-      // if the user is a company
-      if (user.role === "COMPANY" && user.company) {
-        new URL(data);
+      await fetch(BASE_URL + "/saved", {
+        method: "POST",
+        body: JSON.stringify({ token: data }),
+      });
 
-        const studentCode = data.split("/").pop();
-
-        const res = await fetch(`${BASE_URL}/companies/history`, {
-          method: "POST",
-          body: JSON.stringify({
-            studentCode: studentCode,
-          }),
-        });
-
-        if (res.status === 201) {
-          toast.success("Perfil do estudante guardado com sucesso!");
-        } else if (res.status === 200) {
-          toast.success("Este perfil já foi guardado!");
-        } else {
-          toast.error("Ocorreu um erro ao guardar o perfil do estudante...");
-        }
-      }
+      setHidden(true);
+      router.push(`/student/${data}/preview`);
 
       /* it's dumb doing this for sure, but if i dont set a delay, on mobile, it wont let open the
        camera again and the user will need to close and open the modal again so, this is a workaround
        the user won't even feel the delay delay */
-      window.open(data, "_self");
 
       setProcessing(false);
     } catch (error) {

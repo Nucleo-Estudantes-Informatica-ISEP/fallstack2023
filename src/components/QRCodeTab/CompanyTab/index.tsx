@@ -4,8 +4,9 @@ import React, { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 
-import { UserWithProfile } from "@/types/UserWithProfile";
+import { jwtStudent } from "@/lib/jwtStudent";
 import useIsMobile from "@/hooks/useIsMobile";
 
 import ScanTab from "../ScanTab";
@@ -13,23 +14,27 @@ import ScanTab from "../ScanTab";
 import { BsFillClipboardFill } from "react-icons/bs";
 
 interface CompanyTabProps {
-  user: UserWithProfile;
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CompanyTab: React.FC<CompanyTabProps> = ({ user, setHidden }) => {
+const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
   const isMobile = useIsMobile();
   const router = useRouter();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!inputRef.current?.value) toast.error("Sem código inserido.");
 
     const code = inputRef.current?.value;
 
     if (code) {
-      router.push(`/student/${code}/${user.company?.id}}`);
+      const token = await jwtStudent(code);
+
+      if (!token)
+        return swal("Erro", "O código introduzido é inválido.", "error");
+
+      router.push(`/student/${token}/preview`);
 
       setHidden(true);
     } else {
@@ -65,7 +70,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ user, setHidden }) => {
           </div>
         </>
       ) : (
-        <ScanTab user={user} />
+        <ScanTab setHidden={setHidden} />
       )}
     </div>
   );

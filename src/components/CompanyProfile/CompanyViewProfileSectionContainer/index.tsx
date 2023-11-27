@@ -17,16 +17,18 @@ interface CompanyViewProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
   company: Company | undefined | null;
+  token: string;
 }
 
 const CompanyViewProfileSectionContainer: React.FC<
   CompanyViewProfileSectionContainerProps
-> = ({ student, interests, company }) => {
+> = ({ student, interests, company, token }) => {
   const handleSaveProfile = async () => {
     if (!company) return toast("Erro ao carregar perfil!");
-    const res = await fetch(`${BASE_URL}/companies/saveProfile`, {
-      method: "POST",
-      body: JSON.stringify({ studentId: student.id }),
+
+    const res = await fetch(BASE_URL + "/saved", {
+      method: "PATCH",
+      body: JSON.stringify({ token }),
     });
 
     if (res.status === 200) {

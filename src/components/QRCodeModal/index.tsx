@@ -29,7 +29,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   const tabTitles = ["Perfil", "Scan"];
   const tabs = [
     <PerfilTab key={""} user={user} />,
-    <ScanTab key={""} user={user} />,
+    <ScanTab key={""} setHidden={setHidden} />,
   ];
   const modalTitle = [
     <>
@@ -55,8 +55,8 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
       aria-modal="true"
     >
       <div className="flex min-h-[100svh] items-center justify-center">
-        <div className="max-w-7/8 w-full ">
-          <div className="h-full w-full transform bg-white text-left shadow-xl transition-all">
+        <div className="w-full">
+          <div className="h-full w-full bg-white text-left shadow-xl transition-all">
             {/* Close button */}
             <button
               className="absolute right-4 top-4 z-10 cursor-pointer text-gray-500"
@@ -66,7 +66,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
               <BsX size={34} />
             </button>
             <div className="flex min-h-screen items-start justify-center">
-              <div className="max-w-7/8 w-full">
+              <div className="w-full">
                 <div className="relative h-screen p-10 text-center shadow-xl sm:p-0 md:p-0 lg:p-6">
                   <h1 className="mb-6 mt-3 text-3xl font-bold text-black sm:mb-0 sm:mt-6 sm:text-3xl md:text-4xl lg:text-6xl">
                     {user.role === "STUDENT"
@@ -82,9 +82,9 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                       tabTitles={tabTitles}
                       tabs={tabs}
                       setTitleIndex={setTitleIndex}
-                    ></QRCodeTab>
+                    />
                   ) : (
-                    <CompanyTab setHidden={setHidden} user={user} />
+                    <CompanyTab setHidden={setHidden} />
                   )}
                 </div>
               </div>

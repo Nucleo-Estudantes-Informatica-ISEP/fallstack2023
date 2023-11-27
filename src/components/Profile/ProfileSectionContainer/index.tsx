@@ -5,6 +5,7 @@ import { Student, User } from "@prisma/client";
 import { motion } from "framer-motion";
 
 import { ProfileData } from "@/types/ProfileData";
+import { SavedStudentWithSavedBy } from "@/types/SavedStudentWithSavedBy";
 import UserImage from "@/components/UserImage";
 import { Github, Linkedin } from "@/styles/Icons";
 
@@ -17,7 +18,8 @@ interface ProfileSectionContainerProps {
   interests: string[];
   globalStats: number[];
   todayStats: number;
-  totalCompanies: number;
+  companiesLeft: number;
+  historyData: SavedStudentWithSavedBy[];
 }
 
 const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
@@ -25,7 +27,8 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
   interests,
   globalStats,
   todayStats,
-  totalCompanies,
+  companiesLeft,
+  historyData,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "Sumário" | "Perfil" | "Definições"
@@ -133,9 +136,9 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
       <div className="mx-auto w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && (
           <StatsSection
-            student={student}
             stats={globalStats}
-            companies={totalCompanies}
+            companiesLeft={companiesLeft}
+            historyData={historyData}
           />
         )}
         {activeTab === "Perfil" && (

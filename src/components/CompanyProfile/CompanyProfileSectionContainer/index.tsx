@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Company } from "@prisma/client";
 import { motion } from "framer-motion";
 
+import { SavedStudentWithSavedBy } from "@/types/SavedStudentWithSavedBy";
+
 import CompanyImage from "../CompanyImage";
 import CompanySavedProfilesSection from "../CompanySavedProfilesSection";
 import CompanyStatsSection from "../CompanyStatsSection";
@@ -12,18 +14,19 @@ interface CompanyProfileSectionContainerProps {
   company: Company;
   globalStats: number[];
   totalStudents: number;
+  history: SavedStudentWithSavedBy[];
 }
 
 const CompanyProfileSectionContainer: React.FC<
   CompanyProfileSectionContainerProps
-> = ({ company, globalStats, totalStudents }) => {
+> = ({ company, globalStats, totalStudents, history }) => {
   const [activeTab, setActiveTab] = useState<"Sumário" | "Perfis Salvos">(
     "Sumário"
   );
   return (
-    <div className="bg-company-secondary h-full w-full items-center justify-center md:mb-12">
+    <div className="h-full w-full items-center justify-center bg-company-secondary md:mb-12">
       <div
-        className={`bg-company mb-12 flex h-full w-full flex-col items-center pt-4`}
+        className={`mb-12 flex h-full w-full flex-col items-center bg-company pt-4`}
       >
         <motion.div
           animate={{}}
@@ -73,9 +76,9 @@ const CompanyProfileSectionContainer: React.FC<
       <div className="mx-auto mb-12 w-full max-w-4xl md:w-5/6">
         {activeTab === "Sumário" && (
           <CompanyStatsSection
-            company={company}
             stats={globalStats}
             students={totalStudents}
+            history={history}
           />
         )}
         {activeTab === "Perfis Salvos" && (

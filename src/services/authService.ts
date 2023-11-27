@@ -9,8 +9,11 @@ const validatePassword = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };
 
-const signJwt = (data: Session) => {
-  const token = jwt.sign(data, process.env.JWT_SECRET as string);
+const signJwt = (
+  data: Session | object | string,
+  options?: jwt.SignOptions
+) => {
+  const token = jwt.sign(data, process.env.JWT_SECRET as string, options);
   return token;
 };
 
@@ -23,7 +26,11 @@ const comparePassword = async (password: string, hashedPassword: string) => {
 };
 
 const verifyJwt = (token: string) => {
-  return jwt.verify(token, process.env.JWT_SECRET as string);
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET as string);
+  } catch (err) {
+    return null;
+  }
 };
 
 const setCookie = (token: string) => {
