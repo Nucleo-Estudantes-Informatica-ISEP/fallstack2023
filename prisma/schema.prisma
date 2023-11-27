@@ -54,16 +54,15 @@ model Interest {
 }
 
 model SavedStudent {
-  student    Student  @relation(fields: [studentId], references: [id])
-  savedBy    User     @relation(fields: [savedById], references: [id])
-  isSaved    Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  isAccepted Boolean  @default(false)
+  student   Student  @relation(fields: [studentId], references: [id])
+  savedBy   User     @relation(fields: [savedById], references: [id])
+  isSaved   Boolean  @default(false)
+  createdAt DateTime @default(now())
 
   studentId Int
   savedById Int
 
-  @@id([studentId, savedById])
+  @@id([studentId, savedById, isSaved])
 }
 
 enum Role {
