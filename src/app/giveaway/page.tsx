@@ -1,12 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import type { Container, Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
+import React from "react";
 
 import { getStudents } from "@/lib/students";
 import getServerSession from "@/services/getServerSession";
 import GiveawaySection from "@/components/GiveawaySection";
-
-import Particles from "react-particles";
 
 const giveaway: React.FC = async () => {
   // const session = await getServerSession();
@@ -14,6 +10,9 @@ const giveaway: React.FC = async () => {
   // if (!session || !session.company) {
   //   return Custom404();
   // }
+
+  // const students = await getStudents();
+
   interface Student {
     name: string;
     id: number;
