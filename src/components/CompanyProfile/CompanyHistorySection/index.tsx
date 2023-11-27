@@ -29,12 +29,7 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
   useEffect(() => {
     const fetchHistoryData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/companies/history`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(BASE_URL + "/companies/history");
         const data = await response.json();
 
         if (data.error) swal("Erro ao buscar histórico de scans!");

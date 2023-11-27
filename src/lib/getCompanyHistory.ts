@@ -23,6 +23,7 @@ const getCompanyHistory = async () => {
           student: true,
         },
       },
+      student: true,
     },
     orderBy: {
       createdAt: "desc",

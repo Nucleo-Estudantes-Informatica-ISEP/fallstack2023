@@ -20,7 +20,6 @@ export async function uploadToBucket(signed: UploadResponse, blob: Blob) {
   return res;
 }
 
-// TODO: support companies
 export async function setTarget(code: string, signed: UploadResponse) {
   const res = await fetch(`${BASE_URL}/students/${code}/${signed.target}`, {
     body: JSON.stringify({ uploadId: signed.id }),

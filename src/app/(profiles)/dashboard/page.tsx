@@ -8,14 +8,11 @@ import Custom404 from "@/app/not-found";
 
 const Dashboard: React.FC = async () => {
   const session = await getServerSession();
+  if (!session || !session.company) return Custom404();
 
-  if (!session || !session.company) {
-    return Custom404();
-  }
+  const globalStats = await getCompanyStats(session.id);
 
-  const globalStats = await getCompanyStats(session.company.id);
   const students = await getStudents();
-
   const totalStudents = students.length;
 
   const history = await getCompanyHistory();

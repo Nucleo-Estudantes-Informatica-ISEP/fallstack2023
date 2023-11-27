@@ -12,7 +12,7 @@ export async function GET() {
   if (session.role !== "STUDENT" || !session.student)
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const data = signJwt(session.student.code);
+  const data = signJwt({ code: session.student.code }, { expiresIn: 15 * 60 });
 
   return NextResponse.json({ data });
 }

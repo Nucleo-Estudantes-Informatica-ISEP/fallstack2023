@@ -70,7 +70,9 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   let companiesLeft = totalCompanies;
 
   if (!(history instanceof HttpError))
-    companiesLeft -= history.filter((s) => s.savedBy.company !== null).length;
+    companiesLeft -= history.filter(
+      (s) => s.savedBy.company !== null && s.isSaved
+    ).length;
 
   return (
     <section
@@ -83,6 +85,7 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
           interests={sanitizedInterests}
           student={student}
           company={session?.company}
+          token={code}
         />
       ) : !session || session.student?.code !== code ? (
         <PublicProfileSectionContainer

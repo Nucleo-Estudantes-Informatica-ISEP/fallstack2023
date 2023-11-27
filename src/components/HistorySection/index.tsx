@@ -12,9 +12,10 @@ import { formatDateDDStrMonthHourMin } from "@/utils/date";
 
 interface HistorySectionProps {
   historyData: SavedStudentWithSavedBy[];
+  isCompany?: boolean;
 }
 
-const HistorySection = ({ historyData }: HistorySectionProps) => {
+const HistorySection = ({ historyData, isCompany }: HistorySectionProps) => {
   return (
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <h1 className="mx-auto text-center font-poppins text-2xl font-extrabold uppercase text-black">
@@ -50,7 +51,9 @@ const HistorySection = ({ historyData }: HistorySectionProps) => {
                 }
               >
                 <TableCell className="text-center font-semibold text-gray-600">
-                  {item.savedBy.company
+                  {isCompany
+                    ? item.student.name
+                    : item.savedBy.company
                     ? item.savedBy.company.name
                     : item.savedBy.student?.name}
                 </TableCell>
