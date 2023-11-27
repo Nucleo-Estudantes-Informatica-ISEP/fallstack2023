@@ -40,7 +40,7 @@ const CompanyImage: React.FC<UserImageProps> = ({ company }) => {
         height={400}
         src={company.image || "/assets/images/companies/diamond/armis_logo.png"}
         alt="profile image"
-        className="h-3/4 w-3/4"
+        className="h-3/4 w-3/4 drop-shadow-[0px_0px_20px_#c0c0c0]"
       />
     </motion.div>
   );
