@@ -89,7 +89,6 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
           inputRef={inputRefPasswordRepeat}
           onKeyUp={handleKeyUp}
           defaultValue={data.password ? data.password : undefined}
-          autoFocus
           className={`${error ? "border-2 border-red-600" : ""} z-10 `}
         />
       </div>
