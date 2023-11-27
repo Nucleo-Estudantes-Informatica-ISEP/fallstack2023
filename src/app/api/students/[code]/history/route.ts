@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import prisma from "@/lib/prisma";
-import getServerSession from "@/services/getServerSession";
+import { HttpError } from "@/types/HttpError";
+import getStudentHistory from "@/lib/getStudentHistory";
 
 interface StudentParams {
   params: {
@@ -13,23 +13,10 @@ export async function GET(
   req: NextRequest,
   { params: { code } }: StudentParams
 ) {
-  const session = await getServerSession();
+  const history = await getStudentHistory(code);
 
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (history instanceof HttpError)
+    return NextResponse.json(history.message, { status: history.status });
 
-  if (session.role !== "STUDENT" || session.student?.code !== code)
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
-  const result = await prisma.savedStudent.findMany({
-    where: {
-      studentId: session.student.id,
-    },
-    include: {
-      student: true,
-      savedBy: true,
-    },
-  });
-
-  return NextResponse.json(result);
+  return NextResponse.json(history);
 }

@@ -23,21 +23,13 @@ interface HistorySectionProps {
   company: Company;
 }
 
-const CompanyHistorySection = ({ company }: HistorySectionProps) => {
+const CompanySavesSection = ({ company }: HistorySectionProps) => {
   const [historyData, setHistoryData] = useState<HistoryData[]>([]);
 
   useEffect(() => {
     const fetchHistoryData = async () => {
       try {
-        const response = await fetch(
-          `${BASE_URL}/companies/${company.id}/history`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(BASE_URL + "/companies/history");
         const data = await response.json();
 
         if (data.error) swal("Erro ao buscar histórico de scans!");
@@ -99,14 +91,15 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
                 <TableCell className="hidden w-full truncate text-center font-semibold text-black md:table-cell">
-                  {item.student.interests ? (
-                    item.student.interests.map((interest) => (
+                  {item.student.interests.length ? (
+                    item.student.interests.slice(-2).map((interest, i) => (
                       <span
                         className="h-12"
                         key={interest.name}
                         title={interest.name}
                       >
-                        {interest.name},{" "}
+                        {interest.name}
+                        {i !== 1 ? ", " : "..."}
                       </span>
                     ))
                   ) : (
@@ -144,4 +137,4 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
   );
 };
 
-export default CompanyHistorySection;
+export default CompanySavesSection;

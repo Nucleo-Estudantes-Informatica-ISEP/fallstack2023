@@ -12,6 +12,7 @@ interface UserBioTextAreaProps {
   limit: number;
   warningLimit: number;
   name: string;
+  autofocus?: boolean;
 }
 
 const UserBioTextArea: React.FC<UserBioTextAreaProps> = ({
@@ -26,6 +27,7 @@ const UserBioTextArea: React.FC<UserBioTextAreaProps> = ({
   value,
   className,
   name,
+  autofocus,
 }) => {
   return (
     <div className="flex w-full flex-col">
@@ -38,6 +40,7 @@ const UserBioTextArea: React.FC<UserBioTextAreaProps> = ({
         id="Bio"
         ref={ref}
         rows={rows}
+        autoFocus={autofocus}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
         defaultValue={defaultValue ?? undefined}

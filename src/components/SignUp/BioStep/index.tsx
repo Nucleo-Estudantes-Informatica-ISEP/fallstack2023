@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { StudentSignUpData } from "@/types/StudentSignUpData";
 import PrimaryButton from "@/components/PrimaryButton";
-import TextArea from "@/components/TextArea";
+import UserBioTextArea from "@/components/Profile/UserBioTextArea";
 
 interface BioStepProps {
   currentStep: number;
@@ -18,6 +18,7 @@ const BioStep: FunctionComponent<BioStepProps> = ({
   data,
   setData,
 }) => {
+  const LIMIT = 255;
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const handleNext = () => {
@@ -39,6 +40,10 @@ const BioStep: FunctionComponent<BioStepProps> = ({
     }
   };
 
+  function handleUserBioChange(bio: string) {
+    if (bio.length > LIMIT) return;
+    setData({ ...data, bio });
+  }
   return (
     <>
       <div className="mb-5 flex justify-center">
@@ -50,15 +55,17 @@ const BioStep: FunctionComponent<BioStepProps> = ({
         />
       </div>
 
-      <TextArea
+      <UserBioTextArea
         name="Conta-nos mais sobre ti. (Opcional)"
+        ref={inputRef}
         placeholder="Insere a tua bio"
         className="mb-4"
-        center
-        inputRef={inputRef}
-        onKeyUp={handleKeyUp}
-        defaultValue={data.bio ? data.bio : undefined}
-        autoFocus
+        value={data.bio ? data.bio : ""}
+        defaultValue={""}
+        autofocus={true}
+        setValue={handleUserBioChange}
+        limit={LIMIT}
+        warningLimit={LIMIT - 30}
       />
 
       <PrimaryButton onClick={handleNext} className="mb-5 font-bold">

@@ -69,29 +69,29 @@ const PasswordStep: FunctionComponent<PasswordStepProps> = ({
         />
       </div>
 
-      <Input
-        type="password"
-        name="Escolhe uma password segura."
-        placeholder="Insere uma password"
-        center
-        inputRef={inputRefPassword}
-        onKeyUp={handleKeyUp}
-        defaultValue={data.password ? data.password : undefined}
-        autoFocus
-        className={`${error ? "border-2 border-red-600" : ""} z-10 `}
-      />
-      <Input
-        type="password"
-        name="Repete a password."
-        placeholder="Repete a password"
-        center
-        inputRef={inputRefPasswordRepeat}
-        onKeyUp={handleKeyUp}
-        defaultValue={data.password ? data.password : undefined}
-        autoFocus
-        className={`${error ? "border-2 border-red-600" : ""} z-10 `}
-      />
-
+      <div className="flex flex-col justify-center gap-y-4">
+        <Input
+          type="password"
+          name="Escolhe uma password segura."
+          placeholder="Insere uma password"
+          center
+          inputRef={inputRefPassword}
+          onKeyUp={handleKeyUp}
+          defaultValue={data.password ? data.password : undefined}
+          autoFocus
+          className={`${error ? "border-2 border-red-600" : ""} z-10 `}
+        />
+        <Input
+          type="password"
+          name="Repete a password."
+          placeholder="Repete a password"
+          center
+          inputRef={inputRefPasswordRepeat}
+          onKeyUp={handleKeyUp}
+          defaultValue={data.password ? data.password : undefined}
+          className={`${error ? "border-2 border-red-600" : ""} z-10 `}
+        />
+      </div>
       {error && (
         <motion.p
           className="mt-1 text-sm font-bold text-red-600"

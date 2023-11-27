@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,64 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { Company } from "@prisma/client";
-import swal from "sweetalert";
 
-import { HistoryData } from "@/types/HistoryData";
-import { BASE_URL } from "@/services/api";
+import { SavedStudentWithSavedBy } from "@/types/SavedStudentWithSavedBy";
 import { formatDateDDStrMonthHourMin } from "@/utils/date";
 
 interface HistorySectionProps {
-  code?: string;
-  company?: Company;
+  historyData: SavedStudentWithSavedBy[];
+  isCompany?: boolean;
 }
 
-const HistorySection = ({ code, company }: HistorySectionProps) => {
-  const [historyData, setHistoryData] = useState<HistoryData[]>([]);
-
-  useEffect(() => {
-    const fetchHistoryData = async () => {
-      if (code) {
-        try {
-          const response = await fetch(`${BASE_URL}/students/${code}/history`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await response.json();
-
-          if (data.error) swal("Erro ao buscar histórico de scans!");
-
-          setHistoryData(data);
-        } catch (error) {
-          console.error("Error fetching history data:", error);
-        }
-      } else if (company) {
-        try {
-          const response = await fetch(
-            `${BASE_URL}/companies/${company.id}/stats`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const data = await response.json();
-
-          if (data.error) swal("Erro ao buscar histórico de scans!");
-
-          setHistoryData(data);
-        } catch (error) {
-          console.error("Error fetching history data:", error);
-        }
-      }
-    };
-
-    fetchHistoryData();
-  }, [code, company]);
-
+const HistorySection = ({ historyData, isCompany }: HistorySectionProps) => {
   return (
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <h1 className="mx-auto text-center font-poppins text-2xl font-extrabold uppercase text-black">
@@ -81,7 +30,7 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
       >
         <TableHeader>
           <TableColumn className="w-1/3 text-center text-lg text-black">
-            {code ? "Empresa" : "Aluno"}
+            Nome
           </TableColumn>
           <TableColumn className="w-1/3 text-center text-lg text-black">
             Data
@@ -101,12 +50,12 @@ const HistorySection = ({ code, company }: HistorySectionProps) => {
                     : "border-t-2 border-gray-300"
                 }
               >
-                <TableCell className="text-center font-semibold text-black">
-                  {code ? (
-                    item.company?.name
-                  ) : (
-                    <span className="text-primary">{item.student.name}</span>
-                  )}
+                <TableCell className="text-center font-semibold text-gray-600">
+                  {isCompany
+                    ? item.student.name
+                    : item.savedBy.company
+                    ? item.savedBy.company.name
+                    : item.savedBy.student?.name}
                 </TableCell>
                 <TableCell className="text-center font-semibold text-black">
                   {formatDateDDStrMonthHourMin(item.createdAt)}

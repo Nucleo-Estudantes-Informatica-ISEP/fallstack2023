@@ -1,4 +1,4 @@
-export const formatDateDDStrMonthHourMin = (date: string): string => {
+export const formatDateDDStrMonthHourMin = (date: string | Date): string => {
   const dateObj = new Date(date);
   const month = dateObj.toLocaleString("default", { month: "numeric" });
   const day = dateObj.getDate();
