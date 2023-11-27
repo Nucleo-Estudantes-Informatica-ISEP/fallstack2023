@@ -6,8 +6,8 @@ import SponsorsContainer from "../SponsorsContainer";
 
 const CompaniesSection: FunctionComponent = () => {
   return (
-    <section className="my-24 w-full">
-      <HeadingText text="Patrocinadores" />
+    <section className="flex flex-col items-center gap-y-10 text-center md:gap-y-16">
+      <HeadingText className={"text-3xl md:text-5xl"} text="Agradecimentos" />
       <SponsorsContainer sponsors={Sponsors} />
     </section>
   );
