@@ -1,6 +1,7 @@
 "use client";
 
 import { FunctionComponent, useState } from "react";
+import Swal from "sweetalert";
 
 import ConfettiEffect from "../ConfettiEffect";
 
@@ -35,15 +36,30 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
     setIsRandomizing(true);
     const timeoutTimer = 100;
 
+    let id: number = 0;
     for (let i = 0; i < numberOfRandomStudents; i++) {
       setTimeout(() => {
-        setSelectedStudentId(generateRandomStudentId());
+        id = generateRandomStudentId();
+        setSelectedStudentId(id);
       }, timeoutTimer * i);
     }
 
     setTimeout(() => {
       setIsConfettiVisible(true);
     }, timeoutTimer * numberOfRandomStudents);
+
+    setTimeout(
+      () => {
+        Swal({
+          title: "Parabéns!",
+          text: `O vencedor(a) foi ${students.find(
+            (student) => student.id === id
+          )?.name}`,
+          icon: "success",
+        });
+      },
+      timeoutTimer * numberOfRandomStudents + 500
+    );
 
     setTimeout(
       () => {
