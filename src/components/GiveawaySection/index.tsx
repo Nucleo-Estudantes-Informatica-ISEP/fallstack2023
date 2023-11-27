@@ -2,6 +2,8 @@
 
 import { FunctionComponent, useState } from "react";
 
+import ConfettiEffect from "../ConfettiEffect";
+
 interface Student {
   name: string;
   id: number;
@@ -18,16 +20,16 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
   numberOfRandomizedStudents,
   tableRows,
 }) => {
+  const [selectedStudentId, setSelectedStudentId] = useState<Number>();
+  const [isConfettiVisible, setIsConfettiVisible] = useState<boolean>(false);
+  const [isRandomizing, setIsRandomizing] = useState<boolean>(false);
+
   const numRows = Math.ceil(students.length / tableRows);
 
   const generateRandomStudentId = () => {
     const randomStudent = Math.floor(Math.random() * students.length);
     return students[randomStudent].id;
   };
-
-  const [selectedStudentId, setSelectedStudentId] = useState<Number>();
-
-  const [isRandomizing, setIsRandomizing] = useState(false);
 
   const handleGiveaway = (numberOfRandomStudents: number): void => {
     setIsRandomizing(true);
@@ -41,6 +43,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
 
     setTimeout(() => {
       setIsRandomizing(false);
+      setIsConfettiVisible(true);
     }, timeoutTimer * numberOfRandomStudents);
   };
 
@@ -74,8 +77,9 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
         disabled={isRandomizing}
         className="rounded-xl bg-[#D9D9D9] px-8 py-4 text-lg font-semibold text-black transition-colors duration-200 ease-in-out hover:bg-[#BFBFBF] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-[#D9D9D9]"
       >
-        Selecionar vencedor
+        Selecionar vencedor 🎉
       </button>
+      <ConfettiEffect visible={true} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import GiveawaySection from "@/components/GiveawaySection";
 const giveaway: React.FC = async () => {
   // const session = await getServerSession();
 
-  // if (!session || !session.company) {
+  // if (!session || !session.isAdmin) {
   //   return Custom404();
   // }
 
