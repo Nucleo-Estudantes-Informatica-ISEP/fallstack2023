@@ -62,6 +62,7 @@ const TopBar: React.FC = () => {
             </Link>
           ) : (
             <>
+              <QRCodeButton user={session.user} />
               <UserButton user={session.user} />
               <LogoutButton />
             </>

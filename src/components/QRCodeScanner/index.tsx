@@ -30,7 +30,7 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
       try {
         // Request camera access
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { facingMode: { exact: "environment" } },
         });
 
         // Access granted, set the video stream as the source for the video element
