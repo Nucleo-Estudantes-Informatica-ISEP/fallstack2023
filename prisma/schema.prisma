@@ -39,11 +39,11 @@ model Student {
 }
 
 model Company {
-  id    Int     @id @default(autoincrement())
-  user  User    @relation(fields: [userId], references: [id])
-  name  String
-  tier  Tier
-  image String?
+  id     Int     @id @default(autoincrement())
+  user   User    @relation(fields: [userId], references: [id])
+  name   String
+  tier   Tier
+  avatar String? @map("image")
 
   userId Int @unique
 }
