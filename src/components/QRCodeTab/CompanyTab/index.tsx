@@ -47,13 +47,13 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
       {!isMobile ? (
         <>
           <div className="flex flex-col items-center justify-center pb-0 pt-14 sm:py-0">
-            <div className="mt-14 rounded-xl bg-gray-200 p-2 sm:p-2 md:p-4">
+            <div className="mt-14 rounded-xl bg-gray-200 p-2 sm:p-2 md:p-6">
               <div className="my-2 flex items-center justify-center">
                 <BsFillClipboardFill size={20} className="fill-black" />
                 <input
                   type="text"
-                  name="Insere o teu email institucional."
-                  className={`z-10 ml-2 bg-slate-100 text-center font-bold text-black`}
+                  name="Insere o código do estudante."
+                  className={`z-10 ml-2 bg-slate-100 p-2 text-center text-xl font-bold uppercase text-black`}
                   ref={inputRef}
                   maxLength={4}
                 />
@@ -63,7 +63,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 1 }}
               onClick={handleClick}
-              className="mt-4 rounded-xl bg-primary px-3 py-1 font-bold text-white hover:opacity-50"
+              className="mt-4 rounded-xl bg-primary px-4 py-2 text-lg font-bold text-white hover:opacity-50"
             >
               Ir para o perfil
             </motion.button>

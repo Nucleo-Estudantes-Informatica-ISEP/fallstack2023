@@ -49,13 +49,10 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
   )
     return Custom404();
 
+  const isSavedStudent = await isSaved(session.id, student.code);
+
   // companies may access if they saved the profile
-  if (
-    session.company &&
-    !(await isSaved(session.id, student.code)) &&
-    !isPreview
-  )
-    return Custom404();
+  if (session.company && !isSavedStudent && !isPreview) return Custom404();
 
   const sanitizedInterests = student.interests.map((interest) => interest.name);
 
@@ -80,12 +77,13 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
         session && session.role === "COMPANY" ? "bg-company" : "bg-inherit"
       } flex h-full min-h-screen w-full flex-col items-center`}
     >
-      {session && session.role === "COMPANY" ? (
+      {session && session.company && session.role === "COMPANY" ? (
         <CompanyViewProfileSectionContainer
           interests={sanitizedInterests}
           student={student}
-          company={session?.company}
+          company={session.company}
           token={code}
+          isSavedStudent={isSavedStudent}
         />
       ) : !session || session.student?.code !== code ? (
         <PublicProfileSectionContainer

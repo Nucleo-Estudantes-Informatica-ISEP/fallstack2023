@@ -16,13 +16,14 @@ import OpenCvSection from "../../Profile/OpenCvSection";
 interface CompanyViewProfileSectionContainerProps {
   student: Student & { user: User };
   interests: string[];
-  company: Company | undefined | null;
+  company: Company;
   token: string;
+  isSavedStudent: boolean;
 }
 
 const CompanyViewProfileSectionContainer: React.FC<
   CompanyViewProfileSectionContainerProps
-> = ({ student, interests, company, token }) => {
+> = ({ student, interests, company, token, isSavedStudent }) => {
   const handleSaveProfile = async () => {
     if (!company) return toast("Erro ao carregar perfil!");
 
@@ -78,12 +79,14 @@ const CompanyViewProfileSectionContainer: React.FC<
                 <Linkedin className="h-10 w-10 md:h-8 md:w-8" />
               </a>
             )}
-            <button
-              onClick={handleSaveProfile}
-              className="hover:bg-primary/100 rounded-lg bg-primary px-3 font-bold hover:scale-105 hover:shadow-xl"
-            >
-              + Salvar Perfil
-            </button>
+            {!isSavedStudent && (
+              <button
+                onClick={handleSaveProfile}
+                className="hover:bg-primary/100 rounded-lg bg-primary px-3 font-bold hover:scale-105 hover:shadow-xl"
+              >
+                + Salvar Perfil
+              </button>
+            )}
           </div>
         </motion.div>
       </div>

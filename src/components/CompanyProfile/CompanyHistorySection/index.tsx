@@ -91,15 +91,15 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
                 <TableCell className="hidden w-full truncate text-center font-semibold text-black md:table-cell">
-                  {item.student.interests ? (
-                    item.student.interests.map((interest, i) => (
+                  {item.student.interests.length ? (
+                    item.student.interests.slice(-2).map((interest, i) => (
                       <span
                         className="h-12"
                         key={interest.name}
                         title={interest.name}
                       >
                         {interest.name}
-                        {i !== item.student.interests.length - 1 ? ", " : ""}
+                        {i !== 1 ? ", " : "..."}
                       </span>
                     ))
                   ) : (
