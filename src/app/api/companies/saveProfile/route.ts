@@ -44,7 +44,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     } else {
-      console.log(error);
       return NextResponse.json({ error: "Error" }, { status: 500 });
     }
   }

@@ -23,7 +23,7 @@ interface HistorySectionProps {
   company: Company;
 }
 
-const CompanyHistorySection = ({ company }: HistorySectionProps) => {
+const CompanySavesSection = ({ company }: HistorySectionProps) => {
   const [historyData, setHistoryData] = useState<HistoryData[]>([]);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
               >
                 <TableCell className="w-1/4 text-center font-semibold text-black">
                   <Link
-                    href={`/student/${item.student?.code}/${item.savedBy.id}`}
+                    href={`/student/${item.student?.code}`}
                     className="text-primary"
                     target="_blank"
                   >
@@ -97,13 +97,14 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
                 </TableCell>
                 <TableCell className="hidden w-full truncate text-center font-semibold text-black md:table-cell">
                   {item.student.interests ? (
-                    item.student.interests.map((interest) => (
+                    item.student.interests.map((interest, i) => (
                       <span
                         className="h-12"
                         key={interest.name}
                         title={interest.name}
                       >
-                        {interest.name},{" "}
+                        {interest.name}
+                        {i !== item.student.interests.length - 1 ? ", " : ""}
                       </span>
                     ))
                   ) : (
@@ -141,4 +142,4 @@ const CompanyHistorySection = ({ company }: HistorySectionProps) => {
   );
 };
 
-export default CompanyHistorySection;
+export default CompanySavesSection;

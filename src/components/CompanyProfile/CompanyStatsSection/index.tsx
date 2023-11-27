@@ -1,21 +1,18 @@
-import { Company } from "@prisma/client";
+import { SavedStudentWithSavedBy } from "@/types/SavedStudentWithSavedBy";
 
 import HistorySection from "../../HistorySection";
 
 interface StatsProps {
-  company: Company;
   stats: number[];
   students: number;
+  history: SavedStudentWithSavedBy[];
 }
 
 const CompanyStatsSection: React.FC<StatsProps> = ({
   stats,
-  company,
   students,
+  history,
 }) => {
-  console.log(stats);
-  console.log(students);
-
   const totalScans = stats[0];
   const totalSaves = stats[1];
   const studentsLeft = students - totalScans;
@@ -45,7 +42,7 @@ const CompanyStatsSection: React.FC<StatsProps> = ({
           </h2>
         </div>
       </div>
-      <HistorySection company={company} />
+      <HistorySection historyData={history} />
     </section>
   );
 };

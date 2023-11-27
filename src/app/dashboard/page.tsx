@@ -1,4 +1,6 @@
+import { HttpError } from "@/types/HttpError";
 import { getCompanyStats } from "@/lib/fetchStats";
+import getCompanyHistory from "@/lib/getCompanyHistory";
 import { getStudents } from "@/lib/students";
 import getServerSession from "@/services/getServerSession";
 import CompanyProfileSectionContainer from "@/components/CompanyProfile/CompanyProfileSectionContainer";
@@ -17,14 +19,17 @@ const Dashboard: React.FC = async () => {
 
   const totalStudents = students.length;
 
+  const history = await getCompanyHistory();
+
   return (
     <section
-      className={`flex h-full min-h-screen w-full flex-col items-center bg-company`}
+      className={`bg-company flex h-full min-h-screen w-full flex-col items-center`}
     >
       <CompanyProfileSectionContainer
         company={session.company}
         globalStats={globalStats}
         totalStudents={totalStudents}
+        history={history instanceof HttpError ? [] : history}
       />
     </section>
   );

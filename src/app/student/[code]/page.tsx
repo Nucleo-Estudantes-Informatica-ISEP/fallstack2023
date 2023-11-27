@@ -1,6 +1,8 @@
+import { HttpError } from "@/types/HttpError";
 import { getCompanies } from "@/lib/companies";
 import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
+import getStudentHistory from "@/lib/getStudentHistory";
 import { isSaved } from "@/lib/savedStudents";
 import getServerSession from "@/services/getServerSession";
 import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
@@ -10,7 +12,7 @@ import Custom404 from "@/app/not-found";
 
 interface ProfileProps {
   params: {
-    slug: string[];
+    code: string;
   };
 }
 
@@ -19,16 +21,14 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
 
   if (!session) return Custom404();
 
-  const { slug } = params;
+  const { code } = params;
 
-  const student = await getStudent(slug[0]);
+  const student = await getStudent(code);
   if (!student) return Custom404();
 
   if (
-    (session.student && !session.student.code.match(slug[0])) ||
-    (session.company &&
-      slug[1] !== String(session.company.id) &&
-      !(await isSaved(session.id, slug[0])))
+    (session.student && !session.student.code.match(code)) ||
+    (session.company && !(await isSaved(session.id, code)))
   )
     return Custom404();
 
@@ -39,7 +39,13 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
 
   const companies = await getCompanies();
 
+  const history = await getStudentHistory(student.code);
+
   const totalCompanies = companies.length;
+  let companiesLeft = totalCompanies;
+
+  if (!(history instanceof HttpError))
+    companiesLeft -= history.filter((s) => s.savedBy.company !== null).length;
 
   return (
     <section
@@ -53,7 +59,7 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
           student={student}
           company={session?.company}
         />
-      ) : !session || session.student?.code !== slug[0] ? (
+      ) : !session || session.student?.code !== code ? (
         <PublicProfileSectionContainer
           interests={sanitizedInterests}
           student={student}
@@ -64,7 +70,8 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
           student={student}
           globalStats={globalStats}
           todayStats={todayStats}
-          totalCompanies={totalCompanies}
+          companiesLeft={companiesLeft}
+          historyData={history instanceof HttpError ? [] : history}
         />
       )}
     </section>
