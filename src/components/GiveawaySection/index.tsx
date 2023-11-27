@@ -9,13 +9,16 @@ interface Student {
 
 interface GiveawaySectionProps {
   students: Student[];
+  numberOfRandomizedStudents: number;
+  tableRows: number;
 }
 
 const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
   students,
+  numberOfRandomizedStudents,
+  tableRows,
 }) => {
-  const maxRows = 10;
-  const numRows = Math.ceil(students.length / maxRows);
+  const numRows = Math.ceil(students.length / tableRows);
 
   const generateRandomStudentId = () => {
     const randomStudent = Math.floor(Math.random() * students.length);
@@ -25,8 +28,6 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
   const [selectedStudentId, setSelectedStudentId] = useState<Number>();
 
   const [isRandomizing, setIsRandomizing] = useState(false);
-
-  const numberOfRandomStudents = 50;
 
   const handleGiveaway = (numberOfRandomStudents: number): void => {
     setIsRandomizing(true);
@@ -51,7 +52,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
         {Array.from({ length: numRows }, (_, rowIndex) => {
           return students
-            .slice(rowIndex * maxRows, (rowIndex + 1) * maxRows)
+            .slice(rowIndex * tableRows, (rowIndex + 1) * tableRows)
             .map((student, colIndex) => {
               return (
                 <div
@@ -68,7 +69,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
       </div>
       <button
         onClick={() => {
-          handleGiveaway(numberOfRandomStudents);
+          handleGiveaway(numberOfRandomizedStudents);
         }}
         disabled={isRandomizing}
         className="rounded-xl bg-[#D9D9D9] px-8 py-4 text-lg font-semibold text-black transition-colors duration-200 ease-in-out hover:bg-[#BFBFBF] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-[#D9D9D9]"
