@@ -43,11 +43,11 @@ const giveaway: React.FC = () => {
 
   const [isRandomizing, setIsRandomizing] = useState(false);
 
-  const numberOfRandomStudents = 20;
+  const numberOfRandomStudents = 50;
 
   const handleGiveaway = (numberOfRandomStudents: number): void => {
     setIsRandomizing(true);
-    const timeoutTimer = 200;
+    const timeoutTimer = 100;
 
     for (let i = 0; i < numberOfRandomStudents; i++) {
       setTimeout(() => {
