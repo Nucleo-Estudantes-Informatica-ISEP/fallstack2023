@@ -4,8 +4,7 @@ import getCompanyHistory from "@/lib/getCompanyHistory";
 import { getStudents } from "@/lib/students";
 import getServerSession from "@/services/getServerSession";
 import CompanyProfileSectionContainer from "@/components/CompanyProfile/CompanyProfileSectionContainer";
-
-import Custom404 from "../not-found";
+import Custom404 from "@/app/not-found";
 
 const Dashboard: React.FC = async () => {
   const session = await getServerSession();
@@ -23,7 +22,7 @@ const Dashboard: React.FC = async () => {
 
   return (
     <section
-      className={`bg-company flex h-full min-h-screen w-full flex-col items-center`}
+      className={`flex h-full min-h-screen w-full flex-col items-center bg-company`}
     >
       <CompanyProfileSectionContainer
         company={session.company}

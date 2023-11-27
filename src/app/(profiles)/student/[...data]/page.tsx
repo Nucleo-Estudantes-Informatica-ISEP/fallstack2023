@@ -4,6 +4,7 @@ import { getStats, getTodayStats } from "@/lib/fetchStats";
 import { getStudent } from "@/lib/fetchStudent";
 import getStudentHistory from "@/lib/getStudentHistory";
 import { isSaved } from "@/lib/savedStudents";
+import { verifyJwt } from "@/services/authService";
 import getServerSession from "@/services/getServerSession";
 import CompanyViewProfileSectionContainer from "@/components/CompanyProfile/CompanyViewProfileSectionContainer";
 import ProfileSectionContainer from "@/components/Profile/ProfileSectionContainer";
@@ -12,7 +13,7 @@ import Custom404 from "@/app/not-found";
 
 interface ProfileProps {
   params: {
-    code: string;
+    data: string[];
   };
 }
 
@@ -21,14 +22,38 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
 
   if (!session) return Custom404();
 
-  const { code } = params;
+  const {
+    data: [code, preview],
+  } = params;
 
-  const student = await getStudent(code);
+  // if is preview, treat code as jwt for temp access
+  const isPreview = preview === "preview";
+
+  let student = null;
+  if (isPreview) {
+    const token = verifyJwt(code);
+    if (!token) return Custom404();
+    const { code: studentCode } = token as { code: string };
+    student = await getStudent(studentCode);
+  } else {
+    student = await getStudent(code);
+  }
+
   if (!student) return Custom404();
 
+  // companies may access if it's their own profile
   if (
-    (session.student && !session.student.code.match(code)) ||
-    (session.company && !(await isSaved(session.id, code)))
+    session.student &&
+    !session.student.code.match(student.code) &&
+    !isPreview
+  )
+    return Custom404();
+
+  // companies may access if they saved the profile
+  if (
+    session.company &&
+    !(await isSaved(session.id, student.code)) &&
+    !isPreview
   )
     return Custom404();
 
