@@ -49,7 +49,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
 
   return !hidden ? (
     <div
-      className="fixed inset-6 end-4 start-4 z-10 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8 lg:inset-16 lg:end-14 lg:start-10"
+      className="fixed inset-6 end-4 start-4 z-40 animate-fade-imm overflow-y-hidden rounded-lg transition-opacity sm:inset-4 sm:end-6 sm:start-6 md:inset-14 md:end-12 md:start-8 lg:inset-16 lg:end-14 lg:start-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
