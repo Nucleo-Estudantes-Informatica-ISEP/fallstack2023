@@ -1,13 +1,14 @@
 "use client";
 
 import { FunctionComponent, useState } from "react";
-import { Student } from "@prisma/client";
 import Swal from "sweetalert";
+
+import { StudentsWithEmail } from "@/types/StudentsWithEmail";
 
 import ConfettiEffect from "../ConfettiEffect";
 
 interface GiveawaySectionProps {
-  students: Student[];
+  students: StudentsWithEmail[];
   numberOfRandomizedStudents: number;
   tableRows: number;
 }
@@ -17,7 +18,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
   numberOfRandomizedStudents,
   tableRows,
 }) => {
-  const [selectedStudentId, setSelectedStudentId] = useState<Number>();
+  const [selectedStudentId, setSelectedStudentId] = useState<number>();
   const [isConfettiVisible, setIsConfettiVisible] = useState<boolean>(false);
   const [isRandomizing, setIsRandomizing] = useState<boolean>(false);
 
@@ -50,7 +51,8 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
           title: "Parabéns!",
           text: `O vencedor(a) foi ${students.find(
             (student) => student.id === id
-          )?.name}`,
+          )?.name} 🎉 \n ${students.find((student) => student.id === id)?.user
+            .email}`,
           icon: "success",
         });
       },
@@ -79,7 +81,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
               return (
                 <div
                   key={colIndex}
-                  className={`border px-4 py-2 text-center font-semibold text-primary ${
+                  className={`flex items-center justify-center border px-4 py-2 text-center font-semibold text-primary ${
                     student.id === selectedStudentId && "bg-primary text-white"
                   }`}
                 >
