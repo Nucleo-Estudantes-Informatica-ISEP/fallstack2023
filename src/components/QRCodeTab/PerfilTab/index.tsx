@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import QRCode from "qrcode.react";
 
 import { UserWithProfile } from "@/types/UserWithProfile";
+import { BASE_URL } from "@/services/api";
 
 import { BsFillClipboardFill } from "react-icons/bs";
 
@@ -13,6 +14,8 @@ interface PerfilTabProps {
 }
 
 const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
+  const [qrcode, setQrcode] = useState<string | null>(null);
+
   // student url
   const baseUrl = window.location.origin;
 
@@ -43,11 +46,21 @@ const PerfilTab: React.FC<PerfilTabProps> = ({ user }) => {
     }
   };
 
+  const fetchQrcode = async () => {
+    const res = await fetch(BASE_URL + "/qrcode");
+    const { data } = await res.json();
+    setQrcode(data as string);
+  };
+
+  useEffect(() => {
+    fetchQrcode();
+  });
+
   return (
     <div className="mt-10 grid grid-cols-1 sm:mt-0 sm:grid-cols-1 md:mt-6 md:grid-cols-2 lg:mt-20">
       {/* left column */}
       <div className="flex items-center justify-center">
-        <QRCode size={150} value={profileUrl} />
+        {qrcode && <QRCode size={150} value={qrcode} />}
       </div>
       {/* right column */}
       <div className="flex items-center justify-center pb-0 pt-14 sm:py-0">

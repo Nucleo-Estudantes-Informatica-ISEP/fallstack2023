@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
+import { verifyJwt } from "@/services/authService";
 import getServerSession from "@/services/getServerSession";
 import { historySchema } from "@/schemas/historySchema";
 
@@ -13,6 +14,7 @@ export async function GET() {
   const result = await prisma.savedStudent.findMany({
     where: {
       savedById: session.id,
+      isSaved: true,
     },
     include: {
       student: {
@@ -46,23 +48,20 @@ export async function POST(req: NextRequest) {
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (session.role !== "COMPANY" || !session.company)
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
   const body = await req.json();
 
   const safeParse = historySchema.safeParse(body);
   if (!safeParse.success)
     return NextResponse.json({ message: safeParse.error });
 
-  const { studentCode } = body;
+  const { data, isScan } = safeParse.data;
+
+  const studentCode = verifyJwt(data) as string;
 
   // check if student exists
   const student = await prisma.student.findUnique({
     where: { code: studentCode },
-    include: {
-      user: true,
-    },
+    include: { user: true },
   });
 
   if (!student)
@@ -70,12 +69,12 @@ export async function POST(req: NextRequest) {
 
   // check if student is already scanned
   const history = await prisma.savedStudent.findFirst({
-    where: { studentId: student.id, savedById: session.company.id },
+    where: { studentId: student.id, savedById: session.id },
   });
 
   if (history)
     return NextResponse.json(
-      { error: "Student already scanned" },
+      { error: "Student already scanned", code: studentCode },
       { status: 200 }
     );
 
@@ -83,7 +82,8 @@ export async function POST(req: NextRequest) {
   const entry = await prisma.savedStudent.create({
     data: {
       studentId: student.id,
-      savedById: session.company.id,
+      savedById: session.id,
+      isAccepted: isScan, // auto accept when is scanned
     },
   });
 
@@ -93,5 +93,8 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
 
-  return NextResponse.json({ message: "Student scanned" }, { status: 201 });
+  return NextResponse.json(
+    { message: "Student scanned", code: studentCode },
+    { status: 201 }
+  );
 }

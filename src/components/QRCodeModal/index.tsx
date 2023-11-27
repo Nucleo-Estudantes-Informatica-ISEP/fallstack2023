@@ -29,7 +29,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   const tabTitles = ["Perfil", "Scan"];
   const tabs = [
     <PerfilTab key={""} user={user} />,
-    <ScanTab key={""} user={user} />,
+    <ScanTab key={""} user={user} setHidden={setHidden} />,
   ];
   const modalTitle = [
     <>
@@ -82,7 +82,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                       tabTitles={tabTitles}
                       tabs={tabs}
                       setTitleIndex={setTitleIndex}
-                    ></QRCodeTab>
+                    />
                   ) : (
                     <CompanyTab setHidden={setHidden} user={user} />
                   )}

@@ -1,5 +1,6 @@
-import { object, string} from "zod";
+import { boolean, object, string } from "zod";
 
 export const historySchema = object({
-  studentCode: string(),
+  isScan: boolean(),
+  data: string(),
 });

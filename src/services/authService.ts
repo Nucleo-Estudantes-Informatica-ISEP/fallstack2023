@@ -9,7 +9,7 @@ const validatePassword = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };
 
-const signJwt = (data: Session) => {
+const signJwt = (data: Session | object | string) => {
   const token = jwt.sign(data, process.env.JWT_SECRET as string);
   return token;
 };

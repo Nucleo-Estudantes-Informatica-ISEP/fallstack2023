@@ -29,7 +29,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ user, setHidden }) => {
     const code = inputRef.current?.value;
 
     if (code) {
-      router.push(`/student/${code}/${user.company?.id}}`);
+      router.push(`/student/${code}`);
 
       setHidden(true);
     } else {
@@ -65,7 +65,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ user, setHidden }) => {
           </div>
         </>
       ) : (
-        <ScanTab user={user} />
+        <ScanTab user={user} setHidden={setHidden} />
       )}
     </div>
   );
