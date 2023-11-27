@@ -1,14 +1,10 @@
 "use client";
 
 import { FunctionComponent, useState } from "react";
+import { Student } from "@prisma/client";
 import Swal from "sweetalert";
 
 import ConfettiEffect from "../ConfettiEffect";
-
-interface Student {
-  name: string;
-  id: number;
-}
 
 interface GiveawaySectionProps {
   students: Student[];
