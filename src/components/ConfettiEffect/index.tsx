@@ -25,7 +25,11 @@ const ConfettiEffect: FunctionComponent<ConfettiEffectProps> = ({
       });
   }, []);
 
-  useEffect(() => fire(), []);
+  useEffect(() => {
+    if (visible) {
+      fire();
+    }
+  }, [visible]);
 
   const fire = useCallback(() => {
     makeShot(0.25, {
@@ -57,19 +61,17 @@ const ConfettiEffect: FunctionComponent<ConfettiEffectProps> = ({
   }, [makeShot]);
 
   return (
-    visible && (
-      <ReactCanvasConfetti
-        refConfetti={getInstance}
-        style={{
-          position: "fixed",
-          pointerEvents: "none",
-          width: "100%",
-          height: "100%",
-          top: 0,
-          left: 0,
-        }}
-      />
-    )
+    <ReactCanvasConfetti
+      refConfetti={getInstance}
+      style={{
+        position: "fixed",
+        pointerEvents: "none",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+      }}
+    />
   );
 };
 

@@ -79,7 +79,7 @@ const GiveawaySection: FunctionComponent<GiveawaySectionProps> = ({
       >
         Selecionar vencedor 🎉
       </button>
-      <ConfettiEffect visible={true} />
+      <ConfettiEffect visible={isConfettiVisible} />
     </div>
   );
 };
