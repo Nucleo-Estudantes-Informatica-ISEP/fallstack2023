@@ -9,6 +9,12 @@ import AccentureLogo from "../../public/assets/images/companies/silver/accenture
 import glinttLogo from "../../public/assets/images/companies/silver/glintt.png";
 import msgLifeIberiaLogo from "../../public/assets/images/companies/silver/msg_logo.png";
 import NatixisLogo from "../../public/assets/images/companies/silver/natixis.png";
+import aeisepLogo from "../../public/assets/images/sponsors/aeisep.png";
+import artipolLogo from "../../public/assets/images/sponsors/artipol.png";
+import divinalLogo from "../../public/assets/images/sponsors/divinal.png";
+import mouraLogo from "../../public/assets/images/sponsors/moura.png";
+import telepizzaLogo from "../../public/assets/images/sponsors/telepizza.png";
+import vitalisLogo from "../../public/assets/images/sponsors/vitalis.png";
 
 export {
   DevscopeLogo,
@@ -22,4 +28,10 @@ export {
   armisLogo,
   WeezieLogo,
   msgLifeIberiaLogo,
+  artipolLogo,
+  divinalLogo,
+  mouraLogo,
+  telepizzaLogo,
+  vitalisLogo,
+  aeisepLogo,
 };
