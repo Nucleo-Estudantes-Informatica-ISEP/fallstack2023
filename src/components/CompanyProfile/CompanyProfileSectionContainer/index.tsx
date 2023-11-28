@@ -34,9 +34,7 @@ const CompanyProfileSectionContainer: React.FC<
           className="mt-4 flex flex-col items-center justify-center"
         >
           <CompanyImage company={company} />
-          <p className="my-2 items-center text-2xl">
-            Bem vindo/a {company.name}
-          </p>
+          <p className="my-2 items-center text-2xl">Bem-vinda {company.name}</p>
         </motion.div>
 
         <div className="relative mb-4 mt-8 flex w-full max-w-3xl flex-col items-center justify-between gap-y-4 text-center text-lg md:mb-0 md:flex-row lg:w-5/6">

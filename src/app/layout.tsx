@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import "react-loading-skeleton/dist/skeleton.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 import React from "react";
+import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
 
 import { AuthContextProvider } from "@/contexts/AuthContext";
@@ -34,10 +36,12 @@ export default function RootLayout({
         <AuthContextProvider>
           <InstallableContextProvider>
             <ThemeProvider>
-              <Topbar />
-              <main>{children}</main>
-              <ToastContainer position="bottom-right" />
-              <InstallPopUp />
+              <SkeletonTheme baseColor="#eaeaea" highlightColor="#bfbfbf">
+                <Topbar />
+                <main>{children}</main>
+                <ToastContainer position="bottom-right" />
+                <InstallPopUp />
+              </SkeletonTheme>
             </ThemeProvider>
           </InstallableContextProvider>
         </AuthContextProvider>

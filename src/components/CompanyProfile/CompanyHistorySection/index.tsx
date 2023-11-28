@@ -2,15 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
 import { Company, Interest } from "@prisma/client";
+import Skeleton from "react-loading-skeleton";
 import swal from "sweetalert";
 
 import { HistoryData } from "@/types/HistoryData";
@@ -24,7 +17,7 @@ interface HistorySectionProps {
 }
 
 const CompanySavesSection = ({ company }: HistorySectionProps) => {
-  const [historyData, setHistoryData] = useState<HistoryData[]>([]);
+  const [historyData, setHistoryData] = useState<HistoryData[] | null>(null);
 
   useEffect(() => {
     const fetchHistoryData = async () => {
@@ -53,97 +46,82 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
   }
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center justify-center">
-      <Table
-        aria-label="Example static collection table"
-        className="mt-2 max-w-max items-center justify-center"
-        classNames={{
-          base: "max-h-[350px] overflow-y-scroll overflow-x-hidden",
-        }}
-      >
-        <TableHeader className="items-center justify-center text-center">
-          <TableColumn className="w-1/2 text-center text-lg text-black md:w-1/4">
-            Aluno
-          </TableColumn>
-          <TableColumn className="hidden w-64 text-center text-lg text-black md:table-cell">
-            Data
-          </TableColumn>
-          <TableColumn className="hidden min-w-0 flex-1 text-center text-lg text-black lg:table-cell">
-            Interesses
-          </TableColumn>
-          <TableColumn className="w-1/2 text-center text-lg text-black md:w-24">
-            CV
-          </TableColumn>
-        </TableHeader>
-        <TableBody className="justify-center text-center">
-          {historyData && historyData.length !== 0 ? (
-            historyData.map((item) => (
-              <TableRow
-                key={item.studentId}
-                className={`${
-                  historyData.indexOf(item) === 0
-                    ? "border-t-2 border-gray-600"
-                    : "border-t-2 border-gray-300"
-                } truncate
-                `}
+    <div className="mt-12 flex w-full flex-col items-center justify-center text-black">
+      <div className="flex w-full flex-row items-center justify-between border-b-2 border-black py-3 font-bold">
+        <div className="flex w-3/12 justify-center px-1 max-md:w-1/2">
+          Aluno
+        </div>
+        <div className="flex w-1/6 justify-center px-1 max-md:w-1/3">Data</div>
+        <div className="flex w-1/2 justify-center px-1 max-md:hidden">
+          Interesses
+        </div>
+        <div className="flex w-1/12 justify-center px-1 max-md:w-1/6">CV</div>
+      </div>
+      <div className="max-h-80 w-full overflow-y-scroll">
+        {!historyData ? (
+          Array(3)
+            .fill(1)
+            .map((_, i) => (
+              <div
+                key={i}
+                className="flex flex-row items-center border-t-2 py-4 first:border-0"
               >
-                <TableCell className="w-1/4 text-center font-semibold text-black">
-                  <Link
-                    href={`/student/${item.student?.code}`}
-                    className="text-primary"
-                    target="_blank"
-                  >
-                    {item.student.name}
-                  </Link>
-                </TableCell>
-                <TableCell className="hidden w-64 text-center font-semibold text-black md:table-cell">
-                  {formatDateDDStrMonthHourMin(item.createdAt)}
-                </TableCell>
-                <TableCell className="hidden min-w-0 max-w-xs flex-1 truncate text-center font-semibold text-black lg:table-cell">
-                  {item.student.interests.length ? (
+                <div className="flex w-full justify-center">
+                  <Skeleton containerClassName="flex-1" />
+                </div>
+              </div>
+            ))
+        ) : !historyData.length ? (
+          <div className="flex flex-row py-3">
+            <div className="flex w-full justify-center">Sem perfis salvos.</div>
+          </div>
+        ) : (
+          historyData.map((item) => (
+            <div
+              key={item.studentId}
+              className="flex flex-row items-center border-t-2 py-4 first:border-0"
+            >
+              <div className="flex w-3/12 justify-center px-1 text-center text-primary hover:underline max-md:w-1/2">
+                <Link
+                  href={"/student/" + item.student.code}
+                  className="w-full truncate"
+                >
+                  {item.student.name}
+                </Link>
+              </div>
+              <div className="flex w-1/6 justify-center px-1 text-center max-md:w-1/3">
+                {formatDateDDStrMonthHourMin(item.createdAt)}
+              </div>
+              <div className="flex w-1/2 justify-center px-1 max-md:hidden">
+                <span
+                  className="truncate"
+                  title="Aceda ao perfil para ver as informações completas."
+                >
+                  {!item.student.interests.length ? (
+                    <span className="text-gray-400">—</span>
+                  ) : (
                     shuffleArray<Interest>(item.student.interests).map(
                       (interest, i) => (
-                        <span
-                          className="h-12"
-                          key={interest.name}
-                          title={interest.name}
-                        >
+                        <>
                           {interest.name}
                           {i !== item.student.interests.length - 1 ? ", " : ""}
-                        </span>
+                        </>
                       )
                     )
-                  ) : (
-                    <span>--</span>
                   )}
-                </TableCell>
-                <TableCell className=" w-24 self-center font-semibold text-black">
-                  {item.student?.cv ? (
-                    <OpenCvSectionCompany code={item.student?.code} />
-                  ) : (
-                    <span>--</span>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <TableRow className="truncate border-t-2 border-gray-600">
-              <TableCell className="text-center font-semibold text-black">
-                --
-              </TableCell>
-              <TableCell className="hidden text-center font-semibold text-black md:table-cell">
-                --
-              </TableCell>
-              <TableCell className="hidden text-center font-semibold text-black md:table-cell">
-                --
-              </TableCell>
-              <TableCell className="text-center font-semibold text-black">
-                --
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+                </span>
+              </div>
+              <div className="flex w-1/12 justify-center px-1 max-md:w-1/6">
+                {item.student.cv ? (
+                  <OpenCvSectionCompany code={item.student.code} />
+                ) : (
+                  <span className="text-gray-400">—</span>
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };
