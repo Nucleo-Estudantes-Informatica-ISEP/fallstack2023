@@ -69,7 +69,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     if (
       linkedinRef.current?.value &&
       !linkedinRef.current?.value?.match(
-        /^(https:\/\/www\.linkedin\.com\/in\/)([a-zA-Z0-9ç_-]+\/?)+$/
+        /^(https:\/\/www\.linkedin\.com\/in\/)([A-zÀ-ú0-9ç_-]+\/?)+$/
       )
     ) {
       swal("O teu Linkedin não segue o formato correto!");
@@ -80,7 +80,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
     if (
       githubRef.current?.value &&
       !githubRef.current?.value?.match(
-        /^(https:\/\/github\.com\/)([a-zA-Z0-9_-]+\/?)+$/
+        /^(https:\/\/github\.com\/)([A-zÀ-ú0-9ç_-]+\/?)+$/
       )
     ) {
       swal("O teu Github não segue o formato correto!");
