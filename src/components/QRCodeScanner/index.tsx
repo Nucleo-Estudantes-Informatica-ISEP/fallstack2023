@@ -26,10 +26,11 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
   });
 
   React.useEffect(() => {
+    let stream: MediaStream;
     const checkCameraPermission = async () => {
       try {
         // Request camera access
-        const stream = await navigator.mediaDevices.getUserMedia({
+        stream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: { exact: "environment" } },
         });
 
@@ -45,6 +46,11 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
     };
 
     checkCameraPermission();
+    return () => {
+      stream.getTracks().forEach(function (track) {
+        track.stop();
+      });
+    };
   }, [ref]);
 
   return (
