@@ -1,30 +1,28 @@
 "use client";
 
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
-import { Student } from "@prisma/client";
 import { AnimationProps, motion } from "framer-motion";
-import swal from "sweetalert";
 
 import { ProfileData } from "@/types/ProfileData";
-import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
+import config from "@/config";
+import { resizeMinWidthImage } from "@/utils/canvas";
+import { readFile } from "@/utils/files";
 
 interface UserImageProps {
-  student: Student;
+  imageSrc: string | null;
   hidden?: boolean;
   editable?: boolean;
   setProfile?: Dispatch<SetStateAction<ProfileData>>;
+  onChange?: (imgSrc: string) => void;
 }
 
-const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
-  const [image, setImage] = useState<string | null>(null);
-
+const UserImage: React.FC<UserImageProps> = ({
+  imageSrc,
+  hidden,
+  editable,
+  onChange,
+}) => {
   const animation: AnimationProps = {
     variants: {
       initial: { opacity: 0 },
@@ -37,39 +35,36 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
   };
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
+    if (!e.target.files || e.target.files.length === 0) return;
 
     const file = e.target.files[0];
+    const read = await readFile(file);
 
-    const uploadPost = await getSignedUrl("avatar", file.type);
+    // needs resize to avoid crop issues
+    const imageDataUrl = await resizeMinWidthImage(read, 325);
+    if (!imageDataUrl) return;
 
-    if (!uploadPost) swal("Erro ao fazer upload da imagem!");
+    if (onChange !== undefined) onChange(imageDataUrl);
 
-    const uploadPut = await uploadToBucket(uploadPost, file);
-    if (!uploadPut.ok) swal("Erro ao fazer upload da imagem!");
+    // const uploadPost = await getSignedUrl("avatar", file.type);
 
-    const res = await setTarget(student.code, uploadPost);
+    // if (!uploadPost) swal("Erro ao fazer upload da imagem!");
 
-    if (!res) swal("Erro ao fazer upload da imagem!");
+    // const uploadPut = await uploadToBucket(uploadPost, file);
+    // if (!uploadPut.ok) swal("Erro ao fazer upload da imagem!");
+
+    // const res = await setTarget(student.code, uploadPost);
+
+    // if (!res) swal("Erro ao fazer upload da imagem!");
   };
 
-  useEffect(() => {
-    const getImage = async (student: Student) => {
-      if (!student.avatar) return "/assets/images/default_user.png";
-
-      setImage(image ? student.avatar : "/assets/images/default_user.png");
-    };
-
-    getImage(student);
-  }, [student, image]);
-
-  if (!image && !editable)
+  if (!imageSrc && !editable)
     return (
       <div className="relative my-2 flex h-24 w-24 flex-col items-center rounded-full md:h-52 md:w-52">
         <Image
           width={328}
           height={328}
-          src="/assets/images/default_user.png"
+          src={config.defaultAvatar}
           alt="profile image"
           className="h-full w-full rounded-full object-cover"
         />
@@ -82,7 +77,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         <Image
           width={328}
           height={328}
-          src={student.avatar || "/assets/images/default_user.png"}
+          src={imageSrc || config.defaultAvatar}
           alt="profile image"
           className="h-full w-full rounded-full object-cover"
         />
@@ -98,7 +93,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
       <Image
         width={328}
         height={328}
-        src={student.avatar || "/assets/images/default_user.png"}
+        src={imageSrc || config.defaultAvatar}
         alt="profile image"
         className="h-full w-full rounded-full object-cover"
       />
@@ -109,7 +104,7 @@ const UserImage: React.FC<UserImageProps> = ({ student, hidden, editable }) => {
         />
         <motion.input
           onChange={handleChange}
-          accept="*"
+          accept="image/*"
           type="file"
           className="absolute left-0 top-0 z-10 h-full w-full rounded-full opacity-0"
           whileHover={{ scale: 1.1 }}

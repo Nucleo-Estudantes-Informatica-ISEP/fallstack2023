@@ -6,6 +6,8 @@ const config = {
     },
   },
 
+  defaultAvatar: "/assets/images/default_user.png",
+
   localStorage: {
     hideInstallPrompt: "@Fallstack23:hidePrompt",
   },

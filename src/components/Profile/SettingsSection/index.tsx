@@ -1,16 +1,22 @@
 "use client";
 
-import { Dispatch, SetStateAction, useRef } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Student, User } from "@prisma/client";
+import { Area } from "react-easy-crop";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 import swal from "sweetalert";
 
 import { ProfileData } from "@/types/ProfileData";
 import { getSignedUrl, setTarget, uploadToBucket } from "@/lib/upload";
 import { BASE_URL } from "@/services/api";
+import AvatarCropper from "@/components/AvatarCropper";
+import PrimaryButton from "@/components/PrimaryButton";
 import UserImage from "@/components/UserImage";
+import { getCroppedImg } from "@/utils/canvas";
 
+import Modal from "../../Modal";
 import ImportCvSection from "../ImportCvSection";
 import Input from "../Input";
 import InterestSelector from "../InterestSelector";
@@ -36,6 +42,12 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   const githubRef = useRef<HTMLInputElement>(null);
   const linkedinRef = useRef<HTMLInputElement>(null);
   const cvRef = useRef<HTMLInputElement>(null);
+
+  const [userImage, setUserImage] = useState<string | null>(student.avatar);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function handleUserBioChange(bio: string) {
     if (bio.length > LIMIT) return;
@@ -97,10 +109,52 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       }),
     });
 
-    if (res.status === 200) swal("Perfil atualizado com sucesso!");
-    else swal("Ocorreu um erro ao atualizar o teu perfil...");
+    if (res.status === 200) {
+      if (profile.avatar)
+        await fetch(`${BASE_URL}/students/${student.code}/avatar`, {
+          method: "POST",
+          body: JSON.stringify({ uploadId: profile.avatar }),
+        });
+
+      swal("Perfil atualizado com sucesso!");
+    } else swal("Ocorreu um erro ao atualizar o teu perfil...");
 
     router.refresh();
+  };
+
+  const handleConfirmAvatar = async () => {
+    setIsLoading(true);
+
+    if (imageSrc && croppedAreaPixels) {
+      const image = await getCroppedImg(imageSrc, croppedAreaPixels);
+      if (!image) return setIsLoading(false);
+
+      const signed = await getSignedUrl("avatar", image.type);
+      if (!signed) {
+        toast.error("Ocorreu um erro.");
+        return setIsLoading(false);
+      }
+
+      if (image.size > signed.maxSize) {
+        const maxMb = Math.round(signed.maxSize / Math.pow(1024, 2));
+        toast.error(`A imagem excede o tamanho máximo de ${maxMb} MB.`);
+        return setIsLoading(false);
+      }
+
+      const upload = await uploadToBucket(signed, image);
+      if (upload.status !== 200) {
+        toast.error("Não foi possível dar upload à imagem.");
+        return setIsLoading(false);
+      }
+
+      setIsLoading(false);
+      setIsModalVisible(false);
+
+      const croppedUrl = URL.createObjectURL(image);
+      setUserImage(croppedUrl);
+
+      setProfile({ ...profile, avatar: signed.id });
+    }
   };
 
   return (
@@ -108,9 +162,13 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       <div className="mx-4 flex flex-col items-center md:mx-12 md:flex-row">
         <div className="my-8 flex-1 justify-center p-3">
           <UserImage
-            student={student}
+            imageSrc={userImage}
             editable={true}
             setProfile={setProfile}
+            onChange={(imgSrc) => {
+              setImageSrc(imgSrc);
+              setIsModalVisible(true);
+            }}
           />
         </div>
 
@@ -175,6 +233,22 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
           Salvar
         </button>
       </div>
+
+      <Modal
+        isVisible={isModalVisible}
+        setIsVisible={setIsModalVisible}
+        className="flex flex-col items-center justify-center gap-8"
+      >
+        <h1 className="text-3xl font-bold">Mudar Avatar</h1>
+        <AvatarCropper {...{ imageSrc, setImageSrc, setCroppedAreaPixels }} />
+        <PrimaryButton
+          className="w-full py-2 text-xl"
+          onClick={handleConfirmAvatar}
+          loading={isLoading}
+        >
+          Confirmar
+        </PrimaryButton>
+      </Modal>
     </section>
   );
 };
