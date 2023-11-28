@@ -35,7 +35,7 @@ const TopBar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed z-20 h-16 w-full overflow-hidden font-poppins`}>
+    <nav className={`fixed z-40 h-16 w-full overflow-hidden font-poppins`}>
       <motion.div
         className={`absolute left-0 top-0 flex h-16 w-screen items-center justify-between bg-secondary`}
         style={{
