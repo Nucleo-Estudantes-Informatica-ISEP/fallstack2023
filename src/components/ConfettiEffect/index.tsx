@@ -12,17 +12,20 @@ const ConfettiEffect: FunctionComponent<ConfettiEffectProps> = ({
 }) => {
   const refAnimationInstance = useRef(null);
 
-  const getInstance = useCallback((instance) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getInstance = useCallback((instance: any) => {
     refAnimationInstance.current = instance;
   }, []);
 
-  const makeShot = useCallback((particleRatio, opts) => {
-    refAnimationInstance.current &&
-      refAnimationInstance.current({
-        ...opts,
-        origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio),
-      });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const makeShot = useCallback((particleRatio: number, opts: any) => {
+    refAnimationInstance.current && refAnimationInstance.current
+      ? {
+          ...opts,
+          origin: { y: 0.7 },
+          particleCount: Math.floor(200 * particleRatio),
+        }
+      : {};
   }, []);
 
   useEffect(() => {
