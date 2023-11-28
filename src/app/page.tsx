@@ -2,7 +2,6 @@
 
 import { FunctionComponent, useRef } from "react";
 
-import ComingSoon from "@/components/ComingSoon";
 import HeroContainer from "@/components/HeroContainer";
 
 import LogoDark from "../../public/assets/images/logo_dark.png";
@@ -30,7 +29,6 @@ const App: FunctionComponent = () => {
           contentRef={contentRef}
         />
         <Content contentRef={contentRef} />
-        <ComingSoon />
         <HeadsUp />
         <Footer
           lastEditionUrl="https://fallstack2022.nei-isep.org/"
