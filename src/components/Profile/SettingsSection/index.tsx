@@ -43,11 +43,12 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   const linkedinRef = useRef<HTMLInputElement>(null);
   const cvRef = useRef<HTMLInputElement>(null);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userImage, setUserImage] = useState<string | null>(student.avatar);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isAvatarLoading, setIsAvatarLoading] = useState<boolean>(false);
 
   function handleUserBioChange(bio: string) {
     if (bio.length > LIMIT) return;
@@ -87,6 +88,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
       return;
     }
 
+    setIsLoading(true);
+
     setProfile({
       ...profile,
       linkedin: linkedinRef.current?.value || null,
@@ -116,38 +119,42 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
           body: JSON.stringify({ uploadId: profile.avatar }),
         });
 
+      setIsLoading(false);
       swal("Perfil atualizado com sucesso!");
-    } else swal("Ocorreu um erro ao atualizar o teu perfil...");
+    } else {
+      setIsLoading(false);
+      swal("Ocorreu um erro ao atualizar o teu perfil...");
+    }
 
     router.refresh();
   };
 
   const handleConfirmAvatar = async () => {
-    setIsLoading(true);
+    setIsAvatarLoading(true);
 
     if (imageSrc && croppedAreaPixels) {
       const image = await getCroppedImg(imageSrc, croppedAreaPixels);
-      if (!image) return setIsLoading(false);
+      if (!image) return setIsAvatarLoading(false);
 
       const signed = await getSignedUrl("avatar", image.type);
       if (!signed) {
         toast.error("Ocorreu um erro.");
-        return setIsLoading(false);
+        return setIsAvatarLoading(false);
       }
 
       if (image.size > signed.maxSize) {
         const maxMb = Math.round(signed.maxSize / Math.pow(1024, 2));
         toast.error(`A imagem excede o tamanho máximo de ${maxMb} MB.`);
-        return setIsLoading(false);
+        return setIsAvatarLoading(false);
       }
 
       const upload = await uploadToBucket(signed, image);
       if (upload.status !== 200) {
         toast.error("Não foi possível dar upload à imagem.");
-        return setIsLoading(false);
+        return setIsAvatarLoading(false);
       }
 
-      setIsLoading(false);
+      setIsAvatarLoading(false);
       setIsModalVisible(false);
 
       const croppedUrl = URL.createObjectURL(image);
@@ -226,12 +233,13 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
           setUserInterests={setUserInterests}
         />
 
-        <button
+        <PrimaryButton
           onClick={handleSave}
-          className="mt-4 rounded-lg bg-primary py-2 duration-100 hover:brightness-95"
+          loading={isLoading}
+          className="mt-4 py-2 text-lg"
         >
-          Salvar
-        </button>
+          Guardar
+        </PrimaryButton>
       </div>
 
       <Modal
@@ -244,7 +252,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
         <PrimaryButton
           className="w-full py-2 text-xl"
           onClick={handleConfirmAvatar}
-          loading={isLoading}
+          loading={isAvatarLoading}
         >
           Confirmar
         </PrimaryButton>
