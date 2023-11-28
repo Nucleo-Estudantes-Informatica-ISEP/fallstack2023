@@ -39,7 +39,10 @@ const InterestSelector: React.FC<InterestSelectorProps> = ({
     <Reorder.Group
       axis="x"
       values={orderedInterests}
-      onReorder={(values) => setInterests(values)}
+      onReorder={(values) => {
+        if (values.length !== orderedInterests.length) return;
+        setInterests(values);
+      }}
       className={`flex w-full flex-wrap gap-x-6 gap-y-4 ${
         scrollable && "h-52 overflow-y-scroll pt-4"
       }`}
