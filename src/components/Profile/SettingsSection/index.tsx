@@ -24,16 +24,16 @@ import UserBioTextArea from "../UserBioTextArea";
 
 interface SettingsSectionProps {
   student: Student & { user: User };
-  interests: string[];
   profile: ProfileData;
   setProfile: Dispatch<SetStateAction<ProfileData>>;
+  setActiveTab: Dispatch<SetStateAction<"Sumário" | "Perfil" | "Definições">>;
 }
 
 const SettingsSection: React.FC<SettingsSectionProps> = ({
-  // interests,
   student,
   profile,
   setProfile,
+  setActiveTab,
 }) => {
   const LIMIT = 255;
 
@@ -121,6 +121,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 
       setIsLoading(false);
       swal("Perfil atualizado com sucesso!");
+      setActiveTab("Perfil");
     } else {
       setIsLoading(false);
       swal("Ocorreu um erro ao atualizar o teu perfil...");

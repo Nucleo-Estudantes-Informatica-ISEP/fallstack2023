@@ -152,9 +152,9 @@ const ProfileSectionContainer: React.FC<ProfileSectionContainerProps> = ({
         {activeTab === "Definições" && (
           <SettingsSection
             student={student}
-            interests={interests}
             profile={profile}
             setProfile={setProfile}
+            setActiveTab={setActiveTab}
           />
         )}
       </div>
