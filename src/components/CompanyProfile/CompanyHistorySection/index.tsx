@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { Company } from "@prisma/client";
+import { Company, Interest } from "@prisma/client";
 import swal from "sweetalert";
 
 import { HistoryData } from "@/types/HistoryData";
@@ -43,11 +43,20 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
     fetchHistoryData();
   }, [company]);
 
+  function shuffleArray<T>(array: T[]) {
+    const newArr: T[] = array.map((e) => e);
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
+  }
+
   return (
     <div className="mt-12 flex w-full flex-col items-center justify-center">
       <Table
         aria-label="Example static collection table"
-        className="mt-2 w-11/12 items-center justify-center"
+        className="mt-2 max-w-max items-center justify-center"
         classNames={{
           base: "max-h-[350px] overflow-y-scroll overflow-x-hidden",
         }}
@@ -59,7 +68,7 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
           <TableColumn className="hidden w-64 text-center text-lg text-black md:table-cell">
             Data
           </TableColumn>
-          <TableColumn className="hidden w-full text-center text-lg text-black md:table-cell">
+          <TableColumn className="hidden min-w-0 flex-1 text-center text-lg text-black lg:table-cell">
             Interesses
           </TableColumn>
           <TableColumn className="w-1/2 text-center text-lg text-black md:w-24">
@@ -90,23 +99,25 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
                 <TableCell className="hidden w-64 text-center font-semibold text-black md:table-cell">
                   {formatDateDDStrMonthHourMin(item.createdAt)}
                 </TableCell>
-                <TableCell className="hidden w-full truncate text-center font-semibold text-black md:table-cell">
+                <TableCell className="hidden min-w-0 max-w-xs flex-1 truncate text-center font-semibold text-black lg:table-cell">
                   {item.student.interests.length ? (
-                    item.student.interests.slice(-2).map((interest, i) => (
-                      <span
-                        className="h-12"
-                        key={interest.name}
-                        title={interest.name}
-                      >
-                        {interest.name}
-                        {i !== 1 ? ", " : "..."}
-                      </span>
-                    ))
+                    shuffleArray<Interest>(item.student.interests).map(
+                      (interest, i) => (
+                        <span
+                          className="h-12"
+                          key={interest.name}
+                          title={interest.name}
+                        >
+                          {interest.name}
+                          {i !== item.student.interests.length - 1 ? ", " : ""}
+                        </span>
+                      )
+                    )
                   ) : (
                     <span>--</span>
                   )}
                 </TableCell>
-                <TableCell className="w-24 text-center font-semibold text-black">
+                <TableCell className=" w-24 self-center font-semibold text-black">
                   {item.student?.cv ? (
                     <OpenCvSectionCompany code={item.student?.code} />
                   ) : (

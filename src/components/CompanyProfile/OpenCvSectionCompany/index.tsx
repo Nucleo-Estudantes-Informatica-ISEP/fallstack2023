@@ -16,7 +16,7 @@ const OpenCvSectionCompany: React.FC<OpenCvProps> = ({ code }) => {
     window.open(url, "_blank");
   };
   return (
-    <div className="my-4 flex flex-col space-y-2 px-12 text-black">
+    <div className="my-4 flex flex-col items-center space-y-2 px-12 text-black">
       {code && (
         <a
           onClick={() => handleCv(code)}
