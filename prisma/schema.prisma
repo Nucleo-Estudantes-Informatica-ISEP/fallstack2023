@@ -8,14 +8,15 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  email         String         @unique
-  password      String
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  role          Role           @default(STUDENT)
-  isAdmin       Boolean        @default(false)
-  savedStudents SavedStudent[]
+  id                  Int                  @id @default(autoincrement())
+  email               String               @unique
+  password            String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  role                Role                 @default(STUDENT)
+  isAdmin             Boolean              @default(false)
+  savedStudents       SavedStudent[]
+  passwordResetTokens PasswordResetToken[]
 
   student Student?
   company Company?
@@ -63,6 +64,13 @@ model SavedStudent {
   savedById Int
 
   @@id([studentId, savedById, isSaved])
+}
+
+model PasswordResetToken {
+  token String @id
+  user  User   @relation(fields: [userId], references: [id])
+
+  userId Int
 }
 
 enum Role {
