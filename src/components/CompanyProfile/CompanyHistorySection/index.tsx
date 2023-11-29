@@ -46,8 +46,8 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
   }
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center justify-center text-black">
-      <div className="flex w-full flex-row items-center justify-between border-b-2 border-black py-3 font-bold">
+    <div className="my-4 flex w-full flex-col items-center justify-center text-black">
+      <div className="flex w-full flex-row items-center justify-between border-b-2 border-black px-1 py-3 font-bold">
         <div className="flex w-3/12 justify-center px-1 max-md:w-1/2">
           Aluno
         </div>
@@ -57,7 +57,10 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
         </div>
         <div className="flex w-1/12 justify-center px-1 max-md:w-1/6">CV</div>
       </div>
-      <div className="max-h-80 w-full overflow-y-scroll">
+      <div
+        className="firefox-scrollbar-margin max-h-80 w-full overflow-y-scroll pl-1 scrollbar scrollbar-track-transparent scrollbar-thumb-slate-500 scrollbar-thumb-rounded-lg scrollbar-w-1"
+        style={{ scrollbarGutter: "stable" }}
+      >
         {!historyData ? (
           Array(3)
             .fill(1)
@@ -84,7 +87,7 @@ const CompanySavesSection = ({ company }: HistorySectionProps) => {
               <div className="flex w-3/12 justify-center px-1 text-center text-primary hover:underline max-md:w-1/2">
                 <Link
                   href={"/student/" + item.student.code}
-                  className="w-full truncate"
+                  className="w-full truncate font-bold"
                 >
                   {item.student.name}
                 </Link>
