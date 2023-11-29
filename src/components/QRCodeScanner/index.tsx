@@ -47,9 +47,10 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ handleScan }) => {
 
     checkCameraPermission();
     return () => {
-      stream.getTracks().forEach(function (track) {
-        track.stop();
-      });
+      if (stream)
+        stream.getTracks().forEach(function (track) {
+          track.stop();
+        });
     };
   }, [ref]);
 

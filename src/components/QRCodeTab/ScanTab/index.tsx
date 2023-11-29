@@ -21,6 +21,15 @@ const ScanTab: React.FC<ScanTabProps> = ({ setHidden }) => {
     try {
       setProcessing(true);
 
+      if (data.match("^https?://.*")) {
+        if (data.startsWith(window.location.origin)) {
+          const path = new URL(data).pathname;
+          router.push(path);
+          setHidden(true);
+        } else window.open(data, "_self");
+        return;
+      }
+
       await fetch(BASE_URL + "/saved", {
         method: "POST",
         body: JSON.stringify({ token: data }),
