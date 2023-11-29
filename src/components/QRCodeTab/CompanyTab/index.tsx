@@ -12,6 +12,7 @@ import useIsMobile from "@/hooks/useIsMobile";
 import ScanTab from "../ScanTab";
 
 import { BsFillClipboardFill } from "react-icons/bs";
+import { BASE_URL } from "@/services/api";
 
 interface CompanyTabProps {
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,6 +34,11 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
 
       if (!token)
         return swal("Erro", "O código introduzido é inválido.", "error");
+
+        await fetch(BASE_URL + "/saved", {
+          method: "POST",
+          body: JSON.stringify({ code }),
+        });
 
       router.push(`/student/${token}/preview`);
 

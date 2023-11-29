@@ -68,7 +68,7 @@ const StudentPage: React.FC<ProfileProps> = async ({ params }) => {
 
   if (!(history instanceof HttpError))
     companiesLeft -= history.filter(
-      (s) => s.savedBy.company !== null && s.isSaved
+      (s) => s.savedBy.company !== null && !s.isSaved
     ).length;
 
   return (

@@ -15,7 +15,7 @@ const CompanyStatsSection: React.FC<StatsProps> = ({
 }) => {
   const totalScans = stats[0];
   const totalSaves = stats[1];
-  const studentsLeft = students - totalSaves;
+  const studentsLeft = students - totalScans;
 
   return (
     <section className="flex w-full flex-col items-center justify-center rounded-t-3xl bg-white p-4 md:rounded-md md:p-8">
