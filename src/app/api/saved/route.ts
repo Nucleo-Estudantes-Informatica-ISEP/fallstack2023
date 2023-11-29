@@ -19,13 +19,17 @@ export async function POST(req: NextRequest) {
   if (!safeParse.success)
     return NextResponse.json({ message: safeParse.error }, { status: 400 });
 
-  const { token } = safeParse.data;
+  const { token, code } = safeParse.data;
 
-  const { code } = verifyJwt(token) as { code: string };
+  let studentCode = code;
+  if (token) {
+    const decoded = verifyJwt(token) as { code: string };
+    studentCode = decoded.code;
+  }
 
   // check if student exists
   const student = await prisma.student.findUnique({
-    where: { code: code },
+    where: { code: studentCode },
     include: { user: true },
   });
 
@@ -75,13 +79,18 @@ export async function PATCH(req: NextRequest) {
   const parsed = saveSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: parsed.error });
 
-  const { token } = parsed.data;
-  const { code } = verifyJwt(token) as { code: string };
+  const { token, code } = parsed.data;
 
-  if (await isSaved(session.id, code))
+  let studentCode = code as string;
+  if (token) {
+    const decoded = verifyJwt(token) as { code: string };
+    studentCode = decoded.code;
+  }
+
+  if (await isSaved(session.id, studentCode))
     return NextResponse.json({ error: "Already saved" }, { status: 409 });
 
-  const student = await prisma.student.findUnique({ where: { code } });
+  const student = await prisma.student.findUnique({ where: { code: studentCode } });
 
   if (!student)
     return NextResponse.json({ error: "Invalid student" }, { status: 400 });
