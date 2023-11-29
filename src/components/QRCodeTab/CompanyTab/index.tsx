@@ -24,6 +24,10 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleClick();
+  };
+
   const handleClick = async () => {
     if (!inputRef.current?.value) toast.error("Sem código inserido.");
 
@@ -61,6 +65,7 @@ const CompanyTab: React.FC<CompanyTabProps> = ({ setHidden }) => {
                   name="Insere o código do estudante."
                   className={`z-10 ml-2 bg-slate-100 p-2 text-center text-xl font-bold uppercase text-black`}
                   ref={inputRef}
+                  onKeyUp={handleKeyUp}
                   maxLength={4}
                 />
               </div>
