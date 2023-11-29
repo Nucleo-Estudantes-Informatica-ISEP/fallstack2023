@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { HiPencilSquare as Pencil } from "react-icons/hi2";
 import {
+  MdDownload as DownloadIcon,
   MdInstallDesktop as InstallPwaDesktop,
   MdInstallMobile as InstallPwaMobile,
 } from "react-icons/md";
@@ -33,4 +34,5 @@ export {
   Leaf,
   InstallPwaDesktop,
   InstallPwaMobile,
+  DownloadIcon,
 };
