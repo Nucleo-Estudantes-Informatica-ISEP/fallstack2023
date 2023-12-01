@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { HttpError } from "@/types/HttpError";
 import getStudentHistory from "@/lib/getStudentHistory";
+import getServerSession from "@/services/getServerSession";
 
 interface StudentParams {
   params: {
@@ -9,10 +10,11 @@ interface StudentParams {
   };
 }
 
-export async function GET(
-  req: NextRequest,
-  { params: { code } }: StudentParams
-) {
+export async function GET(_: NextRequest, { params: { code } }: StudentParams) {
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const history = await getStudentHistory(code);
 
   if (history instanceof HttpError)

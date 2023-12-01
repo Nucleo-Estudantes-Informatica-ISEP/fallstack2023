@@ -90,7 +90,9 @@ export async function PATCH(req: NextRequest) {
   if (await isSaved(session.id, studentCode))
     return NextResponse.json({ error: "Already saved" }, { status: 409 });
 
-  const student = await prisma.student.findUnique({ where: { code: studentCode } });
+  const student = await prisma.student.findUnique({
+    where: { code: studentCode },
+  });
 
   if (!student)
     return NextResponse.json({ error: "Invalid student" }, { status: 400 });

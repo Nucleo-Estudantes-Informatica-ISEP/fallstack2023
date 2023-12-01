@@ -15,10 +15,11 @@ interface StudentParams {
   };
 }
 
-export async function GET(
-  req: NextRequest,
-  { params: { code } }: StudentParams
-) {
+export async function GET(_: NextRequest, { params: { code } }: StudentParams) {
+  const session = await getServerSession();
+  if (!session)
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+
   // fetch student as the logged user may be a company
   const student = await prisma.student.findUnique({ where: { code } });
 
